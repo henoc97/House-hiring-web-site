@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion d'immeubles</title>
+    <link rel="stylesheet" href="main.css">
+    <!-- box icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    
+
+  </head>
+  
+  <body>
+    <%- include('sidebar') %>
+    <section class="home_section" id="content-section">
+      <%- include('topbar') %>
+      <%- include('cardboxes') %>
+      <div class="details">
+        <%- include('recentpayments') %>
+        <%- include('newcustomers') %>
+      </div>
+    </section>
+
+    <script src="endpoints.js"></script>
+    <script src="renewAccessToken.js"></script>
+    <script src="cookies_engine.js"></script>
+    <script src="variablesState.js"></script>
+    <script src="update_sold_utils.js"></script>
+    <script src="getUnvalidReceipt.js"></script>
+    <script src="getrecenttenants.js"></script>
+    <script src="createPropertyRequest.js"></script>
+    <script src="getPropertiesRequest.js"></script>
+    <script src="createTenant.js"></script>
+    <script src="getTenantProperty.js"></script>
+    <script src="getalltenants.js"></script>
+    <script src="showModalTenant.js"></script>
+    <script src="requirereceiptrequest.js"></script>
+    <script src="getValidReceipt.js"></script>
+
+   
+    <script src="front_part_changer.js"></script>
+  </body>
+</html>

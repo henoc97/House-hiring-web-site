@@ -1,0 +1,132 @@
+:root {
+  --dark-blue: #11101D;
+  --white-blue: #1D1D31;
+  --white: #fff;
+  --gray: #8390a2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  margin-top: 25vh;
+  margin-bottom: 25vh;
+  padding: 20px;
+}
+
+#receipt{
+  line-height: 1.6;
+  word-spacing: 0.5em;
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.receipt-container {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+header, footer {
+  background-color: var(--dark-blue);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+i {
+  position: relative;
+  height: 60px;
+  min-width: 50px;
+  font-size: 45px;
+  line-height: 60px;
+  margin-right: 20px;
+  text-align: center;
+  color: var(--white);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  margin-top: 20px;
+}
+
+.receipt-details, .payment-details {
+  margin-top: 20px;
+}
+
+.receipt-details p, .payment-details p {
+  margin: 5px 0;
+}
+
+.signature img {
+  max-width: 200px;
+  height: auto;
+  margin-top: 10px;
+}
+
+button {
+  display: block;
+  padding: 10px 20px;
+  background-color: var(--dark-blue);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  height: 50px;
+}
+
+button:hover {
+  font-weight: bold;
+  background: -webkit-linear-gradient(left, var(--dark-blue), var(--white-blue), var(--gray));
+}
+
+@media (max-width: 600px) {
+  .receipt-container {
+      width: 100%;
+      padding: 10px;
+  }
+
+  header, footer {
+      padding: 5px;
+      font-size: 14px;
+  }
+
+  i {
+      font-size: 30px;
+  }
+
+  .receipt-details p, .payment-details p {
+      font-size: 14px;
+  }
+
+  button {
+      padding: 8px 16px;
+      height: 40px;
+  }
+}

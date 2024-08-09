@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirection en cours...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+    }
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border-left-color: #007bff;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="spinner"></div>
+    <p>Redirection en cours, veuillez patienter...</p>
+  </div>
+
+  <script src="endpoints.js"></script>
+  <script src="renewAccessToken.js"></script>
+  <script src="cookies_engine.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const url = host + 'createUserOwner';
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get('email');
+      const pwd = params.get('pwd');
+      const otp = params.get('otp');
+  
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, pwd, otp })
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(errorData => {
+            throw new Error(errorData.message || 'Erreur inconnue');
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("data: " + JSON.stringify(data));
+        if (data.accessToken) {
+          console.log(data.accessToken);
+          localStorage.setItem('sold', data.sold);
+          localStorage.setItem('accessToken', data.accessToken);
+          setCookie("refreshToken", data.refreshToken, 7);
+          window.location.href = "/";
+        } else {
+          alert('Erreur de login');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);  // Affiche l'erreur complète dans la console
+        alert('Erreur lors de la création du compte : ' + error.message); // Affiche un message d'erreur plus descriptif
+        // Redirection vers la page d'erreur
+        window.location.href = '/error.html';
+      });
+    });
+  </script>
+</body>
+</html>

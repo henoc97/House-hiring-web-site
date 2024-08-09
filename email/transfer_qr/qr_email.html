@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification de transfert via QuickTransfer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 0;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .qr-code {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: #4CAF50;">Notification de transfert via QuickTransfer</h1>
+        <p>Bonjour,</p>
+        <p style="color: #333;">Vous avez reçu un transfert via l'application QuickTransfer. Veuillez scanner le code QR ci-dessous pour retirer votre argent :</p>
+        <img class="qr-code" src="cid:qrcode" alt="Code QR pour le transfert">
+        <p style="text-align: center;"><a class="button" href="#">Scanner le code QR</a></p>
+    </div>
+    <div class="footer">
+        <p>QuickTransfer &copy; 2024. Tous droits réservés.</p>
+    </div>
+</body>
+</html>
