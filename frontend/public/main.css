@@ -244,8 +244,8 @@
   width: 100%;
   padding: 1rem 1.5rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 80px;
 }
 
 .card-boxes .box {
@@ -679,7 +679,9 @@ form button:hover {
   font-weight: bold;
   background: -webkit-linear-gradient(left, var(--blue), var(--white-blue), var(--gray));
 }
-
+.profile-card-boxes .box form input {
+  width: calc(100vw / 3.5);
+}
 /* responsive */
 
 @media screen and (max-width: 991px) {
@@ -718,6 +720,13 @@ form button:hover {
     grid-template-columns: repeat(1, 1fr);
   }
 
+  .profile-card-boxes .box {
+    width: calc(100vw / 2);
+  }
+
+  .profile-card-boxes .box form input{
+    width: calc(100vw / 2.3);
+  }
   .details .recent_customers table {
     width: 50%;
     margin-top: 30px;
@@ -731,6 +740,13 @@ form button:hover {
   .profile-card-boxes {
     grid-template-columns: repeat(1, 1fr);
   }
+  .profile-card-boxes .box {
+    width: calc(100vw / 1.5);
+  }
+
+  .profile-card-boxes .box form input{
+    width: calc(100vw / 2);
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -741,6 +757,15 @@ form button:hover {
   .profile-card-boxes {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  .profile-card-boxes .box {
+    width: calc(100vw / 1.3);
+  }
+
+  .profile-card-boxes .box form input{
+    width: calc(100vw / 2);
+  }
+
   .details {
     grid-template-columns: repeat(1, 1fr);
   }

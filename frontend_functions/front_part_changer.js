@@ -94,6 +94,15 @@ document.getElementById('btn').addEventListener('click', function() {
             document.querySelector('.details').innerHTML = data;
 
             const uploadForm = document.getElementById('uploadForm');
+            const ownerForm = document.getElementById('owner-form');
+            if (ownerForm) {
+              getOwner();
+              ownerForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                updateOwner();
+              });
+            }
+
             if (uploadForm) {
               uploadForm.addEventListener('submit', async function (e) {
                 e.preventDefault();

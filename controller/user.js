@@ -118,6 +118,67 @@ module.exports.userauth = async (req, res) => {
     }
 };
 
+
+module.exports.myOwner = async (req, res) => {
+    try {
+        const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Token not provided' });
+        }
+
+        jwt.verify(token, process.env.TOKEN_KEY, async (err, tokendata) => {
+            if (err) {
+                return res.status(403).json({ message: 'Token not valid' });
+            }
+            const query = "CALL owner_by_id(?)";
+            const values = [tokendata.userId];
+            console.log("tokendata: " + tokendata.userId);
+            try {
+                const [rows] = await pool.query(query, values);
+                console.log("rows owner: ",  rows);
+                res.status(200).json(rows[0][0]);
+            } catch (queryError) {
+                console.error('Erreur lors de l\'exécution de la requête', queryError);
+                res.status(500).json({ message: 'Erreur serveur' });
+            }
+        });
+    } catch (error) {
+        console.log('Erreur lors de l\'exécution', error);
+        res.status(500).json({ message: 'Erreur serveur' });
+    }
+};
+
+module.exports.updateOwner = async (req, res) => {
+    try {
+        const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Token not provided' });
+        }
+
+        jwt.verify(token, process.env.TOKEN_KEY, async (err, tokendata) => {
+            if (err) {
+                return res.status(403).json({ message: 'Token not valid' });
+            }
+
+            const {lastname, firstname, email, contactmoov, contacttg} = req.body;
+            const query = "CALL update_owner(?, ?, ?, ?, ?, ?)";
+            const values = [tokendata.userId, lastname, firstname,  email, contactmoov, contacttg];
+
+            try {
+                const [result] = await pool.query(query, values);
+                console.log(result);
+                res.status(200).json({ message: "requête réussie" });
+            } catch (queryError) {
+                console.error('Erreur lors de l\'exécution de la requête', queryError);
+                res.status(500).json({ message: 'Erreur serveur' });
+            }
+        });
+    } catch (error) {
+        console.log('Erreur lors de l\'exécution', error);
+        res.status(500).json({ message: 'Erreur serveur' });
+    }
+};
+
 module.exports.updateSold = async (req, res) => {
     const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
 

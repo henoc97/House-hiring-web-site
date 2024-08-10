@@ -168,7 +168,7 @@ function getAllTenantsRequest() {
 // UPDATE tenant
 function editTenant(tenantId) {
   let token = localStorage.getItem('accessToken');
-  fetch(host + "myTenant", {  // Utilise l'ID pour récupérer les détails de la propriété
+  fetch(host + "myTenant", {  // Utilise l'ID pour récupérer les détails de locataire
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -182,7 +182,7 @@ function editTenant(tenantId) {
   .then(data => {
       console.log("Editing property:", data);
 
-      // Remplir le formulaire avec les données actuelles de la propriété
+      // Remplir le formulaire avec les données actuelles de le locataire
       document.getElementById('edit-lastname').value = data.lastname;
       document.getElementById('edit-firstname').value = data.firstname;
       document.getElementById('edit-contactmoov').value = data.contactmoov;

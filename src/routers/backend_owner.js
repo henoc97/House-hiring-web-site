@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sharp = require('sharp');
 
-const { getotp, createUserOwner, userauth, updateSold, refreshToken } = require('../../controller/user');
+const { getotp, createUserOwner, userauth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/user');
 const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/property');
 const { createTenant, TenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/tenant');
 const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = require('../../controller/receipt');
@@ -14,6 +14,8 @@ router.post("/createUserOwner", createUserOwner);
 router.post("/userauth", userauth);
 router.post("/updateSold", updateSold);
 router.post("/refreshToken", refreshToken);
+router.post("/myOwner", myOwner);
+router.post("/updateOwner", updateOwner);
 
 // Routes pour les propriétés
 router.post("/createProperties", createProperties);
