@@ -6,6 +6,7 @@ function setNumberOfTenantsProperties(numberOfTenantsProperties) {
 
 function getNumberOfTenantsProperties() {
   console.log("ca marche bien");
+  if (localStorage.getItem('numberOfTenantsProperties') == 'undefined') return 0;
   return localStorage.getItem('numberOfTenantsProperties');
 }
 

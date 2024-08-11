@@ -47,13 +47,13 @@ router.post('/upload', upload.single('image'), async (req, res) => {
             return res.status(400).json({ message: 'Aucun fichier téléchargé' });
         }
 
-        // Traiter l'image avec sharp (si nécessaire)
-        const imagePath = req.file.path;
-        const processedImagePath = `public/img/${req.file.filename}`;
+        // // Traiter l'image avec sharp (si nécessaire)
+        // const imagePath = req.file.path;
+        // const processedImagePath = `public/img/${req.file.filename}`;
 
-        await sharp(imagePath)
-            .resize(800) // Redimensionner l'image si nécessaire
-            .toFile(processedImagePath);
+        // await sharp(imagePath)
+        //     .resize(800) // Redimensionner l'image si nécessaire
+        //     .toFile(processedImagePath);
 
         // Répondre avec l'URL de l'image et le nom du fichier
         res.status(200).json({

@@ -8,6 +8,7 @@ function setNumberOfTenants(numberOfTenants) {
 
 function getNumberOfTenants() {
   console.log("ca marche bien");
+  if (localStorage.getItem('numberOfTenants') == 'undefined') return 0;
   return localStorage.getItem('numberOfTenants');
 }
 
@@ -223,17 +224,20 @@ function updateTenant(editingId) {
 }
 
 function resetForm() {
-  const submitButton = document.querySelector('#edit-tenant-form button[type="submit"]');
-  // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
-  delete submitButton.dataset.editingId;
-  // Sélectionne la modale et son contenu
-  const modal = document.getElementById('editModal');
-  const modalContent = document.querySelector('.modal-content');
-  modal.classList.remove('show');
-  modalContent.classList.remove('show');
-  setTimeout(() => {
-      modal.style.display = 'none';
-  }, 300);
+  const form = document.getElementById('edit-tenant-form')
+  if (form) {
+    const submitButton = document.querySelector('#edit-tenant-form button[type="submit"]');
+    // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
+    delete submitButton.dataset.editingId;
+    // Sélectionne la modale et son contenu
+    const modal = document.getElementById('editModal');
+    const modalContent = document.querySelector('.modal-content');
+    modal.classList.remove('show');
+    modalContent.classList.remove('show');
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+  }
   
 }
 

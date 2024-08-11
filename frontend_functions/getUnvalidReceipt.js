@@ -1,58 +1,61 @@
-
-
-
-
-
 function getUnvalidReceiptsRequest() {
-    let token = localStorage.getItem('accessToken');
-    fetch(host + 'receipt_unValid', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log("data received:", data); // Log les données reçues
+  let token = localStorage.getItem('accessToken');
+  fetch(host + 'receipt_unValid', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    },
+  })
+  .then(response => {
+    if (response.status === 403) {
+      // Si l'utilisateur n'est pas autorisé, redirigez-le vers la page de connexion
+      window.location.href = ownerLogSignURL;
+      return; // Sortir de la promesse pour éviter d'exécuter le reste du code
+    }
+    return response.json(); // Convertir la réponse en JSON si le statut n'est pas 403
+  })
+  .then(data => {
+    if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécution
 
-      // Si les propriétés sont enveloppées dans un objet { myProperties }
-      const unvaliReceipts = data;
-      getValidReceiptsRequest();
-      const tableBody = document.getElementById("unvalidReceiptsTable");
-      if (tableBody) {
-        tableBody.innerHTML = ''; // Clear existing rows
+    console.log("data received:", data); // Log les données reçues
 
-        unvaliReceipts.forEach((unvalidReceipt) => {
-          const formattedDate = new Date(unvalidReceipt.monthpayed).toLocaleString('fr-FR', {
-            month: 'long',
-            year: 'numeric'
-          }).replace(',', '').replace(/\//g, '-');
-          console.log("unvaliReceipts data:", unvalidReceipt); // Log chaque propriété
-          const row = document.createElement('tr');
-          row.innerHTML = `
-                <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
-                <td>${formattedDate}</td>
-                <td>
-                  ${unvalidReceipt.address}
-                </td>
-                <td>
-                ${unvalidReceipt.sumpayed}
-                </td>
-                <td>
-                  <a href="#" class="govalidreceipt" data-receipt='${JSON.stringify(unvalidReceipt)}'>
-                    <span class="badge bg_danger">Non approuvé</span>
-                  </a>
-                </td>
-          `;
-          tableBody.appendChild(row);
-        });
-      } else {
-        console.error("Element with ID 'tenantspropertiesTable' not found.");
-      }
-    })
-    .catch((error) => console.error('Error fetching tenantsproperties:', error));
-  }
+    const unvaliReceipts = data;
+    getValidReceiptsRequest();
+    const tableBody = document.getElementById("unvalidReceiptsTable");
+    if (tableBody) {
+      tableBody.innerHTML = ''; // Clear existing rows
 
-
-
+      unvaliReceipts.forEach((unvalidReceipt) => {
+        const formattedDate = new Date(unvalidReceipt.monthpayed).toLocaleString('fr-FR', {
+          month: 'long',
+          year: 'numeric'
+        }).replace(',', '').replace(/\//g, '-');
+        console.log("unvaliReceipts data:", unvalidReceipt); // Log chaque propriété
+        const row = document.createElement('tr');
+        row.innerHTML = `
+              <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
+              <td>${formattedDate}</td>
+              <td>
+                ${unvalidReceipt.address}
+              </td>
+              <td>
+              ${unvalidReceipt.sumpayed}
+              </td>
+              <td>
+                <a href="#" class="govalidreceipt" data-receipt='${JSON.stringify(unvalidReceipt)}'>
+                  <span class="badge bg_danger">Non approuvé</span>
+                </a>
+              </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    } else {
+      console.error("Element with ID 'unvalidReceipts' not found.");
+    }
+  })
+  .catch((error) => {
+    alert(error.message);
+    console.error('Error fetching unvaliReceipts:', error);
+  });
+}

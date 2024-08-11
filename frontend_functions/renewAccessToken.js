@@ -24,6 +24,6 @@ function renewAccessToken() {
     .catch(error => {
         console.error('Erreur de renouvellement du token:', error);
         // Si le renouvellement échoue, rediriger l'utilisateur vers la page de login
-        window.location.href = '/sign_log';
+        window.location.href = ownerLogSignURL;
     });
 }

@@ -30,7 +30,7 @@
         <div class="pass-link"><strong><a href="#">Mot de passe oublié?</a></strong></div>
         <div class="field btn">
           <div class="btn-layer"></div>
-          <input type="submit" value="Login">
+          <input type="submit" value="Se connecter">
         </div>
         <div class="signup-link">Pas de compte? <strong><a href="#">S'inscrire maintenant</a></strong></div>
       </form>
@@ -132,7 +132,7 @@
         localStorage.setItem('sold', data.user.sold);
         localStorage.setItem('accessToken', data.accessToken);
         setCookie("refreshToken", data.refreshToken, 7);
-        window.location.href = "/"; 
+        window.location.href = ownerURL; 
       } else {
         alert('Erreur de login');
       }

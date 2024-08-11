@@ -11,12 +11,13 @@ function setSold(sold) {
   
   function getsold() {
     console.log("ca marche bien");
+    if (localStorage.getItem('sold') == 'undefined') return 0;
     return localStorage.getItem('sold');
   }
 
   function showNewSold(){
     document.getElementById('sold').innerHTML = 
-        `<h3>Solde : ${getsold()}</h3>`;
+        `<h3>Solde : ${getsold() ?? 0}</h3>`;
   }
   
   

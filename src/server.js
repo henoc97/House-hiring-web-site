@@ -3,41 +3,48 @@ const app = express();
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
+const apicache = require('apicache');
 require("dotenv/config");
 
 
+// Initialise le cache
+const cache = apicache.middleware;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-
 // Configurer le moteur de template EJS
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../frontend/views'));
+
+// Définir les répertoires des vues pour les propriétaires et les locataires
+const ownerViewsPath = path.join(__dirname, '../frontend/owner_views');
+const tenantViewsPath = path.join(__dirname, '../frontend/tenant_views');
 
 // Servir les fichiers statiques
 app.use(express.static(path.join(__dirname, '../frontend/public')));
-
 app.use(express.static(path.join(__dirname, '../frontend/img')));
-
 app.use(express.static(path.join(__dirname, '../frontend_functions')));
-
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Importer les routes
+const frontendOwnerRouter = require('./routers/frontendOwnerRouter'); 
+const frontendTenantRouter = require('./routers/frontendTenantRouter'); 
+const backendOwnerRouter = require('./routers/backend_owner'); 
 
-// Importer le router
-const frontendrouter = require('./routers/frontendrouter'); 
+// Utiliser les routes avec cache
+app.use('/owner', (req, res, next) => {
+  app.set('views', ownerViewsPath);
+  next();
+}, cache('5 minutes'), frontendOwnerRouter); // Cache les réponses pendant 5 minutes
 
-const backendownerrouter = require('./routers/backend_owner'); // Assurez-vous que le chemin est correct
+app.use('/tenant', (req, res, next) => {
+  app.set('views', tenantViewsPath);
+  next();
+}, cache('5 minutes'), frontendTenantRouter); // Cache les réponses pendant 5 minutes
 
-// Utiliser le router
-app.use('/', frontendrouter);
 
-app.use('/backendowner', backendownerrouter);
+app.use('/backendowner', backendOwnerRouter);
 
 const port = 3000;
 

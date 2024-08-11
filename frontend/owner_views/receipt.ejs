@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reçu de Paiement de Loyer</title>
-  <link rel="stylesheet" href="receipt.css">
+  <link rel="stylesheet" href="/receipt.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
@@ -30,7 +30,7 @@
       </div>
       <div class="signature">
         <h3>Signature</h3>
-        <img src="signature.png" alt="la signature">
+        <img id="signatureImage" alt="la signature">
       </div>
       <footer>
         <p>Merci d'avoir payé à temps. Pour toute question, veuillez nous contacter à l'adresse contact@exemple.com.</p>
@@ -42,9 +42,9 @@
       
     </div>
   </div>
-  <script src="endpoints.js"></script>
-  <script src="update_sold_utils.js"></script>
-  <script src="variablesState.js"></script>
+  <script src="/endpoints.js"></script>
+  <script src="/update_sold_utils.js"></script>
+  <script src="/variablesState.js"></script>
   <script>
     const receiptData = JSON.parse(localStorage.getItem('selectedReceipt'));
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -91,6 +91,7 @@
           <p><strong>Règlement du mois de :</strong> ${formattedMonthpayed}</p>  
           <p id="paymentDate"><strong>Date de Paiement :</strong> ${formattedDate}</p>        
         `;
+        document.getElementById('signatureImage').src = "/" + localStorage.getItem("uploadedImageFilename");
       }
 
       
@@ -121,12 +122,12 @@
         .then(data => {
             console.log(data);
             updateSoldRequest(validateReceiptPrice);
-            window.location.href = "/"
+            window.location.href = ownerURL;
             
         })
         .catch(error => {
             console.error('Erreur:', error);
-            window.location.href = "/sign_log";
+            window.location.href = ownerLogSignURL;
         });
       } else {
         alert('solde insuffisant. Cette opération coute 0.25€')

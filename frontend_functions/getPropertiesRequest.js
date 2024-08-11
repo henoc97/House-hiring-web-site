@@ -5,6 +5,7 @@ function setNumberOfProperties(numberOfProperties) {
 
 function getNumberOfProperties() {
   console.log("ca marche bien");
+  if (localStorage.getItem('numberOfProperties') == 'undefined') return 0;
   return localStorage.getItem('numberOfProperties');
 }
 
@@ -160,6 +161,19 @@ function editProperty(propertyId) {
   .catch(error => console.error('Error fetching property details:', error));
 }
 
+
+function resetPropertyForm() {
+  const form = document.getElementById('property-form')
+  if (form) {
+    form.reset();
+    const submitButton = document.querySelector('#property-form button[type="submit"]');
+    submitButton.textContent = 'Enregistrer';
+    const actionIndicator = document.querySelector('#actionIndicator');
+    actionIndicator.textContent = "Enregistrer une propriété"
+    delete submitButton.dataset.editingId;
+  }
+}
+
 function update_property(editingId) {
   const updatedData = {
       id : editingId,
@@ -178,23 +192,13 @@ function update_property(editingId) {
   })
   .then(response => response.json())
   .then(data => {
-      getPropertiesRequest(1);;  // Recharge les propriétés pour montrer les changements
-      resetForm();
+    // alert('ca marche quand meme')
+    getPropertiesRequest(1); // Recharge les propriétés pour montrer les changements
+    resetPropertyForm();
       
   })
   .catch(error => console.error('Error updating property:', error));  
 }
 
-function resetForm() {
-  const form = document.getElementById('property-form')
-  if (form) {
-    form.reset();
-    const submitButton = document.querySelector('#property-form button[type="submit"]');
-    submitButton.textContent = 'Enregistrer';
-    const actionIndicator = document.querySelector('#actionIndicator');
-    actionIndicator.textContent = "Enregistrer une propriété"
-    delete submitButton.dataset.editingId;
-  }
-}
 
 // Appelle cette fonction après une modification réussie

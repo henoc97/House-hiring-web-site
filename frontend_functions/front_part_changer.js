@@ -2,7 +2,8 @@
 
 
 
-if (recentTenantsTable) {              
+if (recentTenantsTable) {    
+  // alert('Please select');          
   getUnvalidReceiptsRequest();
   getRecentTenantsRequest();
 }
@@ -46,7 +47,7 @@ document.getElementById("unvalidReceiptsTable").addEventListener('click', functi
     localStorage.setItem('selectedReceipt', JSON.stringify(receiptData));
 
     // Redirect to the validation page
-    window.location.href = 'receipt';
+    window.location.href = receiptURL;
   }
 });
 
@@ -72,7 +73,7 @@ document.getElementById('btn').addEventListener('click', function() {
       document.querySelector('.details').innerHTML = ''; // Nettoyer la section details
 
       if (this.id === 'dash-button') {
-        fetch('/dashboard')
+        fetch(ownerURL + '/dashboard')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -88,7 +89,7 @@ document.getElementById('btn').addEventListener('click', function() {
       } 
 
       if (this.id === 'porfile-button') {
-        fetch('/profile')
+        fetch(ownerURL + '/profile')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -147,7 +148,7 @@ document.getElementById('btn').addEventListener('click', function() {
       } 
 
       if (this.id === 'proprietes-button') {
-        fetch('/propertiespart')
+        fetch(ownerURL + '/propertiespart')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -182,7 +183,7 @@ document.getElementById('btn').addEventListener('click', function() {
       } 
 
       if (this.id === 'tenant-button') {
-        fetch('/tenants_part')
+        fetch(ownerURL + '/tenants_part')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -213,7 +214,7 @@ document.getElementById('btn').addEventListener('click', function() {
       }
 
       if (this.id === 'tenant_home-button') {
-        fetch('/tenant_home')
+        fetch(ownerURL + '/tenant_home')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -244,11 +245,9 @@ document.getElementById('btn').addEventListener('click', function() {
 
 
       if (this.id === 'myreceipt-button') {
-        fetch('/receipts_part')
+        fetch(ownerURL + '/receipts_part')
         .then(response => response.text())
         .then(data => {
-
-          
 
           document.querySelector('.details').innerHTML = data;
           const validReceiptsTable = document.getElementById("validReceiptsTable");
@@ -282,7 +281,7 @@ document.getElementById('btn').addEventListener('click', function() {
               localStorage.setItem('selectedReceipt', JSON.stringify(receiptData));
           
               // Redirect to the validation page
-              window.location.href = 'receipt';
+              window.location.href = receiptURL;
             }
           });
 
@@ -384,8 +383,6 @@ document.getElementById('btn').addEventListener('click', function() {
                   getTenantsPropertiesRequest(2);
               });
           }
-
-          
         });
       }
     });

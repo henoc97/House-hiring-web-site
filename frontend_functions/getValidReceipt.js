@@ -6,6 +6,7 @@ function setNumberOfPayments(numberOfPayments) {
 
 function getNumberOfPayments() {
   console.log("ca marche bien");
+  if (localStorage.getItem('numberOfPayments') == 'undefined') return 0;
   return localStorage.getItem('numberOfPayments');
 }
 
