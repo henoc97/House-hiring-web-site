@@ -8,7 +8,7 @@ require("dotenv/config");
 
 
 // Initialise le cache
-const cache = apicache.middleware;
+// const cache = apicache.middleware;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -36,12 +36,12 @@ const backendOwnerRouter = require('./routers/backend_owner');
 app.use('/owner', (req, res, next) => {
   app.set('views', ownerViewsPath);
   next();
-}, cache('5 minutes'), frontendOwnerRouter); // Cache les réponses pendant 5 minutes
+}, /* cache('5 minutes'), */ frontendOwnerRouter); // Cache les réponses pendant 5 minutes
 
 app.use('/tenant', (req, res, next) => {
   app.set('views', tenantViewsPath);
   next();
-}, cache('5 minutes'), frontendTenantRouter); // Cache les réponses pendant 5 minutes
+}, /* cache('5 minutes'), */ frontendTenantRouter); // Cache les réponses pendant 5 minutes
 
 
 app.use('/backendowner', backendOwnerRouter);

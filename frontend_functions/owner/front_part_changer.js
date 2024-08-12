@@ -309,79 +309,87 @@ document.getElementById('btn').addEventListener('click', function() {
                   document.getElementById('sumpayed').value = price ? price : '';
               });
 
-              $(document).ready(function() {
-                  $('#months').select2({
-                      placeholder: 'Sélectionnez les mois',
-                      allowClear: true,
-                      width: 'resolve'
-                  });
+              // Fonction pour générer les options des mois
+            function generateMonthOptions(startMonth, startYear) {
+              const months = [
+                  "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+                  "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+              ];
 
-                  const currentDate = new Date();
-                  const currentMonth = currentDate.getMonth() + 1; // Les mois commencent à 0 en JavaScript
-                  const currentYear = currentDate.getFullYear();
+              const monthsSelect = document.getElementById('months');
+              monthsSelect.innerHTML = ''; // Vider les options existantes
 
-                  // Remplir la liste des mois avec l'année appropriée
-                  const months = [
-                      "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-                      "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
-                  ];
-                  const monthsSelect = $('#months');
-                  
-                  // Utilisation d'un ensemble pour éviter les doublons
-                  const addedMonths = new Set();
-                  
-                  months.forEach((month, index) => {
-                      const monthNumber = index + 1;
-                      const year = monthNumber < currentMonth ? currentYear : currentYear;
-                      
-                      // Formater la date comme YYYY-MM
-                      const monthYearKey = `${year}-${String(monthNumber).padStart(2, '0')}-01`;
-                      if (!addedMonths.has(monthYearKey)) {
-                          const option = new Option(`${month} ${year}`, monthYearKey);
-                          monthsSelect.append(option);
-                          addedMonths.add(monthYearKey);
-                      }
-                  });
+              let currentMonth = startMonth;
+              let currentYear = startYear;
 
-                  $('#tenantsProperties-option').on('change', function() {
-                      updateSumpayed();
-                  });
+              for (let i = 0; i < 12; i++) {
+                  const monthName = months[currentMonth - 1];
+                  const monthYearKey = `${currentYear}-${String(currentMonth).padStart(2, '0')}-01`;
 
-                  $('#months').on('change', function() {
-                      updateSumpayed();
-                      updateSelectedMonths();
-                  });
+                  const option = document.createElement('option');
+                  option.value = monthYearKey;
+                  option.textContent = `${monthName} ${currentYear}`;
+                  monthsSelect.appendChild(option);
 
-                  function updateSumpayed() {
-                      const selectedOption = document.getElementById('tenantsProperties-option').options[document.getElementById('tenantsProperties-option').selectedIndex];
-                      const pricePerMonth = selectedOption.dataset.price;
-                      const selectedMonths = $('#months').val();
-                      const monthsCount = selectedMonths.length;
-
-                      if (pricePerMonth && monthsCount > 0) {
-                          const totalCost = pricePerMonth * monthsCount;
-                          document.getElementById('sumpayed').value = totalCost;
-                      } else {
-                          document.getElementById('sumpayed').value = '';
-                      }
+                  // Passer au mois suivant
+                  currentMonth++;
+                  if (currentMonth > 12) {
+                      currentMonth = 1;
+                      currentYear++;
                   }
+              }
+          }
 
-                  function updateSelectedMonths() {
-                      const selectedMonths = $('#months').val().map(monthYear => {
-                          const [year, monthNumber] = monthYear.split('-');
-                          return `${getMonthName(parseInt(monthNumber))} ${year}`;
-                      }).join(' - ');
-                      document.getElementById('selected-months').textContent = selectedMonths;
-                  }
+          // Déterminer le mois et l'année de départ
+          const startDate = new Date();
+          const startMonth = startDate.getMonth() + 1; // Les mois commencent à 0 en JavaScript
+          const startYear = startDate.getFullYear();
 
-                  function getMonthName(monthNumber) {
-                      const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-                      return monthNames[monthNumber - 1];
-                  }
+          // Générer les mois à partir du mois courant
+          generateMonthOptions(startMonth, startYear);
 
-                  // Appel pour charger les propriétés des locataires au chargement de la page
-                  getTenantsPropertiesRequest(2);
+          // Mettre à jour le coût total basé sur le locataire sélectionné et les mois sélectionnés
+          function updateSumpayed() {
+              const selectedOption = document.getElementById('tenantsProperties-option').selectedOptions[0];
+              const pricePerMonth = parseFloat(selectedOption.dataset.price);
+              const selectedMonths = Array.from(document.getElementById('months').selectedOptions);
+              const monthsCount = selectedMonths.length;
+
+              if (pricePerMonth && monthsCount > 0) {
+                  const totalCost = pricePerMonth * monthsCount;
+                  document.getElementById('sumpayed').value = totalCost;
+              } else {
+                  document.getElementById('sumpayed').value = '';
+              }
+          }
+
+          // Afficher les mois sélectionnés
+          function updateSelectedMonths() {
+              const selectedMonths = Array.from(document.getElementById('months').selectedOptions).map(option => {
+                  const [year, monthNumber] = option.value.split('-');
+                  return `${getMonthName(parseInt(monthNumber))} ${year}`;
               });
+              document.getElementById('selected-months').textContent = selectedMonths.join(', ');
+          }
+
+          // Obtenir le nom du mois à partir du numéro du mois
+          function getMonthName(monthNumber) {
+              const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+                "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+              return monthNames[monthNumber - 1];
+          }
+
+          // Événements de changement pour mettre à jour le coût et les mois sélectionnés
+          document.getElementById('tenantsProperties-option').addEventListener('change', function() {
+              updateSumpayed();
+          });
+
+          document.getElementById('months').addEventListener('change', function() {
+              updateSumpayed();
+              updateSelectedMonths();
+              // Appel pour charger les propriétés des locataires au chargement de la page
+              getTenantsPropertiesRequest(2);
+          });
           }
         });
       }
