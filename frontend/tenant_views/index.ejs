@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon immeubles</title>
-    <link rel="stylesheet" href="/main.css">
+    <title>Mon immeuble</title>
+    <link rel="stylesheet" href="/main_tenant.css">
     <!-- box icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
 
@@ -17,16 +17,13 @@
       <%- include('topbar') %>
       <%- include('cardboxes') %>
       <div class="details">
+        <%- include(setpwd) %>
         <%- include(myreceipts) %>
         <%- include(requirereceipt) %>
       </div>
     </section>
 
-    <!-- <script src="endpoints.js"></script>
-    <script src="renewAccessToken.js"></script>
-    <script src="cookies_engine.js"></script>
-    <script src="variablesState.js"></script>
-    <script src="update_sold_utils.js"></script>
+    <!-- <script src="update_sold_utils.js"></script>
     <script src="getUnvalidReceipt.js"></script>
     <script src="getrecenttenants.js"></script>
     <script src="ownerUtil.js"></script>
@@ -36,10 +33,15 @@
     <script src="getTenantProperty.js"></script>
     <script src="getalltenants.js"></script>
     <script src="showModalTenant.js"></script>
-    <script src="requirereceiptrequest.js"></script>
-    <script src="getValidReceipt.js"></script>
+    <script src="requirereceiptrequest.js"></script> -->
+    <script src="/public/endpoints.js"></script>
+    <script src="/public/renewAccessToken.js"></script>
+    <script src="/public/cookies_engine.js"></script>
+    <script src="/public/variablesState.js"></script>
 
-   
-    <script src="front_part_changer.js"></script> -->
+    <script src="/tenant/setpwd.js"></script>
+    <script src="/tenant/getValidReceipt.js"></script>
+
+    <script src="/tenant/front_part_changer.js"></script>
   </body>
 </html>

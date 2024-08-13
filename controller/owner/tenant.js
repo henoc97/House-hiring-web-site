@@ -1,5 +1,6 @@
-const pool = require('../database/database_connection');
+const pool = require('../../database/database_connection');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 require('dotenv').config();
 
@@ -14,10 +15,11 @@ module.exports.createTenant = async (req, res) => {
             if (err) {
                 return res.status(403).json({ message: 'Token not valid' });
             }
+            const keyword = crypto.randomBytes(4).toString('hex');
 
-            const { id, lastname, firstname, contactmoov, contacttg } = req.body;
-            const query = "CALL insert_tenant(?, ?, ?, ?, ?, ?)";
-            const values = [id, tokendata.userId, lastname, firstname, contactmoov, contacttg];
+            const { id, lastname, firstname, contactmoov, contacttg} = req.body;
+            const query = "CALL insert_tenant(?, ?, ?, ?, ?, ?, ?)";
+            const values = [id, tokendata.userId, keyword, lastname, firstname, contactmoov, contacttg];
 
             try {
                 const [result] = await pool.query(query, values);

@@ -56,14 +56,32 @@ function getTenantsPropertiesRequest(type) {
 
         tenantsproperties.forEach((tenantproperty) => {
           console.log("tenantsproperties data:", tenantproperty); // Log chaque propriété
+          // Génération du lien d'activation
+          const activationLink = activateURL + `?key=${tenantproperty.conn_key}&pr_ten=${tenantproperty.id}`;
+
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>${tenantproperty.lastname} ${tenantproperty.firstname}</td>
             <td>${tenantproperty.contactmoov} / ${tenantproperty.contacttg}</td>
             <td>${tenantproperty.address}</td>
             <td>${tenantproperty.price}</td>
+            ${tenantproperty.is_activated ? 
+              `<td>--</td>` : 
+              `<td><i class='bx bx-copy' style="cursor: pointer;" title="Copier le lien d'activation"></i></td>`
+            }
           `;
           tableBody.appendChild(row);
+          // Ajouter un événement de clic pour copier le lien dans le presse-papiers
+          const copyIcon = row.querySelector('.bx-copy');
+          if (copyIcon) {
+            copyIcon.addEventListener('click', () => {
+              navigator.clipboard.writeText("Lien à usage unique : " + activationLink).then(() => {
+                  alert('Lien d\'activation copié dans le presse-papiers !');
+              }).catch(err => {
+                  console.error('Échec de la copie du lien : ', err);
+              });
+           });
+          }
         });
       } else {
         console.error("Element with ID 'tenantspropertiesTable' not found.");

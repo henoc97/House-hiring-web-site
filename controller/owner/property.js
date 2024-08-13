@@ -1,5 +1,5 @@
-const pool = require("../database/database_connection");
-const { Property } = require('../model/property');
+const pool = require("../../database/database_connection");
+const { Property } = require('../../model/property');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 

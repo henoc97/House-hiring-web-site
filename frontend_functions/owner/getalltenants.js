@@ -62,8 +62,7 @@ function getAllTenantsRequest() {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${tenant.lastname} ${tenant.firstname}</td>
-          <td>${tenant.contactmoov}</td>
-          <td>${tenant.contacttg}</td>
+          <td>${tenant.contactmoov} / ${tenant.contacttg}</td>
           <td>
             <span class="late-count">${late == '' ? 0 : late.split(",").length}</span>
             <div class="late-months" style="display: none;">
@@ -79,7 +78,7 @@ function getAllTenantsRequest() {
                   <i class='bx bx-trash delete-icon' data-id="${tenant.id}"></i>
                 </div>
               </div>
-            </td>
+          </td>
         `;
         tableBody.appendChild(row);
 

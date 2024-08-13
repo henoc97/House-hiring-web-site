@@ -22,7 +22,7 @@ const ownerViewsPath = path.join(__dirname, '../frontend/owner_views');
 const tenantViewsPath = path.join(__dirname, '../frontend/tenant_views');
 
 // Servir les fichiers statiques
-app.use(express.static(path.join(__dirname, '../frontend/public')));
+app.use(express.static(path.join(__dirname, '../frontend/css')));
 app.use(express.static(path.join(__dirname, '../frontend/img')));
 app.use(express.static(path.join(__dirname, '../frontend_functions')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -31,6 +31,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const frontendOwnerRouter = require('./routers/frontendOwnerRouter'); 
 const frontendTenantRouter = require('./routers/frontendTenantRouter'); 
 const backendOwnerRouter = require('./routers/backend_owner'); 
+const backendTenantRouter = require('./routers/backend_tenant'); 
 
 // Utiliser les routes avec cache
 app.use('/owner', (req, res, next) => {
@@ -45,6 +46,8 @@ app.use('/tenant', (req, res, next) => {
 
 
 app.use('/backendowner', backendOwnerRouter);
+
+app.use('/backendtenant', backendTenantRouter);
 
 const port = 3000;
 

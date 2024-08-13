@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const sharp = require('sharp');
 
-const { getotp, createUserOwner, userauth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/user');
-const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/property');
-const { createTenant, TenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/tenant');
-const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = require('../../controller/receipt');
+const { getotp, createUserOwner, userauth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/owner/user');
+const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/owner/property');
+const { createTenant, TenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/owner/tenant');
+const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = require('../../controller/owner/receipt');
 const { upload } = require('../../functions/storepicture');
 
 // Routes pour les utilisateurs

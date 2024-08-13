@@ -1,7 +1,4 @@
 
-
-
-
 function createTenantRequest(){
 
   if((getsold() - registerTenant) > 0){

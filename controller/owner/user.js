@@ -1,10 +1,10 @@
-const { hashPassword, comparePasswords } = require("../functions/hash_compare_pwd");
-const { User } = require("../model/user");
-const pool = require('../database/database_connection');
-const mailTest = require("../functions/email_test");
-const generateToken = require("../functions/token");
-const sendOTPemail = require('../email/activation/sender');
-const codeOTP = require('../functions/otp');
+const { hashPassword, comparePasswords } = require("../../functions/hash_compare_pwd");
+const { User } = require("../../model/user");
+const pool = require('../../database/database_connection');
+const mailTest = require("../../functions/email_test");
+const { generateOwnerToken } = require("../../functions/token");
+const sendOTPemail = require('../../email/activation/sender');
+const codeOTP = require('../../functions/otp');
 const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
@@ -36,8 +36,8 @@ module.exports.refreshToken = (req, res) => {
         const decoded = jwt.verify(refreshToken, key);
 
         const user = { id: decoded.userId, email: decoded.userEmail };
-        const newAccessToken = generateToken(user, "15m");
-        const newRefreshToken = generateToken(user, "7d");
+        const newAccessToken = generateOwnerToken(user, "15m");
+        const newRefreshToken = generateOwnerToken(user, "7d");
 
         res.json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
     } catch (err) {
@@ -66,8 +66,8 @@ module.exports.createUserOwner = async (req, res) => {
         const objIDSold = result[0][0]; // l' objet qui contient l' ID et le sold.
         console.log(objIDSold);
         connection.release();
-        const newAccessToken = generateToken({ id: objIDSold.id, email: email }, "2d");
-        const newRefreshToken = generateToken({ id: objIDSold.id, email: email }, "7d");
+        const newAccessToken = generateOwnerToken({ id: objIDSold.id, email: email }, "2d");
+        const newRefreshToken = generateOwnerToken({ id: objIDSold.id, email: email }, "7d");
         console.log(newAccessToken, newRefreshToken);
         res.status(200).json({
             refreshToken: newRefreshToken,
@@ -102,8 +102,8 @@ module.exports.userauth = async (req, res) => {
         if (await comparePasswords(pwd, pwdhashed)) {
             const user = User.jsonToNewUser(rows[0][0]);
             console.log("user : ", user);
-            const newAccessToken = generateToken({ id: user.userID, email: user.email }, "2d");
-            const newRefreshToken = generateToken({ id: user.userID, email: user.email }, "7d");
+            const newAccessToken = generateOwnerToken({ id: user.userID, email: user.email }, "2d");
+            const newRefreshToken = generateOwnerToken({ id: user.userID, email: user.email }, "7d");
             console.log(newAccessToken, newRefreshToken);
             res.status(200).json({
                 refreshToken: newRefreshToken,

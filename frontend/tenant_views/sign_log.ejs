@@ -22,7 +22,7 @@
     <div class="form-inner">
       <form id="login-form" class="login">
         <div class="field">
-          <input type="text" id="email" name="email" placeholder="Adresse e-mail" required>
+          <input type="text" id="conn_key" name="conn_key" placeholder="Clé de connexion" required>
         </div>
         <div class="field">
           <input type="password" id="pwd" name="pwd" placeholder="Mot de passe" required>
@@ -36,7 +36,7 @@
       </form>
       <form id="signup-form" class="signup">
         <div class="field">
-            <input type="text" id="signup-email" name="email" placeholder="Adresse e-mail" required>
+            <input type="text" id="signup-conn_key" name="conn_key" placeholder="Clé de connexion" required>
         </div>
         <div class="field">
             <input type="password" id="signup-pwd" name="pwd" placeholder="Mot de passe" required>
@@ -62,7 +62,7 @@
   document.getElementById('signup-form').addEventListener('submit', function(event) {
       event.preventDefault(); // Empêche la soumission par défaut du formulaire
 
-      const email = document.getElementById('signup-email').value;
+      const conn_key = document.getElementById('signup-conn_key').value;
       const pwd = document.getElementById('signup-pwd').value;
       const pwd1 = document.getElementById('signup-pwd1').value;
       const messageDiv = document.getElementById('message');
@@ -84,7 +84,7 @@
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-              email: email,
+              conn_key: conn_key,
               pwd: pwd
           })
       })
@@ -108,7 +108,7 @@
   });
 
   function makeRequest() {
-    let email = document.getElementById('email').value;
+    let conn_key = document.getElementById('conn_key').value;
     let pwd = document.getElementById('pwd').value;
 
     fetch(host + 'userauth', {
@@ -116,7 +116,7 @@
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: email, pwd: pwd })
+      body: JSON.stringify({ conn_key: conn_key, pwd: pwd })
     })
     .then(response => {
       if (!response.ok) {
