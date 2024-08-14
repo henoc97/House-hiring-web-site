@@ -3,9 +3,10 @@ const router = express.Router();
 const sharp = require('sharp');
 
 const { getotp, userauth, refreshToken, activateTenantAccount, setpwd } = require('../../controller/tenant/user');
-// const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/tenant/property');
-// const { createTenant, TenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/tenant/tenant');
-// const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = require('../../controller/tenant/receipt');
+const { require_receipt, receipt_unValid, receipt_valid } = require('../../controller/tenant/receipt');
+const { tenantProperty } = require('../../controller/tenant/property');
+const { sendMessage, myMessages, deleteMessage } = require('../../controller/tenant/support');
+
 const { upload } = require('../../functions/storepicture');
 
 // Routes pour les utilisateurs
@@ -14,6 +15,20 @@ router.post("/userauth", userauth);
 router.post("/refreshToken", refreshToken);
 router.post("/activateTenantAccount", activateTenantAccount);
 router.post("/setpwd", setpwd);
+
+
+// Routes pour les reçus
+router.post("/require_receipt", require_receipt);
+router.post("/receipt_unValid", receipt_unValid);
+router.post("/receipt_valid", receipt_valid);
+
+// Routes pour les tenant_property
+router.post("/tenantProperty", tenantProperty);
+
+// Routes pour les messages
+router.post("/sendMessage", sendMessage);
+router.post("/myMessages", myMessages);
+router.post("/deleteMessage", deleteMessage);
 
 
 module.exports = router;

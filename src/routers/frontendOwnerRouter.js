@@ -51,6 +51,7 @@ router.get('/tenants_part', (req, res) => {
   res.render('tenants_part', {
     mytenants : "mytenants",
     editTenant : "editTenant",
+    discussPart : "discussPart",
     tenantsmessages:"tenantsmessages"
   });
 });

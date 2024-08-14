@@ -74,8 +74,9 @@ function getAllTenantsRequest() {
               <div class="dropdown">
                 <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
                 <div class="dropdown-content">
-                  <i class='bx bx-edit-alt edit-icon' data-id="${tenant.id}"></i>
-                  <i class='bx bx-trash delete-icon' data-id="${tenant.id}"></i>
+                  <i class='bx bx-message-dots chat-icon' data-id="${tenant.id}" title="Discussion"></i>
+                  <i class='bx bx-edit-alt edit-icon' data-id="${tenant.id}" title="Modification"></i>
+                  <i class='bx bx-trash delete-icon' data-id="${tenant.id}" title="Supprission"></i>
                 </div>
               </div>
           </td>
@@ -115,48 +116,76 @@ function getAllTenantsRequest() {
             }
           });
 
-          // Sélectionne la modale et son contenu
-          const modal = document.getElementById('editModal');
-          const modalContent = document.querySelector('.modal-content');
-          const closeModal = document.querySelector('.modal .close');
+          // Sélectionne la modale de modification et son contenu
+          const editModal = document.getElementById('editModal');
+          const editModalContent = editModal.querySelector('.modal-content');
+
+          // Sélectionne la modale des messages et son contenu
+          const messageModal = document.getElementById('message-modal');
+          const messageModalContent = messageModal.querySelector('.modal-content');
+
+          // Fermeture des modales
+          const closeEditModal = editModal.querySelector('.close');
 
           // Quand l'utilisateur clique sur une icône de modification
           document.querySelectorAll('.edit-icon').forEach(icon => {
             icon.addEventListener('click', function() {
               const tenantId = this.dataset.id;
-              
+
               // Remplir le formulaire avec les données du locataire ici (utilisez tenantId)
               editTenant(tenantId);
-              modal.style.display = 'block'; // Affiche la modale
+              editModal.style.display = 'block'; // Affiche la modale
               setTimeout(() => {
-                modal.classList.add('show');
-                modalContent.classList.add('show');
+                editModal.classList.add('show');
+                editModalContent.classList.add('show');
               }, 10); // Ajout du délai pour permettre la transition
             });
           });
 
-          // Quand l'utilisateur clique sur <span> (x), ferme la modale
-          if (closeModal) {
-              closeModal.onclick = function() {
-              modal.classList.remove('show');
-              modalContent.classList.remove('show');
+          // Quand l'utilisateur clique sur une icône de discussions
+          const chatIcons = document.querySelectorAll('.chat-icon');
+          chatIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+              const tenantId = this.dataset.id;
+              // Affiche la modale des messages pour le locataire correspondant
+              messageModal.style.display = 'block';
               setTimeout(() => {
-                  modal.style.display = 'none';
+                messageModal.classList.add('show');
+                messageModalContent.classList.add('show');
+              }, 10); // Ajout du délai pour permettre la transition
+              // Charger les messages ou autres données si nécessaire
+            });
+          });
+
+          // Fermeture des modales lorsqu'on clique sur <span> (x)
+          if (closeEditModal) {
+            closeEditModal.onclick = function() {
+              editModal.classList.remove('show');
+              editModalContent.classList.remove('show');
+              setTimeout(() => {
+                editModal.style.display = 'none';
               }, 300); // Correspond à la durée de l'animation en CSS
-              }
+            };
           }
 
-
-          // Quand l'utilisateur clique n'importe où en dehors de la modale, la fermer
+          // Fermeture des modales lorsqu'on clique en dehors
           window.onclick = function(event) {
-            if (event.target == modal) {
-              modal.classList.remove('show');
-              modalContent.classList.remove('show');
-              setTimeout(() => {
-                modal.style.display = 'none';
-              }, 300); // Correspond à la durée de l'animation en CSS
+            if (event.target == editModal || event.target == messageModal) {
+              if (event.target == editModal) {
+                editModal.classList.remove('show');
+                editModalContent.classList.remove('show');
+                setTimeout(() => {
+                  editModal.style.display = 'none';
+                }, 300); // Correspond à la durée de l'animation en CSS
+              } else if (event.target == messageModal) {
+                messageModal.classList.remove('show');
+                messageModalContent.classList.remove('show');
+                setTimeout(() => {
+                  messageModal.style.display = 'none';
+                }, 300); // Correspond à la durée de l'animation en CSS
+              }
             }
-          }
+          };
 
     } else {
       console.error("Element with ID 'tableBody' not found.");

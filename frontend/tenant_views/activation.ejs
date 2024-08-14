@@ -41,8 +41,8 @@
         console.log("data: " + JSON.stringify(data));
         if (data.accessToken) {
           console.log(data.accessToken);
-          localStorage.setItem('accessToken', data.accessToken);
-          setCookie("refreshToken", data.refreshToken, 7);
+          localStorage.setItem('accessTokenTenant', data.accessToken);
+          setCookie("refreshTokenTenant", data.refreshToken, 7);
           localStorage.setItem('setPwd', 0);
           window.location.href = tenantURL;
         } else {

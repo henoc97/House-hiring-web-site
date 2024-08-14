@@ -6,6 +6,7 @@ const { getotp, createUserOwner, userauth, updateSold, refreshToken, updateOwner
 const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/owner/property');
 const { createTenant, TenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/owner/tenant');
 const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = require('../../controller/owner/receipt');
+const { sendMessage, myMessages, deleteMessage } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
 
 // Routes pour les utilisateurs
@@ -38,6 +39,11 @@ router.post("/require_receipt", require_receipt);
 router.post("/receipt_unValid", receipt_unValid);
 router.post("/receipt_valid", receipt_valid);
 router.post("/validateReceipt", validateReceipt);
+
+// Routes pour les messages
+router.post("/sendMessage", sendMessage);
+router.post("/myMessages", myMessages);
+router.post("/deleteMessage", deleteMessage);
 
 // Route d'upload d'images
 router.post('/upload', upload.single('image'), async (req, res) => {

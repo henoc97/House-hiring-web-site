@@ -1,4 +1,22 @@
 
+
+if (receiptsTable) { // est definie en bas
+  getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
+}
+
+const requireRecieptForm = document.getElementById("receipt-form");
+const toggleIconRecieptForm = document.getElementById('toggle-icon');
+const tenantPropertyoption = document.getElementById("tenantProperty-option");
+if(toggleIconRecieptForm && requireRecieptForm && tenantPropertyoption) {
+  toggleIconRecieptForm.addEventListener('click', () => {
+    const isFormVisible = requireRecieptForm.style.display === 'block';
+    requireRecieptForm.style.display = isFormVisible ? 'none' : 'block';
+    toggleIconRecieptForm.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
+  });
+
+  selectMonthsHelper(); // Aide a selectionner les moi pour les reçus
+}
+
 const totalPayments = document.getElementById('totalPayments');
 totalPayments.textContent = getNumberOfPayments() ?? 0;
 
@@ -52,15 +70,22 @@ document.getElementById('btn').addEventListener('click', function() {
             // const unvalidReceiptsTable = document.getElementById('unvalidReceiptsTable')
             // const recentTenantsTable = document.getElementById('recentTenantsTable');
             const requireRecieptForm = document.getElementById("receipt-form");
-            const toggleIcon = document.getElementById('toggle-icon');
+            const toggleIconRecieptForm = document.getElementById('toggle-icon');
+            const receiptsTable = document.getElementById('receiptsTable');
 
-            if(toggleIcon && requireRecieptForm) {
-              toggleIcon.addEventListener('click', () => {
+            if(toggleIconRecieptForm && requireRecieptForm) {
+              toggleIconRecieptForm.addEventListener('click', () => {
                 const isFormVisible = requireRecieptForm.style.display === 'block';
                 requireRecieptForm.style.display = isFormVisible ? 'none' : 'block';
-                toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
+                toggleIconRecieptForm.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
               });
             }
+            selectMonthsHelper(); // Aide a selectionner les moi pour les reçus
+
+            if (receiptsTable) {
+              getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
+            }
+            
             // if (recentTenantsTable && unvalidReceiptsTable) {
               
             //   getUnvalidReceiptsRequest();
@@ -85,8 +110,15 @@ document.getElementById('btn').addEventListener('click', function() {
                 messageForm.style.display = isFormVisible ? 'none' : 'block';
                 toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
               });
+
+              messageForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                sendMessageRequest();
+              });
+
             }
-            
+            getMessagesRequest();
+            deleteMessageLogic();
         });
       }
 

@@ -5,10 +5,11 @@
 
 function setpwdRequest(){
 
+    let setPwdForm = document.getElementById('set-pwd-form');
     let pwd = document.getElementById('set-pwd').value;
     let pwd1 = document.getElementById('set-pwd1').value;
 
-    const messageDiv = document.getElementById('message');
+    const messageDiv = document.getElementById('set-pwd-message');
 
     if (messageDiv) {
       // Réinitialise le message
@@ -22,7 +23,7 @@ function setpwdRequest(){
         return;
     }
 
-    let token = localStorage.getItem('accessToken');
+    let token = localStorage.getItem('accessTokenTenant');
 
     fetch(hostTenant + '/setpwd', {
       method: 'POST',
@@ -42,19 +43,26 @@ function setpwdRequest(){
         return response.json();
     })
     .then(data => {
+      setPwdForm.reset();
 
-
-      const modal = document.getElementById('set-pwd');
-      const modalContent = document.querySelector('.modal-content');
+      // Ferme la modale avec une animation douce
+      const modal = document.getElementById('modal-set-pwd');
+      const modalContent = modal.querySelector('.modal-content');
       
-      modal.classList.remove('show');
+      // Enlever la classe "show" pour lancer l'animation de fermeture
       modalContent.classList.remove('show');
-      setTimeout(() => {
-          modal.style.display = 'none';
-      }, 300);
+      modal.classList.remove('show');
 
+      // Après la durée de la transition, cache complètement la modale
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300); // La durée de l'animation de transition (300ms)
+      
+      // Sauvegarder le fait que le mot de passe a été défini
       localStorage.setItem('setPwd', 1);
-      getValidReceiptsRequest();
+      
+      // Appel à une autre fonction après la fermeture de la modale
+      getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
       })
     .catch(error => {
         console.error('Erreur:', error);

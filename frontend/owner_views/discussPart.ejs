@@ -1,0 +1,43 @@
+
+<!-- Modale pour message -->
+<div id="message-modal" class="modal">
+  <div class="modal-content">
+    <div class="recent_project">
+      <div class="card_header">
+        <h2>Mes messages</h2>
+        <i id="delete-selected" class='bx bx-trash disabled' title="Supprimer les messages sélectionnés'"></i>
+      </div>
+      <div id="chat-container">
+        <div class="message-container">
+          <div class="message sender">
+            <p>Message de l'expéditeur</p>
+            <span class="timestamp">12:45 PM</span>
+          </div>
+          <div class="message receiver">
+            <p>Message du destinataire</p>
+            <span class="timestamp">12:46 PM</span>
+          </div>
+          <div class="message sender">
+            <p>Comment ça va ?Comment ça va ?Comment ça va ?<br>Comment ça va ?Comment ça va ?</p>
+            <span class="timestamp">12:47 PM</span>
+          </div>
+          <div class="message receiver">
+            <p>Ça va bien, merci !</p>
+            <span class="timestamp">12:48 PM</span>
+          </div>
+        </div>
+      </div>    
+    </div>
+    <br>
+    <div class="new_customers">
+      <form id="message-form">
+        <div class="form-group">
+            <label for="tenant_message">Votre message :</label>
+            <textarea id="tenant-message" name="tenant_message" rows="3" cols="33" placeholder="Écrivez votre message ici..." required></textarea>
+        </div>
+        <button type="submit">Envoyez</button>
+      </form>
+    </div>
+  </div>
+</div>
+  

@@ -99,7 +99,7 @@
   </script>
 
   <script>
-    let token = localStorage.getItem('accessToken');
+    let token = localStorage.getItem('accessTokenTenant');
     function validateReceipt() {
       if((getsold() - validateReceiptPrice) > 0){
         fetch(host + 'validateReceipt', {

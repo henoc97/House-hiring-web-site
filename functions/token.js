@@ -27,7 +27,7 @@ function generateTenantToken(user, time) {
     const key = process.env.TOKEN_KEY;
     const payload = {
         userId : user.id,
-        prTenID : user.email,
+        prTenID : user.pr_ten_id
     };
 
     const options = {

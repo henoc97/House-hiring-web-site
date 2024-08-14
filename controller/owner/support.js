@@ -2,8 +2,11 @@ const pool = require("../../database/database_connection");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-module.exports.require_receipt = async (req, res) => {
+module.exports.sendMessage = async (req, res) => {
     try {
+        const connection = await pool.getConnection();
+        console.log('Connecté à MySQL');
+
         const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
         if (!token) {
             return res.status(401).json({ message: 'Token not provided' });
@@ -13,30 +16,32 @@ module.exports.require_receipt = async (req, res) => {
             if (_err) {
                 return res.status(403).json({ message: 'Token not valid' });
             } else {
-                const { sumpayed, monthpayed } = req.body;
-                console.log(req.body);
-                console.log(_tokendata.prTenID, sumpayed, monthpayed);
-                const query = "CALL insert_payment(?, ?, ?)";
-                const values = [_tokendata.prTenID, sumpayed, monthpayed];
+                const { tenantid, message } = req.body;
+                const query = "CALL insert_message_owner(?, ?, ?)";
+                const values = [_tokendata.userId, tenantid, message];
 
                 try {
-                    const [rows] = await pool.query(query, values);
-                    console.log(rows);
-                    res.status(200).json({ message: "requête réussie", data: rows[0][0]});
+                    const [rows] = await connection.query(query, values);
+                    res.status(200).json({ message: "requête réussie" });
                 } catch (err) {
                     console.error('Erreur lors de l\'exécution de la requête', err);
                     res.status(500).json({ message: 'Erreur serveur' });
+                } finally {
+                    connection.release();
                 }
             }
         });
-    } catch (error) {
-        console.log('Erreur lors de l\'exécution', error);
+    } catch (err) {
+        console.error('Erreur de connexion au pool', err);
         res.status(500).json({ message: 'Erreur serveur' });
     }
 }
 
-module.exports.receipt_unValid = async (req, res) => {
+module.exports.myMessages = async (req, res) => {
     try {
+        const connection = await pool.getConnection();
+        console.log('Connecté à MySQL');
+
         const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
         if (!token) {
             return res.status(401).json({ message: 'Token not provided' });
@@ -46,27 +51,33 @@ module.exports.receipt_unValid = async (req, res) => {
             if (_err) {
                 return res.status(403).json({ message: 'Token not valid' });
             } else {
-                const query = "CALL payment_notvalid_tenant(?)";
-                const values = [_tokendata.prTenID];
+                const { tenantid } = req.body;
+                const query = "CALL get_messages_viewed_by_owner(?)";
+                const values = [tenantid];
 
                 try {
-                    const [rows] = await pool.query(query, values);
-                    console.log('unvalid : ', rows[0]);
+                    const [rows] = await connection.query(query, values);
+                    console.log("ici : ", rows[0]);
                     res.status(200).json(rows[0]);
                 } catch (err) {
                     console.error('Erreur lors de l\'exécution de la requête', err);
                     res.status(500).json({ message: 'Erreur serveur' });
+                } finally {
+                    connection.release();
                 }
             }
         });
-    } catch (error) {
-        console.log('Erreur lors de l\'exécution', error);
+    } catch (err) {
+        console.error('Erreur de connexion au pool', err);
         res.status(500).json({ message: 'Erreur serveur' });
     }
 }
 
-module.exports.receipt_valid = async (req, res) => {
+module.exports.deleteMessage = async (req, res) => {
     try {
+        const connection = await pool.getConnection();
+        console.log('Connecté à MySQL');
+
         const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
         if (!token) {
             return res.status(401).json({ message: 'Token not provided' });
@@ -76,21 +87,23 @@ module.exports.receipt_valid = async (req, res) => {
             if (_err) {
                 return res.status(403).json({ message: 'Token not valid' });
             } else {
-                const query = "CALL payment_valid_tenant(?)";
-                const values = [_tokendata.prTenID];
+                const { messageId } = req.body;
+                const query = "CALL update_message_viewed_owner(?)";
+                const values = [messageId];
 
                 try {
-                    const [rows] = await pool.query(query, values);
-                    console.log(rows);
-                    res.status(200).json(rows[0]);
+                    const [rows] = await connection.query(query, values);
+                    res.status(200).json({ message: "requête réussie" });
                 } catch (err) {
                     console.error('Erreur lors de l\'exécution de la requête', err);
                     res.status(500).json({ message: 'Erreur serveur' });
+                } finally {
+                    connection.release();
                 }
             }
         });
-    } catch (error) {
-        console.log('Erreur lors de l\'exécution', error);
+    } catch (err) {
+        console.error('Erreur de connexion au pool', err);
         res.status(500).json({ message: 'Erreur serveur' });
     }
 }

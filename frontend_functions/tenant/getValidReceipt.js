@@ -19,8 +19,8 @@ function showNumberOfPayments() {
 
 
 function getValidReceiptsRequest() {
-    let token = localStorage.getItem('accessToken');
-    fetch(host + 'receipt_valid', {
+    let token = localStorage.getItem('accessTokenTenant');
+    fetch(hostTenant + 'receipt_valid', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -37,9 +37,9 @@ function getValidReceiptsRequest() {
       setNumberOfPayments(valiReceipts.length);
       showNumberOfPayments();
 
-      const tableBody = document.getElementById("validReceiptsTable");
+      const tableBody = document.getElementById("receiptsTable");
       if (tableBody) {
-        tableBody.innerHTML = ''; // Clear existing rows
+        // tableBody.innerHTML = ''; // Clear existing rows
 
         valiReceipts.forEach((validReceipt) => {
           console.log("valiReceipts data:", validReceipt); // Log chaque propriété
@@ -49,11 +49,7 @@ function getValidReceiptsRequest() {
           }).replace(',', '').replace(/\//g, '-');
           const row = document.createElement('tr');
           row.innerHTML = `
-                <td>${validReceipt.lastname} ${validReceipt.firstname.split(' ')[0]}</td>
                 <td>${formattedDate}</td>
-                <td>
-                    ${validReceipt.address}
-                </td>
                 <td>
                 ${validReceipt.sumpayed}
                 </td>
@@ -62,8 +58,34 @@ function getValidReceiptsRequest() {
                     <span class="badge bg_seccuss">Approuvé</span>
                   </a>
                 </td>
+                <td>
+                  <div class="dropdown">
+                    <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
+                    <div class="dropdown-content">
+                      <i class='bx bx-trash delete-icon' data-id="${validReceipt.id}"></i>
+                    </div>
+                  </div>
+                </td>
           `;
           tableBody.appendChild(row);
+
+          const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
+          toggleDropdowns.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+              const dropdown = this.closest('.dropdown');
+              dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
+            });
+          });
+        
+          // Fermer le dropdown si on clique en dehors
+          window.addEventListener('click', function(event) {
+            if (!event.target.matches('.toggle-dropdown')) {
+              const dropdowns = document.querySelectorAll('.dropdown');
+              dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('show');
+              });
+            }
+          });
         });
       } else {
         console.error("Element with ID 'tenantspropertiesTable' not found.");
