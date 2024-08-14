@@ -158,6 +158,7 @@ function getAllTenantsRequest() {
               }, 10); // Ajout du délai pour permettre la transition
               // Charger les messages ou autres données si nécessaire
               getMessagesRequest(tenantId);
+              deleteMessageLogic(tenantId);
             });
           });
 

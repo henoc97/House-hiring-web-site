@@ -1,12 +1,10 @@
 
 function deleteMessageLogic(tenantId) {
     let selectedMessages = new Set();
-
     function handleMessageSelection(event) {
         if (event.target.classList.contains('message')) {
             const messageDiv = event.target;
             const messageId = messageDiv.getAttribute('data-id');
-            
             if (selectedMessages.has(messageId)) {
                 selectedMessages.delete(messageId);
                 messageDiv.classList.remove('selected');
@@ -39,6 +37,7 @@ function deleteMessageLogic(tenantId) {
         selectedMessages.clear(); // Réinitialiser la sélection
         document.getElementById('delete-selected').classList.remove('enabled');
         document.getElementById('delete-selected').classList.add('disabled'); // Réinitialiser l'état de l'icône
+        // alert('tenantId ' + tenantId);
         getMessagesRequest(tenantId); // Recharger les messages après suppression
     });
 

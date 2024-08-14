@@ -118,7 +118,7 @@ document.getElementById('btn').addEventListener('click', function() {
 
             }
             getMessagesRequest();
-            setInterval(() => getMessagesRequest(), 3000); // sync messages every 3s
+            // setInterval(() => getMessagesRequest(), 3000); // sync messages every 3s
             deleteMessageLogic();
         });
       }

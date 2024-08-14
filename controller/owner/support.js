@@ -88,6 +88,7 @@ module.exports.deleteMessage = async (req, res) => {
                 return res.status(403).json({ message: 'Token not valid' });
             } else {
                 const { messageId } = req.body;
+                console.log(_tokendata.userId, messageId);
                 const query = "CALL update_message_viewed_owner(?)";
                 const values = [messageId];
 
