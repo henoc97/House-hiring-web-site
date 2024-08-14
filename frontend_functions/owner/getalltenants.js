@@ -148,12 +148,16 @@ function getAllTenantsRequest() {
             icon.addEventListener('click', function() {
               const tenantId = this.dataset.id;
               // Affiche la modale des messages pour le locataire correspondant
+              const submitButton = document.querySelector('#message-form button[type="submit"]');
+              // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
+              submitButton.dataset.tenantId = tenantId;
               messageModal.style.display = 'block';
               setTimeout(() => {
                 messageModal.classList.add('show');
                 messageModalContent.classList.add('show');
               }, 10); // Ajout du délai pour permettre la transition
               // Charger les messages ou autres données si nécessaire
+              getMessagesRequest(tenantId);
             });
           });
 

@@ -184,6 +184,26 @@ document.getElementById('btn').addEventListener('click', function() {
                 }
               }
             });
+            
+            messageForm.addEventListener('submit', function(event) {
+              event.preventDefault(); // Empêche le rechargement de la page
+              if (messageForm) {
+                const submitButton = event.target.querySelector('#message-form button[type="submit"]');
+                const tenantId = submitButton.dataset.tenantId;
+                if (tenantId) {
+                  sendMessageRequest(tenantId);
+                }
+              }
+            });
+            if (messageForm) {
+              const submitButton = document.querySelector('#message-form button[type="submit"]');
+              const tenantId = submitButton.dataset.tenantId;
+              if (tenantId) {
+                getMessagesRequest(tenantId);
+                setInterval(() => getMessagesRequest(tenantId), 3000); // sync messages every 3s
+                deleteMessageLogic(tenantId);
+              }
+            }
           });
       }
 

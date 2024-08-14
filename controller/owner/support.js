@@ -16,9 +16,9 @@ module.exports.sendMessage = async (req, res) => {
             if (_err) {
                 return res.status(403).json({ message: 'Token not valid' });
             } else {
-                const { tenantid, message } = req.body;
+                const { tenantId, message } = req.body;
                 const query = "CALL insert_message_owner(?, ?, ?)";
-                const values = [_tokendata.userId, tenantid, message];
+                const values = [_tokendata.userId, tenantId, message];
 
                 try {
                     const [rows] = await connection.query(query, values);
@@ -51,9 +51,9 @@ module.exports.myMessages = async (req, res) => {
             if (_err) {
                 return res.status(403).json({ message: 'Token not valid' });
             } else {
-                const { tenantid } = req.body;
+                const { tenantId } = req.body;
                 const query = "CALL get_messages_viewed_by_owner(?)";
-                const values = [tenantid];
+                const values = [tenantId];
 
                 try {
                     const [rows] = await connection.query(query, values);
