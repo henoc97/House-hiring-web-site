@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test WebSocket</title>
+</head>
+<body>
+    <h1>Test WebSocket</h1>
+    <textarea id="messages" cols="100" rows="10" readonly></textarea><br>
+    <input id="messageInput" type="text" placeholder="Type a message...">
+    <button id="sendMessage">Send</button>
+
+    <script>
+        // Remplacez 'your_token_here' par le token que vous souhaitez utiliser
+        const token = localStorage.getItem('accessToken');
+        const ws = new WebSocket(`ws://localhost:3000/?token=${encodeURIComponent(token)}`);
+
+        ws.onopen = () => {
+            console.log('WebSocket connection established');
+        };
+
+        ws.onmessage = event => {
+            let messageObject;
+
+            try {
+                // Tenter de parser le message reçu en tant qu'objet JSON
+                messageObject = JSON.parse(event.data);
+            } catch (err) {
+                console.error('Erreur lors du parsing du message:', err);
+                return;
+            }
+
+            // Extraire et afficher uniquement le message
+            if (messageObject && messageObject.message) {
+                const messages = document.getElementById('messages');
+                messages.value += `\n${messageObject.message}`;
+            }
+        };
+
+        document.getElementById('sendMessage').addEventListener('click', () => {
+            const input = document.getElementById('messageInput');
+            const tenantId = 1; // Remplace 1 par l'ID réel du tenant
+            const message = input.value;
+
+            // Envoyer le tenantId et le message sous forme de JSON
+            ws.send(JSON.stringify({ tenantId, message }));
+            input.value = '';
+        });
+    </script>
+</body>
+</html>

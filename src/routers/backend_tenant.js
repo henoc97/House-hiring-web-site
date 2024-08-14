@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const sharp = require('sharp');
 
+
+const dbMiddleware = require('../../middlewares/database');
+const authMiddleware = require('../../middlewares/auth');
+
 const { getotp, userauth, refreshToken, activateTenantAccount, setpwd } = require('../../controller/tenant/user');
 const { require_receipt, receipt_unValid, receipt_valid } = require('../../controller/tenant/receipt');
 const { tenantProperty } = require('../../controller/tenant/property');
@@ -9,10 +13,12 @@ const { sendMessage, myMessages, deleteMessage } = require('../../controller/ten
 
 const { upload } = require('../../functions/storepicture');
 
+
+// Appliquer les middlewares à toutes les routes
+router.use(authMiddleware);
+router.use(dbMiddleware);
+
 // Routes pour les utilisateurs
-router.post("/getotp", getotp);
-router.post("/userauth", userauth);
-router.post("/refreshToken", refreshToken);
 router.post("/activateTenantAccount", activateTenantAccount);
 router.post("/setpwd", setpwd);
 

@@ -2,12 +2,20 @@ const express = require('express');
 const router = express.Router();
 const sharp = require('sharp');
 
+const dbMiddleware = require('../../middlewares/database');
+const authMiddleware = require('../../middlewares/auth');
+
 const { getotp, createUserOwner, userauth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/owner/user');
 const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/owner/property');
 const { createTenant, TenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/owner/tenant');
 const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = require('../../controller/owner/receipt');
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
+
+// Appliquer les middlewares à toutes les routes
+router.use(authMiddleware);
+router.use(dbMiddleware);
+
 
 // Routes pour les utilisateurs
 router.post("/getotp", getotp);

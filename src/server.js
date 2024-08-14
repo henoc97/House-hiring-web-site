@@ -1,15 +1,20 @@
+// server.js
 const express = require('express');
-const app = express();
-const cors = require('cors');
+const http = require('http');
 const path = require('path');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const apicache = require('apicache');
 require("dotenv/config");
 
+const app = express();
+const server = http.createServer(app);
 
-// Initialise le cache
-// const cache = apicache.middleware;
+// Importer et configurer le serveur WebSocket
+const configureWebSocket = require('./websocketServer');
+configureWebSocket(server);
 
+// Configure les middlewares
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,20 +42,22 @@ const backendTenantRouter = require('./routers/backend_tenant');
 app.use('/owner', (req, res, next) => {
   app.set('views', ownerViewsPath);
   next();
-}, /* cache('5 minutes'), */ frontendOwnerRouter); // Cache les réponses pendant 5 minutes
+}, /* cache('5 minutes'), */ frontendOwnerRouter);
 
 app.use('/tenant', (req, res, next) => {
   app.set('views', tenantViewsPath);
   next();
-}, /* cache('5 minutes'), */ frontendTenantRouter); // Cache les réponses pendant 5 minutes
-
+}, /* cache('5 minutes'), */ frontendTenantRouter);
 
 app.use('/backendowner', backendOwnerRouter);
-
 app.use('/backendtenant', backendTenantRouter);
+
+app.get('/websocketServerTest', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 const port = 3000;
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Serveur en cours d'exécution sur le port ${port}`);
 });

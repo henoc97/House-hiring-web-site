@@ -858,6 +858,9 @@ form button:hover {
   .profile-card-boxes {
     grid-template-columns: repeat(1, 1fr);
   }
+  .details {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .profile-card-boxes .box {
     width: calc(100vw / 1.5);
   }
