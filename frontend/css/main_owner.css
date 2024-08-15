@@ -663,6 +663,7 @@
   width: 100%;
   max-height: 320px;
   max-width: 800px;
+  overflow-y: auto; /* Active la barre de défilement verticale */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -881,6 +882,9 @@ form button:hover {
   .profile-card-boxes {
     grid-template-columns: repeat(1, 1fr);
   }
+  .details {
+    grid-template-columns: repeat(1, 1fr);
+  }
   
   .profile-card-boxes .box {
     width: calc(100vw / 1.3);
@@ -888,10 +892,6 @@ form button:hover {
   
   .profile-card-boxes .box form input{
     width: calc(100vw / 2);
-  }
-  
-  .details {
-    grid-template-columns: repeat(1, 1fr);
   }
   
   .details .recent_customers table {

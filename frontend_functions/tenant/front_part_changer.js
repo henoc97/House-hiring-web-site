@@ -111,14 +111,9 @@ document.getElementById('btn').addEventListener('click', function() {
                 toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
               });
 
-              messageForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                sendMessageRequest();
-              });
-
+              sendMessageRequest();
             }
             getMessagesRequest();
-            // setInterval(() => getMessagesRequest(), 3000); // sync messages every 3s
             deleteMessageLogic();
         });
       }

@@ -19,14 +19,40 @@ module.exports.sendMessage = async (req, res) => {
     }
 };
 
-module.exports.tenantMessageSender = (ws, messageObject, wss) => {
-    const { tenantId, message } = messageObject;
+module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
+    const { message } = messageObject;
     console.log(`Message reçu du locataire: ${message}`);
 
-    // Diffuser le message à tous les clients sauf l'expéditeur : ajouter au if "client !== ws"
+    const query = "CALL insert_message_tenant(?, ?)";
+    const values = [ws.user.prTenID, message];
+
+    let result;
+    try {
+        const [rows] = await ws.connection.query(query, values);
+        console.log(rows);
+        // Vérifiez que rows contient bien des données
+        if (rows && rows.length > 0 && rows[0].length > 0) {
+            result = rows[0][0]; // Le premier objet de la première ligne
+            console.log("result: " + result);
+        } else {
+            console.error('Aucune donnée renvoyée par la procédure stockée');
+            return; // Sortir si rien n'a été renvoyé
+        }
+    } catch (err) {
+        console.error('Erreur lors de l\'exécution de la requête', err);
+        return; // Sortir en cas d'erreur
+    } finally {
+        ws.connection.release();
+    }
+
+    // Diffuser le message à tous les clients, y compris l'expéditeur
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify({ message }));
+            console.log(`Client ID: ${client.signID}, Message ID: ${result.ownerid}`);
+            if (client === ws || (client.signID === result.ownerid && !client.isTenant)) {
+                console.log(`Envoi du message au client ID: ${client.signID}`);
+                client.send(JSON.stringify(result));
+            }
         }
     });
 };

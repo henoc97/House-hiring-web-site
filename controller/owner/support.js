@@ -44,9 +44,14 @@ module.exports.ownerMessageSender = async (ws, messageObject, wss) => {
     }
 
     // Diffuser le message à tous les clients meme à l'expéditeur
+    // Diffuser le message à tous les clients, y compris l'expéditeur
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify(result)); // Envoyer le message inséré aux clients
+            console.log(`Client ID: ${client.signID}, Message Tenant ID: ${result.tenantid}`);
+            if (client === ws || (client.signID === result.tenantid && client.isTenant)) {
+                console.log(`Envoi du message au client ID: ${client.signID}`);
+                client.send(JSON.stringify(result));
+            }
         }
     });
 };

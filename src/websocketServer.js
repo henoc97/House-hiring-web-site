@@ -17,7 +17,15 @@ module.exports = (server) => {
 
                 const isOwner = ws.user.userEmail !== undefined;
                 const isTenant = ws.user.prTenID !== undefined;
-
+                
+                if (isOwner) {
+                    ws.isTenant = false;
+                    ws.signID = ws.user.userId; // Signer la connexion
+                } else if (isTenant) {
+                    ws.isTenant = true;
+                    ws.signID = ws.user.userId; // Signer la connexion
+                }
+                
                 ws.on('message', async (message) => {
                     try {
                         const messageObject = JSON.parse(message);
