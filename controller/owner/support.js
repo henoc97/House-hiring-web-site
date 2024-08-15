@@ -25,19 +25,28 @@ module.exports.ownerMessageSender = async (ws, messageObject, wss) => {
     const query = "CALL insert_message_owner(?, ?, ?)";
     const values = [ws.user.userId, tenantId, message];
     
+    let result;
     try {
         const [rows] = await ws.connection.query(query, values);
         console.log(rows);
+        // Vérifiez que rows contient bien des données
+        if (rows && rows.length > 0 && rows[0].length > 0) {
+            result = rows[0][0]; // Le premier objet de la première ligne
+        } else {
+            console.error('Aucune donnée renvoyée par la procédure stockée');
+            return; // Sortir si rien n'a été renvoyé
+        }
     } catch (err) {
         console.error('Erreur lors de l\'exécution de la requête', err);
+        return; // Sortir en cas d'erreur
     } finally {
         ws.connection.release();
     }
 
-    // Diffuser le message à tous les clients sauf l'expéditeur : ajouter "client !== ws &&" a la condition
+    // Diffuser le message à tous les clients meme à l'expéditeur
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
-            client.send({ "message" : message, "by_owner" :  1, });
+            client.send(JSON.stringify(result)); // Envoyer le message inséré aux clients
         }
     });
 };

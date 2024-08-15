@@ -29,7 +29,7 @@ function sendMessageRequest(tenantId){
         .addEventListener('submit', function(event) {
             let message = document.getElementById('owner-message').value;
             event.preventDefault(); // Empêche le rechargement de la page
-            ws.send(JSON.stringify({ tenantId, message }));
+            if (message != ' ') ws.send(JSON.stringify({ tenantId, message }));
             document.getElementById('message-form').reset();
 
     });
