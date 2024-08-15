@@ -15,13 +15,16 @@ const { upload } = require('../../functions/storepicture');
 
 
 // Appliquer les middlewares à toutes les routes
-router.use(authMiddleware);
 router.use(dbMiddleware);
 
 // Routes pour les utilisateurs
 router.post("/activateTenantAccount", activateTenantAccount);
-router.post("/setpwd", setpwd);
 
+// Appliquer les middlewares à toutes les routes
+router.use(authMiddleware);
+
+// Routes pour les utilisateurs
+router.post("/setpwd", setpwd);
 
 // Routes pour les reçus
 router.post("/require_receipt", require_receipt);

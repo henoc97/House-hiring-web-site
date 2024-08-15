@@ -1,7 +1,5 @@
 
 
-
-
 function setNumberOfTenants(numberOfTenants) {
   localStorage.setItem('numberOfTenants', numberOfTenants);
 }
@@ -158,7 +156,7 @@ function getAllTenantsRequest() {
               }, 10); // Ajout du délai pour permettre la transition
               // Charger les messages ou autres données si nécessaire
               getMessagesRequest(tenantId);
-              // alert("je suis la")
+              // alert("je suis la tenantID : " + tenantId);
               sendMessageRequest(tenantId);
               deleteMessageLogic(tenantId);
             });
@@ -189,6 +187,10 @@ function getAllTenantsRequest() {
                 messageModalContent.classList.remove('show');
                 setTimeout(() => {
                   messageModal.style.display = 'none';
+                  if (window.ws) {
+                    window.ws.close();  // Fermer la connexion WebSocket
+                    console.log('WebSocket connection closed');
+                }
                 }, 300); // Correspond à la durée de l'animation en CSS
               }
             }

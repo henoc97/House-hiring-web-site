@@ -30,10 +30,11 @@ module.exports = (server) => {
                     try {
                         const messageObject = JSON.parse(message);
                         console.log("message: " + messageObject);
+                        const isvoid  = messageObject.message == '';
                         // Appel du gestionnaire approprié selon le type d'utilisateur
-                        if (isOwner) {
+                        if (isOwner && !isvoid) {
                             await ownerMessageSender(ws, messageObject, wss);
-                        } else if (isTenant) {
+                        } else if (isTenant && !isvoid) {
                             await tenantMessageSender(ws, messageObject, wss);
                         }
                     } catch (err) {
