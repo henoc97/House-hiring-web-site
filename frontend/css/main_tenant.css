@@ -664,36 +664,40 @@
   width: 100%;
   max-height: 320px;
   max-width: 800px;
-  overflow-y: auto; /* Active la barre de défilement verticale */
-  margin: 0 auto;
+  overflow-y: auto;
+  margin: 10px auto 0;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  font-size: 0.8rem;
 }
 
-/* Conteneur des messages */
 .message-container {
   max-width: 100%;
-  overflow-wrap: break-word; /* Force le texte à revenir à la ligne s'il est trop long */
   flex: 1;
-  padding: 10px;
+  padding: 5px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
-/* Message de l'expéditeur (aligné à gauche) */
-.message.sender {
-  max-width: 60%; /* Limite la largeur du message à 60% de la largeur totale du conteneur */
-  overflow-wrap: break-word; /* Force le texte à revenir à la ligne s'il est trop long */
-  background-color: var(--purple);
-  color: var(--white);
-  align-self: flex-start;
+/* Styles communs pour les messages */
+.message {
   max-width: 60%;
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
   position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: inline-block;
+}
+
+/* Message de l'expéditeur (aligné à gauche) */
+.message.sender {
+  background-color: var(--purple);
+  color: var(--white);
+  align-self: flex-start;
 }
 
 /* Message du destinataire (aligné à droite) */
@@ -701,11 +705,19 @@
   background-color: var(--blue);
   color: var(--white);
   align-self: flex-end;
-  max-width: 60%;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  position: relative;
+}
+
+.date-separator {
+  margin: 20px 0;
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+}
+
+.date-separator span {
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 /* Style commun pour les messages */

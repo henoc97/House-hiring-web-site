@@ -12,17 +12,24 @@ const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = req
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
 
-// Appliquer les middlewares à toutes les routes
-router.use(authMiddleware);
-router.use(dbMiddleware);
 
 
 // Routes pour les utilisateurs
 router.post("/getotp", getotp);
+router.post("/refreshToken", refreshToken);
+
+// Appliquer les middlewares à toutes les routes
+router.use(dbMiddleware);
+
+// Routes pour les utilisateurs
 router.post("/createUserOwner", createUserOwner);
 router.post("/userauth", userauth);
+
+// Appliquer les middlewares à toutes les routes
+router.use(authMiddleware);
+
+// Routes pour les utilisateurs
 router.post("/updateSold", updateSold);
-router.post("/refreshToken", refreshToken);
 router.post("/myOwner", myOwner);
 router.post("/updateOwner", updateOwner);
 

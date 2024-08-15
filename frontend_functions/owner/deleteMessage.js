@@ -25,20 +25,23 @@ function deleteMessageLogic(tenantId) {
         }
     }
 
-    document.getElementById('chat-container').addEventListener('click', handleMessageSelection);
+    const chatContainer = document.getElementById('chat-container');
+    chatContainer.addEventListener('click', handleMessageSelection);
 
     document.getElementById('delete-selected').addEventListener('click', () => {
         if (document.getElementById('delete-selected').classList.contains('disabled')) {
             return; // Ne fait rien si l'icône est désactivée
         }
         Array.from(selectedMessages).forEach(messageID => {
+            const messageDiv = document.querySelector(`[data-id="${messageID}"]`);
+            chatContainer.removeChild(messageDiv);
             deleteSelectedMessage(messageID);
         });
         selectedMessages.clear(); // Réinitialiser la sélection
         document.getElementById('delete-selected').classList.remove('enabled');
         document.getElementById('delete-selected').classList.add('disabled'); // Réinitialiser l'état de l'icône
         // alert('tenantId ' + tenantId);
-        getMessagesRequest(tenantId); // Recharger les messages après suppression
+        // getMessagesRequest(tenantId); // Recharger les messages après suppression
     });
 
     function deleteSelectedMessage(messageId) {

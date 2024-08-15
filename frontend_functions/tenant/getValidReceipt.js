@@ -16,7 +16,15 @@ function showNumberOfPayments() {
 
 }
 
-
+function getMonthsBetween(startDate, endDate) {
+  const months = [];
+  let current = new Date(startDate);
+  while (current <= endDate) {
+    months.push(new Date(current));
+    current.setMonth(current.getMonth() + 1);
+  }
+  return months;
+}
 
 function getValidReceiptsRequest() {
     let token = localStorage.getItem('accessTokenTenant');
@@ -87,6 +95,12 @@ function getValidReceiptsRequest() {
             }
           });
         });
+
+      // Calculer les mois de retard
+      const latestReceiptDate = new Date(valiReceipts[0].monthpayed);
+      const currentDate = new Date();
+      const months = getMonthsBetween(latestReceiptDate, currentDate);
+      console.log("Months between:", months);
       } else {
         console.error("Element with ID 'tenantspropertiesTable' not found.");
       }
