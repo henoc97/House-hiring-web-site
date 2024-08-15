@@ -3,8 +3,8 @@ const router = express.Router();
 const sharp = require('sharp');
 
 
-const dbMiddleware = require('../../middlewares/database');
-const authMiddleware = require('../../middlewares/auth');
+const dbMiddleware = require('../../middlewares/http/database');
+const authMiddleware = require('../../middlewares/http/auth');
 
 const { getotp, userauth, refreshToken, activateTenantAccount, setpwd } = require('../../controller/tenant/user');
 const { require_receipt, receipt_unValid, receipt_valid } = require('../../controller/tenant/receipt');

@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const sharp = require('sharp');
 
-const dbMiddleware = require('../../middlewares/database');
-const authMiddleware = require('../../middlewares/auth');
+const dbMiddleware = require('../../middlewares/http/database');
+const authMiddleware = require('../../middlewares/http/auth');
 
 const { getotp, createUserOwner, userauth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/owner/user');
 const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/owner/property');

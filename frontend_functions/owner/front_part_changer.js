@@ -191,7 +191,7 @@ document.getElementById('btn').addEventListener('click', function() {
                 const submitButton = event.target.querySelector('#message-form button[type="submit"]');
                 const tenantId = submitButton.dataset.tenantId;
                 if (tenantId) {
-                  sendMessageRequest(tenantId);
+                  // sendMessageRequest(tenantId);
                 }
               }
             });

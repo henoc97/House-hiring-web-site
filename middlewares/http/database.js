@@ -1,6 +1,6 @@
 
 // middlewares/database.js
-const pool = require('../database/database_connection');
+const pool = require('../../database/database_connection');
 
 module.exports = async (req, res, next) => {
     try {

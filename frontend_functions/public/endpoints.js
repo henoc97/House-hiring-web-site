@@ -1,8 +1,15 @@
 
 // 192.168.137.1
-const root = 'http://10.0.0.74:3000/';
+
+const ip = "10.0.0.74";
+
+const port = "3000";
+
+const root = 'http://' + ip + ':' + port + '/';
 
 const host = root + "backendowner/";
+
+const hostSocket = "ws://" + ip  + ":" + port + "/";
 
 const hostTenant = root + "backendtenant/";
 
