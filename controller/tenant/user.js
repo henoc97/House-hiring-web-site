@@ -21,6 +21,7 @@ module.exports.activateTenantAccount = async (req, res) => {
         res.status(200).json({
             refreshToken: newRefreshToken,
             accessToken: newAccessToken,
+            createTime: obj.create_time,
             message: 'Requête réussie'
         });
     } catch (error) {
@@ -50,65 +51,3 @@ module.exports.setpwd = async (req, res) => {
         req.connection.release();
     }
 };
-
-// Message Sending Controller
-module.exports.sendMessage = async (req, res) => {
-    try {
-        const { message } = req.body;
-        const query = "CALL insert_message_tenant(?, ?)";
-        const values = [req.user.prTenID, message];
-
-        try {
-            const [rows] = await req.connection.query(query, values);
-            console.log(rows[0]);
-            res.status(200).json({ message: "requête réussie" });
-        } catch (err) {
-            res.status(500).json({ message: 'Erreur serveur' });
-        }
-    } catch (err) {
-        res.status(500).json({ message: 'Erreur serveur' });
-    } finally {
-        req.connection.release();
-    }
-}
-
-// Tenant Messages Retrieval Controller
-module.exports.myMessages = async (req, res) => {
-    try {
-        const query = "CALL get_messages_viewed_by_tenant(?)";
-        const values = [req.user.userId]; 
-
-        try {
-            const [rows] = await req.connection.query(query, values);
-            console.log(rows[0]);
-            res.status(200).json(rows[0]);
-        } catch (err) {
-            res.status(500).json({ message: 'Erreur serveur' });
-        }
-    } catch (err) {
-        res.status(500).json({ message: 'Erreur serveur' });
-    } finally {
-        req.connection.release();
-    }
-}
-
-// Message Deletion Controller
-module.exports.deleteMessage = async (req, res) => {
-    try {
-        const { messageId } = req.body;
-        const query = "CALL update_message_viewed_tenant(?)";
-        const values = [messageId];
-
-        try {
-            const [rows] = await req.connection.query(query, values);
-            console.log(rows[0]);
-            res.status(200).json({ message: "requête réussie" });
-        } catch (err) {
-            res.status(500).json({ message: 'Erreur serveur' });
-        }
-    } catch (err) {
-        res.status(500).json({ message: 'Erreur serveur' });
-    } finally {
-        req.connection.release();
-    }
-}

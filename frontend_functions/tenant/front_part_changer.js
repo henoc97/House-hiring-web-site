@@ -14,11 +14,17 @@ if(toggleIconRecieptForm && requireRecieptForm && tenantPropertyoption) {
     toggleIconRecieptForm.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
   });
 
-  selectMonthsHelper(); // Aide a selectionner les moi pour les reçus
+  selectMonthsHelper(); // Aide a selectionner les mois pour les reçus
 }
 
 const totalPayments = document.getElementById('totalPayments');
 totalPayments.textContent = getNumberOfPayments() ?? 0;
+
+// const totalPayments = document.getElementById('totalPayments');
+// totalPayments.textContent = getNumberOfPayments() ?? 0;
+
+// const totalPayments = document.getElementById('totalPayments');
+// totalPayments.textContent = getNumberOfPayments() ?? 0;
 
 
 const modal = document.getElementById('modal-set-pwd');

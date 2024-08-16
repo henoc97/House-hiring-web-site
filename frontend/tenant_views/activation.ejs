@@ -44,6 +44,7 @@
           localStorage.setItem('accessTokenTenant', data.accessToken);
           setCookie("refreshTokenTenant", data.refreshToken, 7);
           localStorage.setItem('setPwd', 0);
+          localStorage.setItem('createTime', data.createTime);
           window.location.href = tenantURL;
         } else {
           alert('Erreur de login');

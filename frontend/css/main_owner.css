@@ -230,27 +230,27 @@
 }
 /* End Top Bar */
 
-.card-boxes{
-  position: relative;
-  width: 100%;
-  padding: 1rem 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
-}
-
-.profile-card-boxes {
+.profile-card-boxes, .card-boxes{
   position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 1rem 1.5rem;
   display: grid;
+  align-items: flex-start; /* Aligne les sections en haut */
+  margin-bottom: 20px; /* Espacement entre les sections de profil et la boîte de formulaire */
+}
+
+.profile-card-boxes {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 80px;
 }
+.card-boxes {
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
 
-.card-boxes .box {
+.card-boxes .box, .profile-card-boxes .box {
   position: relative;
   background: var(--white);
   padding: 30px;
@@ -262,18 +262,10 @@
 }
 
 .profile-card-boxes .box {
-  position: relative;
-  background: var(--white);
-  padding: 30px;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
 }
-
 
 .card-boxes .box .numbers {
   position: relative;

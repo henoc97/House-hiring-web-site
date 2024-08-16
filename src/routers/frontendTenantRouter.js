@@ -42,7 +42,7 @@ router.get('/discuss_part', (req, res) => {
 router.get('/profile', (req, res) => {
   res.render('profile_part', {
     accountinfo: 'accountinfo',
-    // uploadsignature: 'uploadsignature',
+    houseinfo: 'houseinfo',
   });
 });
 
