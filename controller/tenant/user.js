@@ -51,3 +51,38 @@ module.exports.setpwd = async (req, res) => {
         req.connection.release();
     }
 };
+
+module.exports.myTenant = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+        const query = "CALL tenant_by_id(?)";
+        const values = [userId];
+        console.log("userId: " + userId);
+        try {
+            const [rows] = await req.connection.query(query, values);
+            console.log(rows[0]);
+            console.log("rows tenant: ", rows);
+            res.status(200).json(rows[0][0]);
+        } catch (queryError) {
+            console.error('Erreur lors de l\'exécution de la requête', queryError);
+            res.status(500).json({ message: 'Erreur serveur' });
+        }
+    } catch (error) {
+        console.log('Erreur lors de l\'exécution', error);
+        res.status(500).json({ message: 'Erreur serveur' });
+    }
+};
+
+module.exports.updateTenant = async (req, res) => {
+    const { id, firstname, lastname, contactmoov, contacttg, date } = req.body;
+    const query = "CALL update_tenant(?, ?, ?, ?, ?, ?)";
+    const values = [req.user.userId, lastname, firstname, contactmoov, contacttg, date];
+
+    try {
+        const [result] = await req.connection.query(query, values);
+        res.status(200).json({ message: "requête réussie" });
+    } catch (queryError) {
+        console.error('Erreur lors de l\'exécution de la requête', queryError);
+        res.status(500).json({ message: 'Erreur serveur' });
+    }
+};

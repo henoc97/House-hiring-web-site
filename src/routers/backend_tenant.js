@@ -6,9 +6,9 @@ const sharp = require('sharp');
 const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth');
 
-const { getotp, userauth, refreshToken, activateTenantAccount, setpwd } = require('../../controller/tenant/user');
+const { getotp, userauth, refreshToken, activateTenantAccount, setpwd, myTenant, updateTenant} = require('../../controller/tenant/user');
 const { require_receipt, receipt_unValid, receipt_valid } = require('../../controller/tenant/receipt');
-const { tenantProperty } = require('../../controller/tenant/property');
+const { tenantProperty, myProperty } = require('../../controller/tenant/property');
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/tenant/support');
 
 const { upload } = require('../../functions/storepicture');
@@ -25,6 +25,8 @@ router.use(authMiddleware);
 
 // Routes pour les utilisateurs
 router.post("/setpwd", setpwd);
+router.post("/myTenant", myTenant);
+router.post("/updateTenant", updateTenant);
 
 // Routes pour les reçus
 router.post("/require_receipt", require_receipt);
@@ -33,6 +35,7 @@ router.post("/receipt_valid", receipt_valid);
 
 // Routes pour les tenant_property
 router.post("/tenantProperty", tenantProperty);
+router.post("/myProperty", myProperty);
 
 // Routes pour les messages
 router.post("/sendMessage", sendMessage);

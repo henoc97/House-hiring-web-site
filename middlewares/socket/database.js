@@ -1,12 +1,11 @@
-
 // middlewares/database.js
 const pool = require('../../database/database_connection');
 
-module.exports = async (ws, next) => {
+module.exports = async (ws, callback) => {
     try {
         ws.connection = await pool.getConnection();
         console.log('Connecté à MySQL');
-        await next(); // Passer au prochain middleware ou contrôleur
+        await callback(); // Exécuter la prochaine étape
 
     } catch (err) {
         console.error('Erreur lors de la connexion à la base de données:', err);

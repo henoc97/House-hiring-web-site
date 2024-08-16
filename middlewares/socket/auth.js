@@ -1,10 +1,9 @@
-
 // middlewares/tokenVerification.js
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-module.exports = (ws, request, next) => {
+module.exports = (ws, request, callback) => {
     const url = new URL(request.url, `http://${request.headers.host}`);
     const token = url.searchParams.get('token');
     console.log("token: " + token);
@@ -23,7 +22,6 @@ module.exports = (ws, request, next) => {
 
         // Ajouter les informations du token au WebSocket
         ws.user = decoded;
-        next();
+        callback();
     });
 };
-

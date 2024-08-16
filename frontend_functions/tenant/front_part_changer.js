@@ -134,6 +134,7 @@ document.getElementById('btn').addEventListener('click', function() {
             const tenantForm = document.getElementById('tenant-form');
             if (tenantForm) {
               // getTenant();
+              getTenantPropertyRequest(1);
               tenantForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
                 // updateTenant();

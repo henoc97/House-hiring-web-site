@@ -269,7 +269,7 @@
 
 .card-boxes .box .numbers {
   position: relative;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--dark-blue);
 }
@@ -309,6 +309,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 20px;
+  align-items: flex-start; /* Aligne les sections en haut */
 }
 
 .details .recent_project,
@@ -386,6 +387,12 @@
   z-index: 100;
   border-radius: 8px;
   padding: 5px;
+  font-size: xx-small;
+  color: var(--red);
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 /* Styles pour la modale avec animations */

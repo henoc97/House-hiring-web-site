@@ -237,11 +237,11 @@
   width: 100%;
   padding: 1rem 1.5rem;
   display: grid;
-  align-items: flex-start; /* Aligne les sections en haut */
   margin-bottom: 20px; /* Espacement entre les sections de profil et la boîte de formulaire */
 }
 
 .profile-card-boxes {
+  align-items: flex-start; /* Aligne les sections en haut */
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 80px;
 }
@@ -269,13 +269,10 @@
 
 
 .card-boxes .box .numbers {
-  position: relative;
-  font-size: 2.5rem;
-  font-weight: 500;
   color: var(--dark-blue);
 }
 
-.card-boxes .box .date_reminder {
+.card-boxes .box .numbers, .card-boxes .box .date_reminder {
   position: relative;
   font-size: 1.5rem;
   font-weight: 500;
@@ -328,6 +325,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 20px;
+  align-items: flex-start; /* Aligne les sections en haut */
 }
 
 .details .recent_project,
@@ -855,9 +853,6 @@ form button:hover {
     margin-top: 30px;
   }
 
-  .card-boxes .box .date_reminder {
-    font-size: 1.8rem;
-  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -878,9 +873,6 @@ form button:hover {
     width: calc(100vw / 2);
   }
 
-  .card-boxes .box .date_reminder {
-    font-size: 1.8rem;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -931,7 +923,4 @@ form button:hover {
     justify-content: flex-end;
   }
 
-  .card-boxes .box .date_reminder {
-    font-size: 1.8rem;
-  }
 }

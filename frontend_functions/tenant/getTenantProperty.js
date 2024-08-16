@@ -16,7 +16,7 @@ function getTenantPropertyRequest(type) {
       const tenantproperty = data;
 
       if (type == 1) {
-        tenantPropertytableConstructor(tenantproperty)
+        tenantPropertyProfile(tenantproperty)
       } else {
         tenantPropertyoptionConstructor(tenantproperty)
       }
@@ -27,45 +27,29 @@ function getTenantPropertyRequest(type) {
 
 
 
-  function  tenantPropertytableConstructor(tenantproperty){
+  function  tenantPropertyProfile(data){
     
-    const tableBody = document.getElementById("tenantpropertyTable");
-      // if (tableBody) {
-      //   tableBody.innerHTML = ''; // Clear existing rows
+    const tenantForm = document.getElementById("tenant-form");
+    const propertyForm = document.getElementById("property-form");
+    const tenantproperty = data[0];
+    // Remplir le formulaire avec les données actuelles de owner
+    console.log("tenantProperty : " + JSON.stringify({tenantproperty}));
+    console.log("tenantProperty : " + tenantproperty.lastname);
+    console.log("tenantProperty : " + tenantproperty.firstname);
+    console.log("tenantProperty : " + tenantproperty.contactmoov);
+    console.log("tenantProperty : " + tenantproperty.contacttg);
 
-      //   tenantproperty.forEach((tenantproperty) => {
-      //     console.log("tenantproperty data:", tenantproperty); // Log chaque propriété
-      //     // Génération du lien d'activation
-      //     const activationLink = activateURL + `?key=${tenantproperty.conn_key}&pr_ten=${tenantproperty.id}`;
 
-      //     const row = document.createElement('tr');
-      //     row.innerHTML = `
-      //       <td>${tenantproperty.lastname} ${tenantproperty.firstname}</td>
-      //       <td>${tenantproperty.contactmoov} / ${tenantproperty.contacttg}</td>
-      //       <td>${tenantproperty.address}</td>
-      //       <td>${tenantproperty.price}</td>
-      //       ${tenantproperty.is_activated ? 
-      //         `<td>--</td>` : 
-      //         `<td><i class='bx bx-copy' style="cursor: pointer;" title="Copier le lien d'activation"></i></td>`
-      //       }
-      //     `;
-      //     tableBody.appendChild(row);
-      //     // Ajouter un événement de clic pour copier le lien dans le presse-papiers
-      //     const copyIcon = row.querySelector('.bx-copy');
-      //     if (copyIcon) {
-      //       copyIcon.addEventListener('click', () => {
-      //         navigator.clipboard.writeText("Lien à usage unique : " + activationLink).then(() => {
-      //             alert('Lien d\'activation copié dans le presse-papiers !');
-      //         }).catch(err => {
-      //             console.error('Échec de la copie du lien : ', err);
-      //         });
-      //      });
-      //     }
-      //   });
-      // } else {
-      //   console.error("Element with ID 'tenantpropertyTable' not found.");
-      // }
 
+    document.getElementById('tenant-lastname').value = tenantproperty.lastname;
+    document.getElementById('tenant-firstname').value = tenantproperty.firstname;
+    document.getElementById('tenant-contactmoov').value = tenantproperty.contactmoov;
+    document.getElementById('tenant-contacttg').value = tenantproperty.contacttg;
+    
+    document.getElementById('address').value = tenantproperty.address;
+    document.getElementById('description').value = tenantproperty.descriptions;
+    document.getElementById('cost').value = tenantproperty.price;
+    localStorage.setItem('createTime', tenantproperty.create_time);
   }
   
   function  tenantPropertyoptionConstructor(tenantproperty){
