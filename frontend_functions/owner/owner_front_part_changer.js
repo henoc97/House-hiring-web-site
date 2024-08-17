@@ -98,7 +98,9 @@ document.getElementById('btn').addEventListener('click', function() {
                     const result = await response.json();
                     const uploadedImage = document.getElementById('uploadedImage');
                     uploadedImage.src = result.filename;
-                    uploadedImage.style.display = 'block';
+                    // uploadedImage.style.display = 'block';
+                    uploadedImage.classList.add('hidden');
+                    uploadedImage.classList.add('visible');
 
                     // Sauvegarder le nom du fichier dans le localStorage
                     localStorage.setItem('uploadedImageFilename', result.filename);
@@ -114,7 +116,8 @@ document.getElementById('btn').addEventListener('click', function() {
           if (filename) {
               const uploadedImage = document.getElementById('uploadedImage');
               uploadedImage.src = `${filename}`;
-              uploadedImage.style.display = 'block';
+              uploadedImage.classList.add('hidden');
+              uploadedImage.classList.add('visible');
           }
             
           });
@@ -128,14 +131,7 @@ document.getElementById('btn').addEventListener('click', function() {
 
             const propertyForm = document.getElementById('property-form');
             const propertiesTable = document.getElementById('myPropertiesTable');
-            const toggleIcon = document.getElementById('toggle-icon');
-            if (propertyForm && propertiesTable && toggleIcon) {
-              toggleIcon.addEventListener('click', () => {
-                const isFormVisible = propertyForm.style.display === 'block';
-                propertyForm.style.display = isFormVisible ? 'none' : 'block';
-                toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
-              });
-
+            if (propertyForm && propertiesTable) {
               propertyForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // Empêche le rechargement de la page
             
@@ -164,13 +160,7 @@ document.getElementById('btn').addEventListener('click', function() {
             const tenantsTable = document.getElementById('alltenantsTable');
             const editTenantForm = document.getElementById('edit-tenant-form');
             const messageForm = document.getElementById('message-form');
-            // const toggleIcon = document.getElementById('toggle-icon');
             if (tenantsTable) {
-              /* toggleIcon.addEventListener('click', () => {
-                const isFormVisible = propertyForm.style.display === 'block';
-                propertyForm.style.display = isFormVisible ? 'none' : 'block';
-                toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
-              }); */
               getAllTenantsRequest()
             }
 
@@ -206,13 +196,7 @@ document.getElementById('btn').addEventListener('click', function() {
 
             const tenantproperty = document.getElementById("tenantspropertiesTable");
             const tenantForm = document.getElementById("tenant-form");
-            const toggleIcon = document.getElementById('toggle-icon');
-            if (tenantForm && tenantproperty && toggleIcon) {
-              toggleIcon.addEventListener('click', () => {
-                const isFormVisible = tenantForm.style.display === 'block';
-                tenantForm.style.display = isFormVisible ? 'none' : 'block';
-                toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
-              });
+            if (tenantForm && tenantproperty) {
               getTenantsPropertiesRequest(1);
 
               getPropertiesRequest(2);
@@ -272,15 +256,7 @@ document.getElementById('btn').addEventListener('click', function() {
 
           const requireRecieptForm = document.getElementById("receipt-form");
           const tenantsPropertiesoption = document.getElementById("tenantsProperties-option");
-          const toggleIcon = document.getElementById('toggle-icon');
-
-          if (tenantsPropertiesoption && requireRecieptForm && toggleIcon) {
-              toggleIcon.addEventListener('click', () => {
-                  const isFormVisible = requireRecieptForm.style.display === 'block';
-                  requireRecieptForm.style.display = isFormVisible ? 'none' : 'block';
-                  toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
-              });
-
+          if (tenantsPropertiesoption && requireRecieptForm) {
               getTenantsPropertiesRequest(2);
 
               requireRecieptForm.addEventListener('submit', function(event) {

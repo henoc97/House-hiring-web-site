@@ -10,6 +10,8 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://unpkg.com;">
+
   </head>
   
   <body>
@@ -24,10 +26,10 @@
     </section>
 
     <!-- Inclure le nonce dans les scripts inline -->
-    <script nonce="<%= nonce %>">
+    <!-- <script nonce="<%= nonce %>">
       // Exemple de code inline
       console.log('Ce script utilise un nonce.');
-    </script>
+    </script> -->
 
     <!-- Inclure les scripts externes -->
     <script src="/public/endpoints.js"></script>

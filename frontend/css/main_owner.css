@@ -655,6 +655,12 @@
   color: var(--blue);
 }
 
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+}
 
 /* Messagerie */
 /* Conteneur principal */

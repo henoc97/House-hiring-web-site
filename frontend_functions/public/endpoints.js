@@ -1,7 +1,7 @@
 
 // 192.168.137.1
 
-const ip = "10.0.0.74";
+const ip = "localhost";
 
 const port = "3000";
 
@@ -15,7 +15,7 @@ const hostTenant = root + "backendtenant/";
 
 const ownerURL = "/owner";
 
-const ownerDashboardURL = root + "owner/" + ownerURL; // Not an error
+const ownerDashboardURL = root + "owner" + ownerURL; // Not an error
 
 const tenantURL = "/tenant";
 

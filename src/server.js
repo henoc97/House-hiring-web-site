@@ -30,18 +30,37 @@ const crypto = require('crypto');
 app.use((req, res, next) => {
   res.locals.nonce = crypto.randomBytes(16).toString('base64');
   const cspPolicy = process.env.NODE_ENV === 'production'
-    ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com; style-src 'self' https://unpkg.com https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; report-uri /csp-violation-report-endpoint;`
-    : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; report-uri /csp-violation-report-endpoint;`;
-
-  res.setHeader('Content-Security-Policy', cspPolicy);
+    ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`
+    : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`;
+  
+  // Affiche la politique CSP dans les logs pour débogage
+  console.log('CSP Policy:', cspPolicy);
+  
+  try {
+    res.setHeader('Content-Security-Policy', cspPolicy);
+  } catch (error) {
+    console.error('Error setting CSP header:', error);
+  }
+  
   next();
 });
 
+
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 // Configure les autres middlewares
-app.use(cors()); // Permet les requêtes CORS
+// app.use(cors()); // Permet les requêtes CORS
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(bodyParser.json()); // Parser JSON pour les requêtes
 app.use(bodyParser.urlencoded({ extended: true })); // Parser les données URL-encodées
 // app.use(helmet()); // Sécuriser les en-têtes HTTP
+app.use(helmet({
+  contentSecurityPolicy: false, // Désactive les directives CSP par défaut de Helmet
+}));
 app.use(compression()); // Compression des réponses HTTP
 
 // Créer un flux de sortie pour le fichier de log

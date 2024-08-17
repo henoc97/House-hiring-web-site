@@ -63,7 +63,7 @@ function getAllTenantsRequest() {
           <td>${tenant.contactmoov} / ${tenant.contacttg}</td>
           <td>
             <span class="late-count">${late == '' ? 0 : late.split(",").length}</span>
-            <div class="late-months" style="display: none;">
+            <div class="late-months hidden">
               ${formattedLate}
             </div>
           </td>
@@ -80,19 +80,21 @@ function getAllTenantsRequest() {
           </td>
         `;
         tableBody.appendChild(row);
-
+        
         // Ajouter les événements de survol
         row.addEventListener('mouseover', function() {
           const lateCount = row.querySelector('.late-count');
           const lateMonths = row.querySelector('.late-months');
           if (lateCount.textContent != 0) {
-            lateMonths.style.display = 'block';
+            lateMonths.classList.toggle('hidden');
+            lateMonths.classList.toggle('visible');
           }
         });
 
         row.addEventListener('mouseout', function() {
           const lateMonths = row.querySelector('.late-months');
-          lateMonths.style.display = 'none';
+          lateMonths.classList.toggle('visible');
+          lateMonths.classList.toggle('hidden');
         });
       });
 
