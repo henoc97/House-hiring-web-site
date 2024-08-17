@@ -45,7 +45,7 @@ document.getElementById('btn').addEventListener('click', function() {
       document.querySelector('.details').innerHTML = ''; // Nettoyer la section details
 
       if (this.id === 'dash-button') {
-        fetch(ownerURL + '/dashboard')
+        fetch(ownerURL + '/owner_dashboard')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -62,7 +62,7 @@ document.getElementById('btn').addEventListener('click', function() {
       } 
 
       if (this.id === 'porfile-button') {
-        fetch(ownerURL + '/profile')
+        fetch(ownerURL + '/owner_profile')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -121,7 +121,7 @@ document.getElementById('btn').addEventListener('click', function() {
       } 
 
       if (this.id === 'proprietes-button') {
-        fetch(ownerURL + '/propertiespart')
+        fetch(ownerURL + '/owner_propertiespart')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -156,7 +156,7 @@ document.getElementById('btn').addEventListener('click', function() {
       } 
 
       if (this.id === 'tenant-button') {
-        fetch(ownerURL + '/tenants_part')
+        fetch(ownerURL + '/owner_tenants_part')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -199,7 +199,7 @@ document.getElementById('btn').addEventListener('click', function() {
       }
 
       if (this.id === 'tenant_home-button') {
-        fetch(ownerURL + '/tenant_home')
+        fetch(ownerURL + '/owner_tenant_home')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -230,7 +230,7 @@ document.getElementById('btn').addEventListener('click', function() {
 
 
       if (this.id === 'myreceipt-button') {
-        fetch(ownerURL + '/receipts_part')
+        fetch(ownerURL + '/owner_receipts_part')
         .then(response => response.text())
         .then(data => {
 

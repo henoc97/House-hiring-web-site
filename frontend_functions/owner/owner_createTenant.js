@@ -40,7 +40,7 @@ function createTenantRequest(){
     })
     .catch(error => {
         console.error('Erreur:', error);
-        window.location.href = ownerLogSignURL;
+        // window.location.href = ownerLogSignURL;
     });
   } else {
     alert('solde insuffisant. Cette opération coute 0.25€')

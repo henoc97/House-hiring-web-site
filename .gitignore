@@ -2,3 +2,5 @@ package.json
 package-lock.json
 .env
 node_modules
+access.log
+ecosystem.config.js

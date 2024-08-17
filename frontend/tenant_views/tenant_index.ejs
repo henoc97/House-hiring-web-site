@@ -12,10 +12,10 @@
   </head>
   
   <body>
-    <%- include('sidebar') %>
+    <%- include(sidebar) %>
     <section class="home_section" id="content-section">
-      <%- include('topbar') %>
-      <%- include('cardboxes') %>
+      <%- include(topbar) %>
+      <%- include(cardboxes) %>
       <div class="details">
         <%- include(setpwd) %>
         <%- include(myreceipts) %>
@@ -38,17 +38,17 @@
     <script src="/public/cookies_engine.js"></script>
     <script src="/public/variablesState.js"></script>
     
-    <script src="/tenant/setpwd.js"></script>
-    <script src="/tenant/getUnvalidReceipt.js"></script>
-    <script src="/tenant/getValidReceipt.js"></script>
-    <script src="/tenant/requirereceiptrequest.js"></script>
-    <script src="/tenant/getTenantProperty.js"></script>
-    <script src="/tenant/receipt_month_helper.js"></script>
-    <script src="/tenant/getValidReceipt.js"></script>
-    <script src="/tenant/myMessages.js"></script>
-    <script src="/tenant/sendMessage.js"></script>
-    <script src="/tenant/deleteMessage.js"></script>
+    <script src="/tenant/tenant_setpwd.js"></script>
+    <script src="/tenant/tenant_getUnvalidReceipt.js"></script>
+    <script src="/tenant/tenant_getValidReceipt.js"></script>
+    <script src="/tenant/tenant_requirereceiptrequest.js"></script>
+    <script src="/tenant/tenant_getTenantProperty.js"></script>
+    <script src="/tenant/tenant_receipt_month_helper.js"></script>
+    <script src="/tenant/tenant_getValidReceipt.js"></script>
+    <script src="/tenant/tenant_myMessages.js"></script>
+    <script src="/tenant/tenant_sendMessage.js"></script>
+    <script src="/tenant/tenant_deleteMessage.js"></script>
 
-    <script src="/tenant/front_part_changer.js"></script>
+    <script src="/tenant/tenant_front_part_changer.js"></script>
   </body>
 </html>

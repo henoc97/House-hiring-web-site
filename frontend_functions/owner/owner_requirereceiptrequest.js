@@ -42,7 +42,7 @@ function requireRecieptRequest() {
       })
       .catch(error => {
           console.error('Erreur:', error);
-          window.location.href = ownerLogSignURL;
+        //   window.location.href = ownerLogSignURL;
       });
   });
 

@@ -10,7 +10,7 @@ function getUnvalidReceiptsRequest() {
   .then(response => {
     if (response.status === 403) {
       // Si l'utilisateur n'est pas autorisé, redirigez-le vers la page de connexion
-      window.location.href = ownerLogSignURL;
+      // window.location.href = ownerLogSignURL;
       return; // Sortir de la promesse pour éviter d'exécuter le reste du code
     }
     return response.json(); // Convertir la réponse en JSON si le statut n'est pas 403

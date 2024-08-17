@@ -68,7 +68,7 @@ document.getElementById('btn').addEventListener('click', function() {
       document.querySelector('.details').innerHTML = ''; // Nettoyer la section details
 
       if (this.id === 'dash-button') {
-        fetch(tenantURL + '/dashboard')
+        fetch(tenantURL + '/tenant_dashboard')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -102,7 +102,7 @@ document.getElementById('btn').addEventListener('click', function() {
       
       
       if (this.id === 'discuss-button') {
-        fetch(tenantURL + '/discuss_part')
+        fetch(tenantURL + '/tenant_discuss_part')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
@@ -125,7 +125,7 @@ document.getElementById('btn').addEventListener('click', function() {
       }
 
       if (this.id === 'porfile-button') {
-        fetch(tenantURL + '/profile')
+        fetch(tenantURL + '/tenant_profile')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
