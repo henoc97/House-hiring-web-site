@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion d'immeubles</title>
+    <link rel="stylesheet" href="/main-owner.css">
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://unpkg.com;">
+
+  </head>
+  
+  <body>
+    <%- include(sidebar) %>
+    <section class="home-section" id="content-section">
+      <%- include(topbar) %>
+      <%- include(cardboxes) %>
+      <div class="details">
+        <%- include(recent_payments) %>
+        <%- include(recent_tenants) %>
+      </div>
+    </section>
+
+    <!-- Inclure le nonce dans les scripts inline -->
+    <!-- <script nonce="<%= nonce %>">
+      // Exemple de code inline
+      console.log('Ce script utilise un nonce.');
+    </script> -->
+
+    <!-- Inclure les scripts externes -->
+    <script src="/public/endpoints.js"></script>
+    <script src="/public/renewAccessToken.js"></script>
+    <script src="/public/cookies-engine.js"></script>
+    <script src="/public/variablesState.js"></script>
+    <script src="/owner/owner-updateSoldUtils.js"></script>
+    <script src="/owner/owner-getUnvalidReceipt.js"></script>
+    <script src="/owner/owner-validateReceiptLogic.js"></script>
+    <script src="/owner/owner-getRecentTenants.js"></script>
+    <script src="/owner/owner-ownerUtil.js"></script>
+    <script src="/owner/owner-createPropertyRequest.js"></script>
+    <script src="/owner/owner-getPropertiesRequest.js"></script>
+    <script src="/owner/owner-createTenant.js"></script>
+    <script src="/owner/owner-getTenantProperty.js"></script>
+    <script src="/owner/owner-getAllTenants.js"></script>
+    <script src="/owner/owner-showModalTenant.js"></script>
+    <script src="/owner/owner-requireReceiptRequest.js"></script>
+    <script src="/owner/owner-getValidReceipt.js"></script>
+    <script src="/owner/owner-myMessages.js"></script>
+    <script src="/owner/owner-sendMessage.js"></script>
+    <script src="/owner/owner-deleteMessage.js"></script>
+    <script src="/owner/owner-frontPartChanger.js"></script>
+  </body>
+</html>

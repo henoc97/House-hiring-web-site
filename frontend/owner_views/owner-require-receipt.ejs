@@ -1,19 +1,19 @@
-<div class="new_customers">
-  <div class="card_header">
+<div class="card">
+  <div class="card-header">
     <h2>Commander un reçu </h2>
   </div>
   <form id="receipt-form">
     <div class="form-group">
-      <label for="tenantsProperties">Locataire & Logement:</label>
-      <select id="tenantsProperties-option" name="tenantsProperties" required>
+      <label for="tenants-properties-option">Locataire & Logement:</label>
+      <select id="tenants-properties-option" name="tenants-properties" required>
         <option value="house1">House1</option>
         <option value="House2">House2</option>
         <option value="House3">House3</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="months">Mois:</label>
-      <select id="months" name="months" multiple="multiple" required>
+      <label for="receipt-months">Mois:</label>
+      <select id="receipt-months" name="months" multiple="multiple" required>
         <option value="1">Janvier</option>
         <option value="2">Février</option>
         <option value="3">Mars</option>
@@ -29,8 +29,8 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="sumpayed">Coût:</label>
-      <input type="number" id="sumpayed" name="sumpayed" required>
+      <label for="receipt-">Coût:</label>
+      <input type="number" id="receipt-sumpayed" name="sumpayed" required>
     </div>
     
     <button type="submit">Enregistrer</button>
