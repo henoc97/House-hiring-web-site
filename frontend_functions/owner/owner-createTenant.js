@@ -3,14 +3,14 @@ function createTenantRequest(){
 
   if((getsold() - registerTenant) > 0){
     let id = document.getElementById('property-option').value;
-    let lastname = document.getElementById('lastname').value;
-    let firstname = document.getElementById('firstname').value;
-    let contactmoov = document.getElementById('contactmoov').value;
-    let contacttg = document.getElementById('contacttg').value;
+    let lastname = document.getElementById('tenant-lastname').value;
+    let firstname = document.getElementById('tenant-firstname').value;
+    let contactmoov = document.getElementById('tenant-contact-moov').value;
+    let contacttg = document.getElementById('tenant-contact-tg').value;
 
     let token = localStorage.getItem('accessToken');
 
-    fetch(host + 'createTenant', {
+    fetch(host + 'create-tenant', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,

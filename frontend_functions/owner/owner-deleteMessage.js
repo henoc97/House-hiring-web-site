@@ -47,7 +47,7 @@ function deleteMessageLogic(tenantId) {
     function deleteSelectedMessage(messageId) {
         let token = localStorage.getItem('accessToken'); 
 
-        fetch(host + 'deleteMessage', {
+        fetch(host + 'delete-message', {
             method: 'POST',
             headers: {
                 'Authorization': 'Bearer ' + token,

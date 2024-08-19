@@ -1,10 +1,10 @@
 
 
 
-module.exports.require_receipt = async (req, res) => {
-    const { id_tenant_property, sumpayed, monthpayed } = req.body;
+module.exports.requireReceipt = async (req, res) => {
+    const { idTenantProperty, sumpayed, monthpayed } = req.body;
     const query = "CALL insert_payment(?, ?, ?)";
-    const values = [id_tenant_property, sumpayed, monthpayed];
+    const values = [idTenantProperty, sumpayed, monthpayed];
 
     try {
         const [rows] = await req.connection.query(query, values);
@@ -18,7 +18,7 @@ module.exports.require_receipt = async (req, res) => {
     }
 };
 
-module.exports.receipt_unValid = async (req, res) => {
+module.exports.receiptUnValid = async (req, res) => {
     const query = "CALL payment_notvalid(?)";
     const values = [req.user.userId];
 
@@ -51,7 +51,7 @@ module.exports.validateReceipt = async (req, res) => {
     }
 };
 
-module.exports.receipt_valid = async (req, res) => {
+module.exports.receiptValid = async (req, res) => {
     const query = "CALL payment_valid(?)";
     const values = [req.user.userId];
 

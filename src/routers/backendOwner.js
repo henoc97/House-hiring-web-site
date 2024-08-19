@@ -5,60 +5,60 @@ const sharp = require('sharp');
 const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth');
 
-const { getotp, createUserOwner, userauth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/owner/user');
+const { getOtp, createUserOwner, userAuth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/owner/user');
 const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/owner/property');
-const { createTenant, TenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/owner/tenant');
-const { require_receipt, receipt_unValid, receipt_valid, validateReceipt } = require('../../controller/owner/receipt');
+const { createTenant, tenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/owner/tenant');
+const { requireReceipt, receiptUnValid, receiptValid, validateReceipt } = require('../../controller/owner/receipt');
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
 
 
 
 // Routes pour les utilisateurs
-router.post("/getotp", getotp);
-router.post("/refreshToken", refreshToken);
+router.post("/get-otp", getOtp);
+router.post("/refresh-token", refreshToken);
 
 // Appliquer les middlewares à toutes les routes
 router.use(dbMiddleware);
 
 // Routes pour les utilisateurs
-router.post("/createUserOwner", createUserOwner);
-router.post("/userauth", userauth);
+router.post("/create-user-owner", createUserOwner);
+router.post("/user-auth", userAuth);
 
 // Appliquer les middlewares à toutes les routes
 router.use(authMiddleware);
 
 // Routes pour les utilisateurs
-router.post("/updateSold", updateSold);
-router.post("/myOwner", myOwner);
-router.post("/updateOwner", updateOwner);
+router.post("/update-sold", updateSold);
+router.post("/my-owner", myOwner);
+router.post("/update-owner", updateOwner);
 
 // Routes pour les propriétés
-router.post("/createProperties", createProperties);
-router.post("/myProperties", myProperties);
-router.post("/updateProperty", updateProperty);
-router.post("/myProperty", myProperty);
+router.post("/create-properties", createProperties);
+router.post("/my-properties", myProperties);
+router.post("/update-property", updateProperty);
+router.post("/my-property", myProperty);
 
 
 // Routes pour les locataires
-router.post("/createTenant", createTenant);
-router.post("/TenantsProperties", TenantsProperties);
-router.post("/recentTenants", recentTenants);
-router.post("/allTenants", allTenants);
-router.post("/myTenant", myTenant);
-router.post("/updateTenant", updateTenant);
+router.post("/create-tenant", createTenant);
+router.post("/tenants-properties", tenantsProperties);
+router.post("/recent-tenants", recentTenants);
+router.post("/all-tenants", allTenants);
+router.post("/my-tenant", myTenant);
+router.post("/update-tenant", updateTenant);
 
 
 // Routes pour les reçus
-router.post("/require_receipt", require_receipt);
-router.post("/receipt_unValid", receipt_unValid);
-router.post("/receipt_valid", receipt_valid);
-router.post("/validateReceipt", validateReceipt);
+router.post("/require-receipt", requireReceipt);
+router.post("/receipt-unValid", receiptUnValid);
+router.post("/receipt-valid", receiptValid);
+router.post("/validate-receipt", validateReceipt);
 
 // Routes pour les messages
-router.post("/sendMessage", sendMessage);
-router.post("/myMessages", myMessages);
-router.post("/deleteMessage", deleteMessage);
+router.post("/send-message", sendMessage);
+router.post("/my-messages", myMessages);
+router.post("/delete-message", deleteMessage);
 
 // Route d'upload d'images
 router.post('/upload', upload.single('image'), async (req, res) => {

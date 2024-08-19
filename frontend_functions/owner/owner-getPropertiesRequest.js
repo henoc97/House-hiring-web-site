@@ -10,14 +10,14 @@ function getNumberOfProperties() {
 }
 
 function showNumberOfProperties() {
-  const totalProperties = document.getElementById('totalProperties');
+  const totalProperties = document.getElementById('total-properties');
   totalProperties.textContent = getNumberOfProperties();
 }
 
 
 function getPropertiesRequest(type) {
     let token = localStorage.getItem('accessToken');
-    fetch(host + 'myProperties', {
+    fetch(host + 'my-properties', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -70,7 +70,8 @@ function getPropertiesRequest(type) {
   
 
 function myPropertiesTableConstructor(properties){
-    const tableBody = document.getElementById("myPropertiesTable");
+  console.log("ca marche bien dans getPropertiesRequest");
+    const tableBody = document.getElementById("my-properties-table");
       if (tableBody) {
         tableBody.innerHTML = ''; // Clear existing rows
 
@@ -127,7 +128,7 @@ function myPropertiesTableConstructor(properties){
 // UPDATE properties
 function editProperty(propertyId) {
   let token = localStorage.getItem('accessToken');
-  fetch(host + "myProperty", {  // Utilise l'ID pour récupérer les détails de la propriété
+  fetch(host + "my-property", {  // Utilise l'ID pour récupérer les détails de la propriété
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -142,18 +143,15 @@ function editProperty(propertyId) {
       console.log("Editing property:", data);
 
       // Remplir le formulaire avec les données actuelles de la propriété
-      document.getElementById('address').value = data.address;
-      document.getElementById('description').value = data.descriptions;
-      document.getElementById('cost').value = data.price;
+      document.getElementById('property-address').value = data.address;
+      document.getElementById('property-description').value = data.descriptions;
+      document.getElementById('property-cost').value = data.price;
 
       // Change le texte du bouton pour indiquer qu'il s'agit d'une modification
       const submitButton = document.querySelector('#property-form button[type="submit"]');
-      const actionIndicator = document.querySelector('#actionIndicator');
+      const actionIndicator = document.querySelector('#action-indicator');
       submitButton.textContent = 'Modifier';
       actionIndicator.textContent = "Modifier une propriété"
-
-      // Affiche le formulaire si nécessaire
-      document.getElementById('property-form').style.display = 'block';
 
       // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
       submitButton.dataset.editingId = propertyId;
@@ -168,21 +166,21 @@ function resetPropertyForm() {
     form.reset();
     const submitButton = document.querySelector('#property-form button[type="submit"]');
     submitButton.textContent = 'Enregistrer';
-    const actionIndicator = document.querySelector('#actionIndicator');
+    const actionIndicator = document.querySelector('#action-indicator');
     actionIndicator.textContent = "Enregistrer une propriété"
     delete submitButton.dataset.editingId;
   }
 }
 
-function update_property(editingId) {
+function updateProperty(editingId) {
   const updatedData = {
       id : editingId,
-      address: document.getElementById('address').value,
-      description: document.getElementById('description').value,
-      cost: document.getElementById('cost').value
+      address: document.getElementById('property-address').value,
+      description: document.getElementById('property-description').value,
+      cost: document.getElementById('property-cost').value
   };
   let token = localStorage.getItem('accessToken');
-  fetch(host + "updateProperty", {  // Utilise l'ID pour récupérer les détails de la propriété
+  fetch(host + "update-property", {  // Utilise l'ID pour récupérer les détails de la propriété
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,

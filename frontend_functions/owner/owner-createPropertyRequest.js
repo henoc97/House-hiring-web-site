@@ -4,13 +4,13 @@
 function createPropertyRequest(){
 
   if((getsold() - registerHomePrice) > 0){
-    let address = document.getElementById('address').value;
-    let description = document.getElementById('description').value;
-    let cost = document.getElementById('cost').value;
+    let address = document.getElementById('property-address').value;
+    let description = document.getElementById('property-description').value;
+    let cost = document.getElementById('property-cost').value;
 
     let token = localStorage.getItem('accessToken');
 
-    fetch(host + 'createProperties', {
+    fetch(host + 'create-properties', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,

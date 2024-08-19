@@ -23,7 +23,7 @@ function setSold(sold) {
   
   function updateSoldRequest(spend) {
       let token = localStorage.getItem('accessToken');
-      fetch(host + 'updateSold', {
+      fetch(host + 'update-sold', {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + token,

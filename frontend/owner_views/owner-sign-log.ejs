@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Coding Template - login & signup form</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-<div class="wrapper">
-  <div class="title-text">
-    <div class="title login">Se connecter</div>
-    <div class="title signup">S'inscrire</div>
-  </div>
-  <div class="form-container">
-    <div class="slide-controls">
-      <input type="radio" name="slide" id="login" checked>
-      <input type="radio" name="slide" id="signup">
-      <label for="login" class="slide login">Connecter</label>
-      <label for="signup" class="slide signup">S'inscrire</label>
-      <div class="slider-tab"></div>
+  <head>
+    <meta charset="UTF-8">
+    <title>Coding Template - login & signup form</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title-text">
+        <div class="title login">Se connecter</div>
+        <div class="title signup">S'inscrire</div>
+      </div>
+      <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked>
+          <input type="radio" name="slide" id="signup">
+          <label for="login" class="slide login">Connecter</label>
+          <label for="signup" class="slide signup">S'inscrire</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+          <form id="login-form" class="login">
+            <div class="field">
+              <input type="text" id="email" name="email" placeholder="Adresse e-mail" required>
+            </div>
+            <div class="field">
+              <input type="password" id="pwd" name="pwd" placeholder="Mot de passe" required>
+            </div>
+            <div class="pass-link"><strong><a href="#">Mot de passe oublié?</a></strong></div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Se connecter">
+            </div>
+            <div class="signup-link">Pas de compte? <strong><a href="#">S'inscrire maintenant</a></strong></div>
+          </form>
+          <form id="signup-form" class="signup">
+            <div class="field">
+                <input type="text" id="signup-email" name="email" placeholder="Adresse e-mail" required>
+            </div>
+            <div class="field">
+                <input type="password" id="signup-pwd" name="pwd" placeholder="Mot de passe" required>
+            </div>
+            <div class="field">
+                <input type="password" id="signup-pwd1" name="pwd1" placeholder="Confirmation du mot de passe" required>
+            </div>
+            <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="S'inscrire">
+            </div>
+        </form>
+        </div>
+      </div>
     </div>
-    <div class="form-inner">
-      <form id="login-form" class="login">
-        <div class="field">
-          <input type="text" id="email" name="email" placeholder="Adresse e-mail" required>
-        </div>
-        <div class="field">
-          <input type="password" id="pwd" name="pwd" placeholder="Mot de passe" required>
-        </div>
-        <div class="pass-link"><strong><a href="#">Mot de passe oublié?</a></strong></div>
-        <div class="field btn">
-          <div class="btn-layer"></div>
-          <input type="submit" value="Se connecter">
-        </div>
-        <div class="signup-link">Pas de compte? <strong><a href="#">S'inscrire maintenant</a></strong></div>
-      </form>
-      <form id="signup-form" class="signup">
-        <div class="field">
-            <input type="text" id="signup-email" name="email" placeholder="Adresse e-mail" required>
-        </div>
-        <div class="field">
-            <input type="password" id="signup-pwd" name="pwd" placeholder="Mot de passe" required>
-        </div>
-        <div class="field">
-            <input type="password" id="signup-pwd1" name="pwd1" placeholder="Confirmation du mot de passe" required>
-        </div>
-        <div class="field btn">
-            <div class="btn-layer"></div>
-            <input type="submit" value="S'inscrire">
-        </div>
-    </form>
-    </div>
-  </div>
-</div>
-<div id="message"></div> <!-- Zone pour afficher le message -->
+    <div id="message"></div> <!-- Zone pour afficher le message -->
 
-<script src="/public/cookies_engine.js"></script>
-<script src="/public/log_sign_script.js"></script>
-<script src="/public/endpoints.js"></script>
+    <script src="/public/cookiesEngine.js"></script>
+    <script src="/public/logSignScript.js"></script>
+    <script src="/public/endpoints.js"></script>
 
-<script src="/owner/owner_sign_log_logic.js"></script>
-</body>
+    <script src="/owner/ownerSignLogLogic.js"></script>
+  </body>
 </html>

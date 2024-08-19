@@ -34,7 +34,7 @@ app.use((req, res, next) => {
     : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`;
   
   // Affiche la politique CSP dans les logs pour débogage
-  console.log('CSP Policy:', cspPolicy);
+  // console.log('CSP Policy:', cspPolicy);
   
   try {
     res.setHeader('Content-Security-Policy', cspPolicy);
@@ -79,8 +79,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Servir 
 // Importer les routes
 const frontendOwnerRouter = require('./routers/frontendOwnerRouter');
 const frontendTenantRouter = require('./routers/frontendTenantRouter');
-const backendOwnerRouter = require('./routers/backend_owner');
-const backendTenantRouter = require('./routers/backend_tenant');
+const backendOwnerRouter = require('./routers/backendOwner');
+const backendTenantRouter = require('./routers/backendTenant');
 
 // Utiliser les routes avec cache (si activé)
 // Commenté pour l'instant, décommentez si vous activez le cache

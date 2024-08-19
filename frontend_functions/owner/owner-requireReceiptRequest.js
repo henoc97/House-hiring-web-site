@@ -1,15 +1,15 @@
 
 function requireRecieptRequest() {
-  let id_tenant_property = document.getElementById('tenantsProperties-option').value;
-  let sumpayed = document.getElementById('sumpayed').value;
-  let months = Array.from(document.getElementById('months').selectedOptions).map(option => option.value);
+  let idTenantProperty = document.getElementById('tenants-properties-option').value;
+  let sumpayed = document.getElementById('receipt-sumpayed').value;
+  let months = Array.from(document.getElementById('receipt-months').selectedOptions).map(option => option.value);
   
   if (months.length === 0) {
       alert("Veuillez sélectionner au moins un mois.");
       return;
   }
 
-  alert("Mois sélectionnés : " + months.join(', ')); // Pour vérifier les mois sélectionnés
+  // alert("Mois sélectionnés : " + months.join(', ')); // Pour vérifier les mois sélectionnés
 
   let token = localStorage.getItem('accessToken');
 
@@ -17,14 +17,14 @@ function requireRecieptRequest() {
   let costPerMonth = parseFloat(sumpayed) / months.length;
 
   months.forEach(month => {
-      fetch(host + 'require_receipt', {
+      fetch(host + 'require-receipt', {
           method: 'POST',
           headers: {
               'Authorization': 'Bearer ' + token,
               'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-              "id_tenant_property": id_tenant_property,
+              "idTenantProperty": idTenantProperty,
               "sumpayed": costPerMonth,
               "monthpayed": month.trim()
           })
@@ -46,5 +46,5 @@ function requireRecieptRequest() {
       });
   });
 
-  document.getElementById('months').selectedIndex = -1; // Réinitialiser la sélection
+  document.getElementById('receipt-months').selectedIndex = -1; // Réinitialiser la sélection
 }

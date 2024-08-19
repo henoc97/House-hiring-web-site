@@ -1,6 +1,6 @@
 function getUnvalidReceiptsRequest() {
   let token = localStorage.getItem('accessToken');
-  fetch(host + 'receipt_unValid', {
+  fetch(host + 'receipt-unValid', {
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + token,
@@ -21,8 +21,8 @@ function getUnvalidReceiptsRequest() {
     console.log("data received:", data); // Log les données reçues
 
     const unvaliReceipts = data;
-    getValidReceiptsRequest();
-    const tableBody = document.getElementById("unvalidReceiptsTable");
+    // getValidReceiptsRequest();
+    const tableBody = document.getElementById("unvalid-receipts-table");
     if (tableBody) {
       tableBody.innerHTML = ''; // Clear existing rows
 
@@ -43,8 +43,8 @@ function getUnvalidReceiptsRequest() {
               ${unvalidReceipt.sumpayed}
               </td>
               <td>
-                <a href="#" class="govalidreceipt" data-receipt='${JSON.stringify(unvalidReceipt)}'>
-                  <span class="badge bg_danger">Non approuvé</span>
+                <a href="#" class="go-validate-receipt" data-receipt='${JSON.stringify(unvalidReceipt)}'>
+                  <span class="badge bg-danger">Non approuvé</span>
                 </a>
               </td>
         `;

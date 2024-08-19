@@ -11,7 +11,7 @@ function getNumberOfPayments() {
 }
 
 function showNumberOfPayments() {
-  const totalPayments = document.getElementById('totalPayments');
+  const totalPayments = document.getElementById('total-payments');
   totalPayments.textContent = getNumberOfPayments();
 
 }
@@ -20,7 +20,7 @@ function showNumberOfPayments() {
 
 function getValidReceiptsRequest() {
     let token = localStorage.getItem('accessToken');
-    fetch(host + 'receipt_valid', {
+    fetch(host + 'receipt-valid', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -37,7 +37,7 @@ function getValidReceiptsRequest() {
       setNumberOfPayments(valiReceipts.length);
       showNumberOfPayments();
 
-      const tableBody = document.getElementById("validReceiptsTable");
+      const tableBody = document.getElementById("valid-receipts-table");
       if (tableBody) {
         tableBody.innerHTML = ''; // Clear existing rows
 
@@ -58,15 +58,15 @@ function getValidReceiptsRequest() {
                 ${validReceipt.sumpayed}
                 </td>
                 <td>
-                  <a href="#" class="govalidreceipt" data-receipt='${JSON.stringify(validReceipt)}'>
-                    <span class="badge bg_seccuss">Approuvé</span>
+                  <a href="#" class="go-validate-receipt" data-receipt='${JSON.stringify(validReceipt)}'>
+                    <span class="badge bg-seccuss">Approuvé</span>
                   </a>
                 </td>
           `;
           tableBody.appendChild(row);
         });
       } else {
-        console.error("Element with ID 'tenantspropertiesTable' not found.");
+        console.error("Element with ID 'valid-receipts-table' not found.");
       }
     })
     .catch((error) => console.error('Error fetching tenantsproperties:', error));

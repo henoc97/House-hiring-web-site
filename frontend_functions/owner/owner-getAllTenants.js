@@ -11,7 +11,7 @@ function getNumberOfTenants() {
 }
 
 function showNumberOfTenants (){
-  const totalTenants = document.getElementById('totalTenants');
+  const totalTenants = document.getElementById('total-tenants');
   totalTenants.textContent = getNumberOfTenants();
 }
 
@@ -19,7 +19,7 @@ function getAllTenantsRequest() {
   let token = localStorage.getItem('accessToken');
 
   console.log('je suis dans getAllTenantsRequest', token);
-  fetch(host + 'allTenants', {
+  fetch(host + 'all-tenants', {
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + token,
@@ -35,7 +35,7 @@ function getAllTenantsRequest() {
     setNumberOfTenants(allTenants.length);
     showNumberOfTenants();
     
-    const tableBody = document.getElementById("alltenantsTable");
+    const tableBody = document.getElementById("all-tenants-table");
     if (tableBody) {
       tableBody.innerHTML = ''; // Clear existing rows
 
@@ -56,16 +56,19 @@ function getAllTenantsRequest() {
 
         // Reformater les mois impayés
         const formattedLate = late.split(',').map(formatMonthYear).join(', ');
-
+        const formattedLateIsUndifined = formattedLate != 'undefined-';
+        console.log("formattedLate: ", formattedLate); 
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${tenant.lastname} ${tenant.firstname}</td>
           <td>${tenant.contactmoov} / ${tenant.contacttg}</td>
           <td>
             <span class="late-count">${late == '' ? 0 : late.split(",").length}</span>
-            <div class="late-months hidden">
-              ${formattedLate}
-            </div>
+            ${formattedLateIsUndifined ? 
+              `<div class="late-months hidden">
+                ${formattedLate}
+              </div>` : ``
+            }
           </td>
           <td>${formattedDate}</td>
           <td>
@@ -92,9 +95,11 @@ function getAllTenantsRequest() {
         });
 
         row.addEventListener('mouseout', function() {
-          const lateMonths = row.querySelector('.late-months');
-          lateMonths.classList.toggle('visible');
-          lateMonths.classList.toggle('hidden');
+          if (formattedLateIsUndifined) {
+            const lateMonths = row.querySelector('.late-months');
+            lateMonths.classList.toggle('visible');
+            lateMonths.classList.toggle('hidden');
+          }
         });
       });
 
@@ -117,7 +122,7 @@ function getAllTenantsRequest() {
           });
 
           // Sélectionne la modale de modification et son contenu
-          const editModal = document.getElementById('editModal');
+          const editModal = document.getElementById('edit-modal');
           const editModalContent = editModal.querySelector('.modal-content');
 
           // Sélectionne la modale des messages et son contenu
@@ -208,7 +213,7 @@ function getAllTenantsRequest() {
 // UPDATE tenant
 function editTenant(tenantId) {
   let token = localStorage.getItem('accessToken');
-  fetch(host + "myTenant", {  // Utilise l'ID pour récupérer les détails de locataire
+  fetch(host + "my-tenant", {  // Utilise l'ID pour récupérer les détails de locataire
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -225,9 +230,14 @@ function editTenant(tenantId) {
       // Remplir le formulaire avec les données actuelles de le locataire
       document.getElementById('edit-lastname').value = data.lastname;
       document.getElementById('edit-firstname').value = data.firstname;
-      document.getElementById('edit-contactmoov').value = data.contactmoov;
-      document.getElementById('edit-contacttg').value = data.contacttg;
-      
+      document.getElementById('edit-contact-moov').value = data.contactmoov;
+      document.getElementById('edit-contact-tg').value = data.contacttg;
+      // Vérifier si la date est valide
+      let fullDate = new Date(data.create_time);
+      // Extraire la date au format yyyy-MM-dd si la date est valide
+      let formattedDate = fullDate.toISOString().split('T')[0];
+      // Assigner la date formatée au champ de saisie (si nécessaire)
+      document.getElementById('edit-date').value = formattedDate;
       const submitButton = document.querySelector('#edit-tenant-form button[type="submit"]');
       // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
       submitButton.dataset.editingId = tenantId;
@@ -241,12 +251,12 @@ function updateTenant(editingId) {
       id : editingId,
       lastname : document.getElementById('edit-lastname').value,
       firstname : document.getElementById('edit-firstname').value,
-      contactmoov : document.getElementById('edit-contactmoov').value,
-      contacttg : document.getElementById('edit-contacttg').value,
+      contactmoov : document.getElementById('edit-contact-moov').value,
+      contacttg : document.getElementById('edit-contact-tg').value,
       date : document.getElementById('edit-date').value,
   };
   let token = localStorage.getItem('accessToken');
-  fetch(host + "updateTenant", {  // Utilise l'ID pour récupérer les détails de la propriété
+  fetch(host + "update-tenant", {  // Utilise l'ID pour récupérer les détails de la propriété
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,

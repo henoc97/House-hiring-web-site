@@ -2,7 +2,7 @@
 // Récupérer le owner
 function getOwner() {
     let token = localStorage.getItem('accessToken');
-    fetch(host + "myOwner", {  // Utilise l'ID pour récupérer les détails de la owner
+    fetch(host + "my-owner", {  // Utilise l'ID pour récupérer les détails de la owner
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + token,
@@ -23,8 +23,8 @@ function getOwner() {
         document.getElementById('owner-lastname').value = data.lastname;
         document.getElementById('owner-firstname').value = data.firstname;
         document.getElementById('owner-email').value = data.email;
-        document.getElementById('owner-contactmoov').value = data.contactmoov;
-        document.getElementById('owner-contacttg').value = data.contacttg;
+        document.getElementById('owner-contact-moov').value = data.contactmoov;
+        document.getElementById('owner-contact-tg').value = data.contacttg;
         
     })
     .catch(error => console.error('Error fetching owner details:', error));
@@ -36,12 +36,12 @@ function updateOwner() {
     lastname : document.getElementById('owner-lastname').value,
     firstname : document.getElementById('owner-firstname').value,
     email : document.getElementById('owner-email').value,
-    contactmoov : document.getElementById('owner-contactmoov').value,
-    contacttg : document.getElementById('owner-contacttg').value,
+    contactmoov : document.getElementById('owner-contact-moov').value,
+    contacttg : document.getElementById('owner-contact-tg').value,
     
   };
   let token = localStorage.getItem('accessToken');
-  fetch(host + "updateOwner", {  // Utilise l'ID pour récupérer les détails de owner
+  fetch(host + "update-owner", {  // Utilise l'ID pour récupérer les détails de owner
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,

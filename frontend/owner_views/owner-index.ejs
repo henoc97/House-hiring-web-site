@@ -20,8 +20,8 @@
       <%- include(topbar) %>
       <%- include(cardboxes) %>
       <div class="details">
-        <%- include(recent_payments) %>
-        <%- include(recent_tenants) %>
+        <%- include(recentPayments) %>
+        <%- include(recentTenants) %>
       </div>
     </section>
 
@@ -34,7 +34,7 @@
     <!-- Inclure les scripts externes -->
     <script src="/public/endpoints.js"></script>
     <script src="/public/renewAccessToken.js"></script>
-    <script src="/public/cookies-engine.js"></script>
+    <script src="/public/cookiesEngine.js"></script>
     <script src="/public/variablesState.js"></script>
     <script src="/owner/owner-updateSoldUtils.js"></script>
     <script src="/owner/owner-getUnvalidReceipt.js"></script>
@@ -52,6 +52,9 @@
     <script src="/owner/owner-myMessages.js"></script>
     <script src="/owner/owner-sendMessage.js"></script>
     <script src="/owner/owner-deleteMessage.js"></script>
+    <script src="/owner/owner-receiptMonthHelper.js"></script>
+    <script src="/owner/owner-uploadImage.js"></script>
+    <script src="/owner/owner-accessReceipt.js"></script>
     <script src="/owner/owner-frontPartChanger.js"></script>
   </body>
 </html>

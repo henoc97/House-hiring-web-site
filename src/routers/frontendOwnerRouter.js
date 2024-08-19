@@ -5,74 +5,74 @@ require('dotenv').config();
 
 
 
-router.get('/owner_sign_log', (req, res) => {
-  res.render('owner_sign_log', {nonce: res.locals.nonce});
+router.get('/owner-sign-log', (req, res) => {
+  res.render('owner-sign-log', {nonce: res.locals.nonce});
 });
 
-router.get('/owner_redirect', (req, res) => {
-  res.render('owner_redirect');
+router.get('/owner-redirect', (req, res) => {
+  res.render('owner-redirect');
 });
 
 // Routes pour les vues
 router.get('/owner', (req, res) => {
-  res.render('owner_index', {
+  res.render('owner-index', {
     nonce: res.locals.nonce,
-    sidebar : 'owner_sidebar',
-    topbar : 'owner_topbar',
-    cardboxes : 'owner_cardboxes',
-    recentpayments : 'owner_recentpayments',
-    newcustomers : 'owner_newcustomers'
+    sidebar : 'owner-sidebar',
+    topbar : 'owner-topbar',
+    cardboxes : 'owner-cardboxes',
+    recentPayments : 'owner-recent-payments',
+    recentTenants : 'owner-recent-tenants',
   });
 });
 
-router.get('/owner_dashboard', (req, res) => {
-  res.render('owner_dashboard', {
+router.get('/owner-dashboard', (req, res) => {
+  res.render('_owner-dashboard', {
     nonce: res.locals.nonce,
-    recentpayments: 'owner_recentpayments', 
-    newcustomers: 'owner_newcustomers'
+    recentPayments: 'owner-recent-payments', 
+    recentTenants: 'owner-recent-tenants',
   });
 });
 
-router.get('/owner_profile', (req, res) => {
-  res.render('owner_profile_part', {
-    accountinfo: 'owner_accountinfo',
-    uploadsignature: 'owner_uploadsignature',
-    payementmodalities: 'owner_payementmodalities'
+router.get('/owner-profile', (req, res) => {
+  res.render('_owner-profile', {
+    accountInfo: 'owner-account-info',
+    uploadSignature: 'owner-upload-signature',
+    payementModalities: 'owner-payement-modalities'
   });
 });
 
-router.get('/owner_propertiespart', (req, res) => {
-  res.render('owner_propertiespart', {
-    myproperties : 'owner_myproperties',
-    addpropertyform : 'owner_addpropertyform'
+router.get('/owner-properties', (req, res) => {
+  res.render('_owner-properties', {
+    myProperties : 'owner-my-properties',
+    addPropertyForm : 'owner-add-property-form'
   });
 });
 
-router.get('/owner_tenant_home', (req, res) => {
-  res.render('owner_tenants_properties_part', {
-    tenants_properties: 'owner_tenants_properties',
-    addtenantform: 'owner_addtenantform'
+router.get('/owner-tenant-home', (req, res) => {
+  res.render('_owner-tenants-properties', {
+    tenantsProperties: 'owner-tenants-properties',
+    addTenantForm: 'owner-add-tenant-form'
   });
 });
 
-router.get('/owner_tenants_part', (req, res) => {
-  res.render('owner_tenants_part', {
-    mytenants : 'owner_mytenants',
-    editTenant : 'owner_editTenant',
-    discussPart : 'owner_discussPart',
-    tenantsmessages:'owner_tenantsmessages'
+router.get('/owner-tenants', (req, res) => {
+  res.render('_owner-tenants', {
+    myTenants : 'owner-my-tenants',
+    editTenant : 'owner-edit-tenant',
+    discussion : 'owner-discussion',
+    tenantsMessages:'owner-tenants-messages'
   });
 });
 
-router.get('/owner_receipts_part', (req, res) => {
-  res.render('owner_receipts_part', {
-    myreceipts : 'owner_myreceipts',
-    requirereceipt:'owner_requirereceipt'
+router.get('/owner-receipts', (req, res) => {
+  res.render('_owner-receipts', {
+    myReceipts : 'owner-my-receipts',
+    requireReceipt:'owner-require-receipt'
   });
 });
 
-router.get('/owner_receipt', (req, res) => {
-  res.render('owner_receipt');
+router.get('/owner-receipt', (req, res) => {
+  res.render('owner-receipt');
 });
 
 module.exports = router;

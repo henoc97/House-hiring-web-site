@@ -5,7 +5,7 @@
 
 function getRecentTenantsRequest() {
     let token = localStorage.getItem('accessToken');
-    fetch(host + 'recentTenants', {
+    fetch(host + 'recent-tenants', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -19,7 +19,7 @@ function getRecentTenantsRequest() {
       // Si les propriétés sont enveloppées dans un objet { myProperties }
       const recentTenants = data;
 
-      const tableBody = document.getElementById("recentTenantsTable");
+      const tableBody = document.getElementById("recent-tenants-table");
       if (tableBody) {
         tableBody.innerHTML = ''; // Clear existing rows
 

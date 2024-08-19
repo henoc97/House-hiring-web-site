@@ -20,7 +20,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     }
 
     // Envoi de la requête POST via fetch
-    fetch(host + 'getotp', {
+    fetch(host + 'get-otp', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ function makeRequest() {
   let email = document.getElementById('email').value;
   let pwd = document.getElementById('pwd').value;
 
-  fetch(host + 'userauth', {
+  fetch(host + 'user-auth', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

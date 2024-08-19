@@ -15,7 +15,7 @@ module.exports.createTenant = async (req, res) => {
     }
 };
 
-module.exports.TenantsProperties = async (req, res) => {
+module.exports.tenantsProperties = async (req, res) => {
     const query = "CALL tenant_properties_by_owner(?)";
     const values = [req.user.userId];
 

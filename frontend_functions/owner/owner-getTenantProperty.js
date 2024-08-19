@@ -11,7 +11,7 @@ function getNumberOfTenantsProperties() {
 }
 
 function showNumberOfTenantsProperties(){
-  const totalTenantsProperties = document.getElementById('totalTenantsProperties');
+  const totalTenantsProperties = document.getElementById('total-tenants-properties');
   totalTenantsProperties.textContent = getNumberOfTenantsProperties();
 }
 
@@ -20,7 +20,7 @@ function showNumberOfTenantsProperties(){
 
 function getTenantsPropertiesRequest(type) {
     let token = localStorage.getItem('accessToken');
-    fetch(host + 'TenantsProperties', {
+    fetch(host + 'Tenants-properties', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -50,7 +50,7 @@ function getTenantsPropertiesRequest(type) {
 
   function  tenantsPropertiestableConstructor(tenantsproperties){
     
-    const tableBody = document.getElementById("tenantspropertiesTable");
+    const tableBody = document.getElementById("tenants-properties-table");
       if (tableBody) {
         tableBody.innerHTML = ''; // Clear existing rows
 
@@ -67,7 +67,7 @@ function getTenantsPropertiesRequest(type) {
             <td>${tenantproperty.price}</td>
             ${tenantproperty.is_activated ? 
               `<td>--</td>` : 
-              `<td><i class='bx bx-copy' style="cursor: pointer;" title="Copier le lien d'activation"></i></td>`
+              `<td><i class='bx bx-copy' title="Copier le lien d'activation"></i></td>`
             }
           `;
           tableBody.appendChild(row);
@@ -90,7 +90,7 @@ function getTenantsPropertiesRequest(type) {
   }
   
   function  tenantsPropertiesoptionConstructor(tenantsproperties){
-    const tenantsPropertiesoption = document.getElementById("tenantsProperties-option");
+    const tenantsPropertiesoption = document.getElementById("tenants-properties-option");
     if (tenantsPropertiesoption) {
       tenantsPropertiesoption.innerHTML = ''; // Clear existing rows
       

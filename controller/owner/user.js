@@ -7,7 +7,7 @@ const codeOTP = require('../../functions/otp');
 
 const email_otp = {};
 
-module.exports.getotp = async (req, res) => {
+module.exports.getOtp = async (req, res) => {
     const { email, pwd } = req.body;
 
     if (mailTest(email)) {
@@ -75,7 +75,7 @@ module.exports.createUserOwner = async (req, res) => {
     }
 };
 
-module.exports.userauth = async (req, res) => {
+module.exports.userAuth = async (req, res) => {
     const { email, pwd } = req.body;
     console.log(email, pwd);
     

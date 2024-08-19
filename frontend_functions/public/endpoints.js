@@ -22,8 +22,8 @@ const tenantURL = "/tenant";
 // root end with "/" and tenant starts with "/" so tenantURL.substring(1).
 const activateURL = root + tenantURL.substring(1) + "/activate";
 
-const receiptURL = ownerURL + "/owner_receipt";
+const receiptURL = ownerURL + "/owner-receipt";
 
-const ownerLogSignURL = ownerURL + "/owner_sign_log";
+const ownerLogSignURL = ownerURL + "/owner-sign-log";
 
 const ownerErrorPage = ownerURL + ""; // A completer

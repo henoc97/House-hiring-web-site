@@ -1,11 +1,10 @@
 
 
-function validateReceiptLogic() {
-    document.getElementById("unvalidReceiptsTable").addEventListener('click', function(e) {
-      if (e.target && e.target.closest('.govalidreceipt')) {
-        
+function  accessReceipt(e) {
+    if (e.target && e.target.closest('.go-validate-receipt')) {
+              
         e.preventDefault();
-        const receiptData = JSON.parse(e.target.closest('.govalidreceipt').getAttribute('data-receipt'));
+        const receiptData = JSON.parse(e.target.closest('.go-validate-receipt').getAttribute('data-receipt'));
     
         // Generate a unique receipt number
         const receiptNumber = 'REC' + Date.now(); // Example: REC1627890123456
@@ -28,5 +27,4 @@ function validateReceiptLogic() {
         // Redirect to the validation page
         window.location.href = receiptURL;
       }
-    });
-  }
+}
