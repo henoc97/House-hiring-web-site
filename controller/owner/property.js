@@ -8,7 +8,7 @@ module.exports.createProperties = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log(rows[0]);
-        res.status(200).json({ message: "requête réussie" });
+        res.status(200).json(rows[0][0]);
     } catch (err) {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
@@ -60,6 +60,23 @@ module.exports.updateProperty = async (req, res) => {
         const [rows] = await req.connection.query(query, values);
         console.log(rows[0]);
         res.status(200).json(rows[0][0]);
+    } catch (err) {
+        console.error('Erreur lors de l\'exécution de la requête', err);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        req.connection.release();
+    }
+};
+
+module.exports.deleteProperty = async (req, res) => {
+    const { id } = req.body;
+    const query = "CALL delete_property(?)";
+    const values = [id];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        console.log(rows);
+        res.status(200).json(rows);
     } catch (err) {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });

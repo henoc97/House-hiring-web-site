@@ -72,7 +72,7 @@ app.use(morgan('combined')); // Affiche dans la console
 
 // Servir les fichiers statiques avec mise en cache
 app.use(express.static(path.join(__dirname, '../frontend/css'))); // Cache des fichiers CSS pendant 1 jour { maxAge: '1d' } désactivé
-app.use(express.static(path.join(__dirname, '../frontend/img'))); // Cache des images pendant 1 jour { maxAge: '1d' } désactivé
+app.use('/img', express.static(path.join(__dirname, '../frontend/img'))); // Cache des images pendant 1 jour { maxAge: '1d' } désactivé
 app.use(express.static(path.join(__dirname, '../frontend_functions'))); // Cache des fonctions frontend pendant 1 jour { maxAge: '1d' } désactivé
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Servir les fichiers uploadés
 

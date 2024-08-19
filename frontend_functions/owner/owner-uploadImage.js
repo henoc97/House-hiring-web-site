@@ -7,10 +7,13 @@ function uploadedImageLogic(uploadForm) {
         const formData = new FormData();
         const fileInput = document.getElementById('image-upload');
         formData.append('image', fileInput.files[0]);
-
+        let token = localStorage.getItem('accessToken');
         try {
             const response = await fetch(host + '/upload', {
                 method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                },
                 body: formData
             });
 
@@ -20,16 +23,18 @@ function uploadedImageLogic(uploadForm) {
 
             const result = await response.json();
             const uploadedImage = document.getElementById('uploaded-image');
-            uploadedImage.src = result.filename;
+            // uploadedImage.src = result.filename;
+            uploadedImage.src = result.imageUrl; // Utilisez imageUrl ici
+            console.log('imageUrl: ' + result.imageUrl + ', filename: ' + result.filename)
             // uploadedImage.style.display = 'block';
-            uploadedImage.classList.add('hidden');
+            uploadedImage.classList.remove('hidden');
             uploadedImage.classList.add('visible');
 
             // Sauvegarder le nom du fichier dans le localStorage
-            localStorage.setItem('uploadedImageFilename', result.filename);
+            localStorage.setItem('uploadedImageFilename', result.imageUrl);
         } catch (error) {
             console.error(error);
             alert('Une erreur est survenue lors de l\'upload du fichier');
         }
-      });
+    });
 }

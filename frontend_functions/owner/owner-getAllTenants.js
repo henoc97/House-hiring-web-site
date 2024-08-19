@@ -41,173 +41,125 @@ function getAllTenantsRequest() {
 
       allTenants.forEach((tenant) => {
         console.log("Tenant data:", tenant); // Log chaque propriété
-        const formattedDate = new Date(tenant.create_time).toLocaleString('fr-FR', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        }).replace(',', '').replace(/\//g, '-');
-        
-        var late = tenant.unpaid_months ?? '';
-        // Fonction pour reformater les dates
-        function formatMonthYear(dateStr) {
-          const [year, month] = dateStr.split('-');
-          return `${month}-${year}`;
-        }
-
-        // Reformater les mois impayés
-        const formattedLate = late.split(',').map(formatMonthYear).join(', ');
-        const formattedLateIsUndifined = formattedLate != 'undefined-';
-        console.log("formattedLate: ", formattedLate); 
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${tenant.lastname} ${tenant.firstname}</td>
-          <td>${tenant.contactmoov} / ${tenant.contacttg}</td>
-          <td>
-            <span class="late-count">${late == '' ? 0 : late.split(",").length}</span>
-            ${formattedLateIsUndifined ? 
-              `<div class="late-months hidden">
-                ${formattedLate}
-              </div>` : ``
-            }
-          </td>
-          <td>${formattedDate}</td>
-          <td>
-              <div class="dropdown">
-                <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
-                <div class="dropdown-content">
-                  <i class='bx bx-message-dots chat-icon' data-id="${tenant.id}" title="Discussion"></i>
-                  <i class='bx bx-edit-alt edit-icon' data-id="${tenant.id}" title="Modification"></i>
-                  <i class='bx bx-trash delete-icon' data-id="${tenant.id}" title="Supprission"></i>
-                </div>
-              </div>
-          </td>
-        `;
-        tableBody.appendChild(row);
-        
-        // Ajouter les événements de survol
-        row.addEventListener('mouseover', function() {
-          const lateCount = row.querySelector('.late-count');
-          const lateMonths = row.querySelector('.late-months');
-          if (lateCount.textContent != 0) {
-            lateMonths.classList.toggle('hidden');
-            lateMonths.classList.toggle('visible');
-          }
+        addTenantToTable(tenant);
+      });
+      // allListeners();
+      const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
+      toggleDropdowns.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          const dropdown = this.closest('.dropdown');
+          dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
         });
-
-        row.addEventListener('mouseout', function() {
-          if (formattedLateIsUndifined) {
-            const lateMonths = row.querySelector('.late-months');
-            lateMonths.classList.toggle('visible');
-            lateMonths.classList.toggle('hidden');
-          }
+      });
+      
+      // Fermer le dropdown si on clique en dehors
+      window.addEventListener('click', function(event) {
+        if (!event.target.matches('.toggle-dropdown')) {
+          const dropdowns = document.querySelectorAll('.dropdown');
+          dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('show');
+          });
+        }
+      });
+      
+      // Sélectionne la modale de modification et son contenu
+      const editModal = document.getElementById('edit-modal');
+      const editModalContent = editModal.querySelector('.modal-content');
+      
+      // Sélectionne la modale des messages et son contenu
+      const messageModal = document.getElementById('message-modal');
+      const messageModalContent = messageModal.querySelector('.modal-content');
+      
+      // Fermeture des modales
+      const closeEditModal = editModal.querySelector('.close');
+      
+      // Quand l'utilisateur clique sur une icône de modification
+      document.querySelectorAll('.edit-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+          const tenantId = this.dataset.id;
+      
+          // Remplir le formulaire avec les données du locataire ici (utilisez tenantId)
+          editTenant(tenantId);
+          editModal.style.display = 'block'; // Affiche la modale
+          setTimeout(() => {
+            editModal.classList.add('show');
+            editModalContent.classList.add('show');
+          }, 10); // Ajout du délai pour permettre la transition
+        });
+      });
+      
+      // Quand l'utilisateur clique sur une icône de discussions
+      const chatIcons = document.querySelectorAll('.chat-icon');
+      chatIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+          const tenantId = this.dataset.id;
+          // Affiche la modale des messages pour le locataire correspondant
+          const submitButton = document.querySelector('#message-form button[type="submit"]');
+          // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
+          submitButton.dataset.tenantId = tenantId;
+          messageModal.style.display = 'block';
+          setTimeout(() => {
+            messageModal.classList.add('show');
+            messageModalContent.classList.add('show');
+          }, 10); // Ajout du délai pour permettre la transition
+          // Charger les messages ou autres données si nécessaire
+          getMessagesRequest(tenantId);
+          // alert("je suis la tenantID : " + tenantId);
+          sendMessageRequest(tenantId);
+          deleteMessageLogic(tenantId);
+        });
+      });
+      
+      // Quand l'utilisateur clique sur une icône de suppression
+      document.querySelectorAll('.delete-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+          const tenantId = this.dataset.id;
+          deleteTenant(tenantId);
         });
       });
 
-      const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
-          toggleDropdowns.forEach(toggle => {
-            toggle.addEventListener('click', function() {
-              const dropdown = this.closest('.dropdown');
-              dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
-            });
-          });
-        
-          // Fermer le dropdown si on clique en dehors
-          window.addEventListener('click', function(event) {
-            if (!event.target.matches('.toggle-dropdown')) {
-              const dropdowns = document.querySelectorAll('.dropdown');
-              dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('show');
-              });
+
+      // Fermeture des modales lorsqu'on clique sur <span> (x)
+      if (closeEditModal) {
+        closeEditModal.onclick = function() {
+          editModal.classList.remove('show');
+          editModalContent.classList.remove('show');
+          setTimeout(() => {
+            editModal.style.display = 'none';
+          }, 300); // Correspond à la durée de l'animation en CSS
+        };
+      }
+      
+      // Fermeture des modales lorsqu'on clique en dehors
+      window.onclick = function(event) {
+        if (event.target == editModal || event.target == messageModal) {
+          if (event.target == editModal) {
+            editModal.classList.remove('show');
+            editModalContent.classList.remove('show');
+            setTimeout(() => {
+              editModal.style.display = 'none';
+            }, 300); // Correspond à la durée de l'animation en CSS
+          } else if (event.target == messageModal) {
+            messageModal.classList.remove('show');
+            messageModalContent.classList.remove('show');
+            setTimeout(() => {
+              messageModal.style.display = 'none';
+              if (window.ws) {
+                window.ws.close();  // Fermer la connexion WebSocket
+                console.log('WebSocket connection closed');
             }
-          });
-
-          // Sélectionne la modale de modification et son contenu
-          const editModal = document.getElementById('edit-modal');
-          const editModalContent = editModal.querySelector('.modal-content');
-
-          // Sélectionne la modale des messages et son contenu
-          const messageModal = document.getElementById('message-modal');
-          const messageModalContent = messageModal.querySelector('.modal-content');
-
-          // Fermeture des modales
-          const closeEditModal = editModal.querySelector('.close');
-
-          // Quand l'utilisateur clique sur une icône de modification
-          document.querySelectorAll('.edit-icon').forEach(icon => {
-            icon.addEventListener('click', function() {
-              const tenantId = this.dataset.id;
-
-              // Remplir le formulaire avec les données du locataire ici (utilisez tenantId)
-              editTenant(tenantId);
-              editModal.style.display = 'block'; // Affiche la modale
-              setTimeout(() => {
-                editModal.classList.add('show');
-                editModalContent.classList.add('show');
-              }, 10); // Ajout du délai pour permettre la transition
-            });
-          });
-
-          // Quand l'utilisateur clique sur une icône de discussions
-          const chatIcons = document.querySelectorAll('.chat-icon');
-          chatIcons.forEach(icon => {
-            icon.addEventListener('click', function() {
-              const tenantId = this.dataset.id;
-              // Affiche la modale des messages pour le locataire correspondant
-              const submitButton = document.querySelector('#message-form button[type="submit"]');
-              // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
-              submitButton.dataset.tenantId = tenantId;
-              messageModal.style.display = 'block';
-              setTimeout(() => {
-                messageModal.classList.add('show');
-                messageModalContent.classList.add('show');
-              }, 10); // Ajout du délai pour permettre la transition
-              // Charger les messages ou autres données si nécessaire
-              getMessagesRequest(tenantId);
-              // alert("je suis la tenantID : " + tenantId);
-              sendMessageRequest(tenantId);
-              deleteMessageLogic(tenantId);
-            });
-          });
-
-          // Fermeture des modales lorsqu'on clique sur <span> (x)
-          if (closeEditModal) {
-            closeEditModal.onclick = function() {
-              editModal.classList.remove('show');
-              editModalContent.classList.remove('show');
-              setTimeout(() => {
-                editModal.style.display = 'none';
-              }, 300); // Correspond à la durée de l'animation en CSS
-            };
+            }, 300); // Correspond à la durée de l'animation en CSS
           }
-
-          // Fermeture des modales lorsqu'on clique en dehors
-          window.onclick = function(event) {
-            if (event.target == editModal || event.target == messageModal) {
-              if (event.target == editModal) {
-                editModal.classList.remove('show');
-                editModalContent.classList.remove('show');
-                setTimeout(() => {
-                  editModal.style.display = 'none';
-                }, 300); // Correspond à la durée de l'animation en CSS
-              } else if (event.target == messageModal) {
-                messageModal.classList.remove('show');
-                messageModalContent.classList.remove('show');
-                setTimeout(() => {
-                  messageModal.style.display = 'none';
-                  if (window.ws) {
-                    window.ws.close();  // Fermer la connexion WebSocket
-                    console.log('WebSocket connection closed');
-                }
-                }, 300); // Correspond à la durée de l'animation en CSS
-              }
-            }
-          };
-
+        }
+      };
     } else {
       console.error("Element with ID 'tableBody' not found.");
     }
   })
   .catch((error) => console.error('Error fetching tableBody:', error));
+}
+
+function allListeners() {
 }
 
 // UPDATE tenant
@@ -266,7 +218,25 @@ function updateTenant(editingId) {
   })
   .then(response => response.json())
   .then(data => {
-    getAllTenantsRequest();  // Recharge les propriétés pour montrer les changements
+    console.log('data updated : ' + JSON.stringify(data));
+    console.log(data.lastname + ' ' + data.firstname + ' ' + data.contactmoov + ' ' + data.contacttg);
+    const formattedDate = new Date(data.create_time).toLocaleString('fr-FR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    }).replace(',', '').replace(/\//g, '-');
+    // getAllTenantsRequest();  // Recharge les propriétés pour montrer les changements
+    // addTenantToTable(tenant);
+    // Mettre à jour directement la ligne correspondante
+    const row = document.getElementById("all-tenants-table")
+      .querySelector(`tr[data-id="${editingId}"]`);
+    console.log("row : " + row);
+    if (row) {
+        row.children[0].textContent = data.lastname + ' ' + data.firstname;
+        row.children[1].textContent = data.contactmoov + '/' + data.contacttg;
+        row.children[3].textContent = formattedDate;
+    }
+    // allListeners();
     resetForm();
   })
   .catch(error => console.error('Error updating property:', error));  
@@ -279,7 +249,7 @@ function resetForm() {
     // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
     delete submitButton.dataset.editingId;
     // Sélectionne la modale et son contenu
-    const modal = document.getElementById('editModal');
+    const modal = document.getElementById('edit-modal');
     const modalContent = document.querySelector('.modal-content');
     modal.classList.remove('show');
     modalContent.classList.remove('show');
@@ -291,3 +261,26 @@ function resetForm() {
 }
 
 // Appelle cette fonction après une modification réussie
+
+
+function deleteTenant(tenantId) {
+  let token = localStorage.getItem('accessToken');
+  fetch(host + "delete-tenant", {
+      method: 'POST',
+      headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "id": tenantId })
+  })
+  .then(response => response.json())
+  .then(() => {
+      const row = document.getElementById("all-tenants-table")
+      .querySelector(`tr[data-id="${tenantId}"]`);
+      if (row) {
+          row.remove(); // Supprime la ligne du tableau
+      }
+  })
+  .catch(error => console.error('Error deleting tenant:', error));
+}
+

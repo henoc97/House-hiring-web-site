@@ -66,3 +66,21 @@ module.exports.receiptValid = async (req, res) => {
         req.connection.release();
     }
 };
+
+
+module.exports.deleteReceipt = async (req, res) => {
+    const { id } = req.body;
+    const query = "CALL delete_receipt(?, ?)";
+    const values = [id, 'owner'];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        console.log(rows);
+        res.status(200).json(rows);
+    } catch (err) {
+        console.error('Erreur lors de l\'exécution de la requête', err);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        req.connection.release();
+    }
+};

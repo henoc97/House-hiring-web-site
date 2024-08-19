@@ -6,9 +6,9 @@ const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth');
 
 const { getOtp, createUserOwner, userAuth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/owner/user');
-const { createProperties, myProperties, myProperty, updateProperty } = require('../../controller/owner/property');
-const { createTenant, tenantsProperties, recentTenants, allTenants, myTenant, updateTenant } = require('../../controller/owner/tenant');
-const { requireReceipt, receiptUnValid, receiptValid, validateReceipt } = require('../../controller/owner/receipt');
+const { createProperties, myProperties, myProperty, updateProperty, deleteProperty } = require('../../controller/owner/property');
+const { createTenant, tenantsProperties, recentTenants, allTenants, myTenant, updateTenant, deleteTenant, deletePropertyTenant } = require('../../controller/owner/tenant');
+const { requireReceipt, receiptUnValid, receiptValid, validateReceipt, deleteReceipt} = require('../../controller/owner/receipt');
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
 
@@ -38,6 +38,7 @@ router.post("/create-properties", createProperties);
 router.post("/my-properties", myProperties);
 router.post("/update-property", updateProperty);
 router.post("/my-property", myProperty);
+router.post("/delete-property", deleteProperty);
 
 
 // Routes pour les locataires
@@ -47,6 +48,8 @@ router.post("/recent-tenants", recentTenants);
 router.post("/all-tenants", allTenants);
 router.post("/my-tenant", myTenant);
 router.post("/update-tenant", updateTenant);
+router.post("/delete-tenant", deleteTenant);
+router.post("/delete-tenant-property", deletePropertyTenant);
 
 
 // Routes pour les reçus
@@ -54,6 +57,7 @@ router.post("/require-receipt", requireReceipt);
 router.post("/receipt-unValid", receiptUnValid);
 router.post("/receipt-valid", receiptValid);
 router.post("/validate-receipt", validateReceipt);
+router.post("/delete-receipt", deleteReceipt);
 
 // Routes pour les messages
 router.post("/send-message", sendMessage);
@@ -67,20 +71,12 @@ router.post('/upload', upload.single('image'), async (req, res) => {
         if (!req.file) {
             return res.status(400).json({ message: 'Aucun fichier téléchargé' });
         }
-
-        // // Traiter l'image avec sharp (si nécessaire)
-        // const imagePath = req.file.path;
-        // const processedImagePath = `public/img/${req.file.filename}`;
-
-        // await sharp(imagePath)
-        //     .resize(800) // Redimensionner l'image si nécessaire
-        //     .toFile(processedImagePath);
-
         // Répondre avec l'URL de l'image et le nom du fichier
         res.status(200).json({
             imageUrl: `/img/${req.file.filename}`, // Chemin accessible publiquement
             filename: req.file.filename
         });
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Erreur lors de l\'upload du fichier' });

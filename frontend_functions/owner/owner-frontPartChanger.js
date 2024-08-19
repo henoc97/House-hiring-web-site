@@ -87,7 +87,7 @@ document.getElementById('btn').addEventListener('click', function() {
           if (filename) {
               const uploadedImage = document.getElementById('uploaded-image');
               uploadedImage.src = `${filename}`;
-              uploadedImage.classList.add('hidden');
+              uploadedImage.classList.remove('hidden');
               uploadedImage.classList.add('visible');
           }
         });

@@ -48,6 +48,7 @@ function getValidReceiptsRequest() {
             year: 'numeric'
           }).replace(',', '').replace(/\//g, '-');
           const row = document.createElement('tr');
+          row.dataset.id = validReceipt.id;
           row.innerHTML = `
                 <td>${validReceipt.lastname} ${validReceipt.firstname.split(' ')[0]}</td>
                 <td>${formattedDate}</td>
@@ -62,9 +63,25 @@ function getValidReceiptsRequest() {
                     <span class="badge bg-seccuss">Approuvé</span>
                   </a>
                 </td>
-          `;
-          tableBody.appendChild(row);
-        });
+                <td>
+                  <div class="dropdown">
+                      <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
+                      <div class="dropdown-content">
+                          <i class='bx bx-trash delete-icon' data-id="${validReceipt.id}"></i>
+                      </div>
+                  </div>
+                </td>
+              `;
+              tableBody.appendChild(row);
+            });
+            addDropdownListeners();
+            // Quand l'utilisateur clique sur une icône de suppression
+            document.querySelectorAll('.delete-icon').forEach(icon => {
+              icon.addEventListener('click', function() {
+                const receiptId = this.dataset.id;
+                deleteReceipt(receiptId);
+              });
+            });
       } else {
         console.error("Element with ID 'valid-receipts-table' not found.");
       }

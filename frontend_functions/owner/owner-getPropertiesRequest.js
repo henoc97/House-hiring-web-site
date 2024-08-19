@@ -77,49 +77,19 @@ function myPropertiesTableConstructor(properties){
 
         properties.forEach((property) => {
           console.log("Property data:", property); // Log chaque propriété
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${property.address}</td>
-            <td>${property.description}</td>
-            <td>${property.price}</td>
-            <td>
-              <div class="dropdown">
-                <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
-                <div class="dropdown-content">
-                  <i class='bx bx-edit-alt edit-icon' data-id="${property.id}"></i>
-                  <i class='bx bx-trash delete-icon' data-id="${property.id}"></i>
-                </div>
-              </div>
-            </td>
-          `;
-          tableBody.appendChild(row);
+          addPropertyToTable(property);
         });
+        // Ajouter les écouteurs d'événements pour les nouvelles icônes
+        addDropdownListeners();
+        addEditListeners();
 
-          const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
-          toggleDropdowns.forEach(toggle => {
-            toggle.addEventListener('click', function() {
-              const dropdown = this.closest('.dropdown');
-              dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
-            });
-          });
-        
-          // Fermer le dropdown si on clique en dehors
-          window.addEventListener('click', function(event) {
-            if (!event.target.matches('.toggle-dropdown')) {
-              const dropdowns = document.querySelectorAll('.dropdown');
-              dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('show');
-              });
-            }
-          });
-
-        // Ajoute un écouteur d'événements pour chaque icône de modification
-        document.querySelectorAll('.edit-icon').forEach(icon => {
+        // Quand l'utilisateur clique sur une icône de suppression
+        document.querySelectorAll('.delete-icon').forEach(icon => {
           icon.addEventListener('click', function() {
-              const propertyId = this.dataset.id;
-              editProperty(propertyId);
+            const propertyId = this.dataset.id;
+            deleteProperty(propertyId);
           });
-      });
+        });
       } else {
         console.error("Element with ID 'myPropertiesTable' not found.");
       }
@@ -191,7 +161,14 @@ function updateProperty(editingId) {
   .then(response => response.json())
   .then(data => {
     // alert('ca marche quand meme')
-    getPropertiesRequest(1); // Recharge les propriétés pour montrer les changements
+    // getPropertiesRequest(1); // Recharge les propriétés pour montrer les changements
+    // Mettre à jour directement la ligne correspondante
+    const row = document.querySelector(`tr[data-id="${editingId}"]`);
+    if (row) {
+        row.children[0].textContent = data.address;
+        row.children[1].textContent = data.description;
+        row.children[2].textContent = data.price;
+    }
     resetPropertyForm();
       
   })
@@ -200,3 +177,25 @@ function updateProperty(editingId) {
 
 
 // Appelle cette fonction après une modification réussie
+
+
+function deleteProperty(propertyId) {
+  let token = localStorage.getItem('accessToken');
+  fetch(host + "delete-property", {
+      method: 'POST',
+      headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ "id": propertyId })
+  })
+  .then(response => response.json())
+  .then(() => {
+      const row = document.getElementById("my-properties-table")
+        .querySelector(`tr[data-id="${propertyId}"]`);
+      if (row) {
+          row.remove(); // Supprime la ligne du tableau
+      }
+  })
+  .catch(error => console.error('Error deleting property:', error));
+}

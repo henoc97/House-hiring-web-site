@@ -7,8 +7,8 @@ module.exports.createTenant = async (req, res) => {
     const values = [id, req.user.userId, keyword, lastname, firstname, contactmoov, contacttg];
 
     try {
-        const [result] = await req.connection.query(query, values);
-        res.status(200).json({ message: "requête réussie" });
+        const [rows] = await req.connection.query(query, values);
+        res.status(200).json(rows[0][0]);
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
@@ -78,10 +78,46 @@ module.exports.updateTenant = async (req, res) => {
     const values = [id, lastname, firstname, contactmoov, contacttg, date];
 
     try {
-        const [result] = await req.connection.query(query, values);
-        res.status(200).json({ message: "requête réussie" });
+        const [rows] = await req.connection.query(query, values);
+        res.status(200).json(rows[0][0]);
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
+    }
+};
+
+
+
+module.exports.deleteTenant = async (req, res) => {
+    const { id } = req.body;
+    const query = "CALL delete_tenant(?)";
+    const values = [id];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        console.log(rows);
+        res.status(200).json(rows);
+    } catch (err) {
+        console.error('Erreur lors de l\'exécution de la requête', err);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        req.connection.release();
+    }
+};
+
+module.exports.deletePropertyTenant = async (req, res) => {
+    const { id } = req.body;
+    const query = "CALL delete_property_tenant(?)";
+    const values = [id];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        console.log(rows);
+        res.status(200).json(rows);
+    } catch (err) {
+        console.error('Erreur lors de l\'exécution de la requête', err);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        req.connection.release();
     }
 };
