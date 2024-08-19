@@ -23,14 +23,14 @@ module.exports = (server) => {
                 console.log('Nouveau client connecté avec ID:', ws.user.userId);
 
                 const isOwner = ws.user.userEmail !== undefined;
-                const isTenant = ws.user.prTenID !== undefined;
+                const isTenant = ws.user.prTenId !== undefined;
                 
                 if (isOwner) {
                     ws.isTenant = false;
-                    ws.signID = ws.user.userId; // Signer la connexion
+                    ws.signId = ws.user.userId; // Signer la connexion
                 } else if (isTenant) {
                     ws.isTenant = true;
-                    ws.signID = ws.user.userId; // Signer la connexion
+                    ws.signId = ws.user.userId; // Signer la connexion
                 }
 
                 // Gérer les messages reçus
@@ -71,7 +71,7 @@ module.exports = (server) => {
     const interval = setInterval(() => {
         wss.clients.forEach((client) => {
             if (client.isAlive === false) {
-                console.log('Connexion perdue pour le client ID:', client.signID);
+                console.log('Connexion perdue pour le client ID:', client.signId);
                 return client.terminate();  // Terminer la connexion si le client ne répond pas
             }
 

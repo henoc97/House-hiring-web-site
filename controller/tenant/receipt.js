@@ -1,6 +1,6 @@
 
 
-module.exports.require_receipt = async (req, res) => {
+module.exports.requireReceipt = async (req, res) => {
     const { sumpayed, monthpayed } = req.body;
     console.log(req.body);
     console.log(req.user.prTenID, sumpayed, monthpayed);
@@ -21,7 +21,7 @@ module.exports.require_receipt = async (req, res) => {
 };
 
 
-module.exports.receipt_unValid = async (req, res) => {
+module.exports.receiptUnValid = async (req, res) => {
     const query = "CALL payment_notvalid_tenant(?)";
     const values = [req.user.prTenID];
 
@@ -39,7 +39,7 @@ module.exports.receipt_unValid = async (req, res) => {
 };
 
 
-module.exports.receipt_valid = async (req, res) => {
+module.exports.receiptValid = async (req, res) => {
     const query = "CALL payment_valid_tenant(?)";
     const values = [req.user.prTenID];
 

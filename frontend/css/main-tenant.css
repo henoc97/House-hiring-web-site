@@ -38,7 +38,7 @@
   z-index: 99;
 }
 
-.sidebar .logo_details {
+.sidebar .logo-details {
   position: relative;
   height: 60px;
   display: flex;
@@ -61,7 +61,7 @@
   color: var(--white);
 }
 
-.sidebar .logo_details .logo_name {
+.sidebar .logo-details .logo-name {
   font-size: 20px;
   font-weight: 600;
   color: var(--white);
@@ -85,7 +85,7 @@
   transition: all 0.5s ease;
 }
 
-.sidebar ul li a .links_name {
+.sidebar ul li a .links-name {
   font-size: 15px;
   font-weight: 400;
   color: var(--white);
@@ -103,7 +103,7 @@
   transition: all 0.5s ease;
 }
 
-.sidebar .login #log_out {
+.sidebar .login #log-out {
   position: absolute;
   height: 60px;
   right: 0;
@@ -121,7 +121,7 @@
   background: var(--white);
 }
 
-.sidebar li a.active .links_name {
+.sidebar li a.active .links-name {
   color: var(--dark-blue); /*dfghjklmù*/
 }
 
@@ -129,7 +129,7 @@
   color: var(--purple2); /*dfghjklmù*/
 }
 
-.sidebar li a:hover .links_name,
+.sidebar li a:hover .links-name,
 .sidebar li a:hover i {
   color: var(--dark-blue);
 }
@@ -138,7 +138,7 @@
   background: none;
 }
 
-.sidebar li.login a:hover .links_name,
+.sidebar li.login a:hover .links-name,
 .sidebar li.login a:hover i {
   color: var(--white);
 }
@@ -148,23 +148,23 @@
   width: 78px;
 }
 
-.sidebar.open .logo_name,
-.sidebar.open .links_name {
+.sidebar.open .logo-name,
+.sidebar.open .links-name {
   opacity: 0;
 }
 
-.sidebar.open .logo_details #btn {
+.sidebar.open .logo-details #btn {
   text-align: right;
 }
 
-.sidebar.open ~ .home_section {
+.sidebar.open ~ .home-section {
   width: calc(100% - 78px);
   left: 78px;
 }
 
 /* End Sidebar */
 
-.home_section {
+.home-section {
   position: relative;
   width: calc(100% - 250px);
   min-height: 100vh;
@@ -174,7 +174,7 @@
   transition: all 0.5s ease;
 }
 
-.home_section .topbar {
+.home-section .topbar {
   position: relative;
   width: 100%;
   height: 60px;
@@ -185,7 +185,7 @@
   background: var(--white);
 }
 
-.home_section .topbar .toggle {
+.home-section .topbar .toggle {
   position: relative;
   width: 60px;
   height: 60px;
@@ -196,7 +196,7 @@
   cursor: pointer;
 }
 
-.home_section .topbar .sold_wrapper {
+.home-section .topbar .sold-wrapper {
   position: relative;
   height: 40px;
   width: 230px;
@@ -204,28 +204,28 @@
   align-items: center;
 }
 
-.home_section .topbar .sold_wrapper input {
+.home-section .topbar .sold-wrapper input {
   position: relative;
   height: 100%;
   border: none;
   outline: none;
 }
 
-.home_section .topbar .sold_wrapper span {
+.home-section .topbar .sold-wrapper span {
   display: inline-block;
   padding: 0rem 1rem;
   transform: translateY(20%);
   font-size: 1.5rem;
 }
 
-.home_section .user_wrapper img {
+.home-section .user-wrapper img {
   width: 40px;
   height: 40px;
   margin-right: 0.5rem;
   border-radius: 50%;
 }
 
-.search_wrapper {
+.search-wrapper {
   color: var(--green);
 }
 /* End Top Bar */
@@ -272,7 +272,7 @@
   color: var(--dark-blue);
 }
 
-.card-boxes .box .numbers, .card-boxes .box .date_reminder {
+.card-boxes .box .numbers, .card-boxes .box .date-reminder {
   position: relative;
   font-size: 1.5rem;
   font-weight: 500;
@@ -286,7 +286,7 @@
   color: var(--green);
 }
 
-.card-boxes .box .box_topic, .profile-card-boxes .box .box_topic {
+.card-boxes .box .box-topic, .profile-card-boxes .box .box-topic {
   position: relative;
   margin-top: 5px;
   font-size: 1.1em;
@@ -312,7 +312,7 @@
   color: var(--dark-blue);
 }
 
-.profile-card-boxes .box .box_topic, .profile-card-boxes .box h3 {
+.profile-card-boxes .box .box-topic, .profile-card-boxes .box h3 {
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis;
@@ -328,8 +328,8 @@
   align-items: flex-start; /* Aligne les sections en haut */
 }
 
-.details .recent_project,
-.details .recent_customers {
+.details .table-card,
+.details .recent-customers {
   position: relative;
   display: grid;
   padding: 20px;
@@ -346,30 +346,30 @@
   border-collapse: collapse;
 }
 
-.details .card_header h2 {
+.details .card-header h2 {
   position: relative;
   font-weight: 500;
   line-height: 1.2;
   color: #343a40;
 }
 
-.details .recent_project table tr {
+.details .table-card table tr {
   border-bottom: 1px solid #f0f0f0;
 }
 
-.details .recent_project table thead {
+.details .table-card table thead {
   font-weight: bold;
 }
 
-.details .recent_project table tbody tr:last-child {
+.details .table-card table tbody tr:last-child {
   border-bottom: none;
 }
 
-.details .recent_project table tr td {
+.details .table-card table tr td {
   padding: 1rem 1rem;
 }
 
-.details .recent_project table tbody tr td {
+.details .table-card table tbody tr td {
   position: relative;
   font-size: .938rem;
   font-weight: 500;
@@ -377,10 +377,10 @@
   color: var(--dark-blue);
 }
 
-.details .recent_project table tbody tr td:nth-child(2) {
+.details .table-card table tbody tr td:nth-child(2) {
   padding-left: 2rem;
 }
-.details .recent_project table tbody tr td:last-child {
+.details .table-card table tbody tr td:last-child {
   padding-left: 2rem;
 }
 
@@ -456,27 +456,27 @@
   cursor: pointer;
 }
 
-.bg_worning {
+.bg-worning {
   background: #ffc107;
 }
-.bg_danger{
+.bg-danger{
   background: #cd3545;
 }
-.bg_info{
+.bg-info{
   background: #0dcaf0;
 }
-.bg_seccuss{
+.bg-seccuss{
   background: #198754;
 }
 
-.img_group {
+.img-group {
   position: relative;
   display: inline-block;
   margin-left: -1.2rem;
 }
 
-.img_group img,
-.img_group .initial {
+.img-group img,
+.img-group .initial {
   position: relative;
   width: 2rem;
   height: 2rem;
@@ -485,7 +485,7 @@
   object-fit: cover;
 }
 
-.img_group:hover {
+.img-group:hover {
   z-index: 2;
 }
 
@@ -502,15 +502,15 @@
   color: var(--white);
 }
 
-.details .recent_customers {
+.details .recent-customers {
   position: relative;
 }
 
-.details .recent_customers table tr {
+.details .recent-customers table tr {
   height: 80px;
 }
 
-.details .recent_customers table tr td h4 {
+.details .recent-customers table tr td h4 {
   position: relative;
   font-size: 16px;
   font-weight: 500;
@@ -518,13 +518,13 @@
   color: var(--dark-blue);
 }
 
-.details .recent_customers table tr td span {
+.details .recent-customers table tr td span {
   position: relative;
   font-size: 14px;
   color: #999;
 }
 
-.details .recent_customers .info_img img {
+.details .recent-customers .info-img img {
   position: relative;
   width: 40px;
   height: 40px;
@@ -532,7 +532,7 @@
 }
 
 /* New Customers Section */
-.new_customers {
+.card {
   position: relative;
   padding: 20px;
   background: var(--white);
@@ -542,7 +542,7 @@
   
 }
 
-.new_customers .card_header {
+.card .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -554,12 +554,12 @@
   font-size: 24px;
 }
 
-.new_customers .card_header h2 {
+.card .card-header h2 {
   font-size: 1.5rem;
   color: var(--dark-blue);
 }
 
-.new_customers .card_header button {
+.card .card-header button {
   padding: 5px 10px;
   background: var(--dark-blue);
   color: var(--white);
@@ -568,51 +568,51 @@
   cursor: pointer;
 }
 
-.new_customers .card_header button:hover {
+.card .card-header button:hover {
   background: var(--white-blue);
 }
 
-.new_customers table {
+.card table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.new_customers table thead tr {
+.card table thead tr {
   background: var(--dark-blue);
   color: var(--white);
 }
 
-.new_customers table thead tr{
+.card table thead tr{
   border-radius: 10px;
 }
-.new_customers table thead th,
-.new_customers table tbody td {
+.card table thead th,
+.card table tbody td {
   padding: 10px;
   text-align: left;
 }
 
-.new_customers table tbody tr:nth-child(even) {
+.card table tbody tr:nth-child(even) {
   background: #f2f2f2;
 }
 
-.new_customers .info_img {
+.card .info-img {
   display: flex;
   align-items: center;
 }
 
-.new_customers .info_img img {
+.card .info-img img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.new_customers .info_img h4 {
+.card .info-img h4 {
   margin: 0;
   font-size: 1rem;
 }
 
-.new_customers .info_img span {
+.card .info-img span {
   font-size: 0.875rem;
   color: var(--gray);
 }
@@ -724,7 +724,7 @@
   background-color: #f0f0f0; /* Couleur de fond pour les messages sélectionnés */
 }
 
-.recent_project {
+.table-card {
   position: relative; /* Assure que les éléments positionnés sont relatifs à ce conteneur */
 }
 
@@ -811,7 +811,7 @@ form button:hover {
     left: -250px;
   }
 
-  .home_section {
+  .home-section {
     width: 100%;
     left: 0;
   }
@@ -822,12 +822,12 @@ form button:hover {
     left: 0;
   }
 
-  .sidebar.open ~ .home_section {
+  .sidebar.open ~ .home-section {
     left: 250px;
   }
 
-  .sidebar.open .logo_name,
-  .sidebar.open .links_name {
+  .sidebar.open .logo-name,
+  .sidebar.open .links-name {
     opacity: 1;
   }
 
@@ -848,7 +848,7 @@ form button:hover {
   .profile-card-boxes .box form input{
     width: calc(100vw / 2.3);
   }
-  .details .recent_customers table {
+  .details .recent-customers table {
     width: 50%;
     margin-top: 30px;
   }
@@ -896,12 +896,12 @@ form button:hover {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .details .recent_customers table {
+  .details .recent-customers table {
     width: 100%;
     margin-top: 30px;
   }
 
-  .home_section .topbar .search_wrapper {
+  .home-section .topbar .search-wrapper {
     display: none;
   }
 
@@ -911,10 +911,10 @@ form button:hover {
     left: 0;
   }
 
-  .sidebar.open ~ .home_section {
+  .sidebar.open ~ .home-section {
     left: 0;
   }
-  .sidebar.open ~ .home_section .topbar .toggle {
+  .sidebar.open ~ .home-section .topbar .toggle {
     z-index: 1001;
     color: var(--white);
     position: absolute;

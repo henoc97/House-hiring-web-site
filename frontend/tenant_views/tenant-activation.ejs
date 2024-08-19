@@ -14,49 +14,7 @@
 
   <script src="/public/endpoints.js"></script>
   <script src="/public/renewAccessToken.js"></script>
-  <script src="/public/cookies_engine.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const url = hostTenant + 'activateTenantAccount';
-      const params = new URLSearchParams(window.location.search);
-      const key = params.get('key');
-      const pr_ten = params.get('pr_ten');
-      
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ key, pr_ten })
-      })
-      .then(response => {
-        if (!response.ok) {
-          return response.json().then(errorData => {
-            throw new Error(errorData.message || 'Erreur inconnue');
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log("data: " + JSON.stringify(data));
-        if (data.accessToken) {
-          console.log(data.accessToken);
-          localStorage.setItem('accessTokenTenant', data.accessToken);
-          setCookie("refreshTokenTenant", data.refreshToken, 7);
-          localStorage.setItem('setPwd', 0);
-          localStorage.setItem('createTime', data.createTime);
-          window.location.href = tenantURL;
-        } else {
-          alert('Erreur de login');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);  // Affiche l'erreur complète dans la console
-        alert('Erreur lors de la création du compte : ' + error.message); // Affiche un message d'erreur plus descriptif
-        // Activation vers la page d'erreur
-        window.location.href = tenantErrorPage;
-      });
-    });
-  </script>
+  <script src="/public/cookiesEngine.js"></script>
+  <script src="/tenant/tenant-activation.js"></script>
 </body>
 </html>

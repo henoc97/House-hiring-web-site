@@ -7,7 +7,7 @@ const codeOTP = require('../../functions/otp');
 
 // Tenant Account Activation Controller
 module.exports.activateTenantAccount = async (req, res) => {
-    const { key, pr_ten } = req.body; 
+    const { key, prTenId } = req.body; 
     try {
         const [result] = await req.connection.query("CALL activate_tenant(?)", [key]);
         const obj = result[0][0];
@@ -15,8 +15,8 @@ module.exports.activateTenantAccount = async (req, res) => {
             throw new Error('No result returned from the procedure.');
         }
         
-        const newAccessToken = generateTenantToken({ id: obj.id, pr_ten_id: pr_ten }, "2d");
-        const newRefreshToken = generateTenantToken({ id: obj.id, pr_ten_id: pr_ten }, "7d");
+        const newAccessToken = generateTenantToken({ id: obj.id, prTenId: prTenId }, "2d");
+        const newRefreshToken = generateTenantToken({ id: obj.id, prTenId: prTenId }, "7d");
         
         res.status(200).json({
             refreshToken: newRefreshToken,
@@ -32,7 +32,7 @@ module.exports.activateTenantAccount = async (req, res) => {
 };
 
 // Password Update Controller
-module.exports.setpwd = async (req, res) => {
+module.exports.setPwd = async (req, res) => {
     try {
         const { pwd } = req.body;
         const pwdhashed = await hashPassword(pwd);

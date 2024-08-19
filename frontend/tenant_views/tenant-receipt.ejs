@@ -15,7 +15,7 @@
         <i class='bx bx-home-smile'></i>
         <h1>Reçu de Paiement de Loyer</h1>
       </header>
-      <div class="receipt-details" id="receiptDetails">
+      <div class="receipt-details" id="receipt-details-container">
         <p><strong>Nom du Locataire :</strong> Jean Dupont</p>
         <p><strong>Adresse du Locataire :</strong> 123 Rue Exemple, 75001 Paris</p>
         <p><strong>Numéro de Reçu :</strong> 00123</p>
@@ -30,7 +30,7 @@
       </div>
       <div class="signature">
         <h3>Signature</h3>
-        <img id="signatureImage" alt="la signature">
+        <img id="signature-image" alt="la signature">
       </div>
       <footer>
         <p>Merci d'avoir payé à temps. Pour toute question, veuillez nous contacter à l'adresse contact@exemple.com.</p>
@@ -38,126 +38,12 @@
       </footer>
     </div>
     
-    <div id="receipt_btns">
+    <div id="receipt-btns">
       
     </div>
   </div>
-  <script src="/endpoints.js"></script>
-  <script src="/update_sold_utils.js"></script>
-  <script src="/variablesState.js"></script>
-  <script>
-    const receiptData = JSON.parse(localStorage.getItem('selectedReceipt'));
-    document.addEventListener('DOMContentLoaded', (event) => {
-      if (receiptData) {
-        let receipt_btns = document.getElementById('receipt_btns');
-        if (receiptData.payment_state == 1) {
-          const download_btn = document.createElement('button');
-          download_btn.id = 'download-pdf';
-          download_btn.onclick = downloadPDF;
-          download_btn.innerHTML = "Télécharger en PDF"
-          receipt_btns.appendChild(download_btn);
-
-        }
-        if (receiptData.payment_state == 0) {
-          const validate_btn = document.createElement('button');
-          validate_btn.id = 'validate-receipt';
-          validate_btn.onclick = validateReceipt;
-          validate_btn.innerHTML = "Valider le reçu"
-          receipt_btns.appendChild(validate_btn);
-
-        }
-        const receiptDetails = document.getElementById('receiptDetails');
-        const paymentDate = document.getElementById('paymentDate');
-        const formattedDate = new Date(receiptData.create_time).toLocaleString('fr-FR', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-        }).replace(',', '').replace(/\//g, '-');
-        const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
-            month: 'long',
-            year: 'numeric'
-          }).replace(',', '').replace(/\//g, '-');
-        receiptDetails.innerHTML = '';
-
-        receiptDetails.innerHTML = `
-          <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber} </p>
-          <p><strong>Date d'Émission :</strong> ${receiptData.issueDate} </p>
-          <p><strong>Nom du Locataire :</strong> ${receiptData.lastname} ${receiptData.firstname} </p>
-          <p><strong>Adresse du Locataire :</strong> ${receiptData.address} </p>
-          <p><strong>Montant du Loyer :</strong> ${receiptData.sumpayed} FCFA</p>          
-          <p><strong>Règlement du mois de :</strong> ${formattedMonthpayed}</p>  
-          <p id="paymentDate"><strong>Date de Paiement :</strong> ${formattedDate}</p>        
-        `;
-        document.getElementById('signatureImage').src = "/" + localStorage.getItem("uploadedImageFilename");
-      }
-
-      
-    });
-  </script>
-
-  <script>
-    let token = localStorage.getItem('accessTokenTenant');
-    function validateReceipt() {
-      if((getsold() - validateReceiptPrice) > 0){
-        fetch(host + 'validateReceipt', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        },
-        body : JSON.stringify({
-          "id": receiptData.id,
-        })
-        })
-        .then(response => {
-            if (!response.ok && (response.status === 401 || response.status === 403)) {
-                alert("problem")
-                return renewAccessToken().then(() => validateReceipt());
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            updateSoldRequest(validateReceiptPrice);
-            window.location.href = ownerURL;
-            
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-            window.location.href = ownerLogSignURL;
-        });
-      } else {
-        alert('solde insuffisant. Cette opération coute 0.25€')
-      }
-      
-    }
-  </script>
-
-  <script>
-    function downloadPDF() {
-      // Sélectionnez l'élément HTML que vous souhaitez convertir en PDF
-      const element = document.getElementById('receipt');
-      const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
-            month: 'long',
-            year: 'numeric'
-          }).replace(',', '').replace(/\//g, '-');
-
-      // Créez les options pour la conversion
-      const options = {
-
-        margin: 1,
-        filename: `recu_${formattedMonthpayed}.pdf`,
-        image: { type: 'jpeg', quality: 1.0 },
-        html2canvas: { scale: 4 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-
-      // Utilisez html2pdf pour convertir l'élément et télécharger le PDF
-      html2pdf().set(options).from(element).save();
-    }
-  </script>
+  <script src="/public/endpoints.js"></script>
+  <script src="/tenant/tenant-goDownloadReceipt.js"></script>
+  <script src="/tenant/tenant-downloadReceipt.js"></script>
 </body>
 </html>

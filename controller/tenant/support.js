@@ -2,10 +2,10 @@ const WebSocket = require('ws');
 
 module.exports.sendMessage = async (req, res) => {
     const { message } = req.body;
-    console.log(req.user.prTenID, message);
+    console.log(req.user.prTenId, message);
 
     const query = "CALL insert_message_tenant(?, ?)";
-    const values = [req.user.prTenID, message];
+    const values = [req.user.prTenId, message];
 
     try {
         const [rows] = await req.connection.query(query, values);
@@ -24,7 +24,7 @@ module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
     console.log(`Message reçu du locataire: ${message}`);
 
     const query = "CALL insert_message_tenant(?, ?)";
-    const values = [ws.user.prTenID, message];
+    const values = [ws.user.prTenId, message];
 
     let result;
     try {
@@ -49,9 +49,9 @@ module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
             console.log("-----------SENDER TENANT------------");
-            console.log(`Client ID: ${client.signID}, Message au owner ID: ${result.ownerid} , isTenant: ${client.isTenant}`);
-            if ((client.signID === ws.signID && client.isTenant) || (client.signID === result.ownerid && !client.isTenant)) {
-                console.log(`Envoi du message au client ID: ${client.signID}`);
+            console.log(`Client ID: ${client.signId}, Message au owner ID: ${result.ownerid} , isTenant: ${client.isTenant}`);
+            if ((client.signId === ws.signId && client.isTenant) || (client.signId === result.ownerid && !client.isTenant)) {
+                console.log(`Envoi du message au client ID: ${client.signId}`);
                 client.send(JSON.stringify(result));
             }
         }
