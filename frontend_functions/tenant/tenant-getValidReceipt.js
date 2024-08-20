@@ -28,54 +28,54 @@ function getNumberOfPayments() {
 
 function getUnpaidMonths() {
   console.log("ca marche bien");
-  const unpaidMonths = localStorage.getItem('unpaidMonths');
+  const unpaidMonths = localStorage.getItem('unpaid-months');
   if (unpaidMonths == 'undefined') return 0;
   return unpaidMonths;
 }
 
 function getUnpaidMonthsCount() {
   console.log("ca marche bien");
-  const unpaidMonthsCount = localStorage.getItem('unpaidMonthsCount');
+  const unpaidMonthsCount = localStorage.getItem('unpaid-months-count');
   if (unpaidMonthsCount == 'undefined') return 0;
   return unpaidMonthsCount;
 }
 
 function getLastPayedMonth() {
   console.log("ca marche bien");
-  const lastPayedMonth = localStorage.getItem('lastPayedMonth');
+  const lastPayedMonth = localStorage.getItem('last-payed-month');
   if (lastPayedMonth == 'undefined') return 0;
   return lastPayedMonth;
 }
 
 function getNextPaymentDate() {
   console.log("ca marche bien");
-  const nextPaymentDate = localStorage.getItem('nextPaymentDate');
+  const nextPaymentDate = localStorage.getItem('next-payment-date');
   if (nextPaymentDate == 'undefined') return 0;
   return nextPaymentDate;
 }
 
 function showNumberOfPayments() {
-  const totalPayments = document.getElementById('totalPayments');
+  const totalPayments = document.getElementById('total-payments');
   totalPayments.textContent = getNumberOfPayments();
 }
 
 function showUnpaidMonths() {
-  const unpaidMonths = document.getElementById('unpaidMonths');
+  const unpaidMonths = document.getElementById('unpaid-months');
   unpaidMonths.textContent = getUnpaidMonths();
 }
 
 function showUnpaidMonthsCount() {
-  const unpaidMonthsCount = document.getElementById('unpaidMonthsCount');
+  const unpaidMonthsCount = document.getElementById('unpaid-months-count');
   unpaidMonthsCount.textContent = getUnpaidMonthsCount();
 }
 
 function showlastPaymentDate() {
-  const lastPaymentDate = document.getElementById('lastPaymentDate');
+  const lastPaymentDate = document.getElementById('last-payment-date');
   lastPaymentDate.textContent = getLastPayedMonth();
 }
 
 function shownextPaymentDate() {
-  const nextPaymentDate = document.getElementById('nextPaymentDate');
+  const nextPaymentDate = document.getElementById('next-payment-date');
   nextPaymentDate.textContent = getNextPaymentDate();
 }
 
@@ -96,17 +96,11 @@ function compareMonths(date1, date2) {
   return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth();
 }
 
-
-
-
-
-
-
 function getValidReceiptsRequest() {
   let token = localStorage.getItem('accessTokenTenant');
   let createTime = new Date(localStorage.getItem('createTime'));
 
-  fetch(hostTenant + 'receipt_valid', {
+  fetch(hostTenant + 'receipt-valid', {
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + token,
@@ -122,7 +116,7 @@ function getValidReceiptsRequest() {
     setNumberOfPayments(valiReceipts.length);
     showNumberOfPayments();
 
-    const tableBody = document.getElementById("receiptsTable");
+    const tableBody = document.getElementById("receipts-table");
     if (tableBody) {
       // tableBody.innerHTML = ''; // Clear existing rows
 
@@ -138,7 +132,7 @@ function getValidReceiptsRequest() {
               <td>${validReceipt.sumpayed}</td>
               <td>
                 <a href="#" class="govalidreceipt" data-receipt='${JSON.stringify(validReceipt)}'>
-                  <span class="badge bg_seccuss">Approuvé</span>
+                  <span class="badge bg-seccuss">Approuvé</span>
                 </a>
               </td>
               <td>

@@ -21,7 +21,7 @@ module.exports.requireReceipt = async (req, res) => {
 };
 
 
-module.exports.receiptUnValid = async (req, res) => {
+module.exports.receiptUnvalid = async (req, res) => {
     const query = "CALL payment_notvalid_tenant(?)";
     const values = [req.user.prTenID];
 

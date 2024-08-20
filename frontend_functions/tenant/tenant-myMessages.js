@@ -2,7 +2,7 @@
 
 function getMessagesRequest() {
     let token = localStorage.getItem('accessTokenTenant');
-    fetch(hostTenant + 'myMessages', {
+    fetch(hostTenant + 'my-messages', {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + token,

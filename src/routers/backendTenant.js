@@ -6,41 +6,39 @@ const sharp = require('sharp');
 const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth');
 
-const { getotp, userauth, refreshToken, activateTenantAccount, setpwd, myTenant, updateTenant} = require('../../controller/tenant/user');
-const { require_receipt, receipt_unValid, receipt_valid } = require('../../controller/tenant/receipt');
+const { getotp, userauth, refreshToken, activateTenantAccount, setPwd, myTenant, updateTenant} = require('../../controller/tenant/user');
+const { requireReceipt, receiptUnvalid, receiptValid } = require('../../controller/tenant/receipt');
 const { tenantProperty, myProperty } = require('../../controller/tenant/property');
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/tenant/support');
-
-const { upload } = require('../../functions/storepicture');
 
 
 // Appliquer les middlewares à toutes les routes
 router.use(dbMiddleware);
 
 // Routes pour les utilisateurs
-router.post("/activateTenantAccount", activateTenantAccount);
+router.post("/activate-tenant-account", activateTenantAccount);
 
 // Appliquer les middlewares à toutes les routes
 router.use(authMiddleware);
 
 // Routes pour les utilisateurs
-router.post("/setpwd", setpwd);
-router.post("/myTenant", myTenant);
-router.post("/updateTenant", updateTenant);
+router.post("/set-pwd", setPwd);
+router.post("/my-tenant", myTenant);
+router.post("/update-tenant", updateTenant);
 
 // Routes pour les reçus
-router.post("/require_receipt", require_receipt);
-router.post("/receipt_unValid", receipt_unValid);
-router.post("/receipt_valid", receipt_valid);
+router.post("/require-receipt", requireReceipt);
+router.post("/receipt-unValid", receiptUnvalid);
+router.post("/receipt-valid", receiptValid);
 
 // Routes pour les tenant_property
-router.post("/tenantProperty", tenantProperty);
-router.post("/myProperty", myProperty);
+router.post("/tenant-property", tenantProperty);
+router.post("/my-property", myProperty);
 
 // Routes pour les messages
-router.post("/sendMessage", sendMessage);
-router.post("/myMessages", myMessages);
-router.post("/deleteMessage", deleteMessage);
+router.post("/send-message", sendMessage);
+router.post("/my-messages", myMessages);
+router.post("/delete-message", deleteMessage);
 
 
 module.exports = router;

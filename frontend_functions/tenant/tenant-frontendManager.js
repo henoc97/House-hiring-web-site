@@ -6,18 +6,12 @@ if (receiptsTable) { // est definie en bas
 
 const requireRecieptForm = document.getElementById("receipt-form");
 const toggleIconRecieptForm = document.getElementById('toggle-icon');
-const tenantPropertyoption = document.getElementById("tenantProperty-option");
-if(toggleIconRecieptForm && requireRecieptForm && tenantPropertyoption) {
-  toggleIconRecieptForm.addEventListener('click', () => {
-    const isFormVisible = requireRecieptForm.style.display === 'block';
-    requireRecieptForm.style.display = isFormVisible ? 'none' : 'block';
-    toggleIconRecieptForm.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
-  });
-
+const tenantPropertyOption = document.getElementById("tenant-property-option");
+if (requireRecieptForm && tenantPropertyOption) {
   selectMonthsHelper(); // Aide a selectionner les mois pour les reçus
 }
 
-const totalPayments = document.getElementById('totalPayments');
+const totalPayments = document.getElementById('total-payments');
 totalPayments.textContent = getNumberOfPayments() ?? 0;
 
 // const totalPayments = document.getElementById('totalPayments');
@@ -32,7 +26,8 @@ const modalContent = document.querySelector('.modal-content');
 
 let setPwd = localStorage.getItem('setPwd');
 if (setPwd != 1 && modal && modalContent) {
-  modal.style.display = 'block'; // Affiche la modale
+  modal.classList.remove('hidden');
+  modal.classList.add('visible'); // Affiche la modale
   setTimeout(() => {
     modal.classList.add('show');
     modalContent.classList.add('show');
@@ -48,8 +43,8 @@ if (setPwd != 1 && modal && modalContent) {
 }
 
 document.getElementById('btn').addEventListener('click', function() {
-    document.querySelector('.sidebar').classList.toggle('open');
-  });
+  document.querySelector('.sidebar').classList.toggle('open');
+});
 
   // Sélectionner tous les liens de menu
   const menuLinks = document.querySelectorAll('.sidebar ul li a');
@@ -68,55 +63,29 @@ document.getElementById('btn').addEventListener('click', function() {
       document.querySelector('.details').innerHTML = ''; // Nettoyer la section details
 
       if (this.id === 'dash-button') {
-        fetch(tenantURL + '/tenant_dashboard')
+        fetch(tenantURL + '/tenant-dashboard')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
             
-            // const unvalidReceiptsTable = document.getElementById('unvalidReceiptsTable')
-            // const recentTenantsTable = document.getElementById('recentTenantsTable');
-            const requireRecieptForm = document.getElementById("receipt-form");
-            const toggleIconRecieptForm = document.getElementById('toggle-icon');
             const receiptsTable = document.getElementById('receiptsTable');
-
-            if(toggleIconRecieptForm && requireRecieptForm) {
-              toggleIconRecieptForm.addEventListener('click', () => {
-                const isFormVisible = requireRecieptForm.style.display === 'block';
-                requireRecieptForm.style.display = isFormVisible ? 'none' : 'block';
-                toggleIconRecieptForm.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
-              });
-            }
-            selectMonthsHelper(); // Aide a selectionner les moi pour les reçus
-
+            selectMonthsHelper(); // Aide a selectionner les mois pour les reçus
             if (receiptsTable) {
               getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
             }
-            
-            // if (recentTenantsTable && unvalidReceiptsTable) {
-              
-            //   getUnvalidReceiptsRequest();
-            //   getRecentTenantsRequest();
-            // }
-          });
+         });
       }
       
       
       if (this.id === 'discuss-button') {
-        fetch(tenantURL + '/tenant_discuss_part')
+        fetch(tenantURL + '/tenant-discussion')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
             
-            const toggleIcon = document.getElementById('toggle-icon');
             const messageForm = document.getElementById('message-form');
 
-            if(toggleIcon && messageForm) {
-              toggleIcon.addEventListener('click', () => {
-                const isFormVisible = messageForm.style.display === 'block';
-                messageForm.style.display = isFormVisible ? 'none' : 'block';
-                toggleIcon.className = isFormVisible ? 'bx bx-chevron-down' : 'bx bx-chevron-up';
-              });
-
+            if(messageForm) {
               sendMessageRequest();
             }
             getMessagesRequest();
@@ -124,20 +93,17 @@ document.getElementById('btn').addEventListener('click', function() {
         });
       }
 
-      if (this.id === 'porfile-button') {
-        fetch(tenantURL + '/tenant_profile')
+      if (this.id === 'profile-button') {
+        fetch(tenantURL + '/tenant-profile')
           .then(response => response.text())
           .then(data => {
             document.querySelector('.details').innerHTML = data;
 
-            const uploadForm = document.getElementById('uploadForm');
             const tenantForm = document.getElementById('tenant-form');
             if (tenantForm) {
-              // getTenant();
               getTenantPropertyRequest(1);
               tenantForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
-                // updateTenant();
               });
             }
         })

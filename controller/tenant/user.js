@@ -1,6 +1,6 @@
-const { hashPassword, comparePasswords } = require("../../functions/hash_compare_pwd");
+const { hashPassword, comparePasswords } = require("../../functions/hashComparePwd");
 const { User } = require("../../model/user");
-const mailTest = require("../../functions/email_test");
+const mailTest = require("../../functions/emailTest");
 const { generateTenantToken } = require("../../functions/token");
 const sendOTPemail = require('../../email/activation/sender');
 const codeOTP = require('../../functions/otp');

@@ -753,6 +753,13 @@
   pointer-events: auto; /* Réactive les clics */
 }
 
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+}
+
 /* Timestamp pour les messages */
 .timestamp {
   font-size: 10px;

@@ -1,7 +1,7 @@
 
 function getTenantPropertyRequest(type) {
     let token = localStorage.getItem('accessTokenTenant');
-    fetch(hostTenant + 'tenantProperty', {
+    fetch(hostTenant + 'tenant-property', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -18,7 +18,7 @@ function getTenantPropertyRequest(type) {
       if (type == 1) {
         tenantPropertyProfile(tenantproperty)
       } else {
-        tenantPropertyoptionConstructor(tenantproperty)
+        tenantPropertyOptionConstructor(tenantproperty)
       }
       
     })
@@ -29,8 +29,6 @@ function getTenantPropertyRequest(type) {
 
   function  tenantPropertyProfile(data){
     
-    const tenantForm = document.getElementById("tenant-form");
-    const propertyForm = document.getElementById("property-form");
     const tenantproperty = data[0];
     // Remplir le formulaire avec les données actuelles de owner
     console.log("tenantProperty : " + JSON.stringify({tenantproperty}));
@@ -43,32 +41,32 @@ function getTenantPropertyRequest(type) {
 
     document.getElementById('tenant-lastname').value = tenantproperty.lastname;
     document.getElementById('tenant-firstname').value = tenantproperty.firstname;
-    document.getElementById('tenant-contactmoov').value = tenantproperty.contactmoov;
-    document.getElementById('tenant-contacttg').value = tenantproperty.contacttg;
-    
+    document.getElementById('tenant-contact-moov').value = tenantproperty.contactmoov;
+    document.getElementById('tenant-contact-tg').value = tenantproperty.contacttg;
+     
     document.getElementById('address').value = tenantproperty.address;
     document.getElementById('description').value = tenantproperty.descriptions;
     document.getElementById('cost').value = tenantproperty.price;
     localStorage.setItem('createTime', tenantproperty.create_time);
   }
   
-  function  tenantPropertyoptionConstructor(tenantproperty){
-    const tenantPropertyoption = document.getElementById("tenantProperty-option");
-    if (tenantPropertyoption) {
-      tenantPropertyoption.innerHTML = ''; // Clear existing rows
+  function  tenantPropertyOptionConstructor(tenantProperty){
+    const tenantPropertyOption = document.getElementById("tenant-property-option");
+    if (tenantPropertyOption) {
+      tenantPropertyOption.innerHTML = ''; // Clear existing rows
       
-      if (tenantPropertyoption.innerHTML=='') {
+      if (tenantPropertyOption.innerHTML=='') {
         console.log("yes");
       }
-      tenantproperty.forEach((tenantproperty) => {
-        console.log("Property data:", tenantproperty); // Log chaque propriété
+      tenantProperty.forEach((tp) => {
+        console.log("Property data:", tp); // Log chaque propriété
         const option = document.createElement('option');
 
-        option.value = tenantproperty.id;
-        option.dataset.price = tenantproperty.price; 
-        option.textContent = `${tenantproperty.lastname} ${tenantproperty.firstname.split(' ')[0]} ${tenantproperty.address} ${tenantproperty.price}`;
+        option.value = tp.id;
+        option.dataset.price = tp.price; 
+        option.textContent = `${tp.lastname} ${tp.firstname.split(' ')[0]} ${tp.address} ${tp.price}`;
         
-        tenantPropertyoption.appendChild(option);
+        tenantPropertyOption.appendChild(option);
     });
     } else {
     console.error("Element with ID 'tenantProperty-option' not found.");

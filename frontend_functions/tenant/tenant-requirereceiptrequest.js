@@ -14,7 +14,7 @@ function requireRecieptRequest() {
   let costPerMonth = parseFloat(sumpayed) / months.length;
 
   months.forEach(month => {
-      fetch(hostTenant + 'require_receipt', {
+      fetch(hostTenant + 'require-receipt', {
           method: 'POST',
           headers: {
               'Authorization': 'Bearer ' + token,

@@ -6,7 +6,7 @@ function selectMonthsHelper() {
         requireRecieptRequest();
     });
     
-    tenantPropertyoption.addEventListener('change', function() {
+    tenantPropertyOption.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         const price = selectedOption.dataset.price;
         document.getElementById('sumpayed').value = price ? price : '';
@@ -70,7 +70,7 @@ function selectMonthsHelper() {
         
         // Mettre à jour le coût total basé sur le locataire sélectionné et les mois sélectionnés
         function updateSumpayed() {
-            const selectedOption = document.getElementById('tenantProperty-option').selectedOptions[0];
+            const selectedOption = document.getElementById('tenant-property-option').selectedOptions[0];
             const pricePerMonth = parseFloat(selectedOption.dataset.price);
             const selectedMonths = Array.from(document.getElementById('months').selectedOptions);
             const monthsCount = selectedMonths.length;

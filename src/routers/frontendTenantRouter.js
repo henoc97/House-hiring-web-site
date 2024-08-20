@@ -2,55 +2,55 @@ const express = require('express');
 const router = express.Router();
 
 // Routes pour les vues
-router.get('/tenant_test', (req, res) => {
-  res.render('tenant_some_view');
+router.get('/tenant-test', (req, res) => {
+  res.render('tenant-some-view');
 });
 
-router.get('/tenant_activate', (req, res) => {
-  res.render('tenant_activation');
+router.get('/tenant-activate', (req, res) => {
+  res.render('tenant-activation');
 });
 
 // Routes pour les vues
 router.get('/tenant', (req, res) => {
-  res.render('tenant_index', {
-    sidebar : 'tenant_sidebar',
-    topbar : 'tenant_topbar',
-    cardboxes : 'tenant_cardboxes',
-    setpwd : 'tenant_setpwd',
-    myreceipts: 'tenant_myreceipts',
-    requirereceipt: 'tenant_requirereceipt'
+  res.render('tenant-index', {
+    sidebar : 'tenant-sidebar',
+    topbar : 'tenant-topbar',
+    cardboxes : 'tenant-cardboxes',
+    setpwd : 'tenant-setpwd',
+    myreceipts: 'tenant-myreceipts',
+    requirereceipt: 'tenant-requirereceipt'
   });
 });
 
-router.get('/tenant_sign_log', (req, res) => {
-  res.render('tenant_sign_log');
+router.get('/tenant-sign-log', (req, res) => {
+  res.render('tenant-sign-log');
 });
 
-router.get('/tenant_dashboard', (req, res) => {
-  res.render('tenant_dashboard', {
-    setpwd : 'tenant_setpwd',
-    myreceipts: 'tenant_myreceipts',
-    requirereceipt: 'tenant_requirereceipt'
+router.get('/tenant-dashboard', (req, res) => {
+  res.render('_tenant-dashboard', {
+    setpwd : 'tenant-set-pwd',
+    myreceipts: 'tenant-my-receipts',
+    requirereceipt: 'tenant-require-receipt'
   });
 });
 
 
-router.get('/tenant_discuss_part', (req, res) => {
-  res.render('tenant_discuss_part', {
-    mymessages: 'tenant_mymessages',
-    messageform : 'tenant_messageform'
+router.get('/tenant-discuss-part', (req, res) => {
+  res.render('_tenant-discussion', {
+    mymessages: 'tenant-my-messages',
+    messageform : 'tenant-message-form'
   });
 });
 
-router.get('/tenant_profile', (req, res) => {
-  res.render('tenant_profile_part', {
-    accountinfo: 'tenant_accountinfo',
-    houseinfo: 'tenant_houseinfo',
+router.get('/tenant-profile', (req, res) => {
+  res.render('_tenant-profile', {
+    accountinfo: 'tenant-account-info',
+    houseinfo: 'tenant-house-info',
   });
 });
 
-router.get('/tenant_receipt', (req, res) => {
-  res.render('tenant_receipt');
+router.get('/tenant-receipt', (req, res) => {
+  res.render('tenant-receipt');
 });
 
 module.exports = router;

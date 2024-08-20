@@ -25,7 +25,7 @@ function setpwdRequest(){
 
     let token = localStorage.getItem('accessTokenTenant');
 
-    fetch(hostTenant + '/setpwd', {
+    fetch(hostTenant + '/set-pwd', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -55,7 +55,8 @@ function setpwdRequest(){
 
       // Après la durée de la transition, cache complètement la modale
       setTimeout(() => {
-        modal.style.display = 'none';
+        modal.classList.remove('visible'); 
+        modal.classList.add('hidden'); // Cache la modale
       }, 300); // La durée de l'animation de transition (300ms)
       
       // Sauvegarder le fait que le mot de passe a été défini
