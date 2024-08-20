@@ -11,8 +11,8 @@ function setUnpaidMonthsCount(unpaidMonthsCount) {
   localStorage.setItem('unpaidMonthsCount', unpaidMonthsCount);
 }
 
-function setLastPayedMonth(lastPayedMonth) {
-  localStorage.setItem('lastPayedMonth', lastPayedMonth);
+function setLastPaymentDate(lastPaymentDate) {
+  localStorage.setItem('lastPaymentDate', lastPaymentDate);
 }
 
 function setNextPaymentDate(nextPaymentDate) {
@@ -28,28 +28,28 @@ function getNumberOfPayments() {
 
 function getUnpaidMonths() {
   console.log("ca marche bien");
-  const unpaidMonths = localStorage.getItem('unpaid-months');
+  const unpaidMonths = localStorage.getItem('unpaidMonths');
   if (unpaidMonths == 'undefined') return 0;
   return unpaidMonths;
 }
 
 function getUnpaidMonthsCount() {
   console.log("ca marche bien");
-  const unpaidMonthsCount = localStorage.getItem('unpaid-months-count');
+  const unpaidMonthsCount = localStorage.getItem('unpaidMonthsCount');
   if (unpaidMonthsCount == 'undefined') return 0;
   return unpaidMonthsCount;
 }
 
-function getLastPayedMonth() {
+function getLastPaymentDate() {
   console.log("ca marche bien");
-  const lastPayedMonth = localStorage.getItem('last-payed-month');
-  if (lastPayedMonth == 'undefined') return 0;
-  return lastPayedMonth;
+  const lastPaymentDate = localStorage.getItem('lastPaymentDate');
+  if (lastPaymentDate == 'undefined') return 0;
+  return lastPaymentDate;
 }
 
 function getNextPaymentDate() {
   console.log("ca marche bien");
-  const nextPaymentDate = localStorage.getItem('next-payment-date');
+  const nextPaymentDate = localStorage.getItem('nextPaymentDate');
   if (nextPaymentDate == 'undefined') return 0;
   return nextPaymentDate;
 }
@@ -66,16 +66,19 @@ function showUnpaidMonths() {
 
 function showUnpaidMonthsCount() {
   const unpaidMonthsCount = document.getElementById('unpaid-months-count');
+  console.log('unpaidMonthsCount : ' + JSON.stringify( getUnpaidMonthsCount()));
   unpaidMonthsCount.textContent = getUnpaidMonthsCount();
 }
 
 function showlastPaymentDate() {
   const lastPaymentDate = document.getElementById('last-payment-date');
-  lastPaymentDate.textContent = getLastPayedMonth();
+  console.log('lastPaymentDate : ' + JSON.stringify(getLastPaymentDate()));
+  lastPaymentDate.textContent = getLastPaymentDate();
 }
 
-function shownextPaymentDate() {
+function showNextPaymentDate() {
   const nextPaymentDate = document.getElementById('next-payment-date');
+  console.log('nextPaymentDate : ' + JSON.stringify(getNextPaymentDate()));
   nextPaymentDate.textContent = getNextPaymentDate();
 }
 
@@ -127,6 +130,7 @@ function getValidReceiptsRequest() {
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
         const row = document.createElement('tr');
+        row.dataset.id = validReceipt.id;
         row.innerHTML = `
               <td>${formattedDate}</td>
               <td>${validReceipt.sumpayed}</td>
@@ -146,22 +150,31 @@ function getValidReceiptsRequest() {
         `;
         tableBody.appendChild(row);
 
-        const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
-        toggleDropdowns.forEach(toggle => {
-          toggle.addEventListener('click', function() {
-            const dropdown = this.closest('.dropdown');
-            dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
-          });
-        });
+      });
+      addDropdownsListener();
+      // const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
+      // toggleDropdowns.forEach(toggle => {
+      //   toggle.addEventListener('click', function() {
+      //     const dropdown = this.closest('.dropdown');
+      //     dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
+      //   });
+      // });
 
-        // Fermer le dropdown si on clique en dehors
-        window.addEventListener('click', function(event) {
-          if (!event.target.matches('.toggle-dropdown')) {
-            const dropdowns = document.querySelectorAll('.dropdown');
-            dropdowns.forEach(dropdown => {
-              dropdown.classList.remove('show');
-            });
-          }
+      // // Fermer le dropdown si on clique en dehors
+      // window.addEventListener('click', function(event) {
+      //   if (!event.target.matches('.toggle-dropdown')) {
+      //     const dropdowns = document.querySelectorAll('.dropdown');
+      //     dropdowns.forEach(dropdown => {
+      //       dropdown.classList.remove('show');
+      //     });
+      //   }
+      // });
+
+      // Quand l'utilisateur clique sur une icône de suppression
+      document.querySelectorAll('.delete-icon').forEach(icon => {
+        icon.addEventListener('click', function() {
+          const receiptId = this.dataset.id;
+          deleteReceiptTenant(receiptId);
         });
       });
 
@@ -180,15 +193,18 @@ function getValidReceiptsRequest() {
       });
       console.log('Unpaid months : ' + unpaidMonths.length);
       console.log('valiReceipts : ' + valiReceipts + '  ' + valiReceipts.length);
-      let lastPayedMonthTypeDate = new Date(); // valiReceipts[0].create_time 
-      const lastPayedMonth =  lastPayedMonthTypeDate.toLocaleString('fr-FR', 
+      let _lastPayedMonth = new Date(valiReceipts[0].monthpayed ); 
+      let _lastPaymentDate = new Date(valiReceipts[0].create_time ); 
+      const lastPaymentDate =  _lastPaymentDate.toLocaleString('fr-FR', 
         {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
       
 
-      setLastPayedMonth(lastPayedMonth);
+      setLastPaymentDate(lastPaymentDate);
       let nextPaymentDate;
       const tenantCreationDay = new Date(localStorage.getItem('createTime')).getDate();
-      if (lastPayedMonthTypeDate < unpaidMonths[unpaidMonths.length - 1]) {
+      console.log('unpaidMonths1 : ' + unpaidMonths[unpaidMonths.length - 1]);
+      console.log ('lastPayedMonthTypeDate1 : ' + _lastPayedMonth)
+      if (_lastPayedMonth < unpaidMonths[unpaidMonths.length - 1]) {
         // Créer une copie de la dernière date du mois non payé
         const lastUnpaidMonth = new Date(unpaidMonths[unpaidMonths.length - 1]);
 
@@ -206,7 +222,7 @@ function getValidReceiptsRequest() {
         }).replace(/\//g, '-');
       } else {
         // Créer une copie de la date du dernier paiement
-        const nextMonth = new Date(lastPayedMonthTypeDate);
+        const nextMonth = new Date(_lastPayedMonth);
 
         // Avancer d'un mois
         nextMonth.setMonth(nextMonth.getMonth() + 1);
@@ -222,11 +238,14 @@ function getValidReceiptsRequest() {
         }).replace(/\//g, '-');
       }
       setNextPaymentDate(nextPaymentDate);
+      console.log('nextPaymentDate : ' + JSON.stringify(nextPaymentDate));
       setUnpaidMonthsCount(unpaidMonths.length);
+      console.log('unpaidMonths.length : ' + JSON.stringify(unpaidMonths.length));
       setUnpaidMonths(JSON.stringify(unpaidMonths));
+      console.log('JSON.stringify(unpaidMonths) : ' + JSON.stringify(unpaidMonths));
 
       showlastPaymentDate();
-      shownextPaymentDate();
+      showNextPaymentDate();
       showUnpaidMonthsCount();
 
     } else {

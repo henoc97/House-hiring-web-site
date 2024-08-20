@@ -33,7 +33,7 @@ function getRecentTenantsRequest() {
           const row = document.createElement('tr');
           row.innerHTML = `
             <td>
-                <h4>${recentTenant.firstname} ${recentTenant.lastname.split(' ')[0]} <br> 
+                <h4>${recentTenant.lastname} ${recentTenant.firstname.split(' ')[0]} <br> 
                     <span>
                         ${recentTenant.contactmoov} / ${recentTenant.contacttg}
                     </span>

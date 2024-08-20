@@ -74,6 +74,22 @@ module.exports.myMessages = async (req, res) => {
     }
 };
 
+module.exports.RecentMessages = async (req, res) => {
+    const query = "CALL recent_messages_for_owner(?)";
+    const values = [req.user.userId];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        console.log('recent_messages_for_owner : ' + rows[0]);
+        res.status(200).json(rows[0]);
+    } catch (err) {
+        console.error('Erreur lors de l\'exécution de la requête', err);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        req.connection.release();
+    }
+};
+
 module.exports.deleteMessage = async (req, res) => {
     const { messageId } = req.body;
     const query = "CALL update_message_viewed_owner(?)";

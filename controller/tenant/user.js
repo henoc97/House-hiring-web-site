@@ -74,13 +74,13 @@ module.exports.myTenant = async (req, res) => {
 };
 
 module.exports.updateTenant = async (req, res) => {
-    const { id, firstname, lastname, contactmoov, contacttg, date } = req.body;
+    const { firstname, lastname, contactmoov, contacttg, date } = req.body;
     const query = "CALL update_tenant(?, ?, ?, ?, ?, ?)";
     const values = [req.user.userId, lastname, firstname, contactmoov, contacttg, date];
 
     try {
         const [result] = await req.connection.query(query, values);
-        res.status(200).json({ message: "requête réussie" });
+        res.status(200).json(result[0][0]);
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });

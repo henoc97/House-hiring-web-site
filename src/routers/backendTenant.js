@@ -7,7 +7,7 @@ const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth');
 
 const { getotp, userauth, refreshToken, activateTenantAccount, setPwd, myTenant, updateTenant} = require('../../controller/tenant/user');
-const { requireReceipt, receiptUnvalid, receiptValid } = require('../../controller/tenant/receipt');
+const { requireReceipt, receiptUnvalid, receiptValid, deleteReceipt } = require('../../controller/tenant/receipt');
 const { tenantProperty, myProperty } = require('../../controller/tenant/property');
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/tenant/support');
 
@@ -30,6 +30,7 @@ router.post("/update-tenant", updateTenant);
 router.post("/require-receipt", requireReceipt);
 router.post("/receipt-unValid", receiptUnvalid);
 router.post("/receipt-valid", receiptValid);
+router.post("/delete-receipt", deleteReceipt);
 
 // Routes pour les tenant_property
 router.post("/tenant-property", tenantProperty);

@@ -5,10 +5,9 @@ if (receiptsTable) { // est definie en bas
 }
 
 const requireRecieptForm = document.getElementById("receipt-form");
-const toggleIconRecieptForm = document.getElementById('toggle-icon');
-const tenantPropertyOption = document.getElementById("tenant-property-option");
+const tenantPropertyOption = document.getElementById("receipt-tenant-property-option");
 if (requireRecieptForm && tenantPropertyOption) {
-  selectMonthsHelper(); // Aide a selectionner les mois pour les reçus
+  selectMonthsHelper(tenantPropertyOption); // Aide a selectionner les mois pour les reçus
 }
 
 const totalPayments = document.getElementById('total-payments');
@@ -70,7 +69,7 @@ document.getElementById('btn').addEventListener('click', function() {
             
             const receiptsTable = document.getElementById('receipts-table');
             const tenantPropertyOption = document.getElementById('receipt-tenant-property-option');
-            selectMonthsHelper(); // Aide a selectionner les mois pour les reçus
+            selectMonthsHelper(tenantPropertyOption); // Aide a selectionner les mois pour les reçus
             if (receiptsTable) {
               getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
             }
@@ -105,6 +104,7 @@ document.getElementById('btn').addEventListener('click', function() {
               getTenantPropertyRequest(1);
               tenantForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
+                updateTenant();
               });
             }
         })

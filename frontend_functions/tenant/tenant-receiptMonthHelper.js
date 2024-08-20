@@ -1,5 +1,5 @@
 
-function selectMonthsHelper() {
+function selectMonthsHelper(tenantPropertyOption) {
     getTenantPropertyRequest(2);
     requireRecieptForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -9,7 +9,7 @@ function selectMonthsHelper() {
     tenantPropertyOption.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         const price = selectedOption.dataset.price;
-        document.getElementById('sumpayed').value = price ? price : '';
+        document.getElementById('receipt-sumpayed').value = price ? price : '';
     });
 
     // Fonction pour générer les options des mois
@@ -19,7 +19,7 @@ function selectMonthsHelper() {
             "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
         ];
 
-        const monthsSelect = document.getElementById('months');
+        const monthsSelect = document.getElementById('receipt-months');
         monthsSelect.innerHTML = ''; // Vider les options existantes
 
         // Générer les 12 mois précédents
@@ -70,21 +70,21 @@ function selectMonthsHelper() {
         
         // Mettre à jour le coût total basé sur le locataire sélectionné et les mois sélectionnés
         function updateSumpayed() {
-            const selectedOption = document.getElementById('tenant-property-option').selectedOptions[0];
+            const selectedOption = document.getElementById('receipt-tenant-property-option').selectedOptions[0];
             const pricePerMonth = parseFloat(selectedOption.dataset.price);
-            const selectedMonths = Array.from(document.getElementById('months').selectedOptions);
+            const selectedMonths = Array.from(document.getElementById('receipt-months').selectedOptions);
             const monthsCount = selectedMonths.length;
         
             if (pricePerMonth && monthsCount > 0) {
                 const totalCost = pricePerMonth * monthsCount;
-                document.getElementById('sumpayed').value = totalCost;
+                document.getElementById('receipt-sumpayed').value = totalCost;
             } else {
-                document.getElementById('sumpayed').value = '';
+                document.getElementById('receipt-sumpayed').value = '';
             }
         }
     
 
-    document.getElementById('months').addEventListener('change', function() {
+    document.getElementById('receipt-months').addEventListener('change', function() {
         updateSumpayed();
         // Appel pour charger le propriétés de locataire au chargement de la page
         getTenantPropertyRequest(2);

@@ -13,12 +13,12 @@ function getTenantPropertyRequest(type) {
       console.log("data received:", data); // Log les données reçues
 
       // Si les propriétés sont enveloppées dans un objet { myProperties }
-      const tenantproperty = data;
+      const tenantProperty = data;
 
       if (type == 1) {
-        tenantPropertyProfile(tenantproperty)
+        tenantPropertyProfile(tenantProperty)
       } else {
-        tenantPropertyOptionConstructor(tenantproperty)
+        tenantPropertyOptionConstructor(tenantProperty)
       }
       
     })
@@ -28,30 +28,31 @@ function getTenantPropertyRequest(type) {
 
 
   function  tenantPropertyProfile(data){
-    
-    const tenantproperty = data[0];
+    console.log('data:', data);
+    const tenantProperty = data[0];
     // Remplir le formulaire avec les données actuelles de owner
-    console.log("tenantProperty : " + JSON.stringify({tenantproperty}));
-    console.log("tenantProperty : " + tenantproperty.lastname);
-    console.log("tenantProperty : " + tenantproperty.firstname);
-    console.log("tenantProperty : " + tenantproperty.contactmoov);
-    console.log("tenantProperty : " + tenantproperty.contacttg);
+    console.log("tenantProperty : " + JSON.stringify({tenantProperty}));
+    console.log("tenantProperty : " + tenantProperty.lastname);
+    console.log("tenantProperty : " + tenantProperty.firstname);
+    console.log("tenantProperty : " + tenantProperty.contactmoov);
+    console.log("tenantProperty : " + tenantProperty.contacttg);
 
 
 
-    document.getElementById('tenant-lastname').value = tenantproperty.lastname;
-    document.getElementById('tenant-firstname').value = tenantproperty.firstname;
-    document.getElementById('tenant-contact-moov').value = tenantproperty.contactmoov;
-    document.getElementById('tenant-contact-tg').value = tenantproperty.contacttg;
-     
-    document.getElementById('address').value = tenantproperty.address;
-    document.getElementById('description').value = tenantproperty.descriptions;
-    document.getElementById('cost').value = tenantproperty.price;
-    localStorage.setItem('createTime', tenantproperty.create_time);
+    document.getElementById('tenant-lastname').value = tenantProperty.lastname;
+    document.getElementById('tenant-firstname').value = tenantProperty.firstname;
+    document.getElementById('tenant-contact-moov').value = tenantProperty.contactmoov;
+    document.getElementById('tenant-contact-tg').value = tenantProperty.contacttg;
+    localStorage.setItem('createTime', data.create_time);
+
+    document.getElementById('property-address').value = tenantProperty.address;
+    document.getElementById('property-description').value = tenantProperty.descriptions;
+    document.getElementById('property-cost').value = tenantProperty.price;
+    localStorage.setItem('createTime', tenantProperty.create_time);
   }
   
   function  tenantPropertyOptionConstructor(tenantProperty){
-    const tenantPropertyOption = document.getElementById("tenant-property-option");
+    const tenantPropertyOption = document.getElementById("receipt-tenant-property-option");
     if (tenantPropertyOption) {
       tenantPropertyOption.innerHTML = ''; // Clear existing rows
       

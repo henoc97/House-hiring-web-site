@@ -9,7 +9,7 @@ const { getOtp, createUserOwner, userAuth, updateSold, refreshToken, updateOwner
 const { createProperties, myProperties, myProperty, updateProperty, deleteProperty } = require('../../controller/owner/property');
 const { createTenant, tenantsProperties, recentTenants, allTenants, myTenant, updateTenant, deleteTenant, deletePropertyTenant } = require('../../controller/owner/tenant');
 const { requireReceipt, receiptUnValid, receiptValid, validateReceipt, deleteReceipt} = require('../../controller/owner/receipt');
-const { sendMessage, myMessages, deleteMessage } = require('../../controller/owner/support');
+const { sendMessage, myMessages, RecentMessages, deleteMessage } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
 
 
@@ -62,6 +62,7 @@ router.post("/delete-receipt", deleteReceipt);
 // Routes pour les messages
 router.post("/send-message", sendMessage);
 router.post("/my-messages", myMessages);
+router.post("/recent-messages", RecentMessages);
 router.post("/delete-message", deleteMessage);
 
 // Route d'upload d'images

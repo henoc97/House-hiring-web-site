@@ -126,6 +126,7 @@ document.getElementById('btn').addEventListener('click', function() {
             const tenantsTable = document.getElementById('all-tenants-table');
             const editTenantForm = document.getElementById('edit-tenant-form');
             const messageForm = document.getElementById('message-form');
+            const recentMessages = document.getElementById('recent-messages-table');
             if (tenantsTable) {
               getAllTenantsRequest()
             }
@@ -149,6 +150,8 @@ document.getElementById('btn').addEventListener('click', function() {
                   }
                });
             }
+            // if (recentMessages) 
+            getRecentMessagesRequest();
           });
       }
 

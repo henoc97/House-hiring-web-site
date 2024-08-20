@@ -1,7 +1,7 @@
 
 function requireRecieptRequest() {
-  let sumpayed = document.getElementById('sumpayed').value;
-  let months = Array.from(document.getElementById('months').selectedOptions).map(option => option.value);
+  let sumpayed = document.getElementById('receipt-sumpayed').value;
+  let months = Array.from(document.getElementById('receipt-months').selectedOptions).map(option => option.value);
   
   if (months.length === 0) {
       alert("Veuillez sélectionner au moins un mois.");
@@ -32,10 +32,12 @@ function requireRecieptRequest() {
           }
           return response.json();
       })
-      .then(data => {
-          console.log(data);
-          document.getElementById('receipt-form').reset();
-          getUnvalidReceiptsRequest();
+      .then(unvalidReceipt => {
+            console.log(unvalidReceipt);
+            document.getElementById('receipt-form').reset();
+            // getUnvalidReceiptsRequest();
+            addUnvalidReceipt(unvalidReceipt);
+            // addDropdownsListener();
       })
       .catch(error => {
           console.error('Erreur:', error);
@@ -43,5 +45,5 @@ function requireRecieptRequest() {
       });
   });
 
-  document.getElementById('months').selectedIndex = -1; // Réinitialiser la sélection
+  document.getElementById('receipt-months').selectedIndex = -1; // Réinitialiser la sélection
 }

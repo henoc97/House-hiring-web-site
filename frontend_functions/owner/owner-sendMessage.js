@@ -5,6 +5,7 @@ function sendMessageRequest(tenantId) {
 
     if (window.ws) {
         window.ws.close();
+        getRecentMessagesRequest();
         console.log('Previous WebSocket connection closed');
     }
 

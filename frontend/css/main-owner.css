@@ -322,6 +322,7 @@
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   overflow-y: auto;
   white-space: nowrap;
+  max-height: 100vh;
 }
 
 .details table {
@@ -660,6 +661,19 @@
 }
 .visible {
   display: block;
+}
+
+/* Styles pour la table des messages */
+.recent-message-container {
+  max-width: 300px; /* Ajustez la largeur maximale selon vos besoins */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-message-text {
+  margin: 0;
+  font-size: 14px; /* Ajustez la taille de la police si nécessaire */
 }
 
 /* Messagerie */

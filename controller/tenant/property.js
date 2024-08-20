@@ -2,7 +2,7 @@
 
 module.exports.tenantProperty = async (req, res) => {
     const query = "CALL tenant_property_by_tenant(?)";
-    const values = [req.user.prTenID]; // Utiliser les données du token stockées dans req.user
+    const values = [req.user.prTenId]; // Utiliser les données du token stockées dans req.user
 
     try {
         const [rows] = await req.connection.query(query, values);
@@ -19,7 +19,7 @@ module.exports.tenantProperty = async (req, res) => {
 
 module.exports.myProperty = async (req, res) => {
     // const query = "CALL property_by_pr_ten_id(?)";
-    // const values = [req.user.prTenID];
+    // const values = [req.user.prTenId];
 
     // try {
     //     const [rows] = await req.connection.query(query, values);

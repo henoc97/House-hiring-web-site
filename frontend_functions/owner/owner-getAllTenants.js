@@ -146,6 +146,7 @@ function getAllTenantsRequest() {
               messageModal.style.display = 'none';
               if (window.ws) {
                 window.ws.close();  // Fermer la connexion WebSocket
+                getRecentMessagesRequest();
                 console.log('WebSocket connection closed');
             }
             }, 300); // Correspond à la durée de l'animation en CSS
