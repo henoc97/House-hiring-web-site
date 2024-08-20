@@ -179,7 +179,8 @@ function getValidReceiptsRequest() {
         console.log(unpaidMonth.toLocaleString('fr-FR', { month: 'long', year: 'numeric' }));
       });
       console.log('Unpaid months : ' + unpaidMonths.length);
-      let lastPayedMonthTypeDate = new Date(valiReceipts[0].create_time);
+      console.log('valiReceipts : ' + valiReceipts + '  ' + valiReceipts.length);
+      let lastPayedMonthTypeDate = new Date(); // valiReceipts[0].create_time 
       const lastPayedMonth =  lastPayedMonthTypeDate.toLocaleString('fr-FR', 
         {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
       

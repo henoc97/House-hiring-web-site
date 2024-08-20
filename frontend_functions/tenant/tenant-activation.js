@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setCookie("refreshTokenTenant", data.refreshToken, 7);
         localStorage.setItem('setPwd', 0);
         localStorage.setItem('createTime', data.createTime);
-        window.location.href = tenantURL;
+        window.location.href = tenantDashboardURL;
       } else {
         alert('Erreur de login');
       }

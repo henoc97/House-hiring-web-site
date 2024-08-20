@@ -40,7 +40,7 @@ function getPropertiesRequest(type) {
       if (type == 1) {
         myPropertiesTableConstructor(properties);
       } else {
-        propertyoptionConstructor(properties);
+        propertyOptionConstructor(properties);
       }
       
       
@@ -49,10 +49,10 @@ function getPropertiesRequest(type) {
   }
 
 
-  function  propertyoptionConstructor(properties){
-    const propertyoption = document.getElementById("property-option");
-    if (propertyoption) {
-    propertyoption.innerHTML = ''; // Clear existing rows
+  function  propertyOptionConstructor(properties){
+    const propertyOption = document.getElementById("property-option");
+    if (propertyOption) {
+    propertyOption.innerHTML = ''; // Clear existing rows
 
     properties.forEach((property) => {
         console.log("Property data:", property); // Log chaque propriété
@@ -61,7 +61,12 @@ function getPropertiesRequest(type) {
         option.value = property.id;
         option.textContent = `${property.address} ${property.price}`;
         
-        propertyoption.appendChild(option);
+        propertyOption.insertBefore(option, propertyOption.firstChild);
+
+        // Sélectionner le premier élément, qui est le dernier ajouté
+        if (propertyOption.firstChild) {
+          propertyOption.firstChild.selected = true;
+        }
     });
     } else {
     console.error("Element with ID 'myPropertiesTable' not found.");

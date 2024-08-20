@@ -26,6 +26,8 @@ function getOwner() {
         document.getElementById('owner-contact-moov').value = data.contactmoov;
         document.getElementById('owner-contact-tg').value = data.contacttg;
         
+        setSold(data.sold);
+        showNewSold();
     })
     .catch(error => console.error('Error fetching owner details:', error));
   }

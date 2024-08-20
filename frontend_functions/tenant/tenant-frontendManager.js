@@ -1,5 +1,5 @@
 
-
+const receiptsTable = document.getElementById('receipts-table');
 if (receiptsTable) { // est definie en bas
   getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
 }
@@ -68,7 +68,8 @@ document.getElementById('btn').addEventListener('click', function() {
           .then(data => {
             document.querySelector('.details').innerHTML = data;
             
-            const receiptsTable = document.getElementById('receiptsTable');
+            const receiptsTable = document.getElementById('receipts-table');
+            const tenantPropertyOption = document.getElementById('receipt-tenant-property-option');
             selectMonthsHelper(); // Aide a selectionner les mois pour les reçus
             if (receiptsTable) {
               getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()

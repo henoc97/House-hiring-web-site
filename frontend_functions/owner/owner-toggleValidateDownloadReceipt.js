@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       <p><strong>Règlement du mois de :</strong> ${formattedMonthpayed}</p>  
       <p id="payment-date"><strong>Date de Paiement :</strong> ${formattedDate}</p>        
     `;
-    document.getElementById('signature-image').src = "/img/" + localStorage.getItem("uploadedImageFilename");
+    document.getElementById('signature-image').src = localStorage.getItem("uploadedImageFilename");
   }
 
   

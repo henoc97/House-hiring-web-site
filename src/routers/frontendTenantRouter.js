@@ -16,9 +16,9 @@ router.get('/tenant', (req, res) => {
     sidebar : 'tenant-sidebar',
     topbar : 'tenant-topbar',
     cardboxes : 'tenant-cardboxes',
-    setpwd : 'tenant-setpwd',
-    myreceipts: 'tenant-myreceipts',
-    requirereceipt: 'tenant-requirereceipt'
+    setPwd : 'tenant-set-pwd',
+    myReceipts: 'tenant-my-receipts',
+    requireReceipt: 'tenant-require-receipt'
   });
 });
 
@@ -28,24 +28,24 @@ router.get('/tenant-sign-log', (req, res) => {
 
 router.get('/tenant-dashboard', (req, res) => {
   res.render('_tenant-dashboard', {
-    setpwd : 'tenant-set-pwd',
-    myreceipts: 'tenant-my-receipts',
-    requirereceipt: 'tenant-require-receipt'
+    setPwd : 'tenant-set-pwd',
+    myReceipts: 'tenant-my-receipts',
+    requireReceipt: 'tenant-require-receipt'
   });
 });
 
 
-router.get('/tenant-discuss-part', (req, res) => {
+router.get('/tenant-discussion', (req, res) => {
   res.render('_tenant-discussion', {
-    mymessages: 'tenant-my-messages',
-    messageform : 'tenant-message-form'
+    myMessages: 'tenant-my-messages',
+    messageForm : 'tenant-message-form'
   });
 });
 
 router.get('/tenant-profile', (req, res) => {
   res.render('_tenant-profile', {
-    accountinfo: 'tenant-account-info',
-    houseinfo: 'tenant-house-info',
+    accountInfo: 'tenant-account-info',
+    houseInfo: 'tenant-house-info',
   });
 });
 

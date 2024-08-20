@@ -19,8 +19,10 @@ const ownerDashboardURL = root + "owner" + ownerURL; // Not an error
 
 const tenantURL = "/tenant";
 
+const tenantDashboardURL = root + "tenant" + tenantURL; // Not an error
+
 // root end with "/" and tenant starts with "/" so tenantURL.substring(1).
-const activateURL = root + tenantURL.substring(1) + "/activate";
+const activateURL = root + tenantURL.substring(1) + "/tenant-activate";
 
 const receiptURL = ownerURL + "/owner-receipt";
 
