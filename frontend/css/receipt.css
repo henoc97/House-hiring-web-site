@@ -3,6 +3,8 @@
   --white-blue: #1D1D31;
   --white: #fff;
   --gray: #8390a2;
+  --blue: #00A2E8;
+
 }
 
 * {
@@ -26,8 +28,14 @@ body {
 
 #receipt{
   line-height: 1.6;
-  word-spacing: 0.5em;
+  word-spacing: 0.05em;
+  letter-spacing: 0.01em;
+  /* width: 100%; */
+  max-width: 800px; /* Ajustez cette valeur selon vos besoins */
+  margin: auto; /* Centrez le contenu */
+  margin-top: 15px;
 }
+
 
 .center-container {
   display: flex;
@@ -99,11 +107,20 @@ button {
   border-radius: 15px;
   cursor: pointer;
   height: 50px;
+  margin-top: 20px;
 }
 
 button:hover {
   font-weight: bold;
-  background: -webkit-linear-gradient(left, var(--dark-blue), var(--white-blue), var(--gray));
+  background: -webkit-linear-gradient(left, var(--blue), var(--white-blue), var(--gray));
+}
+
+
+@media print {
+  body {
+      width: 100%;
+      max-width: 800px;
+  }
 }
 
 @media (max-width: 600px) {

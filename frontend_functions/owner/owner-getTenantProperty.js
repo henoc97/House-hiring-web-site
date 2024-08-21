@@ -39,7 +39,7 @@ function getTenantsPropertiesRequest(type) {
       if (type == 1) {
         tenantsPropertiestableConstructor(tenantsproperties)
       } else {
-        tenantsPropertiesoptionConstructor(tenantsproperties)
+        tenantsPropertiesOptionConstructor(tenantsproperties)
       }
       
     })
@@ -72,12 +72,12 @@ function getTenantsPropertiesRequest(type) {
 
   }
   
-  function  tenantsPropertiesoptionConstructor(tenantsproperties){
-    const tenantsPropertiesoption = document.getElementById("tenants-properties-option");
-    if (tenantsPropertiesoption) {
-      tenantsPropertiesoption.innerHTML = ''; // Clear existing rows
+  function  tenantsPropertiesOptionConstructor(tenantsproperties){
+    const tenantsPropertiesOption = document.getElementById("tenants-properties-option");
+    if (tenantsPropertiesOption) {
+      tenantsPropertiesOption.innerHTML = ''; // Clear existing rows
       
-      if (tenantsPropertiesoption.innerHTML=='') {
+      if (tenantsPropertiesOption.innerHTML=='') {
         console.log("yes");
       }
       tenantsproperties.forEach((tenantproperty) => {
@@ -88,7 +88,11 @@ function getTenantsPropertiesRequest(type) {
         option.dataset.price = tenantproperty.price; 
         option.textContent = `${tenantproperty.lastname} ${tenantproperty.firstname.split(' ')[0]} ${tenantproperty.address} ${tenantproperty.price}`;
         
-        tenantsPropertiesoption.appendChild(option);
+        tenantsPropertiesOption.insertBefore(option, tenantsPropertiesOption.firstChild);
+        // Sélectionner le premier élément, qui est le dernier ajouté
+        if (tenantsPropertiesOption.firstChild) {
+          tenantsPropertiesOption.firstChild.selected = true;
+        }
     });
     } else {
     console.error("Element with ID 'tenantsProperties-option' not found.");

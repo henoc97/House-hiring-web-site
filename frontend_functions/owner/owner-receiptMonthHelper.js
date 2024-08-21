@@ -1,16 +1,17 @@
 
-function selectMonthsHelper(requireRecieptForm, tenantsPropertiesoption) {
+function selectMonthsHelper(requireRecieptForm, tenantsPropertiesOption) {
     getTenantsPropertiesRequest(2);
     requireRecieptForm.addEventListener('submit', function(event) {
         event.preventDefault();
         requireRecieptRequest();
     });
     
-    tenantsPropertiesoption.addEventListener('change', function() {
+    tenantsPropertiesOption.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         const price = selectedOption.dataset.price;
         const sumPaid = document.getElementById('receipt-sumpayed');
         if (sumPaid) sumPaid.value = price ? price : '';
+        updateSumpayed();
     });
 
     // Fonction pour générer les options des mois
@@ -72,7 +73,7 @@ function selectMonthsHelper(requireRecieptForm, tenantsPropertiesoption) {
         // Mettre à jour le coût total basé sur le locataire sélectionné et les mois sélectionnés
         function updateSumpayed() {
             const monthsSelect = document.getElementById('receipt-months');
-            const selectedOption = tenantsPropertiesoption.selectedOptions[0];
+            const selectedOption = tenantsPropertiesOption.selectedOptions[0];
             const pricePerMonth = parseFloat(selectedOption.dataset.price);
             const selectedMonths = Array.from(monthsSelect.selectedOptions);
             const monthsCount = selectedMonths.length;
@@ -89,7 +90,7 @@ function selectMonthsHelper(requireRecieptForm, tenantsPropertiesoption) {
     document.getElementById('receipt-months').addEventListener('change', function() {
         updateSumpayed();
         // Appel pour charger le propriétés de locataire au chargement de la page
-        getTenantsPropertiesRequest(2);
+        // getTenantsPropertiesRequest(2);
     });
   
 }

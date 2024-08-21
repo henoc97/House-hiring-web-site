@@ -26,16 +26,12 @@ const tenantViewsPath = path.join(__dirname, '../frontend/tenant_views');
 
 // Middleware pour ajouter un nonce pour CSP
 const crypto = require('crypto');
-
 app.use((req, res, next) => {
   res.locals.nonce = crypto.randomBytes(16).toString('base64');
   const cspPolicy = process.env.NODE_ENV === 'production'
-    ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`
-    : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`;
-  
-  // Affiche la politique CSP dans les logs pour débogage
-  // console.log('CSP Policy:', cspPolicy);
-  
+    ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'nonce-${res.locals.nonce}' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`
+    : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com 'nonce-${res.locals.nonce}'; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`;
+
   try {
     res.setHeader('Content-Security-Policy', cspPolicy);
   } catch (error) {
@@ -44,6 +40,7 @@ app.use((req, res, next) => {
   
   next();
 });
+
 
 
 console.log('NODE_ENV:', process.env.NODE_ENV);
@@ -72,6 +69,7 @@ app.use(morgan('combined')); // Affiche dans la console
 
 // Servir les fichiers statiques avec mise en cache
 app.use(express.static(path.join(__dirname, '../frontend/css'))); // Cache des fichiers CSS pendant 1 jour { maxAge: '1d' } désactivé
+app.use('/icon', express.static(path.join(__dirname, '../frontend/icon'))); // Cache des icon pendant 1 jour { maxAge: '1d' } désactivé
 app.use('/img', express.static(path.join(__dirname, '../frontend/img'))); // Cache des images pendant 1 jour { maxAge: '1d' } désactivé
 app.use(express.static(path.join(__dirname, '../frontend_functions'))); // Cache des fonctions frontend pendant 1 jour { maxAge: '1d' } désactivé
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Servir les fichiers uploadés

@@ -22,7 +22,7 @@ const sendOTPemail = function(email, pwd, codeOTP) {
       const mailOptions = {
         from: process.env.APP_EMAIL,
         to: email,
-        subject: 'Bienvenue dans notre application quicktransfer',
+        subject: 'Bienvenu chez Extase-Home',
         html: htmlData
       };
 

@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 
-
 :root {
   --dark-blue: #11101D;
   --white-blue: #1D1D31;
   --white: #fff;
   --gray: #E4E9E7;
   --blue: #00A2E8;
+  --orange: #FFAA00;
+  --purple: #8964f6; 
+  --purple2: #624bff;
 }
 
 * {
@@ -15,6 +17,14 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+#logo {
+  color: var(--orange);
+  font-size: 80px;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
 html,
 body {
   display: grid;
@@ -23,40 +33,137 @@ body {
   place-items: center;
   background: var(--white);
 }
+
 ::selection {
   background: #1a75ff;
   color: #fff;
 }
+
+.logo-details {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-details .logo-name {
+  font-weight: 600;
+} 
+
+#animated-text {
+  color: var(--dark-blue);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--dark-blue); /* Curseur clignotant */
+  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+#sub-text {
+  color: var(--purple2);
+}
+
+#features-title {
+  color: var(--blue);
+  margin-bottom: 30px; /* Augmente l'espace sous le titre des fonctionnalités */
+}
+
+#sign-in-now {
+  color: var(--purple2);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--purple2); }
+}
+
+.features {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.features h2 {
+  margin-bottom: 30px; /* Augmente l'espace sous le titre des fonctionnalités */
+}
+
+.features ul {
+  padding: 0;
+  margin: 0;
+}
+
+.features ul li {
+  opacity: 0;
+  transform: translateY(-50px);
+  margin: 10px 0;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.features ul li.show {
+  font-weight: bold;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.features ul li i {
+  font-size: 24px; /* Augmente la taille des icônes */
+  font-weight: bold;
+  color: var(--purple2);
+  margin-right: 15px; /* Ajoute plus d'espace entre l'icône et le texte */
+}
+
 .wrapper {
   overflow: hidden;
-  max-width: 390px;
-  background: #fff;
+  width: 85vw; /* Légère augmentation de la largeur pour plus d'espace */
   padding: 30px;
+  border-radius: 15px;
+  margin: auto;
+  margin-top: 40px; /* Augmente l'espace au-dessus du wrapper */
+}
+
+.wrapper .wrapper-content {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 75vw; /* Légère augmentation de la largeur pour plus d'espace */
+  background: #fff;
+  padding: 40px; /* Augmente l'espace intérieur pour plus d'aération */
+  border-radius: 15px;
+  margin: auto;
+  margin-top: 40px; /* Augmente l'espace au-dessus du wrapper-content */
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper-form {
+  overflow: hidden;
+  max-width: 420px; /* Augmente la largeur maximale du formulaire */
+  background: #fff;
+  padding: 40px; /* Augmente l'espace intérieur pour plus de confort */
   border-radius: 15px;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
 }
-.wrapper .title-text {
-  display: flex;
-  width: 200%;
-}
-.wrapper .title {
-  width: 50%;
-  font-size: 35px;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-.wrapper .slide-controls {
+
+.wrapper-form .slide-controls {
   position: relative;
   display: flex;
   height: 50px;
   width: 100%;
   overflow: hidden;
-  margin: 30px 0 10px 0;
+  margin: 30px 0 20px 0; /* Ajoute plus d'espace au-dessus des contrôles */
   justify-content: space-between;
   border: 1px solid lightgrey;
   border-radius: 15px;
 }
+
+.title-text {
+  padding: 30px;
+  margin: auto;
+}
+
 .slide-controls .slide {
   height: 100%;
   width: 100%;
@@ -82,6 +189,8 @@ body {
   background: -webkit-linear-gradient(left, var(--dark-blue), var(--white-blue), var(--gray));
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
+
 input[type="radio"] {
   display: none;
 }
@@ -103,7 +212,7 @@ input[type="radio"] {
   cursor: default;
   user-select: none;
 }
-.wrapper .form-container {
+.wrapper-form .form-container {
   width: 100%;
   overflow: hidden;
 }
@@ -133,7 +242,6 @@ input[type="radio"] {
 }
 .form-inner form .field input:focus {
   border-color: var(--dark-blue);
-  /* box-shadow: inset 0 0 3px #fb6aae; */
 }
 .form-inner form .field input::placeholder {
   color: #999;
@@ -151,7 +259,7 @@ form .field input:focus::placeholder {
 }
 .form-inner form .pass-link a,
 .form-inner form .signup-link a {
-  color: var(--dark-blue);
+  color: var(--purple2);
   text-decoration: none;
 }
 .form-inner form .pass-link a:hover,
@@ -171,7 +279,6 @@ form .btn .btn-layer {
   position: absolute;
   left: -100%;
   background: var(--blue);
-
   border-radius: 15px;
   transition: all 0.4s ease;
 }
