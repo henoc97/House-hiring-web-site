@@ -8,7 +8,10 @@
   --blue: #00A2E8;
   --orange: #FFAA00;
   --purple: #8964f6; 
+  --green: #198754;
   --purple2: #624bff;
+  --red: #ef2b3e;
+
 }
 
 * {
@@ -43,7 +46,7 @@ body {
   position: relative;
   height: 60px;
   display: flex;
-  align-items: center;
+  align-items: start;
 }
 
 .logo-details .logo-name {
@@ -52,6 +55,7 @@ body {
 
 #animated-text {
   color: var(--dark-blue);
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   border-right: 3px solid var(--dark-blue); /* Curseur clignotant */
@@ -118,18 +122,20 @@ body {
 
 .wrapper {
   overflow: hidden;
-  width: 85vw; /* Légère augmentation de la largeur pour plus d'espace */
-  padding: 30px;
+  width: 90vw; /* Légère augmentation de la largeur pour plus d'espace */
+  padding: 0px;
   border-radius: 15px;
-  margin: auto;
+  /* background-color: red; */
   margin-top: 40px; /* Augmente l'espace au-dessus du wrapper */
 }
 
 .wrapper .wrapper-content {
   display: flex;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 80px;
   justify-content: space-between;
   overflow: hidden;
-  width: 75vw; /* Légère augmentation de la largeur pour plus d'espace */
+  width: 95%; /* Légère augmentation de la largeur pour plus d'espace */
   background: #fff;
   padding: 40px; /* Augmente l'espace intérieur pour plus d'aération */
   border-radius: 15px;
@@ -160,8 +166,11 @@ body {
 }
 
 .title-text {
-  padding: 30px;
+  width: 75vw; /* Légère augmentation de la largeur pour plus d'espace */
+  /* padding: 30px; */
   margin: auto;
+  justify-content: left;
+  
 }
 
 .slide-controls .slide {
@@ -190,6 +199,15 @@ body {
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+#message {
+  font-weight: bold;
+}
+.red-message {
+  color: var(--red) !important;
+}
+.green-message {
+  color: var(--green) !important;
+}
 
 input[type="radio"] {
   display: none;
@@ -287,9 +305,9 @@ form .btn:hover .btn-layer {
   background: -webkit-linear-gradient(
     left,
     var(--blue), var(--white-blue), var(--gray)
-  ); 
-}
-form .btn input[type="submit"] {
+    ); 
+  }
+  form .btn input[type="submit"] {
   height: 100%;
   width: 100%;
   z-index: 1;
@@ -302,4 +320,207 @@ form .btn input[type="submit"] {
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (max-width: 992px) {
+  .wrapper, .wrapper-content {
+    width: 90% !important;
+  }
+  .wrapper-form {
+    max-width: 500px !important;
+    padding: 20px !important;
+    margin: 20px;
+    align-self: flex-end !important;
+  }
+  .wrapper .wrapper-content {
+    padding: 40px !important;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 80px;
+    display: grid !important;
+  }
+  #logo {
+    font-size: 60px !important;
+    margin: 15px !important;
+    margin-bottom: 25px !important;
+  }
+  #animated-text {
+    font-size: 24px !important;
+  }
+  #sub-text {
+    font-size: 20px !important;
+  }
+  .title-text .logo-details {
+    margin-bottom: 18px !important;
+  }
+  .form-inner form .field input {
+    font-size: 19px !important;
+  }
+  form .btn input[type="submit"] {
+    font-size: 22px !important;
+  }
+  .form-inner form .pass-link a,
+  .form-inner form .signup-link {
+    font-size: 16px !important;
+    text-decoration: none;
+  }
+  #features-title {
+    font-size: 24px !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (max-width: 768px) {
+
+  body {
+    width: 100% !important;
+  }
+
+  .features ul li, li i {
+    font-size: 16px !important;
+  }
+
+  li i {
+    margin-right: 10px !important;
+  }
+
+  .wrapper, .wrapper-content {
+    width: 95% !important;
+    padding: 20px !important;
+  }
+
+  .wrapper {
+    width: 97vw !important;
+  }
+
+  .wrapper-form {
+    width: 100% !important;
+    padding: 10px !important;
+    margin: 0px;
+  }
+
+  .wrapper .wrapper-content {
+    flex-direction: column !important;
+    padding: 30px !important;
+  }
+
+  #logo {
+    font-size: 60px !important;
+    margin: 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  #animated-text {
+    white-space: normal; /* Permet le retour à la ligne */
+    animation: none; /* Désactive l'animation */
+    border-right: none; /* Supprime le curseur clignotant */
+    font-size: 24px !important;
+    white-space: normal; /* Permet le retour à la ligne */
+  }
+
+  #sub-text {
+    font-size: 18px !important;
+  }
+
+  .title-text .logo-details {
+    display: flex;
+    align-items: start !important;;
+    margin-bottom: 15px !important;
+    align-items: baseline;
+  }
+
+  .form-inner form .field input {
+    font-size: 16px !important;
+  }
+
+  form .btn input[type="submit"] {
+    font-size: 20px !important;
+  }
+
+  .form-inner form .pass-link a,
+  .form-inner form .signup-link {
+    font-size: 14px !important;
+    text-decoration: none;
+  }
+
+  .form-inner form .field input {
+    font-size: 16px !important; /* Réduit la taille de la police pour les inputs */
+  }
+
+  #features-title {
+    font-size: 24px !important; /* Réduit la taille du titre des fonctionnalités */
+    margin-bottom: 25px !important;
+  }
+}
+
+
+/* Small devices (mobile phones, 320px and up) */
+@media screen and (max-width: 575.98px) {
+  
+  body {
+    width: 100% !important;
+  }
+  .features ul li, li i {
+    font-size: 12px !important;
+  }
+  li i {
+    margin-right: 5px !important;
+  }
+  .wrapper, .wrapper-content {
+    width: 100% !important;
+    padding: 0px !important;
+  }
+  .wrapper {
+    width: 99vw !important;
+  }
+  .wrapper-form {
+    width: 100% !important;
+    padding: 5px !important;
+    margin: 0px;
+    width: 100%;
+  }
+  .wrapper .wrapper-content {
+    flex-direction: column !important;
+    padding: 20px !important;
+    width: 100% !important;
+  }
+  #logo {
+    font-size: 40px !important;
+    margin: 5px !important;
+    margin-bottom: 15px !important;
+  }
+  #animated-text {
+    white-space: normal; /* Permet le retour à la ligne */
+    animation: none; /* Désactive l'animation sur mobile */
+    border-right: none; /* Supprime le curseur clignotant sur mobile */
+    font-size: 18px !important;
+    white-space: normal; /* Permet le retour à la ligne */
+  }
+  #sub-text {
+    font-size: 15px !important;
+  }
+
+  .title-text .logo-details {
+    align-items: start !important;;
+    margin-bottom: 12px !important;
+  }
+  .form-inner form .field input {
+    font-size: 15px !important;
+  }
+  form .btn input[type="submit"] {
+    font-size: 18px !important;
+  }
+  .form-inner form .pass-link a,
+  .form-inner form .signup-link {
+    font-size: 12px !important;
+    text-decoration: none;
+  }
+  .form-inner form .field input {
+    font-size: 15px !important; /* Réduit la taille de la police pour les inputs */
+  }
+  #features-title {
+    font-size: 20px !important; /* Réduit la taille du titre des fonctionnalités */
+    margin-bottom: 20px !important;
+  }
 }

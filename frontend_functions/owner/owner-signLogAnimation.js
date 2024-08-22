@@ -1,7 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const text = "Bienvenue chez Extase-Home. Votre Gestionnaire de Logement...";
+    const text = "Extase-Home, votre gestionnaire de logement...";
     const textContainer = document.getElementById("animated-text");
   
     let index = 0;
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
     function resetAnimation() {
       index = 0;
-      textContainer.innerHTML = ''; // Effacer le texte
+      textContainer.innerHTML = '...'; // Effacer le texte
       setTimeout(() => {
         typingInterval = setInterval(typeWriter, 100); // Recommencer l'animation
       }, 1000); // Pause d'une seconde avant de redémarrer

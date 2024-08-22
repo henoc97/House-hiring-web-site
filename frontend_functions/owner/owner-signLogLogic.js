@@ -15,7 +15,8 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     // Vérification si les mots de passe correspondent
     if (pwd !== pwd1) {
         messageDiv.textContent = "Les mots de passe ne correspondent pas.";
-        messageDiv.style.color = 'red';
+        messageDiv.classList.remove('green-message');
+        messageDiv.classList.add('red-message');
         return;
     }
 
@@ -36,16 +37,19 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         if (data.message === 'OTP envoyé') {
             document.getElementById('signup-form').reset();
             messageDiv.textContent = "Veuillez vérifier vos courriers pour valider l'inscription.";
-            messageDiv.style.color = 'green';
+            messageDiv.classList.remove('red-message');
+            messageDiv.classList.add('green-message');
         } else {
             messageDiv.textContent = "Erreur : " + data.message;
-            messageDiv.style.color = 'red';
+            messageDiv.classList.add('red-message');
+            messageDiv.classList.remove('green-message');
         }
     })
     .catch(error => {
         console.error('Erreur:', error);
         messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer.";
-        messageDiv.style.color = 'red';
+        messageDiv.classList.add('red-message');
+        messageDiv.classList.remove('green-message');
     });
 });
 

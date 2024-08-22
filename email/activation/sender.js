@@ -10,30 +10,26 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const sendOTPemail = function(email, pwd, codeOTP) {
-  ejs.renderFile(__dirname + '/app_activation.ejs',
-    { email: email, pwd: pwd, codeOTP: codeOTP }, 
-    (err, htmlData) => {
-      if (err) {
-        console.error("Unable to read HTML file: ", err);
-        return;
-      }
-
-      const mailOptions = {
-        from: process.env.APP_EMAIL,
-        to: email,
-        subject: 'Bienvenu chez Extase-Home',
-        html: htmlData
-      };
-
-      transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
+const sendOTPemail = async (email, pwd, codeOTP) => {
+  try {
+    const htmlData = await ejs.renderFile(__dirname + '/app-activation.ejs', {
+      email: email, 
+      pwd: pwd, 
+      codeOTP: codeOTP
     });
+
+    const mailOptions = {
+      from: process.env.APP_EMAIL,
+      to: email,
+      subject: 'Bienvenue chez Extase-Home',
+      html: htmlData
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent: ' + info.response);
+  } catch (error) {
+    console.error("Error occurred: ", error);
+  }
 };
 
 module.exports = sendOTPemail;

@@ -2,27 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extase-Home - Sign-Log</title>
     <meta name="description" content="Extase-Home offre des solutions de gestion de logement alliant luxe et confort moderne. Découvrez nos services de gestion immobilière.">
     <link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://unpkg.com;">
     <link rel="stylesheet" href="/style.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://unpkg.com;">
   </head>
   <body>
     <div class="wrapper">
+      <i class='bx bx-home-smile bx-tada' id="logo"></i>
       <div class="title-text">
         <div class="logo-details">
-          <i class='bx bx-home-smile bx-tada' id="logo"></i>
           <div class="logo-name">
-            <h1 id="animated-text">
-              Bienvenue chez Extase-Home - Votre Gestionnaire de Logement
-            </h1>
-            <h2 id="sub-text">Services de Gestion Immobilière</h2>
+            <h1 id="animated-text"></h1>
           </div>
         </div>
       </div>
@@ -36,7 +33,7 @@
             <li><i class='bx bx-download'></i> Téléchargement pratique des reçus de paiement.</li>
             <li><i class='bx bx-support'></i> Support client disponible 24/7.</li>
             <li><i class='bx bx-crown'></i> Confort moderne et services de luxe.</li>
-        </ul>
+          </ul>
         </div>
         <div class="wrapper-form">
           <div class="form-container">
@@ -63,6 +60,7 @@
                 <div class="signup-link">Pas de compte? <strong><a href="#">S'inscrire maintenant</a></strong></div>
               </form>
               <form id="signup-form" class="signup">
+                <div id="message">  </div>
                 <div class="field">
                   <input type="text" id="signup-email" name="email" placeholder="Adresse e-mail" required>
                 </div>

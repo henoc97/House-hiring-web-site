@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem('sold', data.sold);
         localStorage.setItem('accessToken', data.accessToken);
         setCookie("refreshToken", data.refreshToken, 7);
-        window.location.href = ownerURL;
+        window.location.href = ownerDashboardURL;
       } else {
         alert('Erreur de login');
       }
