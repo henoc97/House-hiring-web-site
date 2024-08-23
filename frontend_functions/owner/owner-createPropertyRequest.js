@@ -75,7 +75,6 @@ function createPropertyRequest(){
     })
     .then(response => {
         if (!response.ok && (response.status === 401 || response.status === 403)) {
-            alert("problem")
             return renewAccessToken().then(() => createPropertyRequest());
         }
         return response.json();
@@ -93,7 +92,7 @@ function createPropertyRequest(){
     })
     .catch(error => {
         console.error('Erreur:', error);
-        // window.location.href = ownerLogSignURL;
+        window.location.href = ownerError;
     });
   } else {
     alert('solde insuffisant. Cette opération coute 0.5€')

@@ -13,6 +13,10 @@ router.get('/owner-redirect', (req, res) => {
   res.render('owner-redirect');
 });
 
+router.get('/owner-error', (req, res) => {
+  res.render('error-owner-request');
+});
+
 // Routes pour les vues
 router.get('/owner', (req, res) => {
   res.render('owner-index', {

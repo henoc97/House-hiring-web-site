@@ -57,7 +57,6 @@ function deleteMessageLogic(tenantId) {
         })
         .then(response => {
             if (!response.ok && (response.status === 401 || response.status === 403)) {
-                alert("problem")
                 return renewAccessToken().then(() => deleteSelectedMessage(messageId));
             }
             return response.json();
@@ -67,6 +66,7 @@ function deleteMessageLogic(tenantId) {
         })
         .catch(error => {
             console.error('Erreur:', error);
+            window.location.href = ownerError; 
         });
     }
 

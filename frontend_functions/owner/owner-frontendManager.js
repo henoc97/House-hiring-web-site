@@ -3,7 +3,6 @@
 
 const recentTenantsTable = document.getElementById('recent-tenants-table');
 if (recentTenantsTable) {    
-  // alert('Please select');          
   getUnvalidReceiptsRequest();
   getRecentTenantsRequest();
 }

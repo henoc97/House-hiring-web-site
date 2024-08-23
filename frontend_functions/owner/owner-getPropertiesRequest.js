@@ -24,7 +24,11 @@ function getPropertiesRequest(type) {
         'Content-Type': 'application/json'
       },
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok && (response.status === 401 || response.status === 403)) {
+      return renewAccessToken().then(() => getPropertiesRequest(type));
+    }
+      response.json()})
     .then(data => {
       console.log("data received:", data); // Log les données reçues
 
@@ -45,7 +49,9 @@ function getPropertiesRequest(type) {
       
       
     })
-    .catch((error) => console.error('Error fetching properties:', error));
+    .catch((error) => {
+      window.location.href = ownerError; 
+      console.error('Error fetching properties:', error)});
   }
 
 
@@ -113,7 +119,12 @@ function editProperty(propertyId) {
         "id": propertyId,
       })
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => editProperty(propertyId));
+    }
+    response.json()})
   .then(data => {
       console.log("Editing property:", data);
 
@@ -131,7 +142,9 @@ function editProperty(propertyId) {
       // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
       submitButton.dataset.editingId = propertyId;
   })
-  .catch(error => console.error('Error fetching property details:', error));
+  .catch(error => {
+    window.location.href = ownerError; 
+    console.error('Error fetching property details:', error)});
 }
 
 

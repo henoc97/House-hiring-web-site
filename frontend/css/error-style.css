@@ -1,0 +1,65 @@
+
+:root {
+    --dark-blue: #11101D;
+    --white-blue: #1D1D31;
+    --white: #fff;
+    --gray: #8390a2;
+    --purple: #8964f6; 
+    --purple2: #624bff;
+    --blue: #00A2E8;
+    --green: #198754;
+    --orange: #FFAA00;
+    --red: #ef2b3e;
+  }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.error-container {
+    text-align: center;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-icon {
+    font-size: 80px;
+    color: var(--red);
+    margin-bottom: 20px;
+}
+
+.error-title {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+}
+
+.error-message {
+    font-size: 18px;
+    color: #666;
+    margin: 10px 0 20px;
+}
+
+.btn-home {
+    padding: 10px;
+    background-color: var(--blue);
+    border: none;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-home:hover {
+    background: -webkit-linear-gradient(left, var(--blue), var(--white-blue), var(--gray));
+}

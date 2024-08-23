@@ -31,7 +31,18 @@ document.getElementById('signup-form').addEventListener('submit', function(event
             pwd: pwd
         })
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        if (response.status === 401) {
+          alert('Accès interdit. Vérifiez vos informations.');
+        } else if (response.status === 504) {
+          alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
+        } else {
+          alert('Erreur de réseau ou serveur inaccessible. Code d\'erreur : ' + response.status);
+        }
+        throw new Error(`Erreur de réseau: ${response.status}`);
+      }
+      response.json()})
     .then(data => {
         // Gérer la réponse de la requête ici
         if (data.message === 'OTP envoyé') {
@@ -66,7 +77,14 @@ function makeRequest() {
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error('Erreur de réseau');
+      if (response.status === 401) {
+        alert('Accès interdit. Vérifiez vos informations de connexion.');
+      } else if (response.status === 504) {
+        alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
+      } else {
+        alert('Erreur de réseau ou serveur inaccessible. Code d\'erreur : ' + response.status);
+      }
+      throw new Error(`Erreur de réseau: ${response.status}`);
     }
     return response.json();
   })
@@ -80,11 +98,12 @@ function makeRequest() {
       setCookie("refreshToken", data.refreshToken, 7);
       window.location.href = ownerDashboardURL; 
     } else {
-      alert('Erreur de login');
+      alert('Erreur de login. Veuillez vérifier vos informations.');
     }
   })
   .catch(error => {
     console.error('Erreur:', error);
+    alert('Une erreur est survenue. Veuillez réessayer.');
   });
 }
 

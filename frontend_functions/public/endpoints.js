@@ -15,9 +15,13 @@ const hostTenant = root + "backendtenant/";
 
 const ownerURL = "/owner";
 
+const ownerError = root + 'owner/owner-error';
+
 const ownerDashboardURL = root + "owner" + ownerURL; // Not an error
 
 const tenantURL = "/tenant";
+
+const tenantError = root + 'tenant/tenant-error';
 
 const tenantDashboardURL = root + "tenant" + tenantURL; // Not an error
 

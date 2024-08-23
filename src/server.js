@@ -29,9 +29,8 @@ const crypto = require('crypto');
 app.use((req, res, next) => {
   res.locals.nonce = crypto.randomBytes(16).toString('base64');
   const cspPolicy = process.env.NODE_ENV === 'production'
-    ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://unpkg.com 'nonce-${res.locals.nonce}' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`
-    : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com 'nonce-${res.locals.nonce}'; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`;
-
+  ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'nonce-${res.locals.nonce}' https://fonts.googleapis.com https://unpkg.com 'unsafe-inline'; style-src-elem 'self' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`
+  : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com/; style-src 'self' 'unsafe-inline' 'nonce-${res.locals.nonce}' https://fonts.googleapis.com https://unpkg.com; style-src-elem 'self' https://fonts.googleapis.com https://unpkg.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://unpkg.com https://fonts.googleapis.com/; img-src 'self' data:; connect-src 'self' http://localhost:3000; report-uri /csp-violation-report-endpoint;`;
   try {
     res.setHeader('Content-Security-Policy', cspPolicy);
   } catch (error) {
@@ -40,6 +39,7 @@ app.use((req, res, next) => {
   
   next();
 });
+
 
 
 
@@ -84,84 +84,86 @@ const backendTenantRouter = require('./routers/backendTenant');
 // Commenté pour l'instant, décommentez si vous activez le cache
 // const cache = apicache.middleware;
 // app.use('/owner', (req, res, next) => {
-//   app.set('views', ownerViewsPath);
-//   next();
-// }, cache('5 minutes'), frontendOwnerRouter);
-
-// app.use('/tenant', (req, res, next) => {
-//   app.set('views', tenantViewsPath);
-//   next();
-// }, cache('5 minutes'), frontendTenantRouter);
-
-// Configurer les vues pour les routes spécifiques
-app.use('/owner', (req, res, next) => {
-  app.set('views', ownerViewsPath);
-  next();
-}, frontendOwnerRouter);
-
-app.use('/tenant', (req, res, next) => {
-  app.set('views', tenantViewsPath);
-  next();
-}, frontendTenantRouter);
-
-app.use(express.json());
-// Endpoint pour recevoir les rapports CSP
-app.post('/csp-violation-report-endpoint', express.json(), (req, res) => {
-  console.log('Requête reçue sur /csp-violation-report-endpoint:', req.body);
-  const report = req.body['csp-report'] || req.body;
-  console.log('CSP Violation Report:', report);
+  //   app.set('views', ownerViewsPath);
+  //   next();
+  // }, cache('5 minutes'), frontendOwnerRouter);
   
-  // Enregistrer le rapport dans un fichier
-  fs.appendFile(path.join(__dirname, 'csp-reports.log'), new Date().toISOString() + "--"  +  JSON.stringify(report) + '\n', (err) => {
-    if (err) {
-      console.error('Erreur lors de l\'enregistrement du rapport CSP:', err);
-    }
-  });
-  
-  res.status(204).end(); // Répondre avec un statut 204 No Content
-});
-
-// Route de test CSP
-app.get('/test-csp', (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Test CSP</title>
-      <script nonce="${res.locals.nonce}">
+  // app.use('/tenant', (req, res, next) => {
+    //   app.set('views', tenantViewsPath);
+    //   next();
+    // }, cache('5 minutes'), frontendTenantRouter);
+    
+    // Configurer les vues pour les routes spécifiques
+    app.use('/owner', (req, res, next) => {
+      app.set('views', ownerViewsPath);
+      next();
+    }, frontendOwnerRouter);
+    
+    app.use('/tenant', (req, res, next) => {
+      app.set('views', tenantViewsPath);
+      next();
+    }, frontendTenantRouter);
+    
+    app.use(express.json());
+    // Endpoint pour recevoir les rapports CSP
+    app.post('/csp-violation-report-endpoint', express.json(), (req, res) => {
+      console.log('Requête reçue sur /csp-violation-report-endpoint:', req.body);
+      const report = req.body['csp-report'] || req.body;
+      console.log('CSP Violation Report:', report);
+      
+      // Enregistrer le rapport dans un fichier
+      fs.appendFile(path.join(__dirname, 'csp-reports.log'), new Date().toISOString() + "--"  +  JSON.stringify(report) + '\n', (err) => {
+        if (err) {
+          console.error('Erreur lors de l\'enregistrement du rapport CSP:', err);
+        }
+      });
+      
+      res.status(204).end(); // Répondre avec un statut 204 No Content
+    });
+    
+    // Route de test CSP
+    app.get('/test-csp', (req, res) => {
+      res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Test CSP</title>
+        <script nonce="${res.locals.nonce}">
         // Ceci devrait être autorisé
         console.log('Test CSP');
-      </script>
-      <script>
+        </script>
+        <script>
         // Ceci devrait provoquer une violation CSP
         console.log('Test CSP violation');
-      </script>
-    </head>
-    <body>
-      <h1>Test CSP</h1>
-    </body>
-    </html>
-  `);
+        </script>
+        </head>
+        <body>
+        <h1>Test CSP</h1>
+        </body>
+        </html>
+        `);
+      });
+      
+      // Configurer les routes backend
+      app.use('/backendowner', backendOwnerRouter);
+      app.use('/backendtenant', backendTenantRouter);
+      
+      // Route de test pour le WebSocket
+      app.get('/websocketServerTest', (req, res) => {
+        res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Configurer les routes backend
-app.use('/backendowner', backendOwnerRouter);
-app.use('/backendtenant', backendTenantRouter);
-
-// Route de test pour le WebSocket
-app.get('/websocketServerTest', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
+const error404ViewsPath = path.join(__dirname, '../frontend/error/error-page404.html');
+const error500ViewsPath = path.join(__dirname, '../frontend/error/error-page500.html');
 // Middleware pour gérer les erreurs non gérées
 app.use((err, req, res, next) => {
   console.error('Erreur non gérée:', err.stack);
-  res.status(500).send('Erreur interne du serveur.');
+  res.status(500).sendFile(error500ViewsPath);
 });
 
 // Middleware pour gérer les routes non trouvées
 app.use((req, res) => {
-  res.status(404).send('Page non trouvée');
+  res.status(404).sendFile(error404ViewsPath);
 });
 
 // Démarrer le serveur

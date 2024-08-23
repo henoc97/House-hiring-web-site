@@ -10,6 +10,9 @@ router.get('/tenant-activate', (req, res) => {
   res.render('tenant-activation');
 });
 
+router.get('/tenant-error', (req, res) => {
+  res.render('error-tenant-request');
+});
 // Routes pour les vues
 router.get('/tenant', (req, res) => {
   res.render('tenant-index', {

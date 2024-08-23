@@ -26,7 +26,11 @@ function getAllTenantsRequest() {
       'Content-Type': 'application/json'
     },
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      return renewAccessToken().then(() => getAllTenantsRequest());
+    }
+    response.json()})
   .then(data => {
     console.log("data received:", data); // Log les données reçues
 
@@ -155,18 +159,21 @@ function getAllTenantsRequest() {
       };
     } else {
       console.error("Element with ID 'tableBody' not found.");
+      window.location.href = ownerError; 
     }
   })
-  .catch((error) => console.error('Error fetching tableBody:', error));
-}
-
-function allListeners() {
-}
-
-// UPDATE tenant
-function editTenant(tenantId) {
-  let token = localStorage.getItem('accessToken');
-  fetch(host + "my-tenant", {  // Utilise l'ID pour récupérer les détails de locataire
+  .catch((error) => {
+    window.location.href = ownerError; 
+    console.error('Error fetching tableBody:', error)});
+  }
+  
+  function allListeners() {
+  }
+  
+  // UPDATE tenant
+  function editTenant(tenantId) {
+    let token = localStorage.getItem('accessToken');
+    fetch(host + "my-tenant", {  // Utilise l'ID pour récupérer les détails de locataire
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -175,50 +182,60 @@ function editTenant(tenantId) {
       body : JSON.stringify({
         "id": tenantId,
       })
-  })
-  .then(response => response.json())
-  .then(data => {
-      console.log("Editing property:", data);
-
-      // Remplir le formulaire avec les données actuelles de le locataire
-      document.getElementById('edit-lastname').value = data.lastname;
-      document.getElementById('edit-firstname').value = data.firstname;
-      document.getElementById('edit-contact-moov').value = data.contactmoov;
-      document.getElementById('edit-contact-tg').value = data.contacttg;
-      // Vérifier si la date est valide
-      let fullDate = new Date(data.create_time);
-      // Extraire la date au format yyyy-MM-dd si la date est valide
-      let formattedDate = fullDate.toISOString().split('T')[0];
-      // Assigner la date formatée au champ de saisie (si nécessaire)
-      document.getElementById('edit-date').value = formattedDate;
-      const submitButton = document.querySelector('#edit-tenant-form button[type="submit"]');
-      // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
-      submitButton.dataset.editingId = tenantId;
-  })
-  .catch(error => console.error('Error fetching property details:', error));
-}
-
-
-function updateTenant(editingId) {
-  const updatedData = {
-      id : editingId,
-      lastname : document.getElementById('edit-lastname').value,
-      firstname : document.getElementById('edit-firstname').value,
-      contactmoov : document.getElementById('edit-contact-moov').value,
-      contacttg : document.getElementById('edit-contact-tg').value,
-      date : document.getElementById('edit-date').value,
-  };
-  let token = localStorage.getItem('accessToken');
-  fetch(host + "update-tenant", {  // Utilise l'ID pour récupérer les détails de la propriété
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      },
-      body : JSON.stringify(updatedData)
-  })
-  .then(response => response.json())
-  .then(data => {
+    })
+    .then(response => {
+      if (!response.ok && (response.status === 401 || response.status === 403)) {
+        return renewAccessToken().then(() => editTenant());
+      }
+      response.json()})
+      .then(data => {
+        console.log("Editing property:", data);
+        
+        // Remplir le formulaire avec les données actuelles de le locataire
+        document.getElementById('edit-lastname').value = data.lastname;
+        document.getElementById('edit-firstname').value = data.firstname;
+        document.getElementById('edit-contact-moov').value = data.contactmoov;
+        document.getElementById('edit-contact-tg').value = data.contacttg;
+        // Vérifier si la date est valide
+        let fullDate = new Date(data.create_time);
+        // Extraire la date au format yyyy-MM-dd si la date est valide
+        let formattedDate = fullDate.toISOString().split('T')[0];
+        // Assigner la date formatée au champ de saisie (si nécessaire)
+        document.getElementById('edit-date').value = formattedDate;
+        const submitButton = document.querySelector('#edit-tenant-form button[type="submit"]');
+        // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
+        submitButton.dataset.editingId = tenantId;
+      })
+      .catch(error => {
+        window.location.href = ownerError; 
+        console.error('Error fetching property details:', error)});
+      }
+      
+      
+      function updateTenant(editingId) {
+        const updatedData = {
+          id : editingId,
+          lastname : document.getElementById('edit-lastname').value,
+          firstname : document.getElementById('edit-firstname').value,
+          contactmoov : document.getElementById('edit-contact-moov').value,
+          contacttg : document.getElementById('edit-contact-tg').value,
+          date : document.getElementById('edit-date').value,
+        };
+        let token = localStorage.getItem('accessToken');
+        fetch(host + "update-tenant", {  // Utilise l'ID pour récupérer les détails de la propriété
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+          },
+          body : JSON.stringify(updatedData)
+        })
+        .then(response => {
+          if (!response.ok && (response.status === 401 || response.status === 403)) {
+            return renewAccessToken().then(() => updateTenant());
+          }
+    response.json()})
+    .then(data => {
     console.log('data updated : ' + JSON.stringify(data));
     console.log(data.lastname + ' ' + data.firstname + ' ' + data.contactmoov + ' ' + data.contacttg);
     const formattedDate = new Date(data.create_time).toLocaleString('fr-FR', {
@@ -230,58 +247,66 @@ function updateTenant(editingId) {
     // addTenantToTable(tenant);
     // Mettre à jour directement la ligne correspondante
     const row = document.getElementById("all-tenants-table")
-      .querySelector(`tr[data-id="${editingId}"]`);
+    .querySelector(`tr[data-id="${editingId}"]`);
     console.log("row : " + row);
     if (row) {
-        row.children[0].textContent = data.lastname + ' ' + data.firstname;
-        row.children[1].textContent = data.contactmoov + '/' + data.contacttg;
-        row.children[3].textContent = formattedDate;
+      row.children[0].textContent = data.lastname + ' ' + data.firstname;
+      row.children[1].textContent = data.contactmoov + '/' + data.contacttg;
+      row.children[3].textContent = formattedDate;
     }
     // allListeners();
     resetForm();
   })
-  .catch(error => console.error('Error updating property:', error));  
-}
-
-function resetForm() {
-  const form = document.getElementById('edit-tenant-form')
-  if (form) {
-    const submitButton = document.querySelector('#edit-tenant-form button[type="submit"]');
-    // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
-    delete submitButton.dataset.editingId;
-    // Sélectionne la modale et son contenu
-    const modal = document.getElementById('edit-modal');
-    const modalContent = document.querySelector('.modal-content');
-    modal.classList.remove('show');
-    modalContent.classList.remove('show');
-    setTimeout(() => {
-        modal.style.display = 'none';
-    }, 300);
+  .catch(error => {
+    console.error('Error updating property:', error)});  
   }
   
-}
-
-// Appelle cette fonction après une modification réussie
-
-
-function deleteTenant(tenantId) {
+  function resetForm() {
+    const form = document.getElementById('edit-tenant-form')
+    if (form) {
+      const submitButton = document.querySelector('#edit-tenant-form button[type="submit"]');
+      // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
+      delete submitButton.dataset.editingId;
+      // Sélectionne la modale et son contenu
+      const modal = document.getElementById('edit-modal');
+      const modalContent = document.querySelector('.modal-content');
+      modal.classList.remove('show');
+      modalContent.classList.remove('show');
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300);
+    }
+    
+  }
+  
+  // Appelle cette fonction après une modification réussie
+  
+  
+  function deleteTenant(tenantId) {
   let token = localStorage.getItem('accessToken');
   fetch(host + "delete-tenant", {
-      method: 'POST',
-      headers: {
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ "id": tenantId })
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "id": tenantId })
   })
-  .then(response => response.json())
-  .then(() => {
+  .then(response =>{
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      return renewAccessToken().then(() => deleteTenant());
+    }
+    response.json()})
+    .then(() => {
       const row = document.getElementById("all-tenants-table")
       .querySelector(`tr[data-id="${tenantId}"]`);
       if (row) {
-          row.remove(); // Supprime la ligne du tableau
+        row.remove(); // Supprime la ligne du tableau
       }
-  })
-  .catch(error => console.error('Error deleting tenant:', error));
-}
-
+    })
+    .catch(error => {
+      window.location.href = ownerError; 
+      console.error('Error deleting tenant:', error)});
+  }
+  
+  
