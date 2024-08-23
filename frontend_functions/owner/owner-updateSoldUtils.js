@@ -1,10 +1,5 @@
 
 
-
-
-
-
-
 function setSold(sold) {
     localStorage.setItem('sold', sold);
   }

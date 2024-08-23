@@ -791,6 +791,138 @@
   margin-bottom: 2px;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.info-box {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* display: flex; */
+  align-items: center;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+}
+
+.info-box i {
+  font-size: 22px !important;
+  color: var(--purple2) !important;
+  margin-right: 15px;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-title {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-size: 20px !important;
+  font-weight: bold;
+  color: var(--green);
+}
+
+#subscription-info::placeholder {
+  text-align: center;
+  color: var(--dark-blue); /* Couleur du texte du placeholder */
+  font-size: 20px; /* Taille de la police du placeholder */
+  font-weight: bold;
+  opacity: 1; /* Opacité du texte */
+}
+
+.payment-notice {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 15px;
+  background-color: #fff3e0;
+}
+
+.payment-notice span {
+  font-weight: bold;
+  color: var(--orange);
+}
+
+.payment-notice p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Style pour les conteneurs des boutons radio */
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Style pour les labels des boutons radio */
+.custom-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #333;
+}
+
+/* Style pour le cercle des boutons radio */
+.radio-inner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--blue); /* Couleur du bord du bouton radio */
+  background-color: #fff; /* Couleur de fond du bouton radio */
+}
+
+/* Style pour le cercle intérieur lorsqu'il est sélectionné */
+input[type="radio"]:checked + .custom-radio .radio-inner {
+  background-color: var(--blue); /* Couleur de fond lorsque sélectionné */
+}
+
+/* Style pour le point central dans le cercle sélectionné */
+.radio-inner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff; /* Couleur du point central */
+}
+
+/* Style pour le label du bouton radio */
+.radio-label {
+  margin-left: 10px;
+}
+
 /*        form          */
 .form-group {
   margin-bottom: 15px;

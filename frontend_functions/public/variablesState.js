@@ -1,10 +1,10 @@
 
 
-    let registerHomePrice = 650 * 0.5;
-    let registerTenant = 650 * 0.25;
-    let insertPic = 650 * 0.5;
-    let tenantMonthlyPrice = 650 * 0.75;
-    let validateReceiptPrice = 650 * 0.25;
+    let registerHomePrice = 350;
+    let registerTenant = 150;
+    let insertPic = 450;
+    let tenantMonthlyPrice = 400;
+    let validateReceiptPrice = 150;
 
 
 

@@ -22,6 +22,7 @@ function uploadedImageLogic(uploadForm) {
                     alert("problem")
                     return renewAccessToken().then(() => uploadedImageLogic(uploadForm));
                 }
+                window.location.href = ownerError;
                 throw new Error('Erreur lors de l\'upload du fichier');
             }
 

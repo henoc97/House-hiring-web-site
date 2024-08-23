@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(async response => {
       if (!response.ok) {
         const errorData = await response.json();
+        alert('Erreur lors de la création du compte'); // Affiche un message d'erreur plus descriptif
         throw new Error(errorData.message || 'Erreur inconnue');
       }
       return response.json();

@@ -41,10 +41,15 @@ function getUnvalidReceiptsRequest() {
     },
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      return renewAccessToken().then(() => getUnvalidReceiptsRequest());
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => getUnvalidReceiptsRequest());
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    return response.json(); // Convertir la réponse en JSON si le statut n'est pas 403
+    return response.json();
   })
   .then(data => {
     if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécution
@@ -73,7 +78,7 @@ function getUnvalidReceiptsRequest() {
     }
   })
   .catch((error) => {
-    window.location.href = tenantError;
+    // window.location.href = tenantError;
     console.error('Error fetching unvaliReceipts:', error);
   });
 }
@@ -114,10 +119,16 @@ function deleteReceiptTenant(receiptId) {
       body: JSON.stringify({ "id": receiptId })
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      return renewAccessToken().then(() => deleteReceiptTenant(receiptId));
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => deleteReceiptTenant(receiptId));
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+  })
   .then(() => {
       const row = document.querySelector(`tr[data-id="${receiptId}"]`);
       if (row) {

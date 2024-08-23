@@ -28,11 +28,16 @@ function getValidReceiptsRequest() {
       },
     })
     .then(response => {
-      if (!response.ok && (response.status === 401 || response.status === 403)) {
-        alert("problem")
-        return renewAccessToken().then(() => getValidReceiptsRequest());
+      if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+              return renewAccessToken().then(() => getValidReceiptsRequest());
+          }
+          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          window.location.href = ownerError;
+          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
       }
-      response.json()})
+      return response.json();
+  })
     .then(data => {
       if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécutions
 
@@ -94,7 +99,7 @@ function getValidReceiptsRequest() {
       }
     })
     .catch((error) => {
-      window.location.href = ownerError;
+      // window.location.href = ownerError;
       console.error('Error fetching tenantsproperties:', error)});
   }
 

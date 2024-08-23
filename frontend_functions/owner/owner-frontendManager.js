@@ -196,5 +196,14 @@ document.getElementById('btn').addEventListener('click', function() {
           }
         });
       }
+
+      if (this.id === 'subscription-button') {
+        fetch(ownerURL + '/owner-subscription')
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector('.details').innerHTML = data;
+          
+        });
+      }
     });
   });

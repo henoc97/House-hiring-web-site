@@ -27,10 +27,16 @@ function getAllTenantsRequest() {
     },
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      return renewAccessToken().then(() => getAllTenantsRequest());
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => getAllTenantsRequest());
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+})
   .then(data => {
     console.log("data received:", data); // Log les données reçues
 
@@ -183,10 +189,16 @@ function getAllTenantsRequest() {
       })
     })
     .then(response => {
-      if (!response.ok && (response.status === 401 || response.status === 403)) {
-        return renewAccessToken().then(() => editTenant(tenantId));
+      if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+              return renewAccessToken().then(() => editTenant(tenantId));
+          }
+          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          window.location.href = ownerError;
+          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
       }
-      response.json()})
+      return response.json();
+  })
       .then(data => {
         console.log("Editing property:", data);
         
@@ -230,10 +242,16 @@ function getAllTenantsRequest() {
           body : JSON.stringify(updatedData)
         })
         .then(response => {
-          if (!response.ok && (response.status === 401 || response.status === 403)) {
-            return renewAccessToken().then(() => updateTenant(editingId));
+          if (!response.ok) {
+              if (response.status === 401 || response.status === 403) {
+                  return renewAccessToken().then(() => updateTenant(editingId));
+              }
+              // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+              window.location.href = ownerError;
+              throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
           }
-    response.json()})
+          return response.json();
+      })
     .then(data => {
     console.log('data updated : ' + JSON.stringify(data));
     console.log(data.lastname + ' ' + data.firstname + ' ' + data.contactmoov + ' ' + data.contacttg);
@@ -292,11 +310,17 @@ function getAllTenantsRequest() {
     },
     body: JSON.stringify({ "id": tenantId })
   })
-  .then(response =>{
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      return renewAccessToken().then(() => deleteTenant(tenantId));
+  .then(response => {
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => deleteTenant(tenantId));
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+})
     .then(() => {
       const row = document.getElementById("all-tenants-table")
       .querySelector(`tr[data-id="${tenantId}"]`);

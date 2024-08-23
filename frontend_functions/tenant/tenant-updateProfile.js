@@ -20,10 +20,16 @@ function updateTenant() {
         body : JSON.stringify(updatedData)
     })
     .then(response => {
-        if (!response.ok && (response.status === 401 || response.status === 403)) {
-            return renewAccessToken().then(() => updateTenant());
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+                return renewAccessToken().then(() => updateTenant());
+            }
+            // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+            window.location.href = ownerError;
+            throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
         }
-        response.json()})
+        return response.json();
+      })
     .then(data => {
         console.log('Updated data : ' + JSON.stringify(data));
         document.getElementById('tenant-lastname').value = data.lastname;

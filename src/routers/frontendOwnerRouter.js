@@ -75,6 +75,13 @@ router.get('/owner-receipts', (req, res) => {
   });
 });
 
+router.get('/owner-subscription', (req, res) => {
+  res.render('_owner-subscription', {
+    subscriptionForm : 'owner-subscription-form',
+    subscriptionInfo:'owner-subscription-info'
+  });
+});
+
 router.get('/owner-receipt', (req, res) => {
   res.render('owner-receipt');
 });

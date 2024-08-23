@@ -18,7 +18,8 @@ module.exports.createProperties = async (req, res) => {
 };
 
 module.exports.myProperties = async (req, res) => {
-    const query = "CALL show_properties(?)";
+    const { type } = req.body;
+    const query = type == 1 ? "CALL show_properties(?)" : "CALL get_unassigned_properties(?)";
     const values = [req.user.userId];
 
     try {

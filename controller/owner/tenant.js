@@ -35,7 +35,7 @@ module.exports.recentTenants = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows[0]);
+        console.log("ce que je veux : " + rows[0]);
         res.status(200).json(rows[0]);
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);

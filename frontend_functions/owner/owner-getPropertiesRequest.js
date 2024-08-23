@@ -23,12 +23,19 @@ function getPropertiesRequest(type) {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
       },
+      body: JSON.stringify({type: type})
     })
     .then(response => {
-      if (!response.ok && (response.status === 401 || response.status === 403)) {
-      return renewAccessToken().then(() => getPropertiesRequest(type));
-    }
-      response.json()})
+      if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+              return renewAccessToken().then(() => getPropertiesRequest(type));
+          }
+          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          window.location.href = ownerError;
+          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+      }
+      return response.json();
+  })
     .then(data => {
       console.log("data received:", data); // Log les données reçues
 
@@ -68,7 +75,7 @@ function getPropertiesRequest(type) {
         option.textContent = `${property.address} ${property.price}`;
         
         propertyOption.insertBefore(option, propertyOption.firstChild);
-
+        
         // Sélectionner le premier élément, qui est le dernier ajouté
         if (propertyOption.firstChild) {
           propertyOption.firstChild.selected = true;
@@ -120,11 +127,16 @@ function editProperty(propertyId) {
       })
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      alert("problem")
-      return renewAccessToken().then(() => editProperty(propertyId));
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => editProperty(propertyId));
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+})
   .then(data => {
       console.log("Editing property:", data);
 
@@ -177,11 +189,16 @@ function updateProperty(editingId) {
       body : JSON.stringify(updatedData)
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      alert("problem")
-      return renewAccessToken().then(() => updateProperty(editingId));
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => updateProperty(editingId));
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+})
   .then(data => {
     // Mettre à jour directement la ligne correspondante
     const row = document.querySelector(`tr[data-id="${editingId}"]`);
@@ -209,10 +226,16 @@ function deleteProperty(propertyId) {
       body: JSON.stringify({ "id": propertyId })
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      return renewAccessToken().then(() => deleteProperty(propertyId));
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => deleteProperty(propertyId));
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+})
   .then(() => {
       const row = document.getElementById("my-properties-table")
         .querySelector(`tr[data-id="${propertyId}"]`);

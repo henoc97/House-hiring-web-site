@@ -10,11 +10,16 @@ function getOwner() {
         },
     })
     .then(response => {
-      if (!response.ok && (response.status === 401 || response.status === 403)) {
-        alert("problem")
-        return renewAccessToken().then(() => getOwner());
+      if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+              return renewAccessToken().then(() => getOwner());
+          }
+          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          window.location.href = ownerError;
+          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
       }
-      response.json()})
+      return response.json();
+  })
     .then(data => {
         if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécution
         console.log("owner:", data);
@@ -60,11 +65,16 @@ function updateOwner() {
       body : JSON.stringify(updatedData)
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      alert("problem")
-      return renewAccessToken().then(() => updateOwner());
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => updateOwner());
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+})
   .then(data => {
       alert("Modification réussie...")
       // getPropertiesRequest(1); // Recharge les propriétés pour montrer les changements

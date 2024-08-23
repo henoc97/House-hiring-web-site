@@ -93,11 +93,16 @@ function deleteReceipt(receiptId) {
       body: JSON.stringify({ "id": receiptId })
   })
   .then(response => {
-    if (!response.ok && (response.status === 401 || response.status === 403)) {
-      alert("problem")
-      return renewAccessToken().then(() => deleteReceipt(receiptId));
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+            return renewAccessToken().then(() => deleteReceipt(receiptId));
+        }
+        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
-    response.json()})
+    return response.json();
+})
   .then(() => {
       const row = document.querySelector(`tr[data-id="${receiptId}"]`);
       if (row) {

@@ -40,9 +40,10 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         } else {
           alert('Erreur de réseau ou serveur inaccessible. Code d\'erreur : ' + response.status);
         }
+        alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
         throw new Error(`Erreur de réseau: ${response.status}`);
       }
-      response.json()})
+      return response.json()})
     .then(data => {
         // Gérer la réponse de la requête ici
         if (data.message === 'OTP envoyé') {
@@ -84,6 +85,7 @@ function makeRequest() {
       } else {
         alert('Erreur de réseau ou serveur inaccessible. Code d\'erreur : ' + response.status);
       }
+      alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
       throw new Error(`Erreur de réseau: ${response.status}`);
     }
     return response.json();

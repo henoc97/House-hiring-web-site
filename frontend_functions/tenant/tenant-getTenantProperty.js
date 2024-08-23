@@ -9,10 +9,16 @@ function getTenantPropertyRequest(type) {
       },
     })
     .then(response => {
-      if (!response.ok && (response.status === 401 || response.status === 403)) {
-        return renewAccessToken().then(() => getTenantPropertyRequest(type));
+      if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+              return renewAccessToken().then(() => getTenantPropertyRequest(type));
+          }
+          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          window.location.href = ownerError;
+          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
       }
-      response.json()})
+      return response.json();
+  })
     .then(data => {
       console.log("data received:", data); // Log les données reçues
 

@@ -10,10 +10,16 @@ function getMessagesRequest() {
         }
     })
     .then(response => {
-        if (!response.ok && (response.status === 401 || response.status === 403)) {
-            return renewAccessToken().then(() => getMessagesRequest());
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+                return renewAccessToken().then(() => getMessagesRequest());
+            }
+            // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+            window.location.href = ownerError;
+            throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
         }
-        response.json()})
+        return response.json();
+      })
     .then(data => {
         console.log("Messages received:", data); // Log the received data
 

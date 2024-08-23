@@ -1,8 +1,5 @@
 
 
-
-
-
 function setpwdRequest(){
 
     let setPwdForm = document.getElementById('set-pwd-form');
@@ -36,10 +33,15 @@ function setpwdRequest(){
       })
     })
     .then(response => {
-        if (!response.ok && (response.status === 401 || response.status === 403)) {
-            return renewAccessToken().then(() => setpwdRequest());
-        }
-        return response.json();
+      if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+              return renewAccessToken().then(() => setpwdRequest());
+          }
+          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          window.location.href = ownerError;
+          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+      }
+      return response.json();
     })
     .then(data => {
       setPwdForm.reset();

@@ -132,16 +132,22 @@ function createTenantRequest(){
       })
     })
     .then(response => {
-        if (!response.ok && (response.status === 401 || response.status === 403)) {
-            return renewAccessToken().then(() => createTenantRequest());
-        }
-        return response.json();
-    })
+      if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+              return renewAccessToken().then(() => createTenantRequest());
+          }
+          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          window.location.href = ownerError;
+          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+      }
+      return response.json();
+  })
     .then(data => {
         updateSoldRequest(registerTenant);
         console.log(data);
         document.getElementById('tenant-form').reset();
-        addtenantsPropertiestable(data)
+        addtenantsPropertiestable(data);
+        removePropertyOptionByValue(id);
         showNewSold();
     })
     .catch(error => {
@@ -151,4 +157,21 @@ function createTenantRequest(){
   } else {
     alert('solde insuffisant. Cette opération coute 0.25€')
   }
+}
+
+function removePropertyOptionByValue(value) {
+  const propertyOption = document.getElementById("property-option");
+  
+  if (propertyOption) {
+      const options = propertyOption.options;
+
+      for (let i = 0; i < options.length; i++) {
+          if (options[i].value === value) {
+              propertyOption.remove(i);
+              break; // Stopper la boucle après avoir supprimé l'option
+          }
+      }
+  } else {
+      console.error("Element with ID 'property-option' not found.");
   }
+}
