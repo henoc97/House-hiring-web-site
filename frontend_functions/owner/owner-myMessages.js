@@ -1,3 +1,5 @@
+
+
 function getMessagesRequest(tenantId) {
     let token = localStorage.getItem('accessToken');
     fetch(host + 'my-messages', {
@@ -10,8 +12,14 @@ function getMessagesRequest(tenantId) {
             "tenantId": tenantId
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok && (response.status === 401 || response.status === 403)) {
+            alert("problem")
+            return renewAccessToken().then(() => getMessagesRequest());
+        }
+        response.json()})
     .then(data => {
+        if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécution
         console.log("Messages received:", data); // Log the received data
 
         // Assuming 'data' is an array of messages
@@ -85,5 +93,7 @@ function getMessagesRequest(tenantId) {
             console.error("Element with ID 'chat-container' not found.");
         }
     })
-    .catch((error) => console.error('Error fetching messages:', error));
+    .catch((error) => {
+        window.location.href = ownerError;
+        console.error('Error fetching messages:', error)});
 }

@@ -110,7 +110,11 @@ function getValidReceiptsRequest() {
       'Content-Type': 'application/json'
     },
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      return renewAccessToken().then(() => getValidReceiptsRequest());
+  }
+    response.json()})
   .then(data => {
     console.log("data received:", data); // Log les données reçues
 
@@ -152,24 +156,6 @@ function getValidReceiptsRequest() {
 
       });
       addDropdownsListener();
-      // const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
-      // toggleDropdowns.forEach(toggle => {
-      //   toggle.addEventListener('click', function() {
-      //     const dropdown = this.closest('.dropdown');
-      //     dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
-      //   });
-      // });
-
-      // // Fermer le dropdown si on clique en dehors
-      // window.addEventListener('click', function(event) {
-      //   if (!event.target.matches('.toggle-dropdown')) {
-      //     const dropdowns = document.querySelectorAll('.dropdown');
-      //     dropdowns.forEach(dropdown => {
-      //       dropdown.classList.remove('show');
-      //     });
-      //   }
-      // });
-
       // Quand l'utilisateur clique sur une icône de suppression
       document.querySelectorAll('.delete-icon').forEach(icon => {
         icon.addEventListener('click', function() {
@@ -252,5 +238,7 @@ function getValidReceiptsRequest() {
       console.error("Element with ID 'receiptsTable' not found.");
     }
   })
-  .catch((error) => console.error('Error fetching receipts:', error));
+  .catch((error) => {
+    window.location.href = tenantError;
+    console.error('Error fetching receipts:', error)});
 }

@@ -98,7 +98,8 @@ function addtenantsPropertiestable(tenantProperty) {
       navigator.clipboard.writeText("Lien à usage unique : " + activationLink).then(() => {
           alert('Lien d\'activation copié dans le presse-papiers !');
       }).catch(err => {
-          console.error('Échec de la copie du lien : ', err);
+        window.location.href = ownerError;
+        console.error('Échec de la copie du lien : ', err);
       });
    });
   }
@@ -144,8 +145,8 @@ function createTenantRequest(){
         showNewSold();
     })
     .catch(error => {
-        console.error('Erreur:', error);
-        window.location.href = ownerError;
+      window.location.href = ownerError;
+      console.error('Erreur:', error);
     });
   } else {
     alert('solde insuffisant. Cette opération coute 0.25€')

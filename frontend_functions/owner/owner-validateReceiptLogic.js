@@ -16,19 +16,18 @@ function validateReceiptLogic() {
     .then(response => {
         if (!response.ok && (response.status === 401 || response.status === 403)) {
             alert("problem")
-            return renewAccessToken().then(() => validateReceipt());
+            return renewAccessToken().then(() => validateReceiptLogic());
         }
         return response.json();
     })
     .then(data => {
-        console.log(data);
-        updateSoldRequest(validateReceiptPrice);
-        window.location.href = ownerDashboardURL;
-        
+      console.log(data);
+      updateSoldRequest(validateReceiptPrice);
+      window.location.href = ownerDashboardURL;
     })
     .catch(error => {
-        console.error('Erreur:', error);
-        window.location.href = ownerLogSignURL;
+      console.error('Erreur:', error);
+      window.location.href = ownerError;
     });
   } else {
     alert('solde insuffisant. Cette opération coute 0.25€')

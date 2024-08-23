@@ -65,8 +65,8 @@ function deleteMessageLogic(tenantId) {
             
         })
         .catch(error => {
-            console.error('Erreur:', error);
             window.location.href = ownerError; 
+            console.error('Erreur:', error);
         });
     }
 

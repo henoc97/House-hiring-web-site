@@ -1,3 +1,5 @@
+
+
 function addUnvalidReceipt(unvalidReceipt) {
   const tableBody = document.getElementById("receipts-table");
   const formattedDate = new Date(unvalidReceipt.monthpayed).toLocaleString('fr-FR', {
@@ -39,10 +41,8 @@ function getUnvalidReceiptsRequest() {
     },
   })
   .then(response => {
-    if (response.status === 403) {
-      // Si l'utilisateur n'est pas autorisé, redirigez-le vers la page de connexion
-      // window.location.href = ownerLogSignURL;
-      return; // Sortir de la promesse pour éviter d'exécuter le reste du code
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      return renewAccessToken().then(() => getUnvalidReceiptsRequest());
     }
     return response.json(); // Convertir la réponse en JSON si le statut n'est pas 403
   })
@@ -58,7 +58,7 @@ function getUnvalidReceiptsRequest() {
       tableBody.innerHTML = ''; // Clear existing rows
 
       unvaliReceipts.forEach((unvalidReceipt) => {
-        addUnvalidReceipt(unvalidReceipt);
+      addUnvalidReceipt(unvalidReceipt);
       });
       addDropdownsListener();
       // Quand l'utilisateur clique sur une icône de suppression
@@ -73,7 +73,7 @@ function getUnvalidReceiptsRequest() {
     }
   })
   .catch((error) => {
-    alert(error.message);
+    window.location.href = tenantError;
     console.error('Error fetching unvaliReceipts:', error);
   });
 }
@@ -113,12 +113,18 @@ function deleteReceiptTenant(receiptId) {
       },
       body: JSON.stringify({ "id": receiptId })
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      return renewAccessToken().then(() => deleteReceiptTenant(receiptId));
+    }
+    response.json()})
   .then(() => {
       const row = document.querySelector(`tr[data-id="${receiptId}"]`);
       if (row) {
           row.remove(); // Supprime la ligne du tableau
       }
   })
-  .catch(error => console.error('Error deleting receipt:', error));
+  .catch(error => {
+    window.location.href = tenantError;
+    console.error('Error deleting receipt:', error)});
 }

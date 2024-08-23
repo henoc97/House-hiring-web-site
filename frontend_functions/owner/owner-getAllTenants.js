@@ -159,7 +159,6 @@ function getAllTenantsRequest() {
       };
     } else {
       console.error("Element with ID 'tableBody' not found.");
-      window.location.href = ownerError; 
     }
   })
   .catch((error) => {
@@ -185,7 +184,7 @@ function getAllTenantsRequest() {
     })
     .then(response => {
       if (!response.ok && (response.status === 401 || response.status === 403)) {
-        return renewAccessToken().then(() => editTenant());
+        return renewAccessToken().then(() => editTenant(tenantId));
       }
       response.json()})
       .then(data => {
@@ -232,7 +231,7 @@ function getAllTenantsRequest() {
         })
         .then(response => {
           if (!response.ok && (response.status === 401 || response.status === 403)) {
-            return renewAccessToken().then(() => updateTenant());
+            return renewAccessToken().then(() => updateTenant(editingId));
           }
     response.json()})
     .then(data => {
@@ -258,6 +257,7 @@ function getAllTenantsRequest() {
     resetForm();
   })
   .catch(error => {
+    window.location.href = ownerError;
     console.error('Error updating property:', error)});  
   }
   
@@ -294,7 +294,7 @@ function getAllTenantsRequest() {
   })
   .then(response =>{
     if (!response.ok && (response.status === 401 || response.status === 403)) {
-      return renewAccessToken().then(() => deleteTenant());
+      return renewAccessToken().then(() => deleteTenant(tenantId));
     }
     response.json()})
     .then(() => {

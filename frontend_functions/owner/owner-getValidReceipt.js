@@ -27,8 +27,15 @@ function getValidReceiptsRequest() {
         'Content-Type': 'application/json'
       },
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok && (response.status === 401 || response.status === 403)) {
+        alert("problem")
+        return renewAccessToken().then(() => getValidReceiptsRequest());
+      }
+      response.json()})
     .then(data => {
+      if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécutions
+
       console.log("data received:", data); // Log les données reçues
 
       // Si les propriétés sont enveloppées dans un objet { myProperties }
@@ -86,7 +93,9 @@ function getValidReceiptsRequest() {
         console.error("Element with ID 'valid-receipts-table' not found.");
       }
     })
-    .catch((error) => console.error('Error fetching tenantsproperties:', error));
+    .catch((error) => {
+      window.location.href = ownerError;
+      console.error('Error fetching tenantsproperties:', error)});
   }
 
 

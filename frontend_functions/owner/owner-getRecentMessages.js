@@ -10,7 +10,12 @@ function getRecentMessagesRequest() {
           'Content-Type': 'application/json'
       },
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => getRecentMessagesRequest());
+    }
+    response.json()})
   .then(data => {
       console.log("data received:", data); // Log les données reçues
       console.log('received recent : ', data);
@@ -73,5 +78,7 @@ function getRecentMessagesRequest() {
           console.error("Element with ID 'recent-tenants-table' not found.");
       }
   })
-  .catch((error) => console.error('Error fetching recent messages:', error));
+  .catch((error) => {
+    window.location.href = ownerError;
+    console.error('Error fetching recent messages:', error)});
 }

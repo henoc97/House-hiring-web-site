@@ -10,7 +10,6 @@ function setSold(sold) {
   }
   
   function getsold() {
-    console.log("ca marche bien");
     if (localStorage.getItem('sold') == 'undefined') return 0;
     return localStorage.getItem('sold');
   }
@@ -19,7 +18,6 @@ function setSold(sold) {
     document.getElementById('sold').innerHTML = 
         `<h3>Solde : ${getsold() ?? 0}</h3>`;
   }
-  
   
   function updateSoldRequest(spend) {
       let token = localStorage.getItem('accessToken');
@@ -44,7 +42,7 @@ function setSold(sold) {
         document.getElementById('sold').innerHTML = `<h3>Solde : ${sold}</h3>`;
        
       })
-      .catch((error) => console.error('Error fetching tenantsproperties:', error));
+      .catch((error) => console.error('Error fetching updateSoldRequest:', error));
     }
   
   

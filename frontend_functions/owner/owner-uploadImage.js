@@ -18,6 +18,10 @@ function uploadedImageLogic(uploadForm) {
             });
 
             if (!response.ok) {
+                if (response.status === 401 || response.status === 403) {
+                    alert("problem")
+                    return renewAccessToken().then(() => uploadedImageLogic(uploadForm));
+                }
                 throw new Error('Erreur lors de l\'upload du fichier');
             }
 
@@ -34,6 +38,7 @@ function uploadedImageLogic(uploadForm) {
             localStorage.setItem('uploadedImageFilename', result.imageUrl);
         } catch (error) {
             console.error(error);
+            window.location.href = ownerError;
             alert('Une erreur est survenue lors de l\'upload du fichier');
         }
     });

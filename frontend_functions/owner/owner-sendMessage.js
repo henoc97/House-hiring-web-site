@@ -11,7 +11,6 @@ function sendMessageRequest(tenantId) {
 
     window.ws = new WebSocket(hostSocket + `?token=${encodeURIComponent(token)}`);
 
-    // alert('WebSocket connection tenantId: ' + tenantId);
     window.ws.onopen = () => {
         console.log('WebSocket connection established for tenantId:', tenantId);
     };
@@ -28,7 +27,6 @@ function sendMessageRequest(tenantId) {
 
         if (messageObject && messageObject.message && messageObject.tenantid == tenantId) {
             console.log('Message socket : ' + messageObject.message);
-            // alert("message.tenantid : " + messageObject.tenantid + " " + "tenantId : " + tenantId);
             displayMessageOwner(messageObject);
         }
     };

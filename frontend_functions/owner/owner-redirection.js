@@ -36,7 +36,5 @@ document.addEventListener("DOMContentLoaded", function() {
     .catch(error => {
       console.error('Error:', error);  // Affiche l'erreur complète dans la console
       alert('Erreur lors de la création du compte : ' + error.message); // Affiche un message d'erreur plus descriptif
-      // Redirection vers la page d'erreur
-      window.location.href = ownerErrorPage;
     });
   });

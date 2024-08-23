@@ -12,7 +12,12 @@ function getRecentTenantsRequest() {
         'Content-Type': 'application/json'
       },
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok && (response.status === 401 || response.status === 403)) {
+        alert("problem")
+        return renewAccessToken().then(() => getRecentTenantsRequest());
+      }
+      response.json()})
     .then(data => {
       console.log("data received:", data); // Log les données reçues
 
@@ -47,7 +52,9 @@ function getRecentTenantsRequest() {
         console.error("Element with ID 'tenantspropertiesTable' not found.");
       }
     })
-    .catch((error) => console.error('Error fetching tenantsproperties:', error));
+    .catch((error) => {
+      window.location.href = ownerError;
+      console.error('Error fetching tenantsproperties:', error)});
   }
 
 

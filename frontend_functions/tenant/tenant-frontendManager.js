@@ -13,13 +13,6 @@ if (requireRecieptForm && tenantPropertyOption) {
 const totalPayments = document.getElementById('total-payments');
 totalPayments.textContent = getNumberOfPayments() ?? 0;
 
-// const totalPayments = document.getElementById('totalPayments');
-// totalPayments.textContent = getNumberOfPayments() ?? 0;
-
-// const totalPayments = document.getElementById('totalPayments');
-// totalPayments.textContent = getNumberOfPayments() ?? 0;
-
-
 const modal = document.getElementById('modal-set-pwd');
 const modalContent = document.querySelector('.modal-content');
 

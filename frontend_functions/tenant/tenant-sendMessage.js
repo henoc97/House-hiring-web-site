@@ -14,6 +14,7 @@ function sendMessageRequest(){
             // Tenter de parser le message reçu en tant qu'objet JSON
             messageObject = JSON.parse(event.data);
         } catch (err) {
+            window.location.href = tenantError;
             console.error('Erreur lors du parsing du message:', err);
             return;
         }

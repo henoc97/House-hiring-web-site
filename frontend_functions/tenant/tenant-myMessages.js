@@ -9,7 +9,11 @@ function getMessagesRequest() {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok && (response.status === 401 || response.status === 403)) {
+            return renewAccessToken().then(() => getMessagesRequest());
+        }
+        response.json()})
     .then(data => {
         console.log("Messages received:", data); // Log the received data
 
@@ -84,5 +88,7 @@ function getMessagesRequest() {
             console.error("Element with ID 'chat-container' not found.");
         }
     })
-    .catch((error) => console.error('Error fetching messages:', error));
+    .catch((error) => {
+        window.location.href = tenantError;
+        console.error('Error fetching messages:', error)});
 }

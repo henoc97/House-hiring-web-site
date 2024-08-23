@@ -89,8 +89,6 @@ function selectMonthsHelper(requireRecieptForm, tenantsPropertiesOption) {
 
     document.getElementById('receipt-months').addEventListener('change', function() {
         updateSumpayed();
-        // Appel pour charger le propriétés de locataire au chargement de la page
-        // getTenantsPropertiesRequest(2);
     });
   
 }

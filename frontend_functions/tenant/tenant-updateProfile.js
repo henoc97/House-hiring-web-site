@@ -19,7 +19,11 @@ function updateTenant() {
         },
         body : JSON.stringify(updatedData)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok && (response.status === 401 || response.status === 403)) {
+            return renewAccessToken().then(() => updateTenant());
+        }
+        response.json()})
     .then(data => {
         console.log('Updated data : ' + JSON.stringify(data));
         document.getElementById('tenant-lastname').value = data.lastname;
@@ -28,5 +32,7 @@ function updateTenant() {
         document.getElementById('tenant-contact-tg').value = data.contacttg;
         localStorage.setItem('createTime', data.create_time);
     })
-    .catch(error => console.error('Error updating property:', error));  
+    .catch(error => {
+        window.location.href = tenantError;
+        console.error('Error updating property:', error)});  
 }

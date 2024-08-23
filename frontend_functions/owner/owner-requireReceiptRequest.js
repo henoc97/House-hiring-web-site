@@ -14,8 +14,6 @@ function requireRecieptRequest() {
         return;
     }
 
-    // alert("Mois sélectionnés : " + months.join(', ')); // Pour vérifier les mois sélectionnés
-
     let token = localStorage.getItem('accessToken');
 
     // Si le coût est réparti également entre les mois
@@ -36,7 +34,6 @@ function requireRecieptRequest() {
         })
         .then(response => {
             if (!response.ok && (response.status === 401 || response.status === 403)) {
-                alert("Problème d'authentification, tentative de renouvellement du token.");
                 return renewAccessToken().then(() => requireRecieptRequest());
             }
             return response.json();
@@ -47,7 +44,7 @@ function requireRecieptRequest() {
         })
         .catch(error => {
             console.error('Erreur:', error);
-            //   window.location.href = ownerLogSignURL;
+            window.location.href = ownerError;
         });
     });
 

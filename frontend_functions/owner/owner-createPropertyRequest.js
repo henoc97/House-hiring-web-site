@@ -91,8 +91,8 @@ function createPropertyRequest(){
         addEditListeners();
     })
     .catch(error => {
+      window.location.href = ownerError;
         console.error('Erreur:', error);
-        window.location.href = ownerError;
     });
   } else {
     alert('solde insuffisant. Cette opération coute 0.5€')

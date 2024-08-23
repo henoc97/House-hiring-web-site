@@ -162,10 +162,10 @@ function resetPropertyForm() {
 
 function updateProperty(editingId) {
   const updatedData = {
-      id : editingId,
-      address: document.getElementById('property-address').value,
-      description: document.getElementById('property-description').value,
-      cost: document.getElementById('property-cost').value
+    id : editingId,
+    address: document.getElementById('property-address').value,
+    description: document.getElementById('property-description').value,
+    cost: document.getElementById('property-cost').value
   };
   let token = localStorage.getItem('accessToken');
   fetch(host + "update-property", {  // Utilise l'ID pour récupérer les détails de la propriété
@@ -176,10 +176,13 @@ function updateProperty(editingId) {
       },
       body : JSON.stringify(updatedData)
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => updateProperty(editingId));
+    }
+    response.json()})
   .then(data => {
-    // alert('ca marche quand meme')
-    // getPropertiesRequest(1); // Recharge les propriétés pour montrer les changements
     // Mettre à jour directement la ligne correspondante
     const row = document.querySelector(`tr[data-id="${editingId}"]`);
     if (row) {
@@ -188,15 +191,13 @@ function updateProperty(editingId) {
         row.children[2].textContent = data.price;
     }
     resetPropertyForm();
-      
   })
-  .catch(error => console.error('Error updating property:', error));  
+  .catch(error => {
+    window.location.href = ownerError;
+    console.error('Error updating property:', error)});  
 }
 
-
 // Appelle cette fonction après une modification réussie
-
-
 function deleteProperty(propertyId) {
   let token = localStorage.getItem('accessToken');
   fetch(host + "delete-property", {
@@ -207,7 +208,11 @@ function deleteProperty(propertyId) {
       },
       body: JSON.stringify({ "id": propertyId })
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      return renewAccessToken().then(() => deleteProperty(propertyId));
+    }
+    response.json()})
   .then(() => {
       const row = document.getElementById("my-properties-table")
         .querySelector(`tr[data-id="${propertyId}"]`);
@@ -215,5 +220,7 @@ function deleteProperty(propertyId) {
           row.remove(); // Supprime la ligne du tableau
       }
   })
-  .catch(error => console.error('Error deleting property:', error));
+  .catch(error => {
+    window.location.href = ownerError;
+    console.error('Error deleting property:', error)});
 }

@@ -1,3 +1,5 @@
+
+
 function getUnvalidReceiptsRequest() {
   let token = localStorage.getItem('accessToken');
   fetch(host + 'receipt-unValid', {
@@ -8,10 +10,9 @@ function getUnvalidReceiptsRequest() {
     },
   })
   .then(response => {
-    if (response.status === 403) {
-      // Si l'utilisateur n'est pas autorisé, redirigez-le vers la page de connexion
-      // window.location.href = ownerLogSignURL;
-      return; // Sortir de la promesse pour éviter d'exécuter le reste du code
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => getUnvalidReceiptsRequest());
     }
     return response.json(); // Convertir la réponse en JSON si le statut n'est pas 403
   })
@@ -74,7 +75,7 @@ function getUnvalidReceiptsRequest() {
     }
   })
   .catch((error) => {
-    alert(error.message);
+    window.location.href = ownerError;
     console.error('Error fetching unvaliReceipts:', error);
   });
 }
@@ -91,12 +92,19 @@ function deleteReceipt(receiptId) {
       },
       body: JSON.stringify({ "id": receiptId })
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => deleteReceipt(receiptId));
+    }
+    response.json()})
   .then(() => {
       const row = document.querySelector(`tr[data-id="${receiptId}"]`);
       if (row) {
           row.remove(); // Supprime la ligne du tableau
       }
   })
-  .catch(error => console.error('Error deleting receipt:', error));
+  .catch(error => {
+    window.location.href = ownerError;
+    console.error('Error deleting receipt:', error)});
 }

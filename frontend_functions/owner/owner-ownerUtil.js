@@ -9,8 +9,14 @@ function getOwner() {
           'Content-Type': 'application/json'
         },
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok && (response.status === 401 || response.status === 403)) {
+        alert("problem")
+        return renewAccessToken().then(() => getOwner());
+      }
+      response.json()})
     .then(data => {
+        if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécution
         console.log("owner:", data);
 
         if (data.lastname == null || 
@@ -29,7 +35,9 @@ function getOwner() {
         setSold(data.sold);
         showNewSold();
     })
-    .catch(error => console.error('Error fetching owner details:', error));
+    .catch(error => {
+      window.location.href = ownerError;
+      console.error('Error fetching owner details:', error)});
   }
   
   
@@ -51,12 +59,19 @@ function updateOwner() {
       },
       body : JSON.stringify(updatedData)
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => updateOwner());
+    }
+    response.json()})
   .then(data => {
       alert("Modification réussie...")
       // getPropertiesRequest(1); // Recharge les propriétés pour montrer les changements
       // resetForm();
       
   })
-  .catch(error => console.error('Error updating Owner:', error));  
+  .catch(error => {
+    window.location.href = ownerError;
+    console.error('Error updating Owner:', error)});  
 }

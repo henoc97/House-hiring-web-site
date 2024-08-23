@@ -27,7 +27,12 @@ function getTenantsPropertiesRequest(type) {
         'Content-Type': 'application/json'
       },
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => getTenantsPropertiesRequest(type));
+    }
+      response.json()})
     .then(data => {
       console.log("data received:", data); // Log les données reçues
 
@@ -43,7 +48,9 @@ function getTenantsPropertiesRequest(type) {
       }
       
     })
-    .catch((error) => console.error('Error fetching tenantsproperties:', error));
+    .catch((error) => {
+      window.location.href = ownerError;
+      console.error('Error fetching tenantsproperties:', error)});
   }
 
 
@@ -111,12 +118,19 @@ function deleteTenantProperty(tenantPropertyId) {
       },
       body: JSON.stringify({ "id": tenantPropertyId })
   })
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok && (response.status === 401 || response.status === 403)) {
+      alert("problem")
+      return renewAccessToken().then(() => deleteTenantProperty(tenantPropertyId));
+    }
+    response.json()})
   .then(() => {
       const row = document.querySelector(`tr[data-id="${tenantPropertyId}"]`);
       if (row) {
           row.remove(); // Supprime la ligne du tableau
       }
   })
-  .catch(error => console.error('Error deleting property:', error));
+  .catch(error => {
+    window.location.href = ownerError;
+    console.error('Error deleting property:', error)});
 }
