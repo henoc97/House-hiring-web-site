@@ -13,8 +13,10 @@ module.exports.createProperties = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
+    if (req.connection) {
         req.connection.release();
     }
+}
 };
 
 module.exports.myProperties = async (req, res) => {
@@ -31,8 +33,10 @@ module.exports.myProperties = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
+    if (req.connection) {
         req.connection.release();
     }
+}
 };
 
 module.exports.myProperty = async (req, res) => {
@@ -48,8 +52,10 @@ module.exports.myProperty = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
+    if (req.connection) {
         req.connection.release();
     }
+}
 };
 
 module.exports.updateProperty = async (req, res) => {
@@ -65,8 +71,10 @@ module.exports.updateProperty = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
+    if (req.connection) {
         req.connection.release();
     }
+}
 };
 
 module.exports.deleteProperty = async (req, res) => {
@@ -82,6 +90,8 @@ module.exports.deleteProperty = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
+    if (req.connection) {
         req.connection.release();
     }
+}
 };

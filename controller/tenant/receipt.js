@@ -16,7 +16,9 @@ module.exports.requireReceipt = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -34,7 +36,9 @@ module.exports.receiptUnvalid = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -52,8 +56,10 @@ module.exports.receiptValid = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
+    if (req.connection) {
         req.connection.release();
     }
+}
 };
 
 
@@ -70,6 +76,8 @@ module.exports.deleteReceipt = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
+    if (req.connection) {
         req.connection.release();
     }
+}
 };

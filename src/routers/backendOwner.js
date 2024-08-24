@@ -5,7 +5,7 @@ const sharp = require('sharp');
 const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth');
 
-const { getOtp, createUserOwner, userAuth, updateSold, refreshToken, updateOwner, myOwner } = require('../../controller/owner/user');
+const { getOtp, createUserOwner, userAuth, updateSold, refreshToken, updateOwner, myOwner, uploadImg } = require('../../controller/owner/user');
 const { createProperties, myProperties, myProperty, updateProperty, deleteProperty } = require('../../controller/owner/property');
 const { createTenant, tenantsProperties, recentTenants, allTenants, myTenant, updateTenant, deleteTenant, deletePropertyTenant } = require('../../controller/owner/tenant');
 const { requireReceipt, receiptUnValid, receiptValid, validateReceipt, deleteReceipt} = require('../../controller/owner/receipt');
@@ -66,22 +66,6 @@ router.post("/recent-messages", RecentMessages);
 router.post("/delete-message", deleteMessage);
 
 // Route d'upload d'images
-router.post('/upload', upload.single('image'), async (req, res) => {
-    try {
-        // Vérifier si un fichier a été téléchargé
-        if (!req.file) {
-            return res.status(400).json({ message: 'Aucun fichier téléchargé' });
-        }
-        // Répondre avec l'URL de l'image et le nom du fichier
-        res.status(200).json({
-            imageUrl: `/img/${req.file.filename}`, // Chemin accessible publiquement
-            filename: req.file.filename
-        });
-
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Erreur lors de l\'upload du fichier' });
-    }
-});
+router.post('/upload', upload.single('image'), uploadImg);
 
 module.exports = router;

@@ -1,10 +1,10 @@
 
 
-    let registerHomePrice = 350;
-    let registerTenant = 150;
-    let insertPic = 450;
-    let tenantMonthlyPrice = 400;
-    let validateReceiptPrice = 150;
+    let registerHomePrice = 500;
+    let registerTenant = 300;
+    let insertPic = 500;
+    let tenantMonthlyPrice = 200;
+    let validateReceiptPrice = 0.01; // 1% du loyer (min. 200 XOF)
 
 
 

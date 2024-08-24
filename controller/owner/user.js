@@ -72,6 +72,10 @@ module.exports.createUserOwner = async (req, res) => {
         });
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -110,6 +114,10 @@ module.exports.userAuth = async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -131,6 +139,10 @@ module.exports.myOwner = async (req, res) => {
     } catch (error) {
         console.log('Erreur lors de l\'exécution', error);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -152,6 +164,10 @@ module.exports.updateOwner = async (req, res) => {
     } catch (error) {
         console.log('Erreur lors de l\'exécution', error);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -165,5 +181,38 @@ module.exports.updateSold = async (req, res) => {
         res.status(200).json(rows[0][0].update_sold);
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
+
+
+module.exports.uploadImg = async (req, res) => {
+    try {
+        // Vérifier si un fichier a été téléchargé
+        if (!req.file) {
+            return res.status(400).json({ message: 'Aucun fichier téléchargé' });
+        }
+        const imgUrl = `/img/${req.file.filename}`;
+        const query = "CALL set_img_url(?)";
+        const values = [imgUrl];
+        const [rows] = await req.connection.query(query, values);
+        // Répondre avec l'URL de l'image et le nom du fichier
+        res.status(200).json({
+            imageUrl: imgUrl, // Chemin accessible publiquement
+            filename: req.file.filename
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Erreur lors de l\'upload du fichier' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+}
+
+

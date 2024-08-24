@@ -26,10 +26,15 @@ function requireRecieptRequest() {
           })
       })
       .then(response => {
-          if (!response.ok && (response.status === 401 || response.status === 403)) {
-              return renewAccessToken().then(() => requireRecieptRequest());
-          }
-          return response.json();
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+                return renewAccessToken().then(() => requireRecieptRequest());
+            }
+            // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+            window.location.href = ownerError;
+            throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+        }
+        return response.json();
       })
       .then(unvalidReceipt => {
             console.log(unvalidReceipt);

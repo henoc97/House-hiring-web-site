@@ -13,7 +13,9 @@ module.exports.tenantProperty = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release(); // Libérer la connexion à la base de données
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 

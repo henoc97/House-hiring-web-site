@@ -12,6 +12,10 @@ module.exports.createTenant = async (req, res) => {
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -26,6 +30,10 @@ module.exports.tenantsProperties = async (req, res) => {
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -40,6 +48,10 @@ module.exports.recentTenants = async (req, res) => {
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -54,6 +66,10 @@ module.exports.allTenants = async (req, res) => {
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -69,6 +85,10 @@ module.exports.myTenant = async (req, res) => {
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -83,6 +103,10 @@ module.exports.updateTenant = async (req, res) => {
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -101,7 +125,9 @@ module.exports.deleteTenant = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -118,6 +144,8 @@ module.exports.deletePropertyTenant = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };

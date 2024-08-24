@@ -14,7 +14,9 @@ module.exports.sendMessage = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -40,7 +42,9 @@ module.exports.ownerMessageSender = async (ws, messageObject, wss) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         return; // Sortir en cas d'erreur
     } finally {
-        ws.connection.release();
+        if (ws.connection) {
+            ws.connection.release();
+        }
     }
 
     // Diffuser le message à tous les clients meme à l'expéditeur
@@ -70,7 +74,9 @@ module.exports.myMessages = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -86,7 +92,9 @@ module.exports.RecentMessages = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };
 
@@ -103,6 +111,8 @@ module.exports.deleteMessage = async (req, res) => {
         console.error('Erreur lors de l\'exécution de la requête', err);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
+        if (req.connection) {
+            req.connection.release();
+        }
     }
 };

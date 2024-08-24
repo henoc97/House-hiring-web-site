@@ -27,8 +27,10 @@ module.exports.activateTenantAccount = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     } finally {
-        req.connection.release();
-    }
+        if (req.connection) {
+            req.connection.release();
+        }
+}
 };
 
 // Password Update Controller
@@ -48,8 +50,10 @@ module.exports.setPwd = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
-        req.connection.release();
-    }
+        if (req.connection) {
+            req.connection.release();
+        }
+}
 };
 
 module.exports.myTenant = async (req, res) => {
@@ -70,7 +74,11 @@ module.exports.myTenant = async (req, res) => {
     } catch (error) {
         console.log('Erreur lors de l\'exécution', error);
         res.status(500).json({ message: 'Erreur serveur' });
-    }
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+}
 };
 
 module.exports.updateTenant = async (req, res) => {
@@ -84,5 +92,9 @@ module.exports.updateTenant = async (req, res) => {
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
-    }
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+}
 };

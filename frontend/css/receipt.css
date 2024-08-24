@@ -84,11 +84,11 @@ footer {
   margin-top: 20px;
 }
 
-.receipt-details, .payment-details {
+.receipt-details, .owner-details {
   margin-top: 20px;
 }
 
-.receipt-details p, .payment-details p {
+.receipt-details p, .owner-details p {
   margin: 5px 0;
 }
 
@@ -138,7 +138,7 @@ button:hover {
       font-size: 30px;
   }
 
-  .receipt-details p, .payment-details p {
+  .receipt-details p, .owner-details p {
       font-size: 14px;
   }
 
