@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reçu de Paiement de Loyer</title>
+  <title>Extase-Home - Reçu de Paiement de Loyer</title>
+  <meta name="description" content="Extase-Home offre des solutions de gestion de logement alliant luxe et confort moderne. Découvrez nos services de gestion immobilière.">
+  <link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/receipt.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -22,25 +25,24 @@
         <p><strong>Date d'Émission :</strong> 01 Juin 2024</p>
         <p><strong>Montant du Loyer :</strong> 1200 €</p>
       </div>
-      <div class="payment-details">
-        <h2>Détails du Paiement</h2>
-        <p><strong>Méthode de Paiement :</strong> Virement Bancaire / Flooz / TMoney</p>
-        <p><strong>Référence de Transaction :</strong> TX1234567890</p>
-        <p>Ce reçu confirme que le locataire susmentionné  a  effectué le paiement du loyer pour le mois indiqué ci - dessus. Le montant a été reçu en totalité et aucune autre somme n'est due pour cette période.</p>
+      <h3>Informations du Propriétaire</h3>
+      <div class="owner-details" id="owner-details-container">
+        <p><strong>Nom du Propriétaire :</strong> Mme Marie Martin</p>
+        <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
+        <p><strong>Email :</strong> marie.martin@example.com</p>
       </div>
+      <p>Ce reçu confirme que le locataire susmentionné  a  effectué le paiement du loyer pour le mois indiqué ci - dessus. </p>
       <div class="signature">
         <h3>Signature</h3>
         <img id="signature-image" alt="la signature">
       </div>
       <footer>
-        <p>Merci d'avoir payé à temps. Pour toute question, veuillez nous contacter à l'adresse contact@exemple.com.</p>
-        <p>© 2024 Property Manager. Tous droits réservés.</p>
+        <p>Merci d'avoir payé à temps. Pour toute question, veuillez nous contacter à l'adresse extasehome@gmail.com.</p>
+        <p>© 2024 Extase-Home. Tous droits réservés.</p>
       </footer>
     </div>
     
-    <div id="receipt-btns">
-      
-    </div>
+    <div id="receipt-btns"> <!-- Validate or download --> </div>
   </div>
   <script src="/public/endpoints.js"></script>
   <script src="/tenant/tenant-goDownloadReceipt.js"></script>

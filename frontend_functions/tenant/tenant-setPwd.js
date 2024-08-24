@@ -38,7 +38,7 @@ function setpwdRequest(){
               return renewAccessToken().then(() => setpwdRequest());
           }
           // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-          window.location.href = ownerError;
+          window.location.href = tenantError;
           throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
       }
       return response.json();

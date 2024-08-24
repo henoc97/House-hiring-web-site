@@ -31,16 +31,16 @@ function requireRecieptRequest() {
                 return renewAccessToken().then(() => requireRecieptRequest());
             }
             // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-            window.location.href = ownerError;
+            window.location.href = tenantError;
             throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
         }
         return response.json();
       })
       .then(unvalidReceipt => {
-            console.log(unvalidReceipt);
+            console.log("unvalidReceipt que je veux : " + JSON.stringify(unvalidReceipt));
             document.getElementById('receipt-form').reset();
             // getUnvalidReceiptsRequest();
-            addUnvalidReceipt(unvalidReceipt);
+            addUnvalidReceipt(unvalidReceipt['data']);
             // addDropdownsListener();
       })
       .catch(error => {

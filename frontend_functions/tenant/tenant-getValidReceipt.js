@@ -116,7 +116,7 @@ function getValidReceiptsRequest() {
             return renewAccessToken().then(() => getValidReceiptsRequest());
         }
         // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-        window.location.href = ownerError;
+        window.location.href = tenantError;
         throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
     return response.json();
@@ -145,7 +145,7 @@ function getValidReceiptsRequest() {
               <td>${formattedDate}</td>
               <td>${validReceipt.sumpayed}</td>
               <td>
-                <a href="#" class="govalidreceipt" data-receipt='${JSON.stringify(validReceipt)}'>
+                <a href="#" class="go-validate-receipt" data-receipt='${JSON.stringify(validReceipt)}'>
                   <span class="badge bg-seccuss">Approuvé</span>
                 </a>
               </td>
@@ -185,56 +185,70 @@ function getValidReceiptsRequest() {
       });
       console.log('Unpaid months : ' + unpaidMonths.length);
       console.log('valiReceipts : ' + valiReceipts + '  ' + valiReceipts.length);
-      let _lastPayedMonth = new Date(valiReceipts[0].monthpayed ); 
-      let _lastPaymentDate = new Date(valiReceipts[0].create_time ); 
-      const lastPaymentDate =  _lastPaymentDate.toLocaleString('fr-FR', 
-        {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-      
-
-      setLastPaymentDate(lastPaymentDate);
-      let nextPaymentDate;
       const tenantCreationDay = new Date(localStorage.getItem('createTime')).getDate();
-      console.log('unpaidMonths1 : ' + unpaidMonths[unpaidMonths.length - 1]);
-      console.log ('lastPayedMonthTypeDate1 : ' + _lastPayedMonth)
-      if (_lastPayedMonth < unpaidMonths[unpaidMonths.length - 1]) {
-        // Créer une copie de la dernière date du mois non payé
-        const lastUnpaidMonth = new Date(unpaidMonths[unpaidMonths.length - 1]);
+      let nextPaymentDate;
+      if (valiReceipts.length > 0) {
 
-        // Définir le jour du mois
-        lastUnpaidMonth.setDate(tenantCreationDay);
-
-        // Avancer d'un mois
-        lastUnpaidMonth.setMonth(lastUnpaidMonth.getMonth() + 1);
-
-        // Formater la date
-        nextPaymentDate = lastUnpaidMonth.toLocaleString('fr-FR', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric'
-        }).replace(/\//g, '-');
+        let _lastPayedMonth = new Date(valiReceipts[0].monthpayed ); 
+        let _lastPaymentDate = new Date(valiReceipts[0].create_time ); 
+        const lastPaymentDate =  _lastPaymentDate.toLocaleString('fr-FR', 
+          {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
+        
+        setLastPaymentDate(lastPaymentDate);
+        console.log('unpaidMonths1 : ' + unpaidMonths[unpaidMonths.length - 1]);
+        console.log ('lastPayedMonthTypeDate1 : ' + _lastPayedMonth)
+        if (_lastPayedMonth < unpaidMonths[unpaidMonths.length - 1]) {
+          // Créer une copie de la dernière date du mois non payé
+          const lastUnpaidMonth = new Date(unpaidMonths[unpaidMonths.length - 1]);
+  
+          // Définir le jour du mois
+          lastUnpaidMonth.setDate(tenantCreationDay);
+  
+          // Avancer d'un mois
+          lastUnpaidMonth.setMonth(lastUnpaidMonth.getMonth() + 1);
+  
+          // Formater la date
+          nextPaymentDate = lastUnpaidMonth.toLocaleString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          }).replace(/\//g, '-');
+        } else {
+          // Créer une copie de la date du dernier paiement
+          const nextMonth = new Date(_lastPayedMonth);
+  
+          // Avancer d'un mois
+          nextMonth.setMonth(nextMonth.getMonth() + 1);
+  
+          // Définir le jour du mois
+          nextMonth.setDate(tenantCreationDay);
+  
+          // Formater la date
+          nextPaymentDate = nextMonth.toLocaleString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          }).replace(/\//g, '-');
+        }
+        setNextPaymentDate(nextPaymentDate);
+        console.log('nextPaymentDate : ' + JSON.stringify(nextPaymentDate));
+        setUnpaidMonthsCount(unpaidMonths.length);
+        console.log('unpaidMonths.length : ' + JSON.stringify(unpaidMonths.length));
+        setUnpaidMonths(JSON.stringify(unpaidMonths));
+        console.log('JSON.stringify(unpaidMonths) : ' + JSON.stringify(unpaidMonths));
       } else {
-        // Créer une copie de la date du dernier paiement
-        const nextMonth = new Date(_lastPayedMonth);
-
-        // Avancer d'un mois
-        nextMonth.setMonth(nextMonth.getMonth() + 1);
-
-        // Définir le jour du mois
-        nextMonth.setDate(tenantCreationDay);
-
-        // Formater la date
-        nextPaymentDate = nextMonth.toLocaleString('fr-FR', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric'
-        }).replace(/\//g, '-');
+        const tenantCreationDate = new Date(localStorage.getItem('createTime'));
+        tenantCreationDate.setMonth(tenantCreationDate.getMonth() + 1);
+  
+          // Formater la date
+          nextPaymentDate = tenantCreationDate.toLocaleString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          }).replace(/\//g, '-');
+          setLastPaymentDate("01-01-0000");
+          setNextPaymentDate(nextPaymentDate);
       }
-      setNextPaymentDate(nextPaymentDate);
-      console.log('nextPaymentDate : ' + JSON.stringify(nextPaymentDate));
-      setUnpaidMonthsCount(unpaidMonths.length);
-      console.log('unpaidMonths.length : ' + JSON.stringify(unpaidMonths.length));
-      setUnpaidMonths(JSON.stringify(unpaidMonths));
-      console.log('JSON.stringify(unpaidMonths) : ' + JSON.stringify(unpaidMonths));
 
       showlastPaymentDate();
       showNextPaymentDate();

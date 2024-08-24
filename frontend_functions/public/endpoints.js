@@ -30,6 +30,8 @@ const activateURL = root + tenantURL.substring(1) + "/tenant-activate";
 
 const receiptURL = ownerURL + "/owner-receipt";
 
+const receiptURLTenant = tenantURL + "/tenant-receipt";
+
 const ownerLogSignURL = ownerURL + "/owner-sign-log";
 
 const ownerErrorPage = ownerURL + ""; // A completer

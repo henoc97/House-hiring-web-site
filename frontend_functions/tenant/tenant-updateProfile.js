@@ -25,7 +25,7 @@ function updateTenant() {
                 return renewAccessToken().then(() => updateTenant());
             }
             // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-            window.location.href = ownerError;
+            window.location.href = tenantError;
             throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
         }
         return response.json();
@@ -37,6 +37,7 @@ function updateTenant() {
         document.getElementById('tenant-contact-moov').value = data.contactmoov;
         document.getElementById('tenant-contact-tg').value = data.contacttg;
         localStorage.setItem('createTime', data.create_time);
+        alert("Modification réussie...")
     })
     .catch(error => {
         window.location.href = tenantError;

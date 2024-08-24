@@ -46,7 +46,7 @@ function getUnvalidReceiptsRequest() {
             return renewAccessToken().then(() => getUnvalidReceiptsRequest());
         }
         // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-        window.location.href = ownerError;
+        window.location.href = tenantError;
         throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
     return response.json();
@@ -78,7 +78,7 @@ function getUnvalidReceiptsRequest() {
     }
   })
   .catch((error) => {
-    // window.location.href = tenantError;
+    window.location.href = tenantError;
     console.error('Error fetching unvaliReceipts:', error);
   });
 }
@@ -124,7 +124,7 @@ function deleteReceiptTenant(receiptId) {
             return renewAccessToken().then(() => deleteReceiptTenant(receiptId));
         }
         // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-        window.location.href = ownerError;
+        window.location.href = tenantError;
         throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
     }
     return response.json();
