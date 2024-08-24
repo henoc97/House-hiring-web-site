@@ -4,7 +4,8 @@ const mailTest = require("../../functions/emailTest");
 const { generateOwnerToken } = require("../../functions/token");
 const sendOTPemail = require('../../email/activation/sender');
 const codeOTP = require('../../functions/otp');
-
+const fs = require('fs');
+const path = require('path');
 const email_otp = {};
 
 module.exports.getOtp = async (req, res) => {
@@ -188,17 +189,38 @@ module.exports.updateSold = async (req, res) => {
     }
 };
 
-
 module.exports.uploadImg = async (req, res) => {
     try {
         // Vérifier si un fichier a été téléchargé
         if (!req.file) {
             return res.status(400).json({ message: 'Aucun fichier téléchargé' });
         }
+
+        // Récupérer l'ancienne URL de l'image
+        const [rows1] = await req.connection.query('CALL get_old_img_url(?)', [req.user.userId]);
+        console.log('rows1: ' + JSON.stringify(rows1, null, 2));
+        
+        // Accéder correctement à l'URL de l'image
+        const oldImgUrl = rows1[0] && rows1[0][0] ? rows1[0][0].img_url : null;
+
+        // Supprimer l'ancienne image du système de fichiers
+        console.log('oldImgUrl111: ' + oldImgUrl);
+        if (oldImgUrl) {
+            console.log('oldImgUrl: ' + oldImgUrl);
+            const oldImgPath = path.join(__dirname, '..', '..', 'frontend', oldImgUrl);
+            console.log('YESSSSSSSSSSSSSSSSSSS : ' + oldImgPath);
+            if (fs.existsSync(oldImgPath)) {
+                console.log('YESSSSSSSSSSSSSSSSSSS')
+                fs.unlinkSync(oldImgPath);
+            }
+        }
+
+        // Enregistrer la nouvelle URL de l'image
         const imgUrl = `/img/${req.file.filename}`;
-        const query = "CALL set_img_url(?)";
-        const values = [imgUrl];
+        const query = "CALL set_img_url(?, ?)";
+        const values = [req.user.userId, imgUrl];
         const [rows] = await req.connection.query(query, values);
+
         // Répondre avec l'URL de l'image et le nom du fichier
         res.status(200).json({
             imageUrl: imgUrl, // Chemin accessible publiquement
@@ -214,5 +236,3 @@ module.exports.uploadImg = async (req, res) => {
         }
     }
 }
-
-

@@ -16,7 +16,6 @@ function uploadedImageLogic(uploadForm) {
                 },
                 body: formData
             });
-
             if (!response.ok) {
                 if (response.status === 401 || response.status === 403) {
                     alert("problem")
@@ -28,19 +27,15 @@ function uploadedImageLogic(uploadForm) {
 
             const result = await response.json();
             const uploadedImage = document.getElementById('uploaded-image');
-            // uploadedImage.src = result.filename;
             uploadedImage.src = result.imageUrl; // Utilisez imageUrl ici
             console.log('imageUrl: ' + result.imageUrl + ', filename: ' + result.filename)
             // uploadedImage.style.display = 'block';
             uploadedImage.classList.remove('hidden');
             uploadedImage.classList.add('visible');
 
-            // Sauvegarder le nom du fichier dans le localStorage
-            localStorage.setItem('uploadedImageFilename', result.imageUrl);
         } catch (error) {
             console.error(error);
             window.location.href = ownerError;
-            alert('Une erreur est survenue lors de l\'upload du fichier');
         }
     });
 }

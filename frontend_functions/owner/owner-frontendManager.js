@@ -81,14 +81,6 @@ document.getElementById('btn').addEventListener('click', function() {
             if (uploadForm) {
               uploadedImageLogic(uploadForm);
             }
-          // Check if an image filename is stored in local storage
-          const filename = localStorage.getItem('uploadedImageFilename');
-          if (filename) {
-              const uploadedImage = document.getElementById('uploaded-image');
-              uploadedImage.src = `${filename}`;
-              uploadedImage.classList.remove('hidden');
-              uploadedImage.classList.add('visible');
-          }
         });
       } 
 

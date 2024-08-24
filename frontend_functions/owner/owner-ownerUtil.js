@@ -36,6 +36,11 @@ function getOwner() {
         document.getElementById('owner-email').value = data.email;
         document.getElementById('owner-contact-moov').value = data.contactmoov;
         document.getElementById('owner-contact-tg').value = data.contacttg;
+
+        const uploadedImage = document.getElementById('uploaded-image');
+        uploadedImage.src = data.owner_img_url;
+        uploadedImage.classList.remove('hidden');
+        uploadedImage.classList.add('visible');
         
         setSold(data.sold);
         showNewSold();
