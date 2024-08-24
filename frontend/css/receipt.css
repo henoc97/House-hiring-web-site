@@ -81,11 +81,14 @@ header {
 }
 
 footer {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
-.receipt-details, .owner-details {
-  margin-top: 20px;
+.receipt-details {
+  margin-top: 15px;
+}
+.owner-details {
+  margin-top: 5px;
 }
 
 .receipt-details p, .owner-details p {
@@ -129,17 +132,22 @@ button:hover {
       padding: 10px;
   }
 
-  header, footer {
+  header {
       padding: 5px;
       font-size: 14px;
   }
+
+  footer {
+    padding: 3px;
+    font-size: 12px;
+}
 
   i {
       font-size: 30px;
   }
 
   .receipt-details p, .owner-details p {
-      font-size: 14px;
+      font-size: 12px;
   }
 
   button {

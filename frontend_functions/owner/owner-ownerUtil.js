@@ -38,7 +38,7 @@ function getOwner() {
         document.getElementById('owner-contact-tg').value = data.contacttg;
 
         const uploadedImage = document.getElementById('uploaded-image');
-        uploadedImage.src = data.owner_img_url;
+        uploadedImage.src = data.img_url;
         uploadedImage.classList.remove('hidden');
         uploadedImage.classList.add('visible');
         

@@ -13,7 +13,7 @@ function downloadPDF() {
   // Définit les options pour la conversion en PDF
   const options = {
       margin: [0.5, 0.5, 0.5, 0.5], // Définit les marges du PDF (en pouces)
-      filename: `recu_${formattedMonthpayed}.pdf`, // Nom du fichier PDF en incluant la date formatée
+      filename: `recu_${formattedMonthpayed}_${receiptData.lastname}.pdf`, // Nom du fichier PDF en incluant la date formatée
       image: { type: 'jpeg', quality: 1.0 }, // Spécifie le format et la qualité de l'image pour le rendu
       html2canvas: {
           scale: 3, // Augmente l'échelle pour améliorer la résolution du rendu
