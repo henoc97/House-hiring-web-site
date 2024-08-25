@@ -34,6 +34,7 @@ body {
   width: 100%;
   place-items: center;
   background: var(--white);
+  padding-bottom: 20px;
 }
 
 ::selection {
@@ -126,6 +127,7 @@ body {
   border-radius: 15px;
   /* background-color: red; */
   margin-top: 40px; /* Augmente l'espace au-dessus du wrapper */
+  margin-bottom: 20px; /* Augmente l'espace au-dessus du wrapper */
 }
 
 .wrapper .wrapper-content {

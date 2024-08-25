@@ -13,6 +13,14 @@ router.get('/owner-redirect', (req, res) => {
   res.render('owner-redirect');
 });
 
+router.get('/owner-send-email', (req, res) => {
+  res.render('owner-send-email-reset-pwd-otp');
+});
+
+router.get('/owner-reset-pwd', (req, res) => {
+  res.render('owner-reset-pwd');
+});
+
 router.get('/owner-error', (req, res) => {
   res.render('error-owner-request');
 });

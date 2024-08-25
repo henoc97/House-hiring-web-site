@@ -32,4 +32,25 @@ const sendOTPemail = async (email, pwd, codeOTP) => {
   }
 };
 
-module.exports = sendOTPemail;
+const sendResetPwdOTPemail = async (email, codeOTP) => {
+  try {
+    const htmlData = await ejs.renderFile(__dirname + '/reset-pwd-email.ejs', {
+      email: email, 
+      codeOTP: codeOTP
+    });
+
+    const mailOptions = {
+      from: process.env.APP_EMAIL,
+      to: email,
+      subject: 'Bienvenue chez Extase-Home',
+      html: htmlData
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent: ' + info.response);
+  } catch (error) {
+    console.error("Error occurred: ", error);
+  }
+};
+
+module.exports = {sendOTPemail, sendResetPwdOTPemail};

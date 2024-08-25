@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+
+
+router.get('/tenant-sign-log', (req, res) => {
+  res.render('tenant-sign-log', {nonce: res.locals.nonce});
+});
+
 // Routes pour les vues
 router.get('/tenant-test', (req, res) => {
   res.render('tenant-some-view');

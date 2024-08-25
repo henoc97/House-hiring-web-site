@@ -17,7 +17,9 @@ const ownerURL = "/owner";
 
 const ownerError = root + 'owner/owner-error';
 
-const ownerDashboardURL = root + "owner" + ownerURL; // Not an error
+const ownerRoot = root + "owner";
+
+const ownerDashboardURL = ownerRoot + ownerURL; // Not an error
 
 const tenantURL = "/tenant";
 
@@ -35,3 +37,7 @@ const receiptURLTenant = tenantURL + "/tenant-receipt";
 const ownerLogSignURL = ownerURL + "/owner-sign-log";
 
 const ownerErrorPage = ownerURL + ""; // A completer
+
+const ownerSendEmailURL = ownerRoot + "/owner-send-email";
+
+const ownerResetPwdURL = ownerRoot + "/owner-reset-pwd";

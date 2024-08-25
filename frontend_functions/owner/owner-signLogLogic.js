@@ -68,6 +68,8 @@ document.getElementById('signup-form').addEventListener('submit', function(event
 function makeRequest() {
   let email = document.getElementById('email').value;
   let pwd = document.getElementById('pwd').value;
+  const messageDiv = document.getElementById('message');
+
 
   fetch(host + 'user-auth', {
     method: 'POST',
@@ -80,12 +82,13 @@ function makeRequest() {
     if (!response.ok) {
       if (response.status === 401) {
         alert('Accès interdit. Vérifiez vos informations de connexion.');
-      } else if (response.status === 504) {
-        alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
+      } else if (response.status === 404) {
+        messageDiv.textContent = "Mot de passe ou email incorrect.";
+        messageDiv.classList.add('red-message');
+        messageDiv.classList.remove('green-message');
       } else {
-        alert('Erreur de réseau ou serveur inaccessible. Code d\'erreur : ' + response.status);
+        alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
       }
-      alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
       throw new Error(`Erreur de réseau: ${response.status}`);
     }
     return response.json();
@@ -105,7 +108,7 @@ function makeRequest() {
   })
   .catch(error => {
     console.error('Erreur:', error);
-    alert('Une erreur est survenue. Veuillez réessayer.');
+   //  alert('Une erreur est survenue. Veuillez réessayer.');
   });
 }
 

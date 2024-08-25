@@ -1,151 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Coding Template - login & signup form</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-<div class="wrapper">
-  <div class="title-text">
-    <div class="title login">Se connecter</div>
-    <div class="title signup">S'inscrire</div>
-  </div>
-  <div class="form-container">
-    <div class="slide-controls">
-      <input type="radio" name="slide" id="login" checked>
-      <input type="radio" name="slide" id="signup">
-      <label for="login" class="slide login">Connecter</label>
-      <label for="signup" class="slide signup">S'inscrire</label>
-      <div class="slider-tab"></div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extase-Home - Sign-Log</title>
+    <meta name="description" content="Extase-Home offre des solutions de gestion de logement alliant luxe et confort moderne. Découvrez nos services de gestion immobilière.">
+    <link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://unpkg.com;">
+<link rel="stylesheet" href="/sign-log-style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <i class='bx bx-home-smile bx-tada' id="logo"></i>
+      <div class="title-text">
+        <div class="logo-details">
+          <div class="logo-name">
+            <h1 id="animated-text"></h1>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper-content">
+        <div class="features">
+          <h2 id="features-title">Fonctionnalités</h2>
+          <ul>
+            <li><i class='bx bx-home'></i> Gestion simplifiée de vos logements.</li>
+            <li><i class='bx bx-money'></i> Suivi des paiements en temps réel.</li>
+            <li><i class='bx bx-chat'></i> Communication fluide entre propriétaires et locataires.</li>
+            <li><i class='bx bx-download'></i> Téléchargement pratique des reçus de paiement.</li>
+            <li><i class='bx bx-support'></i> Support client disponible 24/7.</li>
+            <li><i class='bx bx-crown'></i> Confort moderne et services de luxe.</li>
+          </ul>
+        </div>
+        <div class="wrapper-form">
+          <div class="form-container">
+            <div class="form-inner">
+              <form id="login-form" class="login">
+                <div class="field">
+                  <input type="password" id="pwd" name="pwd" placeholder="Entrer le mot de passe" required>
+                </div>
+                <div class="pass-link"><strong><a href="#">Mot de passe oublié?</a></strong></div>
+                <div class="field btn">
+                  <div class="btn-layer"></div>
+                  <input type="submit" value="Se connecter">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-inner">
-      <form id="login-form" class="login">
-        <div class="field">
-          <input type="text" id="conn_key" name="conn_key" placeholder="Clé de connexion" required>
-        </div>
-        <div class="field">
-          <input type="password" id="pwd" name="pwd" placeholder="Mot de passe" required>
-        </div>
-        <div class="pass-link"><strong><a href="#">Mot de passe oublié?</a></strong></div>
-        <div class="field btn">
-          <div class="btn-layer"></div>
-          <input type="submit" value="Se connecter">
-        </div>
-        <div class="signup-link">Pas de compte? <strong><a href="#">S'inscrire maintenant</a></strong></div>
-      </form>
-      <form id="signup-form" class="signup">
-        <div class="field">
-            <input type="text" id="signup-conn_key" name="conn_key" placeholder="Clé de connexion" required>
-        </div>
-        <div class="field">
-            <input type="password" id="signup-pwd" name="pwd" placeholder="Mot de passe" required>
-        </div>
-        <div class="field">
-            <input type="password" id="signup-pwd1" name="pwd1" placeholder="Confirmation du mot de passe" required>
-        </div>
-        <div class="field btn">
-            <div class="btn-layer"></div>
-            <input type="submit" value="S'inscrire">
-        </div>
-    </form>
-    </div>
-  </div>
-</div>
-<div id="message"></div> <!-- Zone pour afficher le message -->
+    <div id="message"></div> <!-- Zone pour afficher le message -->
 
-<script src="/public/cookies_engine.js"></script>
-<script src="/public/log_sign_script.js"></script>
-<script src="/public/endpoints.js"></script>
+    <script src="/public/cookiesEngine.js"></script>
+    <script src="/public/logSignScript.js"></script>
+    <script src="/public/endpoints.js"></script>
 
-<script>
-  document.getElementById('signup-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Empêche la soumission par défaut du formulaire
-
-      const conn_key = document.getElementById('signup-conn_key').value;
-      const pwd = document.getElementById('signup-pwd').value;
-      const pwd1 = document.getElementById('signup-pwd1').value;
-      const messageDiv = document.getElementById('message');
-
-      // Réinitialise le message
-      messageDiv.textContent = '';
-
-      // Vérification si les mots de passe correspondent
-      if (pwd !== pwd1) {
-          messageDiv.textContent = "Les mots de passe ne correspondent pas.";
-          messageDiv.style.color = 'red';
-          return;
-      }
-
-      // Envoi de la requête POST via fetch
-      fetch(host + 'getotp', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              conn_key: conn_key,
-              pwd: pwd
-          })
-      })
-      .then(response => response.json())
-      .then(data => {
-          // Gérer la réponse de la requête ici
-          if (data.message === 'OTP envoyé') {
-              document.getElementById('signup-form').reset();
-              messageDiv.textContent = "Veuillez vérifier vos courriers pour valider l'inscription.";
-              messageDiv.style.color = 'green';
-          } else {
-              messageDiv.textContent = "Erreur : " + data.message;
-              messageDiv.style.color = 'red';
-          }
-      })
-      .catch(error => {
-          console.error('Erreur:', error);
-          messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer.";
-          messageDiv.style.color = 'red';
-      });
-  });
-
-  function makeRequest() {
-    let conn_key = document.getElementById('conn_key').value;
-    let pwd = document.getElementById('pwd').value;
-
-    fetch(host + 'userauth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ conn_key: conn_key, pwd: pwd })
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Erreur de réseau');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-      // Stocker les tokens si l'authentification est réussie
-      if (data.accessToken) {
-        console.log(data.accessToken);
-        localStorage.setItem('sold', data.user.sold);
-        localStorage.setItem('accessToken', data.accessToken);
-        setCookie("refreshToken", data.refreshToken, 7);
-        window.location.href = dashboardURL; 
-      } else {
-        alert('Erreur de login');
-      }
-    })
-    .catch(error => {
-      console.error('Erreur:', error);
-    });
-  }
-
-  document.getElementById('login-form').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    makeRequest();
-  });
-</script>
-</body>
+    <script src="/public/signLogAnimation.js"></script>
+    <script src="/public/signLogLogic.js"></script>
+  </body>
 </html>

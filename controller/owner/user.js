@@ -2,11 +2,12 @@ const { hashPassword, comparePasswords } = require("../../functions/hashCompareP
 const { User } = require("../../model/user");
 const mailTest = require("../../functions/emailTest");
 const { generateOwnerToken } = require("../../functions/token");
-const sendOTPemail = require('../../email/activation/sender');
+const {sendOTPemail, sendResetPwdOTPemail} = require('../../email/activation/sender');
 const codeOTP = require('../../functions/otp');
 const fs = require('fs');
 const path = require('path');
-const email_otp = {};
+const emailOtp = {};
+const resetPwdEmailOtp = {};
 
 module.exports.getOtp = async (req, res) => {
     const { email, pwd } = req.body;
@@ -14,8 +15,37 @@ module.exports.getOtp = async (req, res) => {
     if (mailTest(email)) {
         const otp = codeOTP; // Assurez-vous que codeOTP() génère un OTP valide
         sendOTPemail(email, pwd, otp);
-        email_otp[email] = otp;
+        emailOtp[email] = otp;
         res.status(200).json({ message: 'OTP envoyé' });
+    } else {
+        res.status(404).json({ message: 'Entrer un email valide' });
+    }
+};
+
+module.exports.getResetPwdOtp = async (req, res) => {
+    const { email } = req.body;
+
+    if (mailTest(email)) {
+        const otp = codeOTP; // Assurez-vous que codeOTP() génère un OTP valide
+        var result;
+        try {
+            const [rows] = await req.connection.query("CALL owner_by_email(?)", [email]);
+            console.log(rows);
+            result = rows[0];
+        } catch (error) {
+            res.status(500).json({ message: 'Internal Server Error', error });
+        } finally {
+            if (req.connection) {
+                req.connection.release();
+            }
+        }
+        if (result.length > 0 && result[0].id) {
+            sendResetPwdOTPemail(email, otp);
+            resetPwdEmailOtp[email] = otp;
+            res.status(200).json({ message: 'OTP envoyé' });
+        } else {
+            res.status(404).json({ message: 'Votre email n\' est lié à aucun compte.' });
+        }
     } else {
         res.status(404).json({ message: 'Entrer un email valide' });
     }
@@ -51,9 +81,11 @@ module.exports.createUserOwner = async (req, res) => {
         return res.status(404).json({ message: 'Entrer un email valide' });
     }
 
-    if (email_otp[email] !== otp) {
-        console.log("problem otp", email_otp[email], otp);
+    if (emailOtp[email] !== otp) {
+        console.log("problem otp", emailOtp[email], otp);
         return res.status(404).json({ message: 'OTP invalide' });
+    } else {
+        delete emailOtp.email
     }
     console.log(email, pwd, otp);
     try {
@@ -79,6 +111,7 @@ module.exports.createUserOwner = async (req, res) => {
         }
     }
 };
+
 
 module.exports.userAuth = async (req, res) => {
     const { email, pwd } = req.body;
@@ -154,6 +187,37 @@ module.exports.updateOwner = async (req, res) => {
         const query = "CALL update_owner(?, ?, ?, ?, ?, ?)";
         const values = [userId, lastname, firstname, email, contactmoov, contacttg];
 
+        try {
+            const [result] = await req.connection.query(query, values);
+            console.log(result);
+            res.status(200).json({ message: "requête réussie" });
+        } catch (queryError) {
+            console.error('Erreur lors de l\'exécution de la requête', queryError);
+            res.status(500).json({ message: 'Erreur serveur' });
+        }
+    } catch (error) {
+        console.log('Erreur lors de l\'exécution', error);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};
+
+module.exports.updatePwdOwner = async (req, res) => {
+    try {
+        const { email, otp, pwd } = req.body;
+        
+        if (resetPwdEmailOtp[email] !== otp) {
+            console.log("problem otp", resetPwdEmailOtp[email], otp);
+            return res.status(404).json({ message: 'OTP invalide' });
+        } else {
+            delete resetPwdEmailOtp.email
+        }
+        const query = "CALL reset_pwd_owner(?, ?)";
+        const pwdhashed = await hashPassword(pwd);
+        const values = [email, pwdhashed];
         try {
             const [result] = await req.connection.query(query, values);
             console.log(result);
