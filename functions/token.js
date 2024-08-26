@@ -40,4 +40,24 @@ function generateTenantToken(user, time) {
 
 }
 
-module.exports = {generateOwnerToken, generateTenantToken};
+function generateAdminToken(user, time) {
+    
+    const key = process.env.TOKEN_KEY;
+    const payload = {
+        adminId : user.id,
+        userEmail : user.email
+    };
+
+    const options = {
+        expiresIn : time
+    };
+
+    const token = jwt.sign(payload, key, options);
+
+    return token;
+
+}
+
+
+
+module.exports = {generateOwnerToken, generateTenantToken, generateAdminToken};

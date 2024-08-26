@@ -23,9 +23,10 @@ configureWebSocket(server);
 // Configurer le moteur de template EJS
 app.set('view engine', 'ejs');
 
-// Définir les répertoires des vues pour les propriétaires et les locataires
+// Définir les répertoires des vues pour les propriétaires, les locataires et Admins
 const ownerViewsPath = path.join(__dirname, '../frontend/owner_views');
 const tenantViewsPath = path.join(__dirname, '../frontend/tenant_views');
+const adminViewsPath = path.join(__dirname, '../frontend/admin_views');
 
 // Middleware pour ajouter un nonce pour CSP
 const crypto = require('crypto');
@@ -78,8 +79,10 @@ app.use(express.static(path.join(__dirname, '../frontend_functions'))); // Cache
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Servir les fichiers uploadés
 
 // Importer les routes
+const frontendAdminRouter = require('./routers/frontendAdminRouter');
 const frontendOwnerRouter = require('./routers/frontendOwnerRouter');
 const frontendTenantRouter = require('./routers/frontendTenantRouter');
+const backendAdminRouter = require('./routers/backendAdmin');
 const backendOwnerRouter = require('./routers/backendOwner');
 const backendTenantRouter = require('./routers/backendTenant');
 
@@ -97,6 +100,11 @@ const backendTenantRouter = require('./routers/backendTenant');
     // }, cache('5 minutes'), frontendTenantRouter);
     
     // Configurer les vues pour les routes spécifiques
+    app.use('/admin', (req, res, next) => {
+      app.set('views', adminViewsPath);
+      next();
+    }, frontendAdminRouter);
+
     app.use('/owner', (req, res, next) => {
       app.set('views', ownerViewsPath);
       next();
@@ -148,6 +156,7 @@ const backendTenantRouter = require('./routers/backendTenant');
       });
       
       // Configurer les routes backend
+      app.use('/backendadmin', backendAdminRouter);
       app.use('/backendowner', backendOwnerRouter);
       app.use('/backendtenant', backendTenantRouter);
       

@@ -2,7 +2,7 @@
 function renewAccessToken() {
     let refreshToken = getCookie('refreshToken');
 
-    return fetch(host + 'refreshToken', {
+    return fetch(host + 'refresh-token', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
