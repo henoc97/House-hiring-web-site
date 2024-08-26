@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap'); 
 
 :root {
   --dark-blue: #11101D;
@@ -681,6 +681,7 @@
 #chat-container {
   width: 100%;
   max-height: 320px;
+  min-height: 80px;
   max-width: 800px;
   overflow-y: auto;
   margin: 10px auto 0;
@@ -753,7 +754,7 @@
 }
 
 #delete-selected {
-  font-size: 10px;
+  font-size: 18px;
   cursor: pointer;
   z-index: 10;
   position: absolute;
@@ -775,6 +776,18 @@
   color: var(--red); /* Couleur rouge lorsque activé */
   opacity: 1;
   pointer-events: auto; /* Réactive les clics */
+}
+
+#reset-tenant-key {
+  color: var(--green);
+  margin: 5px;
+  cursor: pointer
+}
+
+
+
+#recent-messages-table {
+  cursor: pointer
 }
 
 .bx.bx-copy {

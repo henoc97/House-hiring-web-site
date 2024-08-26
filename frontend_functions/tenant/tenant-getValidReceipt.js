@@ -246,7 +246,7 @@ function getValidReceiptsRequest() {
             month: '2-digit',
             year: 'numeric'
           }).replace(/\//g, '-');
-          setLastPaymentDate("01-01-0000");
+          setLastPaymentDate("--");
           setNextPaymentDate(nextPaymentDate);
       }
 

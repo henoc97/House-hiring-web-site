@@ -30,6 +30,15 @@ if (setPwd != 1 && modal && modalContent) {
 
   const setpwdForm = document.getElementById('set-pwd-form');
   if (setpwdForm) {
+    const userNameDiv = document.getElementById('user-name');
+    console.log("oui oui");
+    if (userNameDiv) {
+      console.log("oui non");
+      console.log('trouvé', userNameDiv);
+      // Réinitialise le message
+      userNameDiv.textContent = '';
+      userNameDiv.textContent = localStorage.getItem('userName');
+    }
     setpwdForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       setpwdRequest();

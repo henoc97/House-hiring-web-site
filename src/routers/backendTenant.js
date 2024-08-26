@@ -6,7 +6,7 @@ const sharp = require('sharp');
 const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth');
 
-const { getotp, userauth, refreshToken, activateTenantAccount, setPwd, myTenant, updateTenant} = require('../../controller/tenant/user');
+const { getotp, userAuth, refreshToken, activateTenantAccount, setPwd, myTenant, updateTenant, updatePwdTenant} = require('../../controller/tenant/user');
 const { requireReceipt, receiptUnvalid, receiptValid, deleteReceipt } = require('../../controller/tenant/receipt');
 const { tenantProperty, myProperty } = require('../../controller/tenant/property');
 const { sendMessage, myMessages, deleteMessage } = require('../../controller/tenant/support');
@@ -17,6 +17,8 @@ router.use(dbMiddleware);
 
 // Routes pour les utilisateurs
 router.post("/activate-tenant-account", activateTenantAccount);
+router.post("/auth-tenant-account", userAuth);
+router.post("/reset-pwd", updatePwdTenant);
 
 // Appliquer les middlewares à toutes les routes
 router.use(authMiddleware);

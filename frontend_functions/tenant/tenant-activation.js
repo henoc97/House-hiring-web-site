@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(response => {
       if (!response.ok) {
         return response.json().then(errorData => {
-          alert('Une erreur s\'est produite')
           throw new Error(errorData.message || 'Erreur inconnue');
         });
       }
@@ -29,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem('accessTokenTenant', data.accessToken);
         setCookie("refreshTokenTenant", data.refreshToken, 7);
         localStorage.setItem('setPwd', 0);
+        localStorage.setItem('userName', data.userName + data.count);
         localStorage.setItem('createTime', data.createTime);
         window.location.href = tenantDashboardURL;
       } else {
@@ -37,6 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     .catch(error => {
       console.error('Error:', error);  // Affiche l'erreur complète dans la console
-      alert('Erreur lors de la création du compte : ' + error.message); // Affiche un message d'erreur plus descriptif
+      alert('Erreur lors de la création du compte : lien invalide'); // Affiche un message d'erreur plus descriptif
     });
-  });s
+  });

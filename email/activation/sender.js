@@ -2,6 +2,8 @@ const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
+const { ownerRedirectURL, ownerResetPwdURL } = require('../../src/endpoint');
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -13,6 +15,7 @@ const transporter = nodemailer.createTransport({
 const sendOTPemail = async (email, pwd, codeOTP) => {
   try {
     const htmlData = await ejs.renderFile(__dirname + '/app-activation.ejs', {
+      root: ownerRedirectURL,
       email: email, 
       pwd: pwd, 
       codeOTP: codeOTP
@@ -35,6 +38,7 @@ const sendOTPemail = async (email, pwd, codeOTP) => {
 const sendResetPwdOTPemail = async (email, codeOTP) => {
   try {
     const htmlData = await ejs.renderFile(__dirname + '/reset-pwd-email.ejs', {
+      root: ownerResetPwdURL,
       email: email, 
       codeOTP: codeOTP
     });

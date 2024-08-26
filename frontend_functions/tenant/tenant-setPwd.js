@@ -1,5 +1,4 @@
 
-
 function setpwdRequest(){
 
     let setPwdForm = document.getElementById('set-pwd-form');
@@ -9,9 +8,12 @@ function setpwdRequest(){
     const messageDiv = document.getElementById('set-pwd-message');
 
     if (messageDiv) {
+      console.log('trouvé', messageDiv);
       // Réinitialise le message
       messageDiv.textContent = '';
     }
+
+    
 
     // Vérification si les mots de passe correspondent
     if (pwd !== pwd1) {
@@ -21,7 +23,7 @@ function setpwdRequest(){
     }
 
     let token = localStorage.getItem('accessTokenTenant');
-
+    let userName = localStorage.getItem('userName');
     fetch(hostTenant + '/set-pwd', {
       method: 'POST',
       headers: {
@@ -30,6 +32,7 @@ function setpwdRequest(){
       },
       body : JSON.stringify({
         "pwd": pwd,
+        'userName': userName
       })
     })
     .then(response => {

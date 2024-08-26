@@ -110,6 +110,27 @@ module.exports.updateTenant = async (req, res) => {
     }
 };
 
+module.exports.updateTenantConnectKey = async (req, res) => {
+    const { id } = req.body;
+    const keyword = crypto.randomBytes(4).toString('hex');
+    const query = "CALL update_tenant_key(?, ?)";
+    const values = [id, keyword];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        console.log('je suis ici');
+        console.log(rows);
+        res.status(200).json({key: keyword});
+    } catch (queryError) {
+        console.error('Erreur lors de l\'exécution de la requête', queryError);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};
+
 
 
 module.exports.deleteTenant = async (req, res) => {

@@ -7,7 +7,7 @@ const authMiddleware = require('../../middlewares/http/auth');
 
 const { getOtp, getResetPwdOtp, createUserOwner, userAuth, updateSold, refreshToken, updateOwner, myOwner, updatePwdOwner, uploadImg } = require('../../controller/owner/user');
 const { createProperties, myProperties, myProperty, updateProperty, deleteProperty } = require('../../controller/owner/property');
-const { createTenant, tenantsProperties, recentTenants, allTenants, myTenant, updateTenant, deleteTenant, deletePropertyTenant } = require('../../controller/owner/tenant');
+const { createTenant, tenantsProperties, recentTenants, allTenants, myTenant, updateTenant, updateTenantConnectKey, deleteTenant, deletePropertyTenant } = require('../../controller/owner/tenant');
 const { requireReceipt, receiptUnValid, receiptValid, validateReceipt, deleteReceipt} = require('../../controller/owner/receipt');
 const { sendMessage, myMessages, RecentMessages, deleteMessage } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
@@ -50,6 +50,7 @@ router.post("/recent-tenants", recentTenants);
 router.post("/all-tenants", allTenants);
 router.post("/my-tenant", myTenant);
 router.post("/update-tenant", updateTenant);
+router.post("/update-tenant-key", updateTenantConnectKey);
 router.post("/delete-tenant", deleteTenant);
 router.post("/delete-tenant-property", deletePropertyTenant);
 

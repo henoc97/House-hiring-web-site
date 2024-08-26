@@ -129,7 +129,14 @@ document.getElementById('btn').addEventListener('click', function() {
                   if (editingId) {
                     updateTenant(editingId);
                   }
-               });
+              });
+              const resetKeyButton = document.querySelector('#reset-tenant-key');
+              resetKeyButton.onclick = () => {
+                const editingId2 = resetKeyButton.dataset.editingId;
+                if (editingId2) {
+                  updateTenantKey(editingId2);
+                }
+              }
             }
             if (messageForm) {
               messageForm.addEventListener('submit', function(event) {

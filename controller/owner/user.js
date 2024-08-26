@@ -33,6 +33,7 @@ module.exports.getResetPwdOtp = async (req, res) => {
             console.log(rows);
             result = rows[0];
         } catch (error) {
+            console.error('Error : ' + error);
             res.status(500).json({ message: 'Internal Server Error', error });
         } finally {
             if (req.connection) {
@@ -104,6 +105,7 @@ module.exports.createUserOwner = async (req, res) => {
             message: 'Requête réussie'
         });
     } catch (error) {
+        console.error('Error : ' + error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {
@@ -147,6 +149,7 @@ module.exports.userAuth = async (req, res) => {
             res.status(404).json({ message: 'Mot de passe incorrect' });
         }
     } catch (error) {
+        console.error('Error : ' + error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {
@@ -166,12 +169,14 @@ module.exports.myOwner = async (req, res) => {
             console.log(rows[0]);
             console.log("rows owner: ", rows);
             res.status(200).json(rows[0][0]);
-        } catch (queryError) {
-            console.error('Erreur lors de l\'exécution de la requête', queryError);
+        } catch (error) {
+            console.error('Erreur lors de l\'exécution de la requête', error);
+            console.error('Error : ' + error);
             res.status(500).json({ message: 'Erreur serveur' });
         }
     } catch (error) {
         console.log('Erreur lors de l\'exécution', error);
+        console.error('Error : ' + error);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
         if (req.connection) {
@@ -191,12 +196,14 @@ module.exports.updateOwner = async (req, res) => {
             const [result] = await req.connection.query(query, values);
             console.log(result);
             res.status(200).json({ message: "requête réussie" });
-        } catch (queryError) {
-            console.error('Erreur lors de l\'exécution de la requête', queryError);
+        } catch (error) {
+            console.error('Erreur lors de l\'exécution de la requête', error);
+            console.error('Error : ' + error);
             res.status(500).json({ message: 'Erreur serveur' });
         }
     } catch (error) {
         console.log('Erreur lors de l\'exécution', error);
+        console.error('Error : ' + error);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
         if (req.connection) {
@@ -222,12 +229,14 @@ module.exports.updatePwdOwner = async (req, res) => {
             const [result] = await req.connection.query(query, values);
             console.log(result);
             res.status(200).json({ message: "requête réussie" });
-        } catch (queryError) {
-            console.error('Erreur lors de l\'exécution de la requête', queryError);
+        } catch (error) {
+            console.error('Erreur lors de l\'exécution de la requête', error);
+            console.error('Error : ' + error);
             res.status(500).json({ message: 'Erreur serveur' });
         }
     } catch (error) {
         console.log('Erreur lors de l\'exécution', error);
+        console.error('Error : ' + error);
         res.status(500).json({ message: 'Erreur serveur' });
     } finally {
         if (req.connection) {
@@ -245,6 +254,7 @@ module.exports.updateSold = async (req, res) => {
         console.log(rows[0]);
         res.status(200).json(rows[0][0].update_sold);
     } catch (error) {
+        console.error('Error : ' + error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {
@@ -293,6 +303,7 @@ module.exports.uploadImg = async (req, res) => {
 
     } catch (err) {
         console.error(err);
+        console.error('Error : ' + error);
         res.status(500).json({ message: 'Erreur lors de l\'upload du fichier' });
     } finally {
         if (req.connection) {

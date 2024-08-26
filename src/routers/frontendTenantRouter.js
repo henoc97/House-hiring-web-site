@@ -16,6 +16,10 @@ router.get('/tenant-activate', (req, res) => {
   res.render('tenant-activation');
 });
 
+router.get('/tenant-reset-pwd', (req, res) => {
+  res.render('tenant-reset-pwd');
+});
+
 router.get('/tenant-error', (req, res) => {
   res.render('error-tenant-request');
 });
