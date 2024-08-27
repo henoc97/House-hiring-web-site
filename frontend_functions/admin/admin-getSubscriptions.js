@@ -14,10 +14,10 @@ function addSubscription(subscription) {
   row.dataset.id = subscription.id;
   row.innerHTML = `
         <td>
-          ${subscription.lastname}
+          ${subscription.ref}
         </td>
         <td>
-          ${subscription.ref}
+          ${subscription.lastname}
         </td>
         <td>
           ${subscription.email}
@@ -26,14 +26,16 @@ function addSubscription(subscription) {
           ${subscription.sumpayed}
         </td>
         <td>
-          ${subscription.method}
+        ${subscription.method}
         </td>
+        <td>
           ${subscription.payment_state == 0 ? 
-            `<span class="badge bg-danger">Non approuvé</span>` : 
+            `<span class="badge bg-danger" data-subid="${subscription.id}" data-id="${subscription.ownerid}" data-method="${subscription.method}" data-ref="${subscription.ref}">Non approuvé</span>` : 
             `<span class="badge bg-success">Approuvé</span>`
           }
-        <td>
+        </td>
         <td>${formattedDate}</td>
+        <td>
           <div class="dropdown">
             <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
             <div class="dropdown-content">
@@ -45,10 +47,9 @@ function addSubscription(subscription) {
   `;
   tableBody.insertBefore(row, tableBody.firstChild);
 
-  addDropdownsListener(); // Assure-toi que cette fonction est correctement définie pour gérer les nouveaux éléments
 }
 
-function getsubscriptionsRequest() {
+function getSubscriptionsRequest() {
   let token = localStorage.getItem('accessTokenAdmin');
   fetch(hostAdmin + 'get-all-subscriptions', {
     method: 'POST',
@@ -60,7 +61,7 @@ function getsubscriptionsRequest() {
   .then(response => {
     if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getsubscriptionsRequest());
+            return renewAccessToken().then(() => getSubscriptionsRequest());
         }
         // Redirection en cas d'autres erreurs HTTP (par exemple 500)
         window.location.href = adminError;
@@ -82,20 +83,13 @@ function getsubscriptionsRequest() {
         addSubscription(subscription); 
       });
       addDropdownsListener();
-      // Quand l'utilisateur clique sur une icône de suppression
-      document.querySelectorAll('.delete-icon').forEach(icon => {
-        icon.addEventListener('click', function() {
-          const subscriptionId = this.dataset.id;
-          deletesubscription(subscriptionId);
-        });
-      });
 
-      document.querySelectorAll('tr').forEach(tableRow => {
-        tableRow.addEventListener('click', function() {
-          const subscriptionId = this.dataset.id;
-          fitSubscriptionForm(subscriptionId);
-        });
-      });
+      // document.querySelectorAll('tr').forEach(tableRow => {
+      //   tableRow.addEventListener('click', function() {
+      //     const subscriptionId = this.dataset.id;
+      //     fitSubscriptionForm(subscriptionId);
+      //   });
+      // });
     } else {
       console.error("Element with ID 'subscriptions' not found.");
     }
@@ -107,33 +101,52 @@ function getsubscriptionsRequest() {
 }
 
 function addDropdownsListener() {
-  const toggleDropdowns = document.querySelectorAll('.toggle-dropdown');
+  const tableBody = document.getElementById("subscriptions-table");
 
-  console.log('Dropdowns trouvés:', toggleDropdowns.length);
+  if (tableBody) {
+    tableBody.addEventListener('click', function(event) {
+      const target = event.target;
 
-  toggleDropdowns.forEach(toggle => {
-    toggle.addEventListener('click', function(event) {
-      console.log('Dropdown cliqué:', this);
-      const dropdown = this.closest('.dropdown');
-      dropdown.classList.toggle('show'); // Afficher ou masquer le dropdown
-      event.stopPropagation(); // Empêche le clic de se propager et fermer immédiatement le dropdown
+      if (target.classList.contains('toggle-dropdown')) {
+        console.log('Dropdown cliqué:', target);
+        const dropdown = target.closest('.dropdown');
+        dropdown.classList.toggle('show');
+        event.stopPropagation();
+      }
+
+      if (target.classList.contains('delete-icon')) {
+        console.log('Icône de suppression cliquée:', target);
+        const subscriptionId = target.dataset.id;
+        deletesubscription(subscriptionId);
+      }
+
+      if (target.classList.contains('bg-danger')) {
+        console.log('Icône de bg-danger cliquée:', target);
+        const subscriptionId = target.dataset.subid;
+        const ownerId = target.dataset.id;
+        const ref = target.dataset.ref;
+        const method = target.dataset.method;
+        validSubscription(subscriptionId, ownerId, ref, method);
+      }
     });
-  });
 
-  // Fermer le dropdown si on clique en dehors
-  window.addEventListener('click', function(event) {
-    if (!event.target.matches('.toggle-dropdown')) {
-      const dropdowns = document.querySelectorAll('.dropdown');
-      dropdowns.forEach(dropdown => {
-        dropdown.classList.remove('show');
-      });
-    }
-  });
+    // Fermer le dropdown si on clique en dehors
+    window.addEventListener('click', function(event) {
+      if (!event.target.matches('.toggle-dropdown')) {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove('show');
+        });
+      }
+    });
+  } else {
+    console.error("Element with ID 'subscriptions-table' not found.");
+  }
 }
 
 function deletesubscription(subscriptionId) {
   let token = localStorage.getItem('accessTokenAdmin');
-
+  console.log('subscriptionId: ' + subscriptionId);
   fetch(hostAdmin + "delete-subscription", {
       method: 'POST',
       headers: {
@@ -153,9 +166,12 @@ function deletesubscription(subscriptionId) {
     }
     return response.json();
   })
-  .then(() => {
+  .then((data) => {
+      console.log('tout c est bien passé: ' + data.message);
       const row = document.querySelector(`tr[data-id="${subscriptionId}"]`);
+      console.log('object row : ' + row);
       if (row) {
+          console.log('tout c est bien passé2');
           row.remove(); // Supprime la ligne du tableau
       }
   })

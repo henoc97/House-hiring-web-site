@@ -161,14 +161,7 @@ function getValidReceiptsRequest() {
         tableBody.appendChild(row);
 
       });
-      addDropdownsListener();
-      // Quand l'utilisateur clique sur une icône de suppression
-      document.querySelectorAll('.delete-icon').forEach(icon => {
-        icon.addEventListener('click', function() {
-          const receiptId = this.dataset.id;
-          deleteReceiptTenant(receiptId);
-        });
-      });
+      // addDropdownsListener();
 
       // Calculer les mois de retard
       const currentDate = new Date();

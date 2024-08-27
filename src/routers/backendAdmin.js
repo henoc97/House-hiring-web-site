@@ -11,10 +11,10 @@ const { mySubscription, updateOwnerSold, subscriptions, insertSubscription, dele
 
 // Appliquer les middlewares à toutes les routes
 router.use(dbMiddleware);
+router.post("/admin-auth", userAuth);
 router.use(authMiddleware);
 
 // Routes pour les utilisateurs
-router.post("/admin-auth", userAuth);
 
 // Routes pour les propriétés
 router.post("/get-subscription", mySubscription);

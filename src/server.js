@@ -52,7 +52,7 @@ console.log('NODE_ENV:', process.env.NODE_ENV);
 // Configure les autres middlewares
 // app.use(cors()); // Permet les requêtes CORS
 app.use(cors({
-  origin: '${root}',
+  origin: `${root}`,
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

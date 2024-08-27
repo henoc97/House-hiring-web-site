@@ -28,6 +28,8 @@ const tenantURL = "/tenant";
 
 const adminURL = "/admin";
 
+const adminError = root + "admin/admin-error";
+
 const tenantError = root + 'tenant/tenant-error';
 
 const tenantDashboardURL = root + "tenant" + tenantURL; // Not an error

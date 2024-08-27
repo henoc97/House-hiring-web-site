@@ -302,14 +302,18 @@
   text-overflow: ellipsis;
 }
 
-.details {
+/* .details {
   position: relative;
   width: 100%;
   padding: 15px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
-  align-items: flex-start; /* Aligne les sections en haut */
+  align-items: flex-start; Aligne les sections en haut 
+} */
+
+.table-card {
+  margin: 20px;
 }
 
 .details .table-card,
@@ -455,12 +459,13 @@
   background: #ffc107;
 }
 .bg-danger{
+  cursor: pointer;
   background: #cd3545;
 }
 .bg-info{
   background: #0dcaf0;
 }
-.bg-seccuss{
+.bg-success{
   background: #198754;
 }
 
@@ -533,8 +538,8 @@
   background: var(--white);
   border-radius: 15px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  overflow-x: auto;
-  
+  /* overflow-x: auto; */
+  margin: 20px;
 }
 
 .card .card-header {

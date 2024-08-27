@@ -19,14 +19,14 @@ module.exports.mySubscription = async (req, res) => {
 };
 
 module.exports.updateOwnerSold = async (req, res) => {
-    const { id, ref } = req.body;
-    const query = "CALL update_owner_sold(?, ?)";
-    const values = [id, ref];
-    
+    const { id, ref, method } = req.body;
+    const query = "CALL update_owner_sold(?, ?, ?)";
+    const values = [id, ref, method];
+    console.log("object: " + JSON.stringify(values));
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows[0]);
-        res.status(200).json(rows[0]);
+        console.log(rows);
+        res.status(200).json({message: 'requête réussie' });
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });
@@ -57,7 +57,7 @@ module.exports.insertSubscription = async (req, res) => {
     const { email, ref, sumpaid, method } = req.body;
     const query = "CALL insert_subscription(?, ?, ?, ?)";
     const values = [email, ref, sumpaid, method];
-    
+    console.log(email, ref, sumpaid, method);
     try {
         const [rows] = await req.connection.query(query, values);
         console.log(rows[0]);
@@ -98,7 +98,8 @@ module.exports.isDeletedSubscription = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        res.status(200).json(rows[0][0]);
+        console.log('object', rows);
+        res.status(200).json({message: 'requête réussie' });
     } catch (queryError) {
         console.error('Erreur lors de l\'exécution de la requête', queryError);
         res.status(500).json({ message: 'Erreur serveur' });

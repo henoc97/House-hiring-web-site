@@ -9,8 +9,8 @@ router.get('/admin-sign-log', (req, res) => {
   res.render('admin-sign-log', {nonce: res.locals.nonce});
 });
 
-router.get('/owner-error', (req, res) => {
-  res.render('error-owner-request');
+router.get('/admin-error', (req, res) => {
+  res.render('error-admin-request');
 });
 
 // Routes pour les vues

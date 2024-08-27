@@ -5,10 +5,11 @@ function insertSubscription() {
     const inseredData = {
         email : document.getElementById('subscription-email').value,
         ref : document.getElementById('subscription-trx-id').value,
-        amount : document.getElementById('subscription-amount').value,
+        sumpaid : document.getElementById('subscription-amount').value,
         method : document.querySelector('input[name="payment-method"]:checked').value,
     };
 
+    console.log("inseredData: ", JSON.stringify(inseredData));
     let token = localStorage.getItem('accessTokenAdmin');
     fetch(hostAdmin + "insert-subscription", {
         method: 'POST',
@@ -31,7 +32,6 @@ function insertSubscription() {
     })
     .then((subscription) => {
         addSubscription(subscription);
-        addDropdownsListener();
         // Quand l'utilisateur clique sur une icône de suppression
         document.querySelectorAll('.delete-icon').forEach(icon => {
             icon.addEventListener('click', function() {
@@ -40,12 +40,12 @@ function insertSubscription() {
             });
         });
 
-        document.querySelectorAll('tr').forEach(tableRow => {
-            tableRow.addEventListener('click', function() {
-            const subscriptionId = this.dataset.id;
-            fitSubscriptionForm(subscriptionId);
-            });
-        });
+        // document.querySelectorAll('tr').forEach(tableRow => {
+        //     tableRow.addEventListener('click', function() {
+        //     const subscriptionId = this.dataset.id;
+        //     fitSubscriptionForm(subscriptionId);
+        //     });
+        // });
     })
     .catch(error => {
         window.location.href = adminError;
@@ -53,7 +53,7 @@ function insertSubscription() {
 
 }
 
-function validSubscription(id, ref) {
+function validSubscription(subscriptionId, id, ref, method) {
     let token = localStorage.getItem('accessTokenAdmin');
     fetch(hostAdmin + "update-owner-sold", {
         method: 'POST',
@@ -61,7 +61,7 @@ function validSubscription(id, ref) {
             'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(id, ref)
+        body: JSON.stringify({id, ref, method})
     })
     .then(response => {
         if (!response.ok) {
@@ -69,13 +69,13 @@ function validSubscription(id, ref) {
                 return renewAccessToken().then(() => validSubscription(subscriptionId));
             }
             // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-            window.location.href = adminError;
+            // window.location.href = adminError;
             throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
         }
         return response.json();
     })
-    .then(() => {
-        const row = document.querySelector(`tr[data-id="${id}"]`);
+    .then((data) => {
+        const row = document.querySelector(`tr[data-id="${subscriptionId}"]`);
         if (row) {
             row.querySelector('span').classList.remove('bg-danger');
             row.querySelector('span').classList.add('bg-success');
@@ -83,6 +83,6 @@ function validSubscription(id, ref) {
         }
     })
     .catch(error => {
-        window.location.href = adminError;
+        // window.location.href = adminError;
         console.error('Error deleting subscription:', error)});
     }

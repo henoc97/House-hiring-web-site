@@ -39,9 +39,10 @@ module.exports.userAuth = async (req, res) => {
     }
 
     try {
-        const [rows] = await req.connection.query("CALL show_owner(?)", [email]);
+        const [rows] = await req.connection.query("CALL show_admin(?)", [email]);
+        console.log("ici : ", rows);
         console.log(rows[0]);
-        console.log('show_admin', rows[0][0].pwd);
+        // console.log('show_admin', rows[0][0].pwd);
         if (rows[0][0].length === 0) {
             console.log('Le probleme se trouve ici');
             return res.status(404).json({ message: 'Aucun utilisateur trouvé' });
