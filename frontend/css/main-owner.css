@@ -192,7 +192,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2 em;
+  font-size: 2rem;
   cursor: pointer;
 }
 
@@ -206,7 +206,7 @@
   display: inline-block;
   padding: 0rem 1rem;
   transform: translateY(20%);
-  font-size: 1.3rem;
+  font-size: 1.3rem
 }
 
 .sold-wrapper {
@@ -805,6 +805,10 @@ input[type="radio"] {
   font-size: 16px;
   line-height: 20px;
   color: #333;
+}
+
+#action-indicator {
+  font-size: 20px;
 }
 
 /* Style pour le cercle des boutons radio */

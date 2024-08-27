@@ -24,9 +24,9 @@ configureWebSocket(server);
 app.set('view engine', 'ejs');
 
 // Définir les répertoires des vues pour les propriétaires, les locataires et Admins
-const ownerViewsPath = path.join(__dirname, '../frontend/views/owner_views');
-const tenantViewsPath = path.join(__dirname, '../frontend/views/tenant_views');
-const adminViewsPath = path.join(__dirname, '../frontend/views/admin_views');
+const ownerViewsPath = path.join(__dirname, '../frontend/views/owner');
+const tenantViewsPath = path.join(__dirname, '../frontend/views/tenant');
+const adminViewsPath = path.join(__dirname, '../frontend/views/admin');
 
 // Middleware pour ajouter un nonce pour CSP
 const crypto = require('crypto');
@@ -75,7 +75,7 @@ app.use(morgan('combined')); // Affiche dans la console
 app.use(express.static(path.join(__dirname, '../frontend/css'))); // Cache des fichiers CSS pendant 1 jour { maxAge: '1d' } désactivé
 app.use('/icon', express.static(path.join(__dirname, '../frontend/icon'))); // Cache des icon pendant 1 jour { maxAge: '1d' } désactivé
 app.use('/img', express.static(path.join(__dirname, '../frontend/img'))); // Cache des images pendant 1 jour { maxAge: '1d' } désactivé
-app.use(express.static(path.join(__dirname, '../frontend_functions'))); // Cache des fonctions frontend pendant 1 jour { maxAge: '1d' } désactivé
+app.use(express.static(path.join(__dirname, '../frontend/helper'))); // Cache des fonctions frontend pendant 1 jour { maxAge: '1d' } désactivé
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Servir les fichiers uploadés
 
 // Importer les routes
