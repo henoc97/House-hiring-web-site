@@ -100,6 +100,6 @@ function createPropertyRequest(){
         console.error('Erreur:', error);
     });
   } else {
-    alert('solde insuffisant. Cette opération coute 0.5€')
+    alert(`solde insuffisant. Cette opération coûte ${registerHomePrice} XOF`)
   }  
 }

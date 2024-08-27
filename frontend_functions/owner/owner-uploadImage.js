@@ -32,7 +32,9 @@ function uploadedImageLogic(uploadForm) {
             // uploadedImage.style.display = 'block';
             uploadedImage.classList.remove('hidden');
             uploadedImage.classList.add('visible');
-
+            uploadForm.reset();
+            updateSoldRequest(insertPic);
+            showNewSold();
         } catch (error) {
             console.error(error);
             window.location.href = ownerError;

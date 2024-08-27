@@ -5,6 +5,7 @@ const recentTenantsTable = document.getElementById('recent-tenants-table');
 if (recentTenantsTable) {    
   getUnvalidReceiptsRequest();
   getRecentTenantsRequest();
+  updateSoldRequest(0);
 }
 
 const totalTenants = document.getElementById('total-tenants');
@@ -79,7 +80,11 @@ document.getElementById('btn').addEventListener('click', function() {
               });
             }
             if (uploadForm) {
-              uploadedImageLogic(uploadForm);
+              if ((getsold() - insertPic) > 0) {
+                uploadedImageLogic(uploadForm);
+              } else {
+                alert (`solde insuffisant. Cette opération coûte ${insertPic} XOF`)
+              }
             }
         });
       } 
@@ -201,7 +206,11 @@ document.getElementById('btn').addEventListener('click', function() {
         .then(response => response.text())
         .then(data => {
           document.querySelector('.details').innerHTML = data;
-          
+          const subscriptionForm = document.getElementById('subscription-form');
+          subscriptionForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            insertSubscription();
+          })
         });
       }
     });

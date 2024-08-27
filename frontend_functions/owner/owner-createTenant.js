@@ -155,7 +155,7 @@ function createTenantRequest(){
       console.error('Erreur:', error);
     });
   } else {
-    alert('solde insuffisant. Cette opération coute 0.25€')
+    alert(`solde insuffisant. Cette opération coûte ${registerTenant} XOF`)
   }
 }
 

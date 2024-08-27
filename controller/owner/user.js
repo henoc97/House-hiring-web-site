@@ -311,3 +311,23 @@ module.exports.uploadImg = async (req, res) => {
         }
     }
 }
+
+
+module.exports.insertSubscription = async (req, res) => {
+    const { email, ref, sumpaid, method } = req.body;
+    const query = "CALL insert_subscription(?, ?, ?, ?)";
+    const values = [email, ref, sumpaid, method];
+    console.log(email, ref, sumpaid, method);
+    try {
+        const [rows] = await req.connection.query(query, values);
+        console.log(rows[0]);
+        res.status(200).json(rows[0][0]);
+    } catch (queryError) {
+        console.error('Erreur lors de l\'exécution de la requête', queryError);
+        res.status(500).json({ message: 'Erreur serveur' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};

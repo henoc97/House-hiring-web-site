@@ -196,28 +196,6 @@
   cursor: pointer;
 }
 
-.home-section .topbar .sold-wrapper {
-  position: relative;
-  height: 40px;
-  width: 230px;
-  display: flex;
-  align-items: center;
-}
-
-.home-section .topbar .sold-wrapper input {
-  position: relative;
-  height: 100%;
-  border: none;
-  outline: none;
-}
-
-.home-section .topbar .sold-wrapper span {
-  display: inline-block;
-  padding: 0rem 1rem;
-  transform: translateY(20%);
-  font-size: 1.5rem;
-}
-
 .home-section .user-wrapper img {
   width: 40px;
   height: 40px;
@@ -225,9 +203,6 @@
   border-radius: 50%;
 }
 
-.sold-wrapper {
-  color: var(--green);
-}
 /* End Top Bar */
 
 .profile-card-boxes, .card-boxes{
@@ -1082,11 +1057,6 @@ form button:hover {
   .details .recent-customers table {
     width: 100%;
     margin-top: 30px;
-  }
-  
-  /* je dois retravailler cette partie (soit je commente le display) */
-  .home-section .topbar .sold-wrapper {
-    display: none;
   }
   
   .sidebar.open,

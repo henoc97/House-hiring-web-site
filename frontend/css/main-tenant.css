@@ -196,28 +196,6 @@
   cursor: pointer;
 }
 
-.home-section .topbar .sold-wrapper {
-  position: relative;
-  height: 40px;
-  width: 230px;
-  display: flex;
-  align-items: center;
-}
-
-.home-section .topbar .sold-wrapper input {
-  position: relative;
-  height: 100%;
-  border: none;
-  outline: none;
-}
-
-.home-section .topbar .sold-wrapper span {
-  display: inline-block;
-  padding: 0rem 1rem;
-  transform: translateY(20%);
-  font-size: 1.5rem;
-}
-
 .home-section .user-wrapper img {
   width: 40px;
   height: 40px;

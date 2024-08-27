@@ -24,9 +24,9 @@ configureWebSocket(server);
 app.set('view engine', 'ejs');
 
 // Définir les répertoires des vues pour les propriétaires, les locataires et Admins
-const ownerViewsPath = path.join(__dirname, '../frontend/owner_views');
-const tenantViewsPath = path.join(__dirname, '../frontend/tenant_views');
-const adminViewsPath = path.join(__dirname, '../frontend/admin_views');
+const ownerViewsPath = path.join(__dirname, '../frontend/views/owner_views');
+const tenantViewsPath = path.join(__dirname, '../frontend/views/tenant_views');
+const adminViewsPath = path.join(__dirname, '../frontend/views/admin_views');
 
 // Middleware pour ajouter un nonce pour CSP
 const crypto = require('crypto');

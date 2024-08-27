@@ -2,7 +2,8 @@
 
 function validateReceiptLogic() {
   let token = localStorage.getItem('accessToken');
-  if((getsold() - validateReceiptPrice) > 0){
+  const toPay = (receiptData.sumpayed * validateReceiptPrice);
+  if((getsold() - toPay) > 0){
     fetch(host + 'validate-receipt', {
     method: 'POST',
     headers: {
@@ -19,6 +20,7 @@ function validateReceiptLogic() {
               return renewAccessToken().then(() => validateReceiptLogic());
           }
           // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          console.log('Redirecting to error page:', ownerError);
           window.location.href = ownerError;
           throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
       }
@@ -26,14 +28,15 @@ function validateReceiptLogic() {
   })
     .then(data => {
       console.log(data);
-      updateSoldRequest(validateReceiptPrice);
+      updateSoldRequest(toPay);
       window.location.href = ownerDashboardURL;
     })
     .catch(error => {
-      console.error('Erreur:', error);
+      console.log('Redirecting to error page:', ownerError);
       window.location.href = ownerError;
+      console.error('Erreur:', error);
     });
   } else {
-    alert('solde insuffisant. Cette opération coute 0.25€')
+    alert(`solde insuffisant. Cette opération coute ${toPay} XOF`)
   }
 }

@@ -192,37 +192,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
+  font-size: 2 em;
   cursor: pointer;
 }
 
 .home-section .topbar .sold-wrapper {
   position: relative;
-  height: 40px;
-  width: 230px;
-  display: flex;
-  align-items: center;
+  align-self: end;
 }
 
-.home-section .topbar .sold-wrapper input {
-  position: relative;
-  height: 100%;
-  border: none;
-  outline: none;
-}
 
 .home-section .topbar .sold-wrapper span {
   display: inline-block;
   padding: 0rem 1rem;
   transform: translateY(20%);
-  font-size: 1.5rem;
-}
-
-.home-section .user-wrapper img {
-  width: 40px;
-  height: 40px;
-  margin-right: 0.5rem;
-  border-radius: 50%;
+  font-size: 1.3rem;
 }
 
 .sold-wrapper {
@@ -312,8 +296,7 @@
   align-items: flex-start; /* Aligne les sections en haut */
 }
 
-.details .table-card,
-.details .recent-customers {
+.details .table-card {
   position: relative;
   display: grid;
   padding: 20px;
@@ -464,68 +447,6 @@
   background: #198754;
 }
 
-.img-group {
-  position: relative;
-  display: inline-block;
-  margin-left: -1.2rem;
-}
-
-.img-group img,
-.img-group .initial {
-  position: relative;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  object-fit: cover;
-}
-
-.img-group:hover {
-  z-index: 2;
-}
-
-.initial {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  pointer-events: none;
-  background: #624bff;
-  color: var(--white);
-}
-
-.details .recent-customers {
-  position: relative;
-}
-
-.details .recent-customers table tr {
-  height: 80px;
-}
-
-.details .recent-customers table tr td h4 {
-  position: relative;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2em;
-  color: var(--dark-blue);
-}
-
-.details .recent-customers table tr td span {
-  position: relative;
-  font-size: 14px;
-  color: #999;
-}
-
-.details .recent-customers .info-img img {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
 /* New Customers Section */
 .card {
   position: relative;
@@ -595,27 +516,6 @@
   background: #f2f2f2;
 }
 
-.card .info-img {
-  display: flex;
-  align-items: center;
-}
-
-.card .info-img img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.card .info-img h4 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.card .info-img span {
-  font-size: 0.875rem;
-  color: var(--gray);
-}
 
 /* Styles pour la structure du dropdown */
 .dropdown {
@@ -674,6 +574,13 @@
 .recent-message-text {
   margin: 0;
   font-size: 14px; /* Ajustez la taille de la police si nécessaire */
+}
+
+.red-message {
+  color: var(--red) !important;
+}
+.green-message {
+  color: var(--green) !important;
 }
 
 /* Messagerie */
@@ -1026,10 +933,6 @@ form button:hover {
   .profile-card-boxes .box form input{
     width: calc(100vw / 2.3);
   }
-  .details .recent-customers table {
-    width: 50%;
-    margin-top: 30px;
-  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -1074,14 +977,10 @@ form button:hover {
     width: calc(100vw / 2);
   }
   
-  .details .recent-customers table {
-    width: 100%;
-    margin-top: 30px;
-  }
   
   /* je dois retravailler cette partie (soit je commente le display) */
   .home-section .topbar .sold-wrapper {
-    display: none;
+    font-size: 1rem;
   }
   
   .sidebar.open,
