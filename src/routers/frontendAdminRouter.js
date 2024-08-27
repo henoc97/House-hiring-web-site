@@ -21,7 +21,6 @@ router.get('/admin', (req, res) => {
     topbar : 'admin-topbar',
     cardboxes : 'admin-cardboxes',
     subscriptions : 'admin-subscriptions',
-    approveSubscription : 'admin-approve-subscription',
     insertSubscription : 'admin-subscription-form',
   });
 });
@@ -30,7 +29,6 @@ router.get('/admin-dashboard', (req, res) => {
   res.render('_admin-dashboard', {
     nonce: res.locals.nonce,
     subscriptions : 'admin-subscriptions',
-    approveSubscription : 'admin-approve-subscription',
     insertSubscription : 'admin-subscription-form',
   });
 });

@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajouter un écouteur d'événements pour le clic
     btnHome.addEventListener('click', function() {
         // Rediriger vers la page d'accueil 
-        window.location.href = ownerDashboardURL; // page d'accueil
+        window.location.href = adminDashboardURL; // page d'accueil
     });
     
     btnSign.addEventListener('click', function() {
         // Rediriger vers la page de sign 
-        window.location.href = ownerLogSignURL; 
+        window.location.href = adminLogSignURL; 
     });
 });

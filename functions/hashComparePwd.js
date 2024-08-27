@@ -23,4 +23,9 @@ async function comparePasswords(plainPassword, hashedPassword) {
     }
 }
 
+(async () => {
+    const hashedPwd = await hashPassword('nono');
+    console.log(hashedPwd);
+})();
+
 module.exports = {hashPassword, comparePasswords};

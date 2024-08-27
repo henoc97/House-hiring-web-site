@@ -1,0 +1,1119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap'); 
+
+:root {
+  --dark-blue: #11101D;
+  --white-blue: #1D1D31;
+  --white: #fff;
+  --gray: #8390a2;
+  --purple: #8964f6; 
+  --purple2: #624bff;
+  --blue: #00A2E8;
+  --green: #198754;
+  --orange: #FFAA00;
+  --red: #ef2b3e;
+}
+
+#logo {
+  color: var(--orange);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scrollbar-width: thin;      /* Largeur de la scrollbar */ 
+  scrollbar-color: #888 #f1f1f1; /* Couleur du thumb et de la piste */
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  padding-left: 20px;
+  background: var(--dark-blue);
+  transition: all 0.5s ease;
+  z-index: 99;
+}
+
+.sidebar .logo-details {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+
+.sidebar i {
+  position: relative;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  line-height: 60px;
+  text-align: center;
+  color: var(--white);
+}
+
+.sidebar .logo-details .logo-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  transition: all 0.5s ease;
+}
+
+.sidebar ul li a i {
+  position: relative;
+  height: 50px;
+  font-size: 18px;
+  line-height: 50px;
+}
+
+.sidebar ul li a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 30px 0px 0px 30px;
+  transition: all 0.5s ease;
+}
+
+.sidebar ul li a .links-name {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--white);
+  transition: 0.4s;
+}
+
+.sidebar li.login {
+  position: fixed;
+  width: 250px;
+  height: 60px;
+  left: 0;
+  bottom: -8px;
+  padding: 20px 20px;
+  background: var(--white-blue);
+  transition: all 0.5s ease;
+}
+
+.sidebar .login #log-out {
+  position: absolute;
+  height: 60px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 60px;
+  transition: all 0.5s ease;
+}
+
+.sidebar li a.active {
+  background: var(--white);
+}
+
+.sidebar li a:hover {
+  background: var(--white);
+}
+
+.sidebar li a.active .links-name {
+  color: var(--dark-blue); /*dfghjklmù*/
+}
+
+.sidebar li a.active i {
+  color: var(--purple2); /*dfghjklmù*/
+}
+
+.sidebar li a:hover .links-name,
+.sidebar li a:hover i {
+  color: var(--dark-blue);
+}
+
+.sidebar li.login a:hover {
+  background: none;
+}
+
+.sidebar li.login a:hover .links-name,
+.sidebar li.login a:hover i {
+  color: var(--white);
+}
+
+.sidebar.open,
+.sidebar.open li.login {
+  width: 78px;
+}
+
+.sidebar.open .logo-name,
+.sidebar.open .links-name {
+  opacity: 0;
+}
+
+.sidebar.open .logo-details #btn {
+  text-align: right;
+}
+
+.sidebar.open ~ .home-section {
+  width: calc(100% - 78px);
+  left: 78px;
+}
+
+/* End Sidebar */
+
+.home-section {
+  position: relative;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  left: 250px;
+  top: 0;
+  background: #E4E9E7;
+  transition: all 0.5s ease;
+}
+
+.home-section .topbar {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: var(--white);
+}
+
+.home-section .topbar .toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.home-section .topbar .sold-wrapper {
+  position: relative;
+  height: 40px;
+  width: 230px;
+  display: flex;
+  align-items: center;
+}
+
+.home-section .topbar .sold-wrapper input {
+  position: relative;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.home-section .topbar .sold-wrapper span {
+  display: inline-block;
+  padding: 0rem 1rem;
+  transform: translateY(20%);
+  font-size: 1.5rem;
+}
+
+.home-section .user-wrapper img {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+}
+
+.sold-wrapper {
+  color: var(--green);
+}
+/* End Top Bar */
+
+.profile-card-boxes, .card-boxes{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  display: grid;
+  align-items: flex-start; /* Aligne les sections en haut */
+  margin-bottom: 20px; /* Espacement entre les sections de profil et la boîte de formulaire */
+}
+
+.profile-card-boxes {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 80px;
+}
+.card-boxes {
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+
+.card-boxes .box, .profile-card-boxes .box {
+  position: relative;
+  background: var(--white);
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 15px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.profile-card-boxes .box {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-boxes .box .numbers {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--dark-blue);
+}
+
+.card-boxes .box .box-topic, .profile-card-boxes .box .box-topic {
+  position: relative;
+  margin-top: 5px;
+  font-size: 1.1em;
+  color: var(--gray);
+}
+
+.card-boxes .box i, .profile-card-boxes .box i {
+  position: relative;
+  font-size: 3.5em;
+  color: var(--dark-blue);
+  margin-bottom: 10px;
+}
+
+.card-boxes .box i {
+  color: var(--purple);
+}
+
+.profile-card-boxes .box strong {
+  color: var(--dark-blue);
+}
+
+.profile-card-boxes .box .box-topic, .profile-card-boxes .box h3 {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+.details {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+  align-items: flex-start; /* Aligne les sections en haut */
+}
+
+.details .table-card,
+.details .recent-customers {
+  position: relative;
+  display: grid;
+  padding: 20px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  white-space: nowrap;
+  max-height: 100vh;
+}
+
+.details table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.details .card-header h2 {
+  position: relative;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #343a40;
+}
+
+.details .table-card table tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.details .table-card table thead {
+  font-weight: bold;
+}
+
+.details .table-card table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.details .table-card table tr td {
+  padding: 1rem 1rem;
+}
+
+.details .table-card table tbody tr td {
+  position: relative;
+  font-size: .938rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--dark-blue);
+}
+
+.details .table-card table tbody tr td:nth-child(2) {
+  padding-left: 2rem;
+}
+.details .table-card table tbody tr td:last-child {
+  padding-left: 2rem;
+}
+
+.details .badge {
+  position: relative;
+  display: inline-block;
+  padding: 0.38em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  border-radius: 0.375rem;
+}
+
+/* Hoover pour les impayés */
+.late-months {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  position: absolute;
+  z-index: 100;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: xx-small;
+  color: var(--red);
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* Styles pour la modale avec animations */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 15px;
+  transform: scale(0.7);
+  transition: transform 0.3s ease;
+}
+
+#message-modal .modal-content {
+  max-width: 50%;
+}
+
+/* Quand la modale est active (affichée) */
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal-content.show {
+  transform: scale(1);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bg-worning {
+  background: #ffc107;
+}
+.bg-danger{
+  background: #cd3545;
+}
+.bg-info{
+  background: #0dcaf0;
+}
+.bg-seccuss{
+  background: #198754;
+}
+
+.img-group {
+  position: relative;
+  display: inline-block;
+  margin-left: -1.2rem;
+}
+
+.img-group img,
+.img-group .initial {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+
+.img-group:hover {
+  z-index: 2;
+}
+
+.initial {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  pointer-events: none;
+  background: #624bff;
+  color: var(--white);
+}
+
+.details .recent-customers {
+  position: relative;
+}
+
+.details .recent-customers table tr {
+  height: 80px;
+}
+
+.details .recent-customers table tr td h4 {
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2em;
+  color: var(--dark-blue);
+}
+
+.details .recent-customers table tr td span {
+  position: relative;
+  font-size: 14px;
+  color: #999;
+}
+
+.details .recent-customers .info-img img {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* New Customers Section */
+.card {
+  position: relative;
+  padding: 20px;
+  background: var(--white);
+  border-radius: 15px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  
+}
+
+.card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#toggle-icon {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.modal-content .card-header h2 {
+  font-size: 1rem;
+  color: var(--dark-blue);
+}
+
+.card .card-header h2 {
+  font-size: 1.5rem;
+  color: var(--dark-blue);
+}
+
+.card .card-header button {
+  padding: 5px 10px;
+  background: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card .card-header button:hover {
+  background: var(--white-blue);
+}
+
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.card table thead tr {
+  background: var(--dark-blue);
+  color: var(--white);
+}
+
+.card table thead tr{
+  border-radius: 10px;
+}
+.card table thead th,
+.card table tbody td {
+  padding: 10px;
+  text-align: left;
+}
+
+.card table tbody tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+.card .info-img {
+  display: flex;
+  align-items: center;
+}
+
+.card .info-img img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.card .info-img h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.card .info-img span {
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+
+/* Styles pour la structure du dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Contenu du dropdown qui est masqué par défaut */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* Afficher le contenu du dropdown lorsque toggle-dropdown est cliqué */
+.dropdown.show .dropdown-content {
+  display: block;
+}
+
+/* Ajuster les icônes à l'intérieur du dropdown */
+.dropdown-content i {
+  padding: 5px;
+  cursor: pointer;
+  display: block;
+}
+
+.dropdown .dropdown-content .edit-icon {
+  color: var(--purple);
+}
+.dropdown .dropdown-content .delete-icon {
+  color: var(--red);
+}
+.dropdown .dropdown-content .chat-icon {
+  color: var(--blue);
+}
+
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+}
+
+/* Styles pour la table des messages */
+.recent-message-container {
+  max-width: 300px; /* Ajustez la largeur maximale selon vos besoins */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-message-text {
+  margin: 0;
+  font-size: 14px; /* Ajustez la taille de la police si nécessaire */
+}
+
+/* Messagerie */
+/* Conteneur principal */
+#chat-container {
+  width: 100%;
+  max-height: 320px;
+  min-height: 80px;
+  max-width: 800px;
+  overflow-y: auto;
+  margin: 10px auto 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.message-container {
+  max-width: 100%;
+  flex: 1;
+  padding: 5px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styles communs pour les messages */
+.message {
+  max-width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: inline-block;
+}
+
+/* Message de l'expéditeur (aligné à gauche) */
+.message.sender {
+  background-color: var(--purple);
+  color: var(--white);
+  align-self: flex-start;
+}
+
+/* Message du destinataire (aligné à droite) */
+.message.receiver {
+  background-color: var(--blue);
+  color: var(--white);
+  align-self: flex-end;
+}
+
+/* Style commun pour les messages */
+.message p {
+  margin: 0;
+}
+
+.date-separator {
+  margin: 20px 0;
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+}
+
+.date-separator span {
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+.message.selected {
+  background-color: #f0f0f0; /* Couleur de fond pour les messages sélectionnés */
+}
+
+.table-card {
+  position: relative; /* Assure que les éléments positionnés sont relatifs à ce conteneur */
+}
+
+#delete-selected {
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#delete-selected.disabled {
+  color: var(--gray); /* Couleur grise lorsque désactivé */
+  opacity: 0.5;
+  pointer-events: none; /* Désactive les clics */
+}
+
+#delete-selected.enabled {
+  color: var(--red); /* Couleur rouge lorsque activé */
+  opacity: 1;
+  pointer-events: auto; /* Réactive les clics */
+}
+
+#reset-tenant-key {
+  color: var(--green);
+  margin: 5px;
+  cursor: pointer
+}
+
+
+
+#recent-messages-table {
+  cursor: pointer
+}
+
+.bx.bx-copy {
+  cursor: pointer
+}
+
+/* Timestamp pour les messages */
+.timestamp {
+  font-size: 10px;
+  color: #888;
+  position: absolute;
+  bottom: -15px;
+  right: 10px;
+  margin-bottom: 2px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.info-box {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* display: flex; */
+  align-items: center;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+}
+
+.info-box i {
+  font-size: 22px !important;
+  color: var(--purple2) !important;
+  margin-right: 15px;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-title {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-size: 20px !important;
+  font-weight: bold;
+  color: var(--green);
+}
+
+#subscription-info::placeholder {
+  text-align: center;
+  color: var(--dark-blue); /* Couleur du texte du placeholder */
+  font-size: 20px; /* Taille de la police du placeholder */
+  font-weight: bold;
+  opacity: 1; /* Opacité du texte */
+}
+
+.payment-notice {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 15px;
+  background-color: #fff3e0;
+}
+
+.payment-notice span {
+  font-weight: bold;
+  color: var(--orange);
+}
+
+.payment-notice p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Style pour les conteneurs des boutons radio */
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Style pour les labels des boutons radio */
+.custom-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #333;
+}
+
+/* Style pour le cercle des boutons radio */
+.radio-inner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--blue); /* Couleur du bord du bouton radio */
+  background-color: #fff; /* Couleur de fond du bouton radio */
+}
+
+/* Style pour le cercle intérieur lorsqu'il est sélectionné */
+input[type="radio"]:checked + .custom-radio .radio-inner {
+  background-color: var(--blue); /* Couleur de fond lorsque sélectionné */
+}
+
+/* Style pour le point central dans le cercle sélectionné */
+.radio-inner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff; /* Couleur du point central */
+}
+
+/* Style pour le label du bouton radio */
+.radio-label {
+  margin-left: 10px;
+}
+
+/*        form          */
+.form-group {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 16px;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  font-weight: bold;
+  background: -webkit-linear-gradient(left, var(--blue), var(--white-blue), var(--gray));
+}
+.profile-card-boxes .box form input {
+  width: calc(100vw / 3.5);
+}
+/* responsive */
+
+@media screen and (max-width: 991px) {
+  .sidebar,
+  .sidebar li.login {
+    left: -250px;
+  }
+  
+  .home-section {
+    width: 100%;
+    left: 0;
+  }
+  
+  .sidebar.open,
+  .sidebar.open li.login {
+    width: 250px;
+    left: 0;
+  }
+  
+  .sidebar.open ~ .home-section {
+    left: 250px;
+  }
+  
+  .sidebar.open .logo-name,
+  .sidebar.open .links-name {
+    opacity: 1;
+  }
+  
+  .card-boxes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .profile-card-boxes {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .details {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .profile-card-boxes .box {
+    width: calc(100vw / 2);
+  }
+  
+  
+  #message-modal .modal-content {
+    max-width: 90%;
+  }
+  
+  .profile-card-boxes .box form input{
+    width: calc(100vw / 2.3);
+  }
+  .details .recent-customers table {
+    width: 50%;
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .card-boxes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .profile-card-boxes {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .details {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .profile-card-boxes .box {
+    width: calc(100vw / 1.5);
+  }
+  
+  .profile-card-boxes .box form input{
+    width: calc(100vw / 2);
+  }
+  #message-modal .modal-content {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-boxes {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .profile-card-boxes {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .details {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .profile-card-boxes .box {
+    width: calc(100vw / 1.3);
+  }
+  
+  .profile-card-boxes .box form input{
+    width: calc(100vw / 2);
+  }
+  
+  .details .recent-customers table {
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  /* je dois retravailler cette partie (soit je commente le display) */
+  .home-section .topbar .sold-wrapper {
+    display: none;
+  }
+  
+  .sidebar.open,
+  .sidebar.open li.login {
+    width: 100%;
+    left: 0;
+  }
+  
+  #message-modal .modal-content {
+    max-width: 90%;
+  }
+
+  /* Message de l'expéditeur (aligné à gauche) */
+  .message.sender {
+    max-width: 60%;
+    overflow-x: auto;
+    align-self: flex-start;
+  }
+  
+  /* Message du destinataire (aligné à droite) */
+  .message.receiver {
+    align-self: flex-start;
+  }
+  .sidebar.open ~ .home-section {
+    left: 0;
+  }
+  .sidebar.open ~ .home-section .topbar .toggle {
+    z-index: 1001;
+    color: var(--white);
+    position: absolute;
+    width: 110%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

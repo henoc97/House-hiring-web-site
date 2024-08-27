@@ -16,38 +16,11 @@
     <link rel="stylesheet" href="/sign-log-style.css">
   </head>
   <body>
-    <div class="wrapper">
-      <i class='bx bx-home-smile bx-tada' id="logo"></i>
-      <div class="title-text">
-        <div class="logo-details">
-          <div class="logo-name">
-            <h1 id="animated-text"></h1>
-          </div>
-        </div>
-      </div>
-      <div class="wrapper-content">
-        <div class="features">
-          <h2 id="features-title">Fonctionnalités</h2>
-          <ul>
-            <li><i class='bx bx-home'></i> Gestion simplifiée de vos logements.</li>
-            <li><i class='bx bx-money'></i> Suivi des paiements en temps réel.</li>
-            <li><i class='bx bx-chat'></i> Communication fluide entre propriétaires et locataires.</li>
-            <li><i class='bx bx-download'></i> Téléchargement pratique des reçus de paiement.</li>
-            <li><i class='bx bx-support'></i> Support client disponible 24/7.</li>
-            <li><i class='bx bx-crown'></i> Confort moderne et services de luxe.</li>
-          </ul>
-        </div>
         <div class="wrapper-form">
           <div class="form-container">
-            <div class="slide-controls">
-              <input type="radio" name="slide" id="login" checked>
-              <input type="radio" name="slide" id="signup">
-              <label for="login" class="slide login">Connecter</label>
-              <label for="signup" class="slide signup">S'inscrire</label>
-              <div class="slider-tab"></div>
-            </div>
             <div class="form-inner">
               <form id="login-form" class="login">
+                <h3>Connectez-vous en tant qu'administrateur</h3>
                 <div id="message">  </div>
                 <div class="field">
                   <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
@@ -55,40 +28,18 @@
                 <div class="field">
                   <input type="password" id="pwd" name="pwd" placeholder="Mot de passe" required>
                 </div>
-                <div class="pass-link"><strong><a href="#">Mot de passe oublié?</a></strong></div>
                 <div class="field btn">
                   <div class="btn-layer"></div>
                   <input type="submit" value="Se connecter">
-                </div>
-                <div class="signup-link">Pas de compte? <strong><a href="#">S'inscrire maintenant</a></strong></div>
-              </form>
-              <form id="signup-form" class="signup">
-                <div id="message">  </div>
-                <div class="field">
-                  <input type="email" id="signup-email" name="email" placeholder="Adresse e-mail" required>
-                </div>
-                <div class="field">
-                  <input type="password" id="signup-pwd" name="pwd" placeholder="Mot de passe" required>
-                </div>
-                <div class="field">
-                  <input type="password" id="signup-pwd1" name="pwd1" placeholder="Confirmation du mot de passe" required>
-                </div>
-                <div class="field btn">
-                  <div class="btn-layer"></div>
-                  <input type="submit" value="S'inscrire">
                 </div>
               </form>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
     <script src="/public/cookiesEngine.js"></script>
-    <script src="/public/logSignScript.js"></script>
     <script src="/public/endpoints.js"></script>
-    <script src="/public/signLogAnimation.js"></script>
 
-    <script src="/owner/owner-signLogLogic.js"></script>
+    <script src="/admin/admin-signLogLogic.js"></script>
   </body>
 </html>
