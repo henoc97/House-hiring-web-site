@@ -45,15 +45,17 @@ function updateSoldRequest(spend) {
   })
   .then(response => response.json())
   .then(data => {
-      console.log("data received:", data); // Log the received data
+      // console.log("data received:", data); // Log the received data
       
       const sold = data;
-      console.log("sold : ", sold);
+      // console.log("sold : ", sold);
       
       setSold(sold); // Update localStorage with the new balance
       
       // Update the HTML element with the new balance
       document.getElementById('sold').innerHTML = `<h3>Solde : ${sold}</h3>`;
   })
-  .catch((error) => console.error('Error fetching updateSoldRequest:', error));
+  .catch((error) => { 
+    // console.error('Error fetching updateSoldRequest:', error)
+  });
 }

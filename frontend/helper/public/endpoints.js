@@ -26,7 +26,7 @@ const root = 'http://' + ip + ':' + port + '/';
  * Base URL for the backend owner service.
  * @constant {string}
  */
-const host = root + "backendowner/";
+const host = root + "backend-owner/";
 
 /**
  * WebSocket URL for real-time communication.
@@ -38,13 +38,13 @@ const hostSocket = "ws://" + ip  + ":" + port + "/";
  * Base URL for the backend tenant service.
  * @constant {string}
  */
-const hostTenant = root + "backendtenant/";
+const hostTenant = root + "backend-tenant/";
 
 /**
  * Base URL for the backend admin service.
  * @constant {string}
  */
-const hostAdmin = root + "backendadmin/";
+const hostAdmin = root + "backend-admin/";
 
 /**
  * URL path for the owner dashboard.

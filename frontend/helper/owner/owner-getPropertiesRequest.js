@@ -15,7 +15,7 @@ function setNumberOfProperties(numberOfProperties) {
  * @return {number} The number of properties, or 0 if not defined.
  */
 function getNumberOfProperties() {
-  console.log("Function is working well");
+  // console.log("Function is working well");
   // Return 0 if the value is 'undefined'
   if (localStorage.getItem('numberOfProperties') == 'undefined') return 0;
   return localStorage.getItem('numberOfProperties');
@@ -55,7 +55,7 @@ function getPropertiesRequest(type) {
     return response.json();
   })
   .then(data => {
-    console.log("Data received:", data); // Log received data
+    // console.log("Data received:", data); // Log received data
     // If properties are wrapped in an object { myProperties }
     const properties = data.myProperties || data;
 
@@ -71,7 +71,7 @@ function getPropertiesRequest(type) {
   })
   .catch((error) => {
     // window.location.href = ownerError;
-    console.error('Error fetching properties:', error);
+    // console.error('Error fetching properties:', error);
   });
 }
 
@@ -85,7 +85,7 @@ function propertyOptionConstructor(properties) {
     propertyOption.innerHTML = ''; // Clear existing options
 
     properties.forEach((property) => {
-      console.log("Property data:", property); // Log each property
+      // console.log("Property data:", property); // Log each property
       const option = document.createElement('option');
 
       option.value = property.id;
@@ -99,7 +99,7 @@ function propertyOptionConstructor(properties) {
       }
     });
   } else {
-    console.error("Element with ID 'property-option' not found.");
+    // console.error("Element with ID 'property-option' not found.");
   }
 }
 
@@ -108,18 +108,18 @@ function propertyOptionConstructor(properties) {
  * @param {Array} properties - The list of properties to display.
  */
 function myPropertiesTableConstructor(properties) {
-  console.log("Function is working well in getPropertiesRequest");
+  // console.log("Function is working well in getPropertiesRequest");
   const tableBody = document.getElementById("my-properties-table");
   if (tableBody) {
     tableBody.innerHTML = ''; // Clear existing rows
 
     properties.forEach((property) => {
-      console.log("Property data:", property); // Log each property
+      // console.log("Property data:", property); // Log each property
       addPropertyToTable(property);
     });
     addDropdownsListener();
   } else {
-    console.error("Element with ID 'my-properties-table' not found.");
+    // console.error("Element with ID 'my-properties-table' not found.");
   }
 }
 
@@ -149,7 +149,7 @@ function editProperty(propertyId) {
     return response.json();
   })
   .then(data => {
-    console.log("Editing property:", data);
+    // console.log("Editing property:", data);
 
     // Populate the form with the current property details
     document.getElementById('property-address').value = data.address;
@@ -167,7 +167,7 @@ function editProperty(propertyId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    console.error('Error fetching property details:', error);
+    // console.error('Error fetching property details:', error);
   });
 }
 
@@ -229,7 +229,7 @@ function updateProperty(editingId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    console.error('Error updating property:', error);
+    // console.error('Error updating property:', error);
   });
 }
 
@@ -267,6 +267,6 @@ function deleteProperty(propertyId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    console.error('Error deleting property:', error);
+    // console.error('Error deleting property:', error);
   });
 }

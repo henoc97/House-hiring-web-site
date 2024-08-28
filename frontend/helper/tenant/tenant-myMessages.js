@@ -25,7 +25,7 @@ function getMessagesRequest() {
         return response.json();
     })
     .then(data => {
-        console.log("Messages received:", data); // Log the received data
+        // console.log("Messages received:", data); // Log the received data
 
         /**
          * Formats a date to a readable string in French.
@@ -63,7 +63,7 @@ function getMessagesRequest() {
 
                 // Append messages for this date
                 groupedMessages[dateKey].forEach(message => {
-                    console.log("Message data:", message); // Log each message
+                    // console.log("Message data:", message); // Log each message
 
                     // Create a new message div
                     const messageDiv = document.createElement('div');
@@ -96,11 +96,11 @@ function getMessagesRequest() {
                 });
             });
         } else {
-            console.error("Element with ID 'chat-container' not found.");
+            // console.error("Element with ID 'chat-container' not found.");
         }
     })
     .catch((error) => {
         window.location.href = tenantError;
-        console.error('Error fetching messages:', error);
+        // console.error('Error fetching messages:', error);
     });
 }

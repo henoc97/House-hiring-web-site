@@ -38,7 +38,7 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
   })
   .then(response => {
     if (!response.ok) {
-      console.log(`Network error: ${response.status}`);
+      // console.log(`Network error: ${response.status}`);
       if (response.status === 401) {
         alert('Access denied. Please check your information.');
       } 
@@ -65,7 +65,7 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
       }
   })
   .catch(error => {
-      console.error('Error:', error);
+      // console.error('Error:', error);
       messageDiv.textContent = "An error occurred. Please try again.";
       messageDiv.classList.add('red-message');
       messageDiv.classList.remove('green-message');

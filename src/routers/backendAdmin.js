@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const sharp = require('sharp');
 
 // Middleware
 const dbMiddleware = require('../../middlewares/http/database');

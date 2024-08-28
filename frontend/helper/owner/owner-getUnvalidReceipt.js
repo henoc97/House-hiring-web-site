@@ -35,7 +35,7 @@ function getUnvalidReceiptsRequest() {
     // Check if data is available; if not, exit the function
     if (!data) return;
 
-    console.log("Data received:", data); // Log the received data
+    // console.log("Data received:", data); // Log the received data
 
     const unvalidReceipts = data;
     const tableBody = document.getElementById("unvalid-receipts-table");
@@ -49,7 +49,7 @@ function getUnvalidReceiptsRequest() {
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
         
-        console.log("Unvalid receipt data:", unvalidReceipt); // Log each receipt
+        // console.log("Unvalid receipt data:", unvalidReceipt); // Log each receipt
 
         // Create a new table row
         const row = document.createElement('tr');
@@ -79,13 +79,13 @@ function getUnvalidReceiptsRequest() {
       addDropdownsListenerReceiptTable("unvalid-receipts-table");
 
     } else {
-      console.error("Element with ID 'unvalid-receipts-table' not found.");
+      // console.error("Element with ID 'unvalid-receipts-table' not found.");
     }
   })
   .catch((error) => {
     // Redirect and log error if fetching fails
     window.location.href = ownerError;
-    console.error('Error fetching invalid receipts:', error);
+    // console.error('Error fetching invalid receipts:', error);
   });
 }
 
@@ -130,7 +130,7 @@ function deleteReceipt(receiptId) {
   .catch(error => {
     // Redirect and log error if deletion fails
     window.location.href = ownerError;
-    console.error('Error deleting receipt:', error);
+    // console.error('Error deleting receipt:', error);
   });
 }
 
@@ -146,13 +146,13 @@ function addDropdownsListenerReceiptTable(tableId) {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
-        console.log('Dropdown clicked:', target);
+        // console.log('Dropdown clicked:', target);
         const dropdown = target.closest('.dropdown');
         dropdown.classList.toggle('show');
         event.stopPropagation();
       }
       if (target.classList.contains('delete-icon')) {
-        console.log('Delete icon clicked:', target);
+        // console.log('Delete icon clicked:', target);
         const receiptId = target.dataset.id;
         deleteReceipt(receiptId);
       }
@@ -168,6 +168,6 @@ function addDropdownsListenerReceiptTable(tableId) {
       }
     });
   } else {
-    console.error(`Element with ID ${tableId} not found.`);
+    // console.error(`Element with ID ${tableId} not found.`);
   }
 }

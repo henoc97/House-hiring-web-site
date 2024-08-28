@@ -37,11 +37,11 @@ function renewAccessToken() {
         localStorage.setItem('accessToken', data.accessToken);
         // Update the refresh token in cookies with a 7-day expiration
         setCookie("refreshToken", data.accessToken, 7);
-        console.log(data.accessToken);
+        // console.log(data.accessToken);
     })
     .catch(error => {
         // Log the error and redirect the user to the login page
-        console.error('Erreur de renouvellement du token:', error);
+        // console.error('Erreur de renouvellement du token:', error);
         window.location.href = ownerLogSignURL;
     });
 }

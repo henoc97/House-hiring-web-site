@@ -50,7 +50,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
       if (data.message === 'OTP sent') {
           document.getElementById('signup-form').reset();
           messageDiv.textContent = "Veuillez vérifier vos courriers pour valider l'inscription.";
-          console.log(messageDiv.innerHTML);
+          // console.log(messageDiv.innerHTML);
           messageDiv.classList.remove('red-message');
           messageDiv.classList.add('green-message');
       } else {
@@ -60,7 +60,7 @@ document.getElementById('signup-form').addEventListener('submit', function(event
       }
   })
   .catch(error => {
-      console.error('Erreur:', error);
+      // console.error('Erreur:', error);
       messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer.";
       messageDiv.classList.add('red-message');
       messageDiv.classList.remove('green-message');
@@ -99,10 +99,10 @@ fetch(host + 'user-auth', {
   return response.json();
 })
 .then(data => {
-  console.log(data);
+  // console.log(data);
   // Store tokens if authentication is successful
   if (data.accessToken) {
-    console.log(data.accessToken);
+    // console.log(data.accessToken);
     localStorage.setItem('sold', data.user.sold);
     localStorage.setItem('accessToken', data.accessToken);
     setCookie("refreshToken", data.refreshToken, 7);
@@ -112,7 +112,7 @@ fetch(host + 'user-auth', {
   }
 })
 .catch(error => {
-  console.error('Error:', error);
+  // console.error('Error:', error);
   // Uncomment if you want to display an alert for errors
   // alert('An error occurred. Please try again.');
 });

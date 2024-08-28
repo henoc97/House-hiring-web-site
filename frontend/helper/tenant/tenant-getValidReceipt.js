@@ -43,7 +43,7 @@ function setNextPaymentDate(nextPaymentDate) {
  * @returns {number} - The number of payments, or 0 if not found.
  */
 function getNumberOfPayments() {
-  console.log("It works well");
+  // console.log("It works well");
   const numberOfPayments = localStorage.getItem('numberOfPayments');
   if (numberOfPayments === null) return 0;
   return parseInt(numberOfPayments, 10);
@@ -54,9 +54,9 @@ function getNumberOfPayments() {
  * @returns {Array} - The unpaid months, or an empty array if not found.
  */
 function getUnpaidMonths() {
-  console.log("It works well");
+  // console.log("It works well");
   const unpaidMonths = localStorage.getItem('unpaidMonths'); 
-  console.log("unpaidMonths : {" + unpaidMonths.length + "}");
+  // console.log("unpaidMonths : {" + unpaidMonths.length + "}");
   if (unpaidMonths === '') return [];
   return JSON.parse(unpaidMonths);
 }
@@ -66,7 +66,7 @@ function getUnpaidMonths() {
  * @returns {number} - The count of unpaid months, or 0 if not found.
  */
 function getUnpaidMonthsCount() {
-  console.log("It works well");
+  // console.log("It works well");
   const unpaidMonthsCount = localStorage.getItem('unpaidMonthsCount');
   if (unpaidMonthsCount === null) return 0;
   return parseInt(unpaidMonthsCount, 10);
@@ -77,7 +77,7 @@ function getUnpaidMonthsCount() {
  * @returns {string} - The last payment date, or an empty string if not found.
  */
 function getLastPaymentDate() {
-  console.log("It works well");
+  // console.log("It works well");
   const lastPaymentDate = localStorage.getItem('lastPaymentDate');
   if (lastPaymentDate === null) return '--';
   return lastPaymentDate;
@@ -88,7 +88,7 @@ function getLastPaymentDate() {
  * @returns {string} - The next payment date, or an empty string if not found.
  */
 function getNextPaymentDate() {
-  console.log("It works well");
+  // console.log("It works well");
   const nextPaymentDate = localStorage.getItem('nextPaymentDate');
   if (nextPaymentDate === null) return '';
   return nextPaymentDate;
@@ -115,7 +115,7 @@ function showNumberOfPayments() {
  */
 function showUnpaidMonthsCount() {
   const unpaidMonthsCount = document.getElementById('unpaid-months-count');
-  console.log('unpaidMonthsCount : ' + JSON.stringify(getUnpaidMonthsCount()));
+  // console.log('unpaidMonthsCount : ' + JSON.stringify(getUnpaidMonthsCount()));
   unpaidMonthsCount.textContent = getUnpaidMonthsCount();
 }
 
@@ -124,7 +124,7 @@ function showUnpaidMonthsCount() {
  */
 function showLastPaymentDate() {
   const lastPaymentDate = document.getElementById('last-payment-date');
-  console.log('lastPaymentDate : ' + JSON.stringify(getLastPaymentDate()));
+  // console.log('lastPaymentDate : ' + JSON.stringify(getLastPaymentDate()));
   lastPaymentDate.textContent = getLastPaymentDate();
 }
 
@@ -133,7 +133,7 @@ function showLastPaymentDate() {
  */
 function showNextPaymentDate() {
   const nextPaymentDate = document.getElementById('next-payment-date');
-  console.log('nextPaymentDate : ' + JSON.stringify(getNextPaymentDate()));
+  // console.log('nextPaymentDate : ' + JSON.stringify(getNextPaymentDate()));
   nextPaymentDate.textContent = getNextPaymentDate();
 }
 
@@ -190,7 +190,7 @@ function getValidReceiptsRequest() {
     return response.json();
   })
   .then(data => {
-    console.log("data received:", data);
+    // console.log("data received:", data);
 
     const valiReceipts = data;
 
@@ -200,7 +200,7 @@ function getValidReceiptsRequest() {
     const tableBody = document.getElementById("receipts-table");
     if (tableBody) {
       valiReceipts.forEach((validReceipt) => {
-        console.log("valiReceipts data:", validReceipt);
+        // console.log("valiReceipts data:", validReceipt);
         const formattedDate = new Date(validReceipt.monthpayed).toLocaleString('fr-FR', {
           month: 'long',
           year: 'numeric'
@@ -234,12 +234,12 @@ function getValidReceiptsRequest() {
         !valiReceipts.some(validReceipt => compareMonths(new Date(validReceipt.monthpayed), generatedMonth))
       );
 
-      console.log("Unpaid months:", unpaidMonths);
+      // console.log("Unpaid months:", unpaidMonths);
       unpaidMonths.forEach(unpaidMonth => {
-        console.log(unpaidMonth.toLocaleString('fr-FR', { month: 'long', year: 'numeric' }));
+        // console.log(unpaidMonth.toLocaleString('fr-FR', { month: 'long', year: 'numeric' }));
       });
-      console.log('Unpaid months : ' + unpaidMonths.length);
-      console.log('valiReceipts : ' + valiReceipts + '  ' + valiReceipts.length);
+      // console.log('Unpaid months : ' + unpaidMonths.length);
+      // console.log('valiReceipts : ' + valiReceipts + '  ' + valiReceipts.length);
       const tenantCreationDay = new Date(localStorage.getItem('createTime')).getDate();
       let nextPaymentDate;
       if (valiReceipts.length > 0) {
@@ -249,22 +249,22 @@ function getValidReceiptsRequest() {
           {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
         
         setLastPaymentDate(lastPaymentDate);
-        console.log('unpaidMonths1 : ' + unpaidMonths[unpaidMonths.length-1]);
+        // console.log('unpaidMonths1 : ' + unpaidMonths[unpaidMonths.length-1]);
 
         if (unpaidMonths.length > 0) {
-          console.log(unpaidMonths[unpaidMonths.length-1].toLocaleString('fr-FR', { month: 'long', year: 'numeric' }));
+          // console.log(unpaidMonths[unpaidMonths.length-1].toLocaleString('fr-FR', { month: 'long', year: 'numeric' }));
           nextPaymentDate = unpaidMonths[unpaidMonths.length-1];
           nextPaymentDate.setDate(tenantCreationDay); 
           nextPaymentDate = nextPaymentDate.toLocaleString('fr-FR', 
             {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-          console.log('nextPaymentDate : ' + nextPaymentDate);
+          // console.log('nextPaymentDate : ' + nextPaymentDate);
         } else {
           nextPaymentDate = _lastPayedMonth;
           nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
           nextPaymentDate.setDate(tenantCreationDay); 
           nextPaymentDate = nextPaymentDate.toLocaleString('fr-FR', 
             {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-          console.log('nextPaymentDate2 : ' + nextPaymentDate);
+          // console.log('nextPaymentDate2 : ' + nextPaymentDate);
         }
       } else {
         nextPaymentDate = createTime;
@@ -272,7 +272,7 @@ function getValidReceiptsRequest() {
         nextPaymentDate.setDate(tenantCreationDay); 
         nextPaymentDate = nextPaymentDate.toLocaleString('fr-FR', 
           {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-        console.log('nextPaymentDate3 : ' + nextPaymentDate);
+        // console.log('nextPaymentDate3 : ' + nextPaymentDate);
       }
       setNextPaymentDate(nextPaymentDate);
       showNextPaymentDate();
@@ -284,7 +284,7 @@ function getValidReceiptsRequest() {
     }
   })
   .catch(error => {
-    console.error('Error:', error);
+    // console.error('Error:', error);
     window.location.href = tenantError;
   });
 }

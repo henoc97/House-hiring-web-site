@@ -10,13 +10,13 @@ function sendMessageRequest(tenantId) {
     if (window.ws) {
         window.ws.close(); // Close existing WebSocket connection
         getRecentMessagesRequest(); // Fetch recent messages
-        console.log('Previous WebSocket connection closed');
+        // console.log('Previous WebSocket connection closed');
     }
 
     window.ws = new WebSocket(hostSocket + `?token=${encodeURIComponent(token)}`);
 
     window.ws.onopen = () => {
-        console.log('WebSocket connection established for tenantId:', tenantId);
+        // console.log('WebSocket connection established for tenantId:', tenantId);
     };
 
     window.ws.onmessage = event => {
@@ -25,12 +25,12 @@ function sendMessageRequest(tenantId) {
         try {
             messageObject = JSON.parse(event.data); // Parse incoming message
         } catch (err) {
-            console.error('Erreur lors du parsing du message:', err); // Log parsing errors
+            // console.error('Erreur lors du parsing du message:', err); // Log parsing errors
             return;
         }
 
         if (messageObject && messageObject.message && messageObject.tenantid == tenantId) {
-            console.log('Message socket : ' + messageObject.message); // Log the received message
+            // console.log('Message socket : ' + messageObject.message); // Log the received message
             displayMessageOwner(messageObject); // Display the message
         }
     };
@@ -62,7 +62,7 @@ function sendMessageRequest(tenantId) {
 function displayMessageOwner(message) {
     const chatContainer = document.getElementById('chat-container');
     if (chatContainer) {
-        console.log("Message data:", message); // Log the message data
+        // console.log("Message data:", message); // Log the message data
         
         // Create and style a new message div
         const messageDiv = document.createElement('div');
@@ -91,6 +91,6 @@ function displayMessageOwner(message) {
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }, 0);
     } else {
-        console.error("Element with ID 'chat-container' not found."); // Log if chat container is not found
+        // console.error("Element with ID 'chat-container' not found."); // Log if chat container is not found
     }
 }

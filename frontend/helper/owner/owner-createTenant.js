@@ -21,7 +21,7 @@ function addTenantToTable(tenant) {
   // Reformat unpaid months
   const formattedLate = late.split(',').map(formatMonthYear).join(', ');
   const formattedLateIsUndifined = formattedLate != 'undefined-';
-  console.log("formattedLate: ", formattedLate); 
+  // console.log("formattedLate: ", formattedLate); 
   
   const row = document.createElement('tr');
   row.dataset.id = tenant.id;
@@ -109,7 +109,7 @@ function addtenantsPropertiestable(tenantProperty) {
           alert('Lien d\'activation copié dans le presse-papiers !');
       }).catch(err => {
         window.location.href = ownerError;
-        console.error('Failed to copy link: ', err);
+        // console.error('Failed to copy link: ', err);
       });
     });
   }
@@ -155,7 +155,7 @@ function createTenantRequest() {
     })
     .then(data => {
         updateSoldRequest(registerTenant);
-        console.log(data);
+        // console.log(data);
         document.getElementById('tenant-form').reset();
         addtenantsPropertiestable(data);
         removePropertyOptionByValue(id);
@@ -163,7 +163,7 @@ function createTenantRequest() {
     })
     .catch(error => {
       window.location.href = ownerError;
-      console.error('Error:', error);
+      // console.error('Error:', error);
     });
   } else {
     alert(`solde insuffisant. Cette opération coûte ${registerTenant} XOF`);
@@ -187,6 +187,6 @@ function removePropertyOptionByValue(value) {
           }
       }
   } else {
-      console.error("Element with ID 'property-option' not found.");
+      // console.error("Element with ID 'property-option' not found.");
   }
 }

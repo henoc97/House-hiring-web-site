@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
     return response.json();
   })
   .then(data => {
-    console.log("data: " + JSON.stringify(data));
+    // console.log("data: " + JSON.stringify(data));
     if (data.accessToken) {
-      console.log(data.accessToken);
+      // console.log(data.accessToken);
       localStorage.setItem('sold', data.sold);
       localStorage.setItem('accessToken', data.accessToken);
       setCookie("refreshToken", data.refreshToken, 7);
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   })
   .catch(error => {
-    console.error('Error:', error);  // Logs the full error in the console
+    // console.error('Error:', error);  // Logs the full error in the console
     alert('Erreur lors de la création du compte : ' + error.message); // Shows an error message in French
   });
 });

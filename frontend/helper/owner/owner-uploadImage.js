@@ -36,7 +36,7 @@ function uploadedImageLogic(uploadForm) {
             const result = await response.json(); // Parses the response as JSON
             const uploadedImage = document.getElementById('uploaded-image'); // Retrieves the image element
             uploadedImage.src = result.imageUrl; // Sets the src attribute to the uploaded image URL
-            console.log('imageUrl: ' + result.imageUrl + ', filename: ' + result.filename);
+            // console.log('imageUrl: ' + result.imageUrl + ', filename: ' + result.filename);
             // Updates the display of the uploaded image
             uploadedImage.classList.remove('hidden');
             uploadedImage.classList.add('visible');
@@ -46,7 +46,7 @@ function uploadedImageLogic(uploadForm) {
             updateSoldRequest(insertPic);
             showNewSold();
         } catch (error) {
-            console.error(error); // Logs any errors
+            // console.error(error); // Logs any errors
             window.location.href = ownerError; // Redirects to an error page if an exception is caught
         }
     });

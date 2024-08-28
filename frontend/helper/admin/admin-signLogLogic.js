@@ -36,7 +36,7 @@ function makeRequest() {
   })
   .catch(error => {
       // Handle any errors that occur during the fetch
-      console.error('Erreur:', error);
+    //   console.error('Erreur:', error);
       messageDiv.textContent = 'Une erreur est survenue. Veuillez réessayer.';
       messageDiv.classList.add('red-message');
       messageDiv.classList.remove('green-message');

@@ -14,7 +14,7 @@ function setpwdRequest() {
   const messageDiv = document.getElementById('set-pwd-message');
 
   if (messageDiv) {
-      console.log('Found', messageDiv);
+      // console.log('Found', messageDiv);
       // Reset the message
       messageDiv.textContent = '';
   }
@@ -75,6 +75,6 @@ function setpwdRequest() {
   })
   .catch(error => {
       window.location.href = tenantError;
-      console.error('Error:', error);
+      // console.error('Error:', error);
   });
 }

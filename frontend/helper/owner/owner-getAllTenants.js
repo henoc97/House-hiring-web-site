@@ -11,7 +11,7 @@ function setNumberOfTenants(numberOfTenants) {
  * @returns {number} The number of tenants.
  */
 function getNumberOfTenants() {
-  console.log("Function getNumberOfTenants is called");
+  // console.log("Function getNumberOfTenants is called");
   const numberOfTenants = localStorage.getItem('numberOfTenants');
   return numberOfTenants === null ? 0 : parseInt(numberOfTenants, 10);
 }
@@ -30,7 +30,7 @@ function showNumberOfTenants() {
 function getAllTenantsRequest() {
   const token = localStorage.getItem('accessToken');
 
-  console.log('Fetching all tenants with token:', token);
+  // console.log('Fetching all tenants with token:', token);
   fetch(host + 'all-tenants', {
     method: 'POST',
     headers: {
@@ -49,7 +49,7 @@ function getAllTenantsRequest() {
     return response.json();
   })
   .then(data => {
-    console.log("Data received:", data);
+    // console.log("Data received:", data);
 
     const allTenants = data;
     setNumberOfTenants(allTenants.length);
@@ -60,7 +60,7 @@ function getAllTenantsRequest() {
       tableBody.innerHTML = '';
 
       allTenants.forEach((tenant) => {
-        console.log("Tenant data:", tenant);
+        // console.log("Tenant data:", tenant);
         addTenantToTable(tenant);
       });
 
@@ -149,19 +149,19 @@ function getAllTenantsRequest() {
               if (window.ws) {
                 window.ws.close();
                 getRecentMessagesRequest();
-                console.log('WebSocket connection closed');
+                // console.log('WebSocket connection closed');
               }
             }, 300);
           }
         }
       };
     } else {
-      console.error("Element with ID 'all-tenants-table' not found.");
+      // console.error("Element with ID 'all-tenants-table' not found.");
     }
   })
   .catch((error) => {
     window.location.href = ownerError;
-    console.error('Error fetching tenants:', error);
+    // console.error('Error fetching tenants:', error);
   });
 }
 
@@ -190,7 +190,7 @@ function editTenant(tenantId) {
     return response.json();
   })
   .then(data => {
-    console.log("Editing tenant:", data);
+    // console.log("Editing tenant:", data);
     document.getElementById('edit-lastname').value = data.lastname;
     document.getElementById('edit-firstname').value = data.firstname;
     document.getElementById('edit-contact-moov').value = data.contactmoov;
@@ -207,7 +207,7 @@ function editTenant(tenantId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    console.error('Error fetching tenant details:', error);
+    // console.error('Error fetching tenant details:', error);
   });
 }
 
@@ -244,7 +244,7 @@ function updateTenant(editingId) {
     return response.json();
   })
   .then(data => {
-    console.log('Tenant updated:', data);
+    // console.log('Tenant updated:', data);
     const formattedDate = new Date(data.create_time).toLocaleString('fr-FR', {
       day: '2-digit',
       month: 'long',
@@ -262,7 +262,7 @@ function updateTenant(editingId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    console.error('Error updating tenant:', error);
+    // console.error('Error updating tenant:', error);
   });
 }
 
@@ -319,7 +319,7 @@ function deleteTenant(tenantId) {
     return response.json();
   })
   .then(data => {
-    console.log('Tenant deleted:', data);
+    // console.log('Tenant deleted:', data);
     const row = document.getElementById("all-tenants-table")
       .querySelector(`tr[data-id="${tenantId}"]`);
     if (row) {
@@ -330,7 +330,7 @@ function deleteTenant(tenantId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    console.error('Error deleting tenant:', error);
+    // console.error('Error deleting tenant:', error);
   });
 }
 
@@ -359,7 +359,7 @@ function getMessagesRequest(tenantId) {
     return response.json();
   })
   .then(data => {
-    console.log("Messages received:", data);
+    // console.log("Messages received:", data);
     const messageList = document.getElementById('message-list');
     if (messageList) {
       messageList.innerHTML = '';
@@ -369,12 +369,12 @@ function getMessagesRequest(tenantId) {
         messageList.appendChild(messageItem);
       });
     } else {
-      console.error("Element with ID 'message-list' not found.");
+      // console.error("Element with ID 'message-list' not found.");
     }
   })
   .catch(error => {
     window.location.href = ownerError;
-    console.error('Error fetching messages:', error);
+    // console.error('Error fetching messages:', error);
   });
 }
 
@@ -410,13 +410,13 @@ function sendMessageRequest(tenantId) {
       return response.json();
     })
     .then(data => {
-      console.log('Message sent:', data);
+      // console.log('Message sent:', data);
       document.querySelector('#message-content').value = '';
       getMessagesRequest(tenantId);
     })
     .catch(error => {
       window.location.href = ownerError;
-      console.error('Error sending message:', error);
+      // console.error('Error sending message:', error);
     });
   });
 }
@@ -449,12 +449,12 @@ function deleteMessageLogic(tenantId) {
         return response.json();
       })
       .then(data => {
-        console.log('Message deleted:', data);
+        // console.log('Message deleted:', data);
         getMessagesRequest(tenantId);
       })
       .catch(error => {
         window.location.href = ownerError;
-        console.error('Error deleting message:', error);
+        // console.error('Error deleting message:', error);
       });
     });
   });

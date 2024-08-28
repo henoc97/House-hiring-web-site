@@ -34,10 +34,10 @@ function makeRequest() {
     return response.json();
   })
   .then(data => {
-    console.log(data);
+    // console.log(data);
     // Store tokens if authentication is successful
     if (data.accessToken) {
-      console.log(data.accessToken);
+      // console.log(data.accessToken);
       localStorage.setItem('accessTokenTenant', data.accessToken);
       setCookie("refreshTokenTenant", data.refreshToken, 7);
       window.location.href = tenantDashboardURL; 
@@ -46,7 +46,7 @@ function makeRequest() {
     }
   })
   .catch(error => {
-    console.error('Error:', error);
+    // console.error('Error:', error);
     // alert('Une erreur est survenue. Veuillez réessayer.');
   });
 }

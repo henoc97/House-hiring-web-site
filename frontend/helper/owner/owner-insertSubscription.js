@@ -18,7 +18,7 @@ function insertSubscription() {
         method: document.querySelector('input[name="payment-method"]:checked').value,
     };
 
-    console.log("inseredData: ", JSON.stringify(inseredData)); // Log the collected data for debugging
+    // console.log("inseredData: ", JSON.stringify(inseredData)); // Log the collected data for debugging
 
     // Retrieve the access token from local storage
     let token = localStorage.getItem('accessToken');
@@ -57,6 +57,6 @@ function insertSubscription() {
     })
     .catch(error => {
         // Log the error and handle failure
-        console.error('Error inserting subscription:', error); // Log the error to the console
+        // console.error('Error inserting subscription:', error); // Log the error to the console
     });
 }

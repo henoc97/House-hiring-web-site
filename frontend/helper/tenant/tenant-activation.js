@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", function() {
   })
   .then(data => {
     // Log the data received from the server
-    console.log("data: " + JSON.stringify(data));
+    // console.log("data: " + JSON.stringify(data));
     
     // Check if the data contains an access token
     if (data.accessToken) {
       // Log the access token and store it in localStorage
-      console.log(data.accessToken);
+      // console.log(data.accessToken);
       localStorage.setItem('accessTokenTenant', data.accessToken);
       
       // Set a refresh token cookie valid for 7 days
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
   })
   .catch(error => {
     // Log the error and show an alert message for errors during account creation
-    console.error('Error:', error);  // Log the full error in the console
+    // console.error('Error:', error);  // Log the full error in the console
     alert('Error creating account: invalid link'); // Show a descriptive error message
   });
 });

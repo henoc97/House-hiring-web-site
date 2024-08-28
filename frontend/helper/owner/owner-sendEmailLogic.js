@@ -58,7 +58,7 @@ document.getElementById('send-email-form').addEventListener('submit', function(e
       }
   })
   .catch(error => {
-      console.error('Erreur:', error); // Log the error to the console
+      // console.error('Erreur:', error); // Log the error to the console
       messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer."; // Error message for general issues
       messageDiv.classList.add('red-message');
       messageDiv.classList.remove('green-message');

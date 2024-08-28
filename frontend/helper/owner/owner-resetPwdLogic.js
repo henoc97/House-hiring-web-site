@@ -57,7 +57,7 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
       }
   })
   .catch(error => {
-      console.error('Erreur:', error); // Logs the error
+      // console.error('Erreur:', error); // Logs the error
       messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer."; // Alert in French
       messageDiv.classList.add('red-message');
       messageDiv.classList.remove('green-message');

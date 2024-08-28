@@ -13,7 +13,7 @@ function setNumberOfPayments(numberOfPayments) {
  * @returns {number} The number of payments. Returns 0 if the value is 'undefined' or not found.
  */
 function getNumberOfPayments() {
-  console.log("Function getNumberOfPayments is working.");
+  // console.log("Function getNumberOfPayments is working.");
   // Check if the stored value is 'undefined' and return 0 if true
   if (localStorage.getItem('numberOfPayments') === 'undefined') return 0;
   // Return the stored number of payments
@@ -28,7 +28,7 @@ function showNumberOfPayments() {
   if (totalPayments) {
     totalPayments.textContent = getNumberOfPayments(); // Set the text content to the number of payments
   } else {
-    console.error("Element with ID 'total-payments' not found.");
+    // console.error("Element with ID 'total-payments' not found.");
   }
 }
 
@@ -67,7 +67,7 @@ function getValidReceiptsRequest() {
     // Check if data is available; if not, exit the function
     if (!data) return;
 
-    console.log("Data received:", data); // Log the received data
+    // console.log("Data received:", data); // Log the received data
 
     // If the properties are wrapped in an object { myProperties }
     const valiReceipts = data;
@@ -82,7 +82,7 @@ function getValidReceiptsRequest() {
 
       // Iterate over the valid receipts and create table rows
       valiReceipts.forEach((validReceipt) => {
-        console.log("Valid receipt data:", validReceipt); // Log each receipt
+        // console.log("Valid receipt data:", validReceipt); // Log each receipt
 
         const formattedDate = new Date(validReceipt.monthpayed).toLocaleString('fr-FR', {
           month: 'long',
@@ -117,11 +117,11 @@ function getValidReceiptsRequest() {
       addDropdownsListenerReceiptTable("valid-receipts-table");
 
     } else {
-      console.error("Element with ID 'valid-receipts-table' not found.");
+      // console.error("Element with ID 'valid-receipts-table' not found.");
     }
   })
   .catch((error) => {
     // Log error if fetching fails
-    console.error('Error fetching valid receipts:', error);
+    // console.error('Error fetching valid receipts:', error);
   });
 }

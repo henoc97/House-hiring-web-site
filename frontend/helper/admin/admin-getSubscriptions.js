@@ -82,12 +82,12 @@ function getSubscriptionsRequest() {
       });
       addDropdownsListener();
     } else {
-      console.error("Element with ID 'subscriptions-table' not found.");
+      // console.error("Element with ID 'subscriptions-table' not found.");
     }
   })
   .catch(error => {
     window.location.href = adminError;
-    console.error('Error fetching subscriptions:', error);
+    // console.error('Error fetching subscriptions:', error);
   });
 }
 
@@ -130,7 +130,7 @@ function addDropdownsListener() {
       }
     });
   } else {
-    console.error("Element with ID 'subscriptions-table' not found.");
+    // console.error("Element with ID 'subscriptions-table' not found.");
   }
 }
 
@@ -168,6 +168,6 @@ function deletesubscription(subscriptionId) {
   })
   .catch(error => {
     window.location.href = adminError;
-    console.error('Error deleting subscription:', error);
+    // console.error('Error deleting subscription:', error);
   });
 }

@@ -32,8 +32,8 @@ function getRecentMessagesRequest() {
     return response.json();
   })
   .then(data => {
-      console.log("Data received:", data); // Log received data
-      console.log('Received recent messages:', data);
+      // console.log("Data received:", data); // Log received data
+      // console.log('Received recent messages:', data);
 
       // Assuming messages are in an array
       const recentMessages = data;
@@ -45,7 +45,7 @@ function getRecentMessagesRequest() {
 
           // Iterate over the recent messages and create table rows
           recentMessages.forEach((recentMessage) => {
-            console.log("Recent messages data:", recentMessage); // Log each message data
+            // console.log("Recent messages data:", recentMessage); // Log each message data
 
             // Format the date and time
             const formattedHour = new Date(recentMessage.date_time).toLocaleString('fr-FR', {
@@ -94,12 +94,12 @@ function getRecentMessagesRequest() {
             });
           });
       } else {
-          console.error("Element with ID 'recent-messages-table' not found.");
+          // console.error("Element with ID 'recent-messages-table' not found.");
       }
   })
   .catch((error) => {
     // Redirect on error
     window.location.href = ownerError;
-    console.error('Error fetching recent messages:', error);
+    // console.error('Error fetching recent messages:', error);
   });
 }

@@ -34,7 +34,7 @@ function getRecentTenantsRequest() {
     return response.json();
   })
   .then(data => {
-      console.log("Data received:", data); // Log received data
+    //   console.log("Data received:", data); // Log received data
 
       // Assuming tenants are in an array
       const recentTenants = data;
@@ -46,7 +46,7 @@ function getRecentTenantsRequest() {
 
           // Iterate over the recent tenants and create table rows
           recentTenants.forEach((recentTenant) => {
-              console.log("Recent tenants data:", recentTenant); // Log each tenant data
+            //   console.log("Recent tenants data:", recentTenant); // Log each tenant data
 
               // Format the creation date
               const formattedDate = new Date(recentTenant.create_time).toLocaleString('fr-FR', {
@@ -70,11 +70,11 @@ function getRecentTenantsRequest() {
               tableBody.appendChild(row);
           });
       } else {
-          console.error("Element with ID 'recent-tenants-table' not found.");
+        //   console.error("Element with ID 'recent-tenants-table' not found.");
       }
   })
   .catch((error) => {
     // Handle any errors during the fetch operation
-    console.error('Error fetching recent tenants:', error);
+    // console.error('Error fetching recent tenants:', error);
   });
 }

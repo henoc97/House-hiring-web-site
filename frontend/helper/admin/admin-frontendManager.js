@@ -66,7 +66,7 @@ menuLinks.forEach(link => {
                 })
                 .catch(error => {
                     // Handle fetch errors
-                    console.error('Error fetching dashboard data:', error);
+                    // console.error('Error fetching dashboard data:', error);
                 });
         }
     });

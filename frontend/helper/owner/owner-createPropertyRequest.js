@@ -35,20 +35,20 @@ function addDropdownsListener() {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
-        console.log('Dropdown clicked:', target);
+        // console.log('Dropdown clicked:', target);
         const dropdown = target.closest('.dropdown');
         dropdown.classList.toggle('show');
         event.stopPropagation();
       }
 
       if (target.classList.contains('edit-icon')) {
-        console.log('edit icon clicked:', target);
+        // console.log('edit icon clicked:', target);
         const propertyId = target.dataset.id;
         editProperty(propertyId);
       }
 
       if (target.classList.contains('delete-icon')) {
-        console.log('Delete icon clicked:', target);
+        // console.log('Delete icon clicked:', target);
         const propertyId = target.dataset.id;
         deleteProperty(propertyId);
       }
@@ -64,7 +64,7 @@ function addDropdownsListener() {
       }
     });
   } else {
-    console.error("Element with ID 'my-properties-table' not found.");
+    // console.error("Element with ID 'my-properties-table' not found.");
   }
 }
 
@@ -104,14 +104,14 @@ function createPropertyRequest() {
     })
     .then(data => {
         updateSoldRequest(registerHomePrice);
-        console.log(data);
+        // console.log(data);
         document.getElementById('property-form').reset();
         addPropertyToTable(data); // Add the new property to the table without reloading
         showNewSold();
     })
     .catch(error => {
       window.location.href = ownerError;
-      console.error('Error:', error);
+      // console.error('Error:', error);
     });
   } else {
     alert(`solde insuffisant. Cette opération coûte ${registerHomePrice} XOF`);

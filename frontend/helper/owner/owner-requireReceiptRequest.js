@@ -7,12 +7,12 @@ function requireRecieptRequest() {
     // Retrieve the selected tenant property option
     let tenantsPropertiesOption = document.getElementById('tenants-properties-option');
     let selectedOption = tenantsPropertiesOption.options[tenantsPropertiesOption.selectedIndex];
-    console.log('Selected option value:', selectedOption.value);
-    console.log('Selected option text:', selectedOption.text);
+    // console.log('Selected option value:', selectedOption.value);
+    // console.log('Selected option text:', selectedOption.text);
 
     // Get the tenant property ID and receipt amount
     let idTenantProperty = document.getElementById('tenants-properties-option').value;
-    console.log('idTenantProperty : ' + idTenantProperty);
+    // console.log('idTenantProperty : ' + idTenantProperty);
     let sumpayed = document.getElementById('receipt-sumpayed').value;
 
     // Get the selected months
@@ -56,11 +56,11 @@ function requireRecieptRequest() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             document.getElementById('receipt-form').reset(); // Reset the form after successful request
         })
         .catch(error => {
-            console.error('Erreur:', error); // Logs the error
+            // console.error('Erreur:', error); // Logs the error
             window.location.href = ownerError; // Redirects to the error page
         });
     });

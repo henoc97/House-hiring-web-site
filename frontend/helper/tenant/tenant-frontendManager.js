@@ -61,6 +61,9 @@ if (setPwd != 1 && modal && modalContent) {
   }
 }
 
+const userName = document.querySelector('.username-wrapper#username h3');
+if (userName) userName.textContent = localStorage.getItem('userName');
+
 /**
  * Toggle sidebar visibility.
  */

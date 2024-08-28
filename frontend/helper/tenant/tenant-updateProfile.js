@@ -37,7 +37,7 @@ function updateTenant() {
         return response.json();
     })
     .then(data => {
-        console.log('Updated data:', JSON.stringify(data));
+        // console.log('Updated data:', JSON.stringify(data));
         document.getElementById('tenant-lastname').value = data.lastname;
         document.getElementById('tenant-firstname').value = data.firstname;
         document.getElementById('tenant-contact-moov').value = data.contactmoov;
@@ -47,6 +47,6 @@ function updateTenant() {
     })
     .catch(error => {
         window.location.href = tenantError;
-        console.error('Error updating tenant:', error);
+        // console.error('Error updating tenant:', error);
     });  
 }

@@ -33,21 +33,21 @@ function validateReceiptLogic() {
             return renewAccessToken().then(() => validateReceiptLogic());
           }
           // Redirects to an error page for other HTTP errors (e.g., 500)
-          console.log('Redirecting to error page:', ownerError);
+          // console.log('Redirecting to error page:', ownerError);
           window.location.href = ownerError;
           throw new Error('HTTP error ' + response.status); // Throws an error to trigger the .catch block
         }
         return response.json(); // Parses the response as JSON
       })
       .then(data => {
-        console.log(data); // Logs the response data
+        // console.log(data); // Logs the response data
         updateSoldRequest(toPay); // Updates the balance after validating the receipt
         window.location.href = ownerDashboardURL; // Redirects to the owner dashboard
       })
       .catch(error => {
-        console.log('Redirecting to error page:', ownerError); // Logs redirection to the error page
+        // console.log('Redirecting to error page:', ownerError); // Logs redirection to the error page
         window.location.href = ownerError; // Redirects to an error page if an exception is caught
-        console.error('Erreur:', error); // Logs the error
+        // console.error('Erreur:', error); // Logs the error
       });
     } else {
       alert(`Solde insuffisant. Cette opération coûte ${toPay} XOF`); // Alerts the user if the balance is insufficient

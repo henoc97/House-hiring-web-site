@@ -49,9 +49,13 @@ app.use(helmet({ contentSecurityPolicy: false })); // Disable default CSP direct
 app.use(compression()); // Compress HTTP responses
 
 // Create a write stream for logging
-const logStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
-app.use(morgan('combined', { stream: logStream })); // Log to file
-app.use(morgan('combined')); // Log to console
+const logStream = fs.createWriteStream(path.join(__dirname, '/log/access.log'), { flags: 'a' });
+// Setup logging for different environments
+if (process.env.NODE_ENV === 'production') {
+    app.use(morgan('combined', { stream: logStream })); // Log to file only in production
+} else {
+    app.use(morgan('dev')); // More detailed logging for development
+}
 
 // Configure static file serving with caching
 // const staticOptions = { maxAge: '1d' }; // Cache static files for 1 day
@@ -61,48 +65,35 @@ app.use('/img', express.static(path.join(__dirname, '../frontend/img'))); // sta
 app.use(express.static(path.join(__dirname, '../frontend/helper'))); // staticOptions
 
 // Import routers
-const frontendAdminRouter = require('./routers/frontendAdmin');
-const frontendOwnerRouter = require('./routers/frontendOwner');
-const frontendTenantRouter = require('./routers/frontendTenant');
-const backendAdminRouter = require('./routers/backendAdmin');
-const backendOwnerRouter = require('./routers/backendOwner');
-const backendTenantRouter = require('./routers/backendTenant');
+const frontendAdmin = require('./routers/frontendAdmin');
+const frontendOwner = require('./routers/frontendOwner');
+const frontendTenant = require('./routers/frontendTenant');
+const backendCspReport = require('./routers/backendCspReport');
+const backendAdmin = require('./routers/backendAdmin');
+const backendOwner = require('./routers/backendOwner');
+const backendTenant = require('./routers/backendTenant');
 
 // Configure routes
 app.use('/admin', (req, res, next) => {
     app.set('views', viewsPath.admin);
     next();
-}, frontendAdminRouter);
+}, frontendAdmin);
 
 app.use('/owner', (req, res, next) => {
     app.set('views', viewsPath.owner);
     next();
-}, frontendOwnerRouter);
+}, frontendOwner);
 
 app.use('/tenant', (req, res, next) => {
     app.set('views', viewsPath.tenant);
     next();
-}, frontendTenantRouter);
-
-// Endpoint to receive CSP violation reports
-app.post('/csp-violation-report-endpoint', express.json(), (req, res) => {
-    console.log('Request received at /csp-violation-report-endpoint:', req.body);
-    const report = req.body['csp-report'] || req.body;
-    console.log('CSP Violation Report:', report);
-
-    fs.appendFile(path.join(__dirname, 'csp-reports.log'), `${new Date().toISOString()} -- ${JSON.stringify(report)}\n`, (err) => {
-        if (err) {
-            console.error('Error recording CSP report:', err);
-        }
-    });
-
-    res.status(204).end(); // Respond with no content
-});
+}, frontendTenant);
 
 // Configure backend routes
-app.use('/backendadmin', backendAdminRouter);
-app.use('/backendowner', backendOwnerRouter);
-app.use('/backendtenant', backendTenantRouter);
+app.use('/backend-csp-report', backendCspReport);
+app.use('/backend-admin', backendAdmin);
+app.use('/backend-owner', backendOwner);
+app.use('/backend-tenant', backendTenant);
 
 // Middleware to handle unhandled errors
 app.use((err, req, res, next) => {

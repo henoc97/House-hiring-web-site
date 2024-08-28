@@ -35,7 +35,7 @@ function getOwner() {
       // Check if data is undefined or null
       if (!data) return; // Stop execution if data is undefined (e.g., due to redirection)
 
-      console.log("owner:", data); // Log the received data
+      // console.log("owner:", data); // Log the received data
 
       // Check for missing information and update the action indicator
       if (data.lastname == null || 
@@ -64,7 +64,7 @@ function getOwner() {
   .catch(error => {
       // Redirect on error and log the error details
       window.location.href = ownerError;
-      console.error('Error fetching owner details:', error);
+      // console.error('Error fetching owner details:', error);
   });
 }
 
@@ -119,6 +119,6 @@ function updateOwner() {
   .catch(error => {
       // Redirect on error and log the error details
       window.location.href = ownerError;
-      console.error('Error updating owner:', error);
+      // console.error('Error updating owner:', error);
   });
 }
