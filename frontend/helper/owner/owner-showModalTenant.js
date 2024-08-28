@@ -1,43 +1,58 @@
-// Sélectionne la modale et son contenu
+/**
+ * Handles the display and interaction of a modal for editing tenant information.
+ * This includes opening the modal with tenant data, closing the modal, and hiding it
+ * when clicking outside the modal.
+ */
+
+// Select the modal and its content
 const modal = document.getElementById('editModal');
 const modalContent = document.querySelector('.modal-content');
 const closeModal = document.querySelector('.modal .close');
 
-// Quand l'utilisateur clique sur une icône de modification
+/**
+ * Opens the modal and populates it with tenant data when an edit icon is clicked.
+ * Adds event listeners to each edit icon to show the modal.
+ */
 document.querySelectorAll('.edit-icon').forEach(icon => {
   icon.addEventListener('click', function() {
-    alert('Je click')
-    const tenantId = this.dataset.id;
+    alert('Clicked'); // Alert for debugging purposes
     
-    // Remplir le formulaire avec les données du locataire ici (utilisez tenantId)
+    const tenantId = this.dataset.id; // Get the tenant ID from the data-id attribute
     
-    modal.style.display = 'block'; // Affiche la modale
+    // TODO: Populate the form with tenant data here (use tenantId)
+    
+    modal.style.display = 'block'; // Show the modal
     setTimeout(() => {
       modal.classList.add('show');
       modalContent.classList.add('show');
-    }, 10); // Ajout du délai pour permettre la transition
+    }, 10); // Add a delay to allow the transition
   });
 });
 
-// Quand l'utilisateur clique sur <span> (x), ferme la modale
+/**
+ * Closes the modal when the close button is clicked.
+ * Removes the show class and hides the modal after the animation.
+ */
 if (closeModal) {
     closeModal.onclick = function() {
     modal.classList.remove('show');
     modalContent.classList.remove('show');
     setTimeout(() => {
         modal.style.display = 'none';
-    }, 300); // Correspond à la durée de l'animation en CSS
+    }, 300); // Corresponds to the duration of the CSS animation
     }
 }
 
-
-// Quand l'utilisateur clique n'importe où en dehors de la modale, la fermer
+/**
+ * Closes the modal when clicking anywhere outside of it.
+ * Hides the modal after removing the show class and waiting for the animation to finish.
+ */
 window.onclick = function(event) {
-  if (event.target == modal) {
+  if (event.target === modal) {
     modal.classList.remove('show');
     modalContent.classList.remove('show');
     setTimeout(() => {
       modal.style.display = 'none';
-    }, 300); // Correspond à la durée de l'animation en CSS
+    }, 300); // Corresponds to the duration of the CSS animation
   }
 }

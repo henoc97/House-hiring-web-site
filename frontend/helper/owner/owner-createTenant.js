@@ -1,4 +1,7 @@
-
+/**
+ * Adds a tenant to the tenants table.
+ * @param {Object} tenant - The tenant data to add to the table.
+ */
 function addTenantToTable(tenant) {
   const tableBody = document.getElementById("all-tenants-table");
   const formattedDate = new Date(tenant.create_time).toLocaleString('fr-FR', {
@@ -8,16 +11,18 @@ function addTenantToTable(tenant) {
   }).replace(',', '').replace(/\//g, '-');
   
   var late = tenant.unpaid_months ?? '';
-  // Fonction pour reformater les dates
+  
+  // Function to reformat dates
   function formatMonthYear(dateStr) {
     const [year, month] = dateStr.split('-');
     return `${month}-${year}`;
   }
 
-  // Reformater les mois impayés
+  // Reformat unpaid months
   const formattedLate = late.split(',').map(formatMonthYear).join(', ');
   const formattedLateIsUndifined = formattedLate != 'undefined-';
   console.log("formattedLate: ", formattedLate); 
+  
   const row = document.createElement('tr');
   row.dataset.id = tenant.id;
   row.innerHTML = `
@@ -38,14 +43,14 @@ function addTenantToTable(tenant) {
           <div class="dropdown-content">
             <i class='bx bx-message-dots chat-icon' data-id="${tenant.id}" title="Discussion"></i>
             <i class='bx bx-edit-alt edit-icon' data-id="${tenant.id}" title="Modification"></i>
-            <i class='bx bx-trash delete-icon' data-id="${tenant.id}" title="Supprission"></i>
+            <i class='bx bx-trash delete-icon' data-id="${tenant.id}" title="Suppression"></i>
           </div>
         </div>
     </td>
   `;
   tableBody.appendChild(row);
   
-  // Ajouter les événements de survol
+  // Add hover events
   row.addEventListener('mouseover', function() {
     const lateCount = row.querySelector('.late-count');
     const lateMonths = row.querySelector('.late-months');
@@ -64,9 +69,13 @@ function addTenantToTable(tenant) {
   });
 }
 
+/**
+ * Adds tenant properties to the properties table.
+ * @param {Object} tenantProperty - The tenant property data to add to the table.
+ */
 function addtenantsPropertiestable(tenantProperty) {
   const tableBody = document.getElementById("tenants-properties-table");
-  // Génération du lien d'activation
+  // Generate the activation link
   const activationLink = activateURL + `?key=${tenantProperty.conn_key}&pr_ten=${tenantProperty.id}`;
 
   const row = document.createElement('tr');
@@ -78,7 +87,7 @@ function addtenantsPropertiestable(tenantProperty) {
     <td>${tenantProperty.price}</td>
     ${tenantProperty.is_activated ? 
       `<td>--</td>` : 
-      `<td><i class='bx bx-copy' title="Copier le lien d'activation"></i></td>`
+      `<td><i class='bx bx-copy' title="Copy the activation link"></i></td>`
     }
     <td>
         <div class="dropdown">
@@ -91,24 +100,26 @@ function addtenantsPropertiestable(tenantProperty) {
   `;
   
   tableBody.insertBefore(row, tableBody.firstChild);
-  // Ajouter un événement de clic pour copier le lien dans le presse-papiers
+  
+  // Add click event to copy the link to clipboard
   const copyIcon = row.querySelector('.bx-copy');
   if (copyIcon) {
     copyIcon.addEventListener('click', () => {
-      navigator.clipboard.writeText("Lien à usage unique : " + activationLink).then(() => {
+      navigator.clipboard.writeText("Lien à usage unique: " + activationLink).then(() => {
           alert('Lien d\'activation copié dans le presse-papiers !');
       }).catch(err => {
         window.location.href = ownerError;
-        console.error('Échec de la copie du lien : ', err);
+        console.error('Failed to copy link: ', err);
       });
-   });
+    });
   }
 }
 
-
-function createTenantRequest(){
-
-  if((getsold() - registerTenant) > 0){
+/**
+ * Sends a request to create a new tenant.
+ */
+function createTenantRequest() {
+  if ((getsold() - registerTenant) > 0) {
     let id = document.getElementById('property-option').value;
     let lastname = document.getElementById('tenant-lastname').value;
     let firstname = document.getElementById('tenant-firstname').value;
@@ -123,12 +134,12 @@ function createTenantRequest(){
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
       },
-      body : JSON.stringify({
+      body: JSON.stringify({
         "id": id,
-        "lastname":lastname,
-        "firstname":firstname,
-        "contactmoov":contactmoov,
-        "contacttg":contacttg
+        "lastname": lastname,
+        "firstname": firstname,
+        "contactmoov": contactmoov,
+        "contacttg": contacttg
       })
     })
     .then(response => {
@@ -136,12 +147,12 @@ function createTenantRequest(){
           if (response.status === 401 || response.status === 403) {
               return renewAccessToken().then(() => createTenantRequest());
           }
-          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          // Redirect in case of other HTTP errors (e.g., 500)
           window.location.href = ownerError;
-          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+          throw new Error('HTTP error ' + response.status); // Throw an error to trigger the .catch
       }
       return response.json();
-  })
+    })
     .then(data => {
         updateSoldRequest(registerTenant);
         console.log(data);
@@ -152,13 +163,17 @@ function createTenantRequest(){
     })
     .catch(error => {
       window.location.href = ownerError;
-      console.error('Erreur:', error);
+      console.error('Error:', error);
     });
   } else {
-    alert(`solde insuffisant. Cette opération coûte ${registerTenant} XOF`)
+    alert(`solde insuffisant. Cette opération coûte ${registerTenant} XOF`);
   }
 }
 
+/**
+ * Removes a property option by its value.
+ * @param {string} value - The value of the option to remove.
+ */
 function removePropertyOptionByValue(value) {
   const propertyOption = document.getElementById("property-option");
   
@@ -168,7 +183,7 @@ function removePropertyOptionByValue(value) {
       for (let i = 0; i < options.length; i++) {
           if (options[i].value === value) {
               propertyOption.remove(i);
-              break; // Stopper la boucle après avoir supprimé l'option
+              break; // Stop loop after removing the option
           }
       }
   } else {

@@ -1,15 +1,28 @@
+// Load environment variables
+require('dotenv').config();
 
-const ip = "localhost";
+// Define configuration based on environment variables
+const IP = process.env.IP || 'localhost';
+const PORT = process.env.PORT || 3000;
 
-const port = "3000";
+// Construct the root URL
+const ROOT_URL = `http://${IP}:${PORT}/`;
 
-const root = 'http://' + ip + ':' + port + '/';
+// Define specific paths
+const PATHS = {
+  OWNER: 'owner',
+  RESET_PWD: 'owner-reset-pwd',
+  REDIRECT: 'owner-redirect'
+};
 
-const ownerRoot = root + "owner";
+// Construct specific URLs
+const ownerRootURL = `${ROOT_URL}${PATHS.OWNER}`;
+const ownerResetPwdURL = `${ownerRootURL}/${PATHS.RESET_PWD}`;
+const ownerRedirectURL = `${ownerRootURL}/${PATHS.REDIRECT}`;
 
-const ownerResetPwdURL = ownerRoot + "/owner-reset-pwd";
-
-const ownerRedirectURL = ownerRoot + "/owner-redirect";
-
-
-module.exports = {root, ownerResetPwdURL, ownerRedirectURL}
+// Export URLs
+module.exports = {
+  ROOT_URL,
+  ownerResetPwdURL,
+  ownerRedirectURL
+};

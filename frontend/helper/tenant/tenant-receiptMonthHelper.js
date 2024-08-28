@@ -1,18 +1,34 @@
-
+/**
+ * Initializes the month selection helper for the tenant property form.
+ * Sets up event listeners for form submission and changes in tenant property options.
+ * Generates month options for selection and updates the total cost based on selected options.
+ * @function
+ * @param {HTMLElement} tenantPropertyOption - The HTML select element for tenant property options.
+ * @returns {void}
+ */
 function selectMonthsHelper(tenantPropertyOption) {
+    // Request tenant property information
     getTenantPropertyRequest(2);
+
+    // Add event listener for form submission
     requireRecieptForm.addEventListener('submit', function(event) {
         event.preventDefault();
         requireRecieptRequest();
     });
     
+    // Update receipt amount based on the selected tenant property option
     tenantPropertyOption.addEventListener('change', function() {
         const selectedOption = this.options[this.selectedIndex];
         const price = selectedOption.dataset.price;
         document.getElementById('receipt-sumpayed').value = price ? price : '';
     });
 
-    // Fonction pour générer les options des mois
+    /**
+     * Generates and populates the month options in the receipt form.
+     * @param {number} currentMonth - The current month (1-12).
+     * @param {number} currentYear - The current year.
+     * @returns {void}
+     */
     function generateMonthOptions(currentMonth, currentYear) {
         const months = [
             "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -20,9 +36,9 @@ function selectMonthsHelper(tenantPropertyOption) {
         ];
 
         const monthsSelect = document.getElementById('receipt-months');
-        monthsSelect.innerHTML = ''; // Vider les options existantes
+        monthsSelect.innerHTML = ''; // Clear existing options
 
-        // Générer les 12 mois précédents
+        // Generate the previous 12 months
         for (let i = 12; i > 0; i--) {
             let previousMonth = currentMonth - i;
             let previousYear = currentYear;
@@ -41,7 +57,7 @@ function selectMonthsHelper(tenantPropertyOption) {
             monthsSelect.appendChild(option);
         }
 
-        // Générer le mois actuel et les 11 mois suivants
+        // Generate the current month and the next 11 months
         for (let i = 0; i < 12; i++) {
             const monthName = months[currentMonth - 1];
             const monthYearKey = `${currentYear}-${String(currentMonth).padStart(2, '0')}-01`;
@@ -51,7 +67,7 @@ function selectMonthsHelper(tenantPropertyOption) {
             option.textContent = `${monthName} ${currentYear}`;
             monthsSelect.appendChild(option);
 
-            // Passer au mois suivant
+            // Move to the next month
             currentMonth++;
             if (currentMonth > 12) {
                 currentMonth = 1;
@@ -59,35 +75,37 @@ function selectMonthsHelper(tenantPropertyOption) {
             }
         }
     }
-        
-        // Déterminer le mois et l'année de départ
-        const startDate = new Date();
-        const startMonth = startDate.getMonth() + 1; // Les mois commencent à 0 en JavaScript
-        const startYear = startDate.getFullYear();
-        
-        // Générer les mois à partir du mois courant
-        generateMonthOptions(startMonth, startYear);
-        
-        // Mettre à jour le coût total basé sur le locataire sélectionné et les mois sélectionnés
-        function updateSumpayed() {
-            const selectedOption = document.getElementById('receipt-tenant-property-option').selectedOptions[0];
-            const pricePerMonth = parseFloat(selectedOption.dataset.price);
-            const selectedMonths = Array.from(document.getElementById('receipt-months').selectedOptions);
-            const monthsCount = selectedMonths.length;
-        
-            if (pricePerMonth && monthsCount > 0) {
-                const totalCost = pricePerMonth * monthsCount;
-                document.getElementById('receipt-sumpayed').value = totalCost;
-            } else {
-                document.getElementById('receipt-sumpayed').value = '';
-            }
-        }
     
+    // Determine the start month and year
+    const startDate = new Date();
+    const startMonth = startDate.getMonth() + 1; // Months are 0-indexed in JavaScript
+    const startYear = startDate.getFullYear();
+    
+    // Generate months from the current month
+    generateMonthOptions(startMonth, startYear);
+    
+    /**
+     * Updates the total amount to be paid based on the selected tenant property and months.
+     * @returns {void}
+     */
+    function updateSumpayed() {
+        const selectedOption = document.getElementById('receipt-tenant-property-option').selectedOptions[0];
+        const pricePerMonth = parseFloat(selectedOption.dataset.price);
+        const selectedMonths = Array.from(document.getElementById('receipt-months').selectedOptions);
+        const monthsCount = selectedMonths.length;
+    
+        if (pricePerMonth && monthsCount > 0) {
+            const totalCost = pricePerMonth * monthsCount;
+            document.getElementById('receipt-sumpayed').value = totalCost;
+        } else {
+            document.getElementById('receipt-sumpayed').value = '';
+        }
+    }
 
+    // Add event listener for changes in month selection
     document.getElementById('receipt-months').addEventListener('change', function() {
         updateSumpayed();
-        // Appel pour charger le propriétés de locataire au chargement de la page
+        // Call to load tenant properties on page load
         getTenantPropertyRequest(2);
     });
-  
 }

@@ -1,88 +1,95 @@
-
-
-function insertSubscription() {
-
-    const inseredData = {
-        email : document.getElementById('subscription-email').value,
-        ref : document.getElementById('subscription-trx-id').value,
-        sumpaid : document.getElementById('subscription-amount').value,
-        method : document.querySelector('input[name="payment-method"]:checked').value,
+/**
+ * Inserts a new subscription based on form input and updates the table.
+ */
+function insertSubscriptionAdmin() {
+    // Collect subscription data from the form
+    const insertedData = {
+        email: document.getElementById('subscription-email').value,
+        ref: document.getElementById('subscription-trx-id').value,
+        sumpaid: document.getElementById('subscription-amount').value,
+        method: document.querySelector('input[name="payment-method"]:checked').value,
     };
 
-    console.log("inseredData: ", JSON.stringify(inseredData));
     let token = localStorage.getItem('accessTokenAdmin');
+
     fetch(hostAdmin + "insert-subscription", {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(inseredData)
+        body: JSON.stringify(insertedData)
     })
     .then(response => {
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
                 return renewAccessToken().then(() => insertSubscription());
             }
-            // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+            // Redirect in case of other HTTP errors (e.g., 500)
             window.location.href = adminError;
-            throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+            throw new Error('HTTP error ' + response.status);
         }
         return response.json();
     })
-    .then((subscription) => {
+    .then(subscription => {
         addSubscription(subscription);
-        // Quand l'utilisateur clique sur une icône de suppression
+
+        // Re-add event listeners to the delete icons
         document.querySelectorAll('.delete-icon').forEach(icon => {
             icon.addEventListener('click', function() {
-            const subscriptionId = this.dataset.id;
-            deletesubscription(subscriptionId);
+                const subscriptionId = this.dataset.id;
+                deletesubscription(subscriptionId);
             });
         });
 
-        // document.querySelectorAll('tr').forEach(tableRow => {
-        //     tableRow.addEventListener('click', function() {
-        //     const subscriptionId = this.dataset.id;
-        //     fitSubscriptionForm(subscriptionId);
-        //     });
-        // });
+        const subscriptionForm = document.getElementById('subscription-form');
+        subscriptionForm.reset();
     })
     .catch(error => {
         window.location.href = adminError;
-        console.error('Error deleting subscription:', error)});
-
+        console.error('Error inserting subscription:', error);
+    });
 }
 
+/**
+ * Validates a subscription and updates its status in the table.
+ * @param {string} subscriptionId - The ID of the subscription to validate.
+ * @param {string} id - The ID of the owner.
+ * @param {string} ref - The reference of the subscription.
+ * @param {string} method - The payment method.
+ */
 function validSubscription(subscriptionId, id, ref, method) {
     let token = localStorage.getItem('accessTokenAdmin');
+
     fetch(hostAdmin + "update-owner-sold", {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({id, ref, method})
+        body: JSON.stringify({ id, ref, method })
     })
     .then(response => {
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => validSubscription(subscriptionId));
+                return renewAccessToken().then(() => validSubscription(subscriptionId, id, ref, method));
             }
-            // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-            // window.location.href = adminError;
-            throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+            // Throw an error for other HTTP errors
+            throw new Error('HTTP error ' + response.status);
         }
         return response.json();
     })
-    .then((data) => {
+    .then(() => {
+        // Update the subscription status in the table
         const row = document.querySelector(`tr[data-id="${subscriptionId}"]`);
         if (row) {
-            row.querySelector('span').classList.remove('bg-danger');
-            row.querySelector('span').classList.add('bg-success');
-            row.querySelector('span').textContent = 'Approuvé';
+            const statusSpan = row.querySelector('span');
+            statusSpan.classList.remove('bg-danger');
+            statusSpan.classList.add('bg-success');
+            statusSpan.textContent = 'Approuvé';
         }
     })
     .catch(error => {
-        // window.location.href = adminError;
-        console.error('Error deleting subscription:', error)});
-    }
+        console.error('Error validating subscription:', error);
+    });
+}

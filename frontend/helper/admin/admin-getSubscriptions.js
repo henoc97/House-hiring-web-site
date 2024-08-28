@@ -1,7 +1,12 @@
-
-
+/**
+ * Adds a subscription to the subscriptions table.
+ * @param {Object} subscription - The subscription data to be added.
+ */
 function addSubscription(subscription) {
+  // Get the table body element
   const tableBody = document.getElementById("subscriptions-table");
+
+  // Format the creation date of the subscription
   const formattedDate = new Date(subscription.create_time).toLocaleString('fr-FR', {
     day: '2-digit',
     month: 'long',
@@ -9,27 +14,18 @@ function addSubscription(subscription) {
     hour: 'numeric',
     minute: 'numeric',
   }).replace(',', '').replace(/\//g, '-');
-  console.log("subscriptions data:", subscription); // Log chaque propriété
+
+  // Create a new row for the subscription
   const row = document.createElement('tr');
   row.dataset.id = subscription.id;
   row.innerHTML = `
+        <td>${subscription.ref}</td>
+        <td>${subscription.lastname}</td>
+        <td>${subscription.email}</td>
+        <td>${subscription.sumpayed}</td>
+        <td>${subscription.method}</td>
         <td>
-          ${subscription.ref}
-        </td>
-        <td>
-          ${subscription.lastname}
-        </td>
-        <td>
-          ${subscription.email}
-        </td>
-        <td>
-          ${subscription.sumpayed}
-        </td>
-        <td>
-        ${subscription.method}
-        </td>
-        <td>
-          ${subscription.payment_state == 0 ? 
+          ${subscription.payment_state === 0 ? 
             `<span class="badge bg-danger" data-subid="${subscription.id}" data-id="${subscription.ownerid}" data-method="${subscription.method}" data-ref="${subscription.ref}">Non approuvé</span>` : 
             `<span class="badge bg-success">Approuvé</span>`
           }
@@ -43,14 +39,18 @@ function addSubscription(subscription) {
             </div>
           </div>
         </td>
-
   `;
-  tableBody.insertBefore(row, tableBody.firstChild);
 
+  // Insert the new row at the top of the table
+  tableBody.insertBefore(row, tableBody.firstChild);
 }
 
+/**
+ * Sends a request to get all subscriptions and updates the table.
+ */
 function getSubscriptionsRequest() {
-  let token = localStorage.getItem('accessTokenAdmin');
+  const token = localStorage.getItem('accessTokenAdmin');
+
   fetch(hostAdmin + 'get-all-subscriptions', {
     method: 'POST',
     headers: {
@@ -60,46 +60,40 @@ function getSubscriptionsRequest() {
   })
   .then(response => {
     if (!response.ok) {
-        if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getSubscriptionsRequest());
-        }
-        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-        window.location.href = adminError;
-        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+      if (response.status === 401 || response.status === 403) {
+        return renewAccessToken().then(() => getSubscriptionsRequest());
+      }
+      // Redirect in case of other HTTP errors (e.g., 500)
+      window.location.href = adminError;
+      throw new Error('HTTP error ' + response.status);
     }
     return response.json();
   })
   .then(data => {
-    if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécution
-
-    console.log("data received:", data); // Log les données reçues
+    if (!data) return; // Stop execution if no data
 
     const subscriptions = data;
     const tableBody = document.getElementById("subscriptions-table");
     if (tableBody) {
       tableBody.innerHTML = ''; // Clear existing rows
 
-      subscriptions.forEach((subscription) => {
-        addSubscription(subscription); 
+      subscriptions.forEach(subscription => {
+        addSubscription(subscription);
       });
       addDropdownsListener();
-
-      // document.querySelectorAll('tr').forEach(tableRow => {
-      //   tableRow.addEventListener('click', function() {
-      //     const subscriptionId = this.dataset.id;
-      //     fitSubscriptionForm(subscriptionId);
-      //   });
-      // });
     } else {
-      console.error("Element with ID 'subscriptions' not found.");
+      console.error("Element with ID 'subscriptions-table' not found.");
     }
   })
-  .catch((error) => {
+  .catch(error => {
     window.location.href = adminError;
     console.error('Error fetching subscriptions:', error);
   });
 }
 
+/**
+ * Adds event listeners to dropdowns and handles interactions.
+ */
 function addDropdownsListener() {
   const tableBody = document.getElementById("subscriptions-table");
 
@@ -108,20 +102,17 @@ function addDropdownsListener() {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
-        console.log('Dropdown cliqué:', target);
         const dropdown = target.closest('.dropdown');
         dropdown.classList.toggle('show');
         event.stopPropagation();
       }
 
       if (target.classList.contains('delete-icon')) {
-        console.log('Icône de suppression cliquée:', target);
         const subscriptionId = target.dataset.id;
         deletesubscription(subscriptionId);
       }
 
       if (target.classList.contains('bg-danger')) {
-        console.log('Icône de bg-danger cliquée:', target);
         const subscriptionId = target.dataset.subid;
         const ownerId = target.dataset.id;
         const ref = target.dataset.ref;
@@ -130,11 +121,10 @@ function addDropdownsListener() {
       }
     });
 
-    // Fermer le dropdown si on clique en dehors
+    // Close the dropdown if clicking outside
     window.addEventListener('click', function(event) {
       if (!event.target.matches('.toggle-dropdown')) {
-        const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
           dropdown.classList.remove('show');
         });
       }
@@ -144,38 +134,40 @@ function addDropdownsListener() {
   }
 }
 
+/**
+ * Sends a request to delete a subscription and removes it from the table.
+ * @param {string} subscriptionId - The ID of the subscription to delete.
+ */
 function deletesubscription(subscriptionId) {
-  let token = localStorage.getItem('accessTokenAdmin');
-  console.log('subscriptionId: ' + subscriptionId);
+  const token = localStorage.getItem('accessTokenAdmin');
+
   fetch(hostAdmin + "delete-subscription", {
-      method: 'POST',
-      headers: {
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ "id": subscriptionId })
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "id": subscriptionId })
   })
   .then(response => {
     if (!response.ok) {
-        if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => deletesubscription(subscriptionId));
-        }
-        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
-        window.location.href = adminError;
-        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+      if (response.status === 401 || response.status === 403) {
+        return renewAccessToken().then(() => deletesubscription(subscriptionId));
+      }
+      // Redirect in case of other HTTP errors (e.g., 500)
+      window.location.href = adminError;
+      throw new Error('HTTP error ' + response.status);
     }
     return response.json();
   })
-  .then((data) => {
-      console.log('tout c est bien passé: ' + data.message);
-      const row = document.querySelector(`tr[data-id="${subscriptionId}"]`);
-      console.log('object row : ' + row);
-      if (row) {
-          console.log('tout c est bien passé2');
-          row.remove(); // Supprime la ligne du tableau
-      }
+  .then(data => {
+    const row = document.querySelector(`tr[data-id="${subscriptionId}"]`);
+    if (row) {
+      row.remove(); // Remove the row from the table
+    }
   })
   .catch(error => {
     window.location.href = adminError;
-    console.error('Error deleting subscription:', error)});
+    console.error('Error deleting subscription:', error);
+  });
 }

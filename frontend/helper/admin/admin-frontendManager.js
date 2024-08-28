@@ -1,69 +1,73 @@
+/**
+ * Initializes event listeners and fetches data for the page elements.
+ * Handles form submission, sidebar toggle, and menu link clicks.
+ */
 
-
-
+// Get the table element for subscriptions
 const subscriptionsTable = document.getElementById('subscriptions-table');
-if (subscriptionsTable) {    
-  getSubscriptionsRequest();
+if (subscriptionsTable) {
+    // Fetch subscription data if the table is present
+    getSubscriptionsRequest();
 }
 
-// const totalTenants = document.getElementById('total-tenants');
-// totalTenants.textContent = getNumberOfTenants() ?? 0;
-
-// const totalTenantsProperties = document.getElementById('total-tenants-properties');
-// totalTenantsProperties.textContent = getNumberOfTenantsProperties() ?? 0;
-
-// const totalProperties = document.getElementById('total-properties');
-// totalProperties.textContent = getNumberOfProperties() ?? 0;
-
-// const totalPayments = document.getElementById('total-payments');
-// totalPayments.textContent = getNumberOfPayments() ?? 0;
-
-// showNewSold();
-
-// const unValidReceiptsTable = document.getElementById('unvalid-receipts-table')
-// unValidReceiptsTable.addEventListener('click', function(e) {
-//   accessReceipt(e);
-// });
-
+// Get the subscription form element
 const subscriptionForm = document.getElementById('subscription-form');
 if (subscriptionForm) {
-  subscriptionForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    insertSubscription();
-  })
+    /**
+     * Handles the form submission event to insert a new subscription.
+     * Prevents default form submission behavior and calls the `insertSubscription` function.
+     * @param {Event} e - The submit event object.
+     */
+    subscriptionForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        insertSubscriptionAdmin(); // Call the function to insert a new subscription
+    });
 }
 
+// Add click event listener to the toggle button
 document.getElementById('btn').addEventListener('click', function() {
+    // Toggle the 'open' class on the sidebar to show or hide it
     document.querySelector('.sidebar').classList.toggle('open');
-  });
+});
 
-  // Sélectionner tous les liens de menu
-  const menuLinks = document.querySelectorAll('.sidebar ul li a');
+// Select all menu links within the sidebar
+const menuLinks = document.querySelectorAll('.sidebar ul li a');
 
-  menuLinks.forEach(link => {
+/**
+ * Adds click event listeners to menu links for handling navigation and content display.
+ * @param {NodeListOf<HTMLElement>} menuLinks - The menu links to add event listeners to.
+ */
+menuLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      e.preventDefault();
+        e.preventDefault(); // Prevent the default link behavior
 
-      // Supprimer la classe active de tous les liens
-      menuLinks.forEach(l => l.classList.remove('active'));
+        // Remove the 'active' class from all menu links
+        menuLinks.forEach(l => l.classList.remove('active'));
 
-      // Ajouter la classe active au lien cliqué
-      this.classList.add('active');
+        // Add the 'active' class to the clicked link
+        this.classList.add('active');
 
-      // Cacher les éléments actuels et afficher le contenu correspondant
-      document.querySelector('.details').innerHTML = ''; // Nettoyer la section details
+        // Clear the current details section
+        document.querySelector('.details').innerHTML = '';
 
-      if (this.id === 'dash-button') {
-        fetch(adminURL + '/admin-dashboard')
-          .then(response => response.text())
-          .then(data => {
-            document.querySelector('.details').innerHTML = data;
-            
-            const subscriptionsTable = document.getElementById('subscriptions-table');
-            if (subscriptionsTable) {    
-              getSubscriptionsRequest();
-            }
-        });
-      } 
+        // Fetch and display content based on the clicked menu link
+        if (this.id === 'dash-button') {
+            fetch(adminURL + '/admin-dashboard')
+                .then(response => response.text())
+                .then(data => {
+                    // Update the details section with the fetched data
+                    document.querySelector('.details').innerHTML = data;
+                    
+                    // Reinitialize the subscriptions table if present
+                    const subscriptionsTable = document.getElementById('subscriptions-table');
+                    if (subscriptionsTable) {
+                        getSubscriptionsRequest();
+                    }
+                })
+                .catch(error => {
+                    // Handle fetch errors
+                    console.error('Error fetching dashboard data:', error);
+                });
+        }
     });
-  });
+});

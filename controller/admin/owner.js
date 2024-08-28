@@ -1,5 +1,10 @@
 const crypto = require('crypto');
 
+/**
+ * Retrieves subscription information by its ID.
+ * @param {Object} req - The HTTP request object containing the ID in the request body.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.mySubscription = async (req, res) => {
     const { id } = req.body;
     const query = "CALL get_subscription_by_id(?)";
@@ -9,8 +14,8 @@ module.exports.mySubscription = async (req, res) => {
         const [rows] = await req.connection.query(query, values);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Erreur lors de l\'exécution de la requête', queryError);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query', queryError);
+        res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
             req.connection.release();
@@ -18,18 +23,22 @@ module.exports.mySubscription = async (req, res) => {
     }
 };
 
+/**
+ * Updates the sold status of an owner.
+ * @param {Object} req - The HTTP request object containing the necessary information for the update.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.updateOwnerSold = async (req, res) => {
     const { id, ref, method } = req.body;
     const query = "CALL update_owner_sold(?, ?, ?)";
     const values = [id, ref, method];
-    console.log("object: " + JSON.stringify(values));
+    
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows);
-        res.status(200).json({message: 'requête réussie' });
+        res.status(200).json({ message: 'Update successful' });
     } catch (queryError) {
-        console.error('Erreur lors de l\'exécution de la requête', queryError);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query', queryError);
+        res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
             req.connection.release();
@@ -37,15 +46,20 @@ module.exports.updateOwnerSold = async (req, res) => {
     }
 };
 
+/**
+ * Retrieves all subscriptions.
+ * @param {Object} req - The HTTP request object.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.subscriptions = async (req, res) => {
     const query = "CALL get_all_subscriptions()";
+    
     try {
         const [rows] = await req.connection.query(query);
-        console.log("ce que je veux : " + rows[0]);
         res.status(200).json(rows[0]);
     } catch (queryError) {
-        console.error('Erreur lors de l\'exécution de la requête', queryError);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query', queryError);
+        res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
             req.connection.release();
@@ -53,18 +67,22 @@ module.exports.subscriptions = async (req, res) => {
     }
 };
 
+/**
+ * Inserts a new subscription.
+ * @param {Object} req - The HTTP request object containing subscription details in the body.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.insertSubscription = async (req, res) => {
     const { email, ref, sumpaid, method } = req.body;
     const query = "CALL insert_subscription(?, ?, ?, ?)";
     const values = [email, ref, sumpaid, method];
-    console.log(email, ref, sumpaid, method);
+    
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows[0]);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Erreur lors de l\'exécution de la requête', queryError);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query', queryError);
+        res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
             req.connection.release();
@@ -72,18 +90,22 @@ module.exports.insertSubscription = async (req, res) => {
     }
 };
 
+/**
+ * Deletes a subscription by its ID.
+ * @param {Object} req - The HTTP request object containing the ID in the body.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.deleteSubscription = async (req, res) => {
     const { id } = req.body;
     const query = "CALL delete_subscription(?)";
     const values = [id];
-
+    
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows[0]);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Erreur lors de l\'exécution de la requête', queryError);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query', queryError);
+        res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
             req.connection.release();
@@ -91,18 +113,22 @@ module.exports.deleteSubscription = async (req, res) => {
     }
 };
 
+/**
+ * Set subscription as it has been deleted.
+ * @param {Object} req - The HTTP request object containing the ID in the body.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.isDeletedSubscription = async (req, res) => {
     const { id } = req.body;
     const query = "CALL is_deleted_subscription(?)";
     const values = [id];
-
+    
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('object', rows);
-        res.status(200).json({message: 'requête réussie' });
+        res.status(200).json({ message: 'Request successful' });
     } catch (queryError) {
-        console.error('Erreur lors de l\'exécution de la requête', queryError);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query', queryError);
+        res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
             req.connection.release();

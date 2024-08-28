@@ -1,29 +1,53 @@
 const WebSocket = require('ws');
 
+/**
+ * Handles sending a message from a tenant.
+ *
+ * @param {Object} req - The request object containing the message data.
+ * @param {Object} res - The response object used to send a response back to the client.
+ * @returns {Promise<void>}
+ */
 module.exports.sendMessage = async (req, res) => {
     const { message } = req.body;
-    console.log(req.user.prTenId, message);
+
+    // Validate input
+    if (!message) {
+        return res.status(400).json({ message: 'Message content is required and must be a string.' });
+    }
 
     const query = "CALL insert_message_tenant(?, ?)";
     const values = [req.user.prTenId, message];
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows[0]);
-        res.status(200).json({ message: "requête réussie" });
+        res.status(200).json({ message: 'Message sent successfully' });
     } catch (err) {
-        console.error('Erreur lors de l\'exécution de la requête', err);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query in sendMessage:', err);
+        res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
             req.connection.release();
         }
-}
+    }
 };
 
+
+/**
+ * Handles the process of sending a message from a tenant via WebSocket.
+ *
+ * @param {WebSocket} ws - The WebSocket connection object for the tenant.
+ * @param {Object} messageObject - The message object containing the message content.
+ * @param {WebSocket.Server} wss - The WebSocket server instance to broadcast messages.
+ * @returns {Promise<void>}
+ */
 module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
     const { message } = messageObject;
-    console.log(`Message reçu du locataire: ${message}`);
+
+    // Validate input
+    if (!message) {
+        console.error('Invalid message received:', messageObject);
+        return;
+    }
 
     const query = "CALL insert_message_tenant(?, ?)";
     const values = [ws.user.prTenId, message];
@@ -31,31 +55,25 @@ module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
     let result;
     try {
         const [rows] = await ws.connection.query(query, values);
-        console.log(rows);
-        // Vérifiez que rows contient bien des données
         if (rows && rows.length > 0 && rows[0].length > 0) {
-            result = rows[0][0]; // Le premier objet de la première ligne
-            console.log("result: " + result);
+            result = rows[0][0]; // Get the first object from the first row
         } else {
-            console.error('Aucune donnée renvoyée par la procédure stockée');
-            return; // Sortir si rien n'a été renvoyé
+            console.error('No data returned by the stored procedure');
+            return;
         }
     } catch (err) {
-        console.error('Erreur lors de l\'exécution de la requête', err);
-        return; // Sortir en cas d'erreur
+        console.error('Error executing query in tenantMessageSender:', err);
+        return;
     } finally {
         if (ws.connection) {
             ws.connection.release();
         }
     }
 
-    // Diffuser le message à tous les clients, y compris l'expéditeur
+    // Broadcast the message to relevant clients
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
-            console.log("-----------SENDER TENANT------------");
-            console.log(`Client ID: ${client.signId}, Message au owner ID: ${result.ownerid} , isTenant: ${client.isTenant}`);
             if ((client.signId === ws.signId && client.isTenant) || (client.signId === result.ownerid && !client.isTenant)) {
-                console.log(`Envoi du message au client ID: ${client.signId}`);
                 client.send(JSON.stringify(result));
             }
         }
@@ -63,19 +81,23 @@ module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
 };
 
 
+/**
+ * Retrieves messages viewed by the tenant.
+ *
+ * @param {Object} req - The request object containing tenant information.
+ * @param {Object} res - The response object used to send the messages back to the client.
+ * @returns {Promise<void>}
+ */
 module.exports.myMessages = async (req, res) => {
-    console.log('token: ' + JSON.stringify(req.user));
     const query = "CALL get_messages_viewed_by_tenant(?)";
-    const values = [req.user.userId]; // tenant ID
+    const values = [req.user.userId]; // Tenant ID
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows[0]);
-        console.log("my messages : ", rows[0]);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Erreur lors de l\'exécution de la requête', err);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query in myMessages:', err);
+        res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
             req.connection.release();
@@ -84,21 +106,32 @@ module.exports.myMessages = async (req, res) => {
 };
 
 
+
+/**
+ * Deletes or marks a message as viewed by updating its status.
+ *
+ * @param {Object} req - The request object containing the message ID to be updated.
+ * @param {Object} res - The response object used to send a response back to the client.
+ * @returns {Promise<void>}
+ */
 module.exports.deleteMessage = async (req, res) => {
     const { messageId } = req.body;
-    console.log(messageId);
+
+    // Validate input
+    console.log("typeof messageId: " + typeof messageId);
+    if (!messageId) {
+        return res.status(400).json({ message: 'Valid message ID is required.' });
+    }
 
     const query = "CALL update_message_viewed_tenant(?)";
     const values = [messageId];
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log(rows[0]);
-        console.log(rows);
-        res.status(200).json({ message: "requête réussie" });
+        res.status(200).json({ message: 'Message updated successfully' });
     } catch (err) {
-        console.error('Erreur lors de l\'exécution de la requête', err);
-        res.status(500).json({ message: 'Erreur serveur' });
+        console.error('Error executing query in deleteMessage:', err);
+        res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
             req.connection.release();

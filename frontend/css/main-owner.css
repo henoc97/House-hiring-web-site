@@ -443,7 +443,7 @@
 .bg-info{
   background: #0dcaf0;
 }
-.bg-seccuss{
+.bg-success{
   background: #198754;
 }
 
@@ -750,8 +750,14 @@
   margin-bottom: 5px;
 }
 
+.info-title span {
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .info-value {
-  font-size: 20px !important;
+  font-size: 18px !important;
   font-weight: bold;
   color: var(--green);
 }

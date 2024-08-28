@@ -1,76 +1,80 @@
 
-function setpwdRequest(){
 
-    let setPwdForm = document.getElementById('set-pwd-form');
-    let pwd = document.getElementById('set-pwd').value;
-    let pwd1 = document.getElementById('set-pwd1').value;
+/**
+ * Handles the password setting request.
+ * Retrieves the password values from the form, validates them, and sends a POST request to update the password.
+ * Also handles UI updates for the modal and message display.
+ * @function
+ * @returns {void}
+ */
+function setpwdRequest() {
+  let setPwdForm = document.getElementById('set-pwd-form');
+  let pwd = document.getElementById('set-pwd').value;
+  let pwd1 = document.getElementById('set-pwd1').value;
+  const messageDiv = document.getElementById('set-pwd-message');
 
-    const messageDiv = document.getElementById('set-pwd-message');
-
-    if (messageDiv) {
-      console.log('trouvé', messageDiv);
-      // Réinitialise le message
+  if (messageDiv) {
+      console.log('Found', messageDiv);
+      // Reset the message
       messageDiv.textContent = '';
-    }
+  }
 
-    
+  // Check if the passwords match
+  if (pwd !== pwd1) {
+      messageDiv.textContent = "Les mots de passe ne correspondent pas.";
+      messageDiv.style.color = 'red';
+      return;
+  }
 
-    // Vérification si les mots de passe correspondent
-    if (pwd !== pwd1) {
-        messageDiv.textContent = "Les mots de passe ne correspondent pas.";
-        messageDiv.style.color = 'red';
-        return;
-    }
-
-    let token = localStorage.getItem('accessTokenTenant');
-    let userName = localStorage.getItem('userName');
-    fetch(hostTenant + '/set-pwd', {
+  let token = localStorage.getItem('accessTokenTenant');
+  let userName = localStorage.getItem('userName');
+  fetch(hostTenant + '/set-pwd', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
       },
-      body : JSON.stringify({
-        "pwd": pwd,
-        'userName': userName
+      body: JSON.stringify({
+          "pwd": pwd,
+          'userName': userName
       })
-    })
-    .then(response => {
+  })
+  .then(response => {
       if (!response.ok) {
           if (response.status === 401 || response.status === 403) {
               return renewAccessToken().then(() => setpwdRequest());
           }
-          // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+          // Redirect in case of other HTTP errors (e.g., 500)
           window.location.href = tenantError;
-          throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+          throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
       }
       return response.json();
-    })
-    .then(data => {
+  })
+  .then(data => {
       setPwdForm.reset();
 
-      // Ferme la modale avec une animation douce
+      // Close the modal with a smooth animation
       const modal = document.getElementById('modal-set-pwd');
       const modalContent = modal.querySelector('.modal-content');
       
-      // Enlever la classe "show" pour lancer l'animation de fermeture
+      // Remove the "show" class to start the closing animation
       modalContent.classList.remove('show');
       modal.classList.remove('show');
 
-      // Après la durée de la transition, cache complètement la modale
+      // After the transition duration, completely hide the modal
       setTimeout(() => {
-        modal.classList.remove('visible'); 
-        modal.classList.add('hidden'); // Cache la modale
-      }, 300); // La durée de l'animation de transition (300ms)
+          modal.classList.remove('visible'); 
+          modal.classList.add('hidden'); // Hide the modal
+      }, 300); // Duration of the transition animation (300ms)
       
-      // Sauvegarder le fait que le mot de passe a été défini
+      // Save the fact that the password has been set
       localStorage.setItem('setPwd', 1);
       
-      // Appel à une autre fonction après la fermeture de la modale
-      getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
-      })
-    .catch(error => {
+      // Call another function after closing the modal
+      getUnvalidReceiptsRequest(); // This will in turn call getValidReceiptsRequest()
+  })
+  .catch(error => {
       window.location.href = tenantError;
-      console.error('Erreur:', error);
-    });
+      console.error('Error:', error);
+  });
 }

@@ -1,32 +1,37 @@
 
 
+/**
+ * Initializes the process to verify an owner's account once the DOM has fully loaded.
+ * This function retrieves the email from the URL parameters, sends it in a POST request 
+ * to verify the owner's account, and handles the response accordingly.
+ */
 document.addEventListener("DOMContentLoaded", function() {
-    const url = host + 'verify-owner';
-    const params = new URLSearchParams(window.location.search);
-    const email = params.get('email');
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email })
-    })
-    .then(async response => {
-      if (!response.ok) {
-        const errorData = await response.json();
-        alert('Erreur lors de la vérification du compte'); // Affiche un message d'erreur plus descriptif
-        throw new Error(errorData.message || 'Erreur inconnue');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log("data: " + JSON.stringify(data));
-      localStorage.setItem('tempId', data.id);
-      window.location.href = ownerResetPwdURL;
-      
-    })
-    .catch(error => {
-      console.error('Error:', error);  // Affiche l'erreur complète dans la console
-      alert('Erreur lors de la vérification du compte : ' + error.message); // Affiche un message d'erreur plus descriptif
-    });
+  const url = host + 'verify-owner';
+  const params = new URLSearchParams(window.location.search);
+  const email = params.get('email');
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email })
+  })
+  .then(async response => {
+    if (!response.ok) {
+      const errorData = await response.json();
+      alert('Erreur lors de la vérification du compte'); // Shows an error message in French
+      throw new Error(errorData.message || 'Erreur inconnue'); // Throws an error with message
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("data: " + JSON.stringify(data));
+    localStorage.setItem('tempId', data.id); // Stores the temporary ID in localStorage
+    window.location.href = ownerResetPwdURL; // Redirects to the password reset URL
+  })
+  .catch(error => {
+    console.error('Error:', error);  // Logs the full error in the console
+    alert('Erreur lors de la vérification du compte : ' + error.message); // Shows an error message in French
   });
+});

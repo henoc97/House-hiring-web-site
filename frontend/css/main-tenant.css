@@ -410,6 +410,10 @@
   transition: transform 0.3s ease;
 }
 
+#action-indicator {
+  font-size: 20px;
+}
+
 /* Quand la modale est active (affichée) */
 .modal.show {
   display: block;

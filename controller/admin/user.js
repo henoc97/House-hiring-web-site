@@ -1,14 +1,12 @@
 const { hashPassword, comparePasswords } = require("../../functions/hashComparePwd");
 const mailTest = require("../../functions/emailTest");
 const { generateAdminToken } = require("../../functions/token");
-const {sendOTPemail, sendResetPwdOTPemail} = require('../../email/activation/sender');
-const codeOTP = require('../../functions/otp');
-const fs = require('fs');
-const path = require('path');
-const emailOtp = {};
-const resetPwdEmailOtp = {};
 
-
+/**
+ * Handles the refresh token process by validating and generating new tokens.
+ * @param {Object} req - The HTTP request object containing the refresh token in the body.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.refreshToken = (req, res) => {
     const { refreshToken } = req.body;
 
@@ -30,41 +28,47 @@ module.exports.refreshToken = (req, res) => {
     }
 };
 
+/**
+ * Authenticates the user by verifying their email and password.
+ * @param {Object} req - The HTTP request object containing the user's email and password in the body.
+ * @param {Object} res - The HTTP response object.
+ */
 module.exports.userAuth = async (req, res) => {
     const { email, pwd } = req.body;
     console.log(email, pwd);
-    
+
     if (!mailTest(email)) {
-        return res.status(404).json({ message: 'Entrer un email valide' });
+        return res.status(404).json({ message: 'Please enter a valid email' });
     }
 
     try {
         const [rows] = await req.connection.query("CALL show_admin(?)", [email]);
-        console.log("ici : ", rows);
-        console.log(rows[0]);
-        // console.log('show_admin', rows[0][0].pwd);
-        if (rows[0][0].length === 0) {
-            console.log('Le probleme se trouve ici');
-            return res.status(404).json({ message: 'Aucun utilisateur trouvé' });
-        }
+        console.log("Results: ", rows);
         
+        if (rows[0][0].length === 0) {
+            console.log('No user found');
+            return res.status(404).json({ message: 'No user found' });
+        }
+
         const pwdhashed = rows[0][0].pwd;
-        console.log("pwd : ", pwd, " hashed : ", pwdhashed);
+        console.log("Password: ", pwd, " Hashed Password: ", pwdhashed);
+
         if (await comparePasswords(pwd, pwdhashed)) {
             const user = rows[0][0];
-            console.log("user : ", user);
+            console.log("Authenticated user: ", user);
             const newAccessToken = generateAdminToken({ id: user.id, email: user.email }, "2d");
             const newRefreshToken = generateAdminToken({ id: user.id, email: user.email }, "7d");
-            console.log(newAccessToken, newRefreshToken);
+            console.log("New tokens: ", newAccessToken, newRefreshToken);
+
             res.status(200).json({
                 refreshToken: newRefreshToken,
                 accessToken: newAccessToken,
             });
         } else {
-            res.status(404).json({ message: 'Mot de passe incorrect' });
+            res.status(404).json({ message: 'Incorrect password' });
         }
     } catch (error) {
-        console.error('Error : ' + error);
+        console.error('Error: ', error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {

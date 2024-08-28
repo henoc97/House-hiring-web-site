@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Extase-Home - Reçu de Paiement de Loyer</title>
   <meta name="description" content="Extase-Home offre des solutions de gestion de logement alliant luxe et confort moderne. Découvrez nos services de gestion immobilière.">
   <link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon">
@@ -10,7 +12,6 @@
   <link rel="stylesheet" href="/receipt.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <body>
   <div class="center-container">
     <div class="receipt-container" id="receipt">
@@ -44,12 +45,13 @@
     
     <div id="receipt-btns"> <!-- Validate or download --> </div>
   </div>
-  <script src="/public/endpoints.js"></script>
-  <script src="/owner/owner-updateSoldUtils.js"></script>
-  <script src="/public/variablesState.js"></script>
-  
-  <script src="/owner/owner-toggleValidateDownloadReceipt.js"></script>
-  <script src="/owner/owner-validateReceiptLogic.js"></script>
-  <script src="/owner/owner-downloadReceipt.js"></script>
+
+  <script nonce="{res.locals.nonce}" src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <script nonce="{res.locals.nonce}" src="/public/endpoints.js"></script>
+  <script nonce="{res.locals.nonce}" src="/owner/owner-updateSoldUtils.js"></script>
+  <script nonce="{res.locals.nonce}" src="/public/variablesState.js"></script>
+  <script nonce="{res.locals.nonce}" src="/owner/owner-toggleValidateDownloadReceipt.js"></script>
+  <script nonce="{res.locals.nonce}" src="/owner/owner-validateReceiptLogic.js"></script>
+  <script nonce="{res.locals.nonce}" src="/owner/owner-downloadReceipt.js"></script>
 </body>
 </html>

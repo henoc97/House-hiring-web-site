@@ -1,28 +1,45 @@
-
+/**
+ * Initialize the receipts table and its event listener.
+ */
 const receiptsTable = document.getElementById('receipts-table');
-if (receiptsTable) { // est definie en bas
-  getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
+if (receiptsTable) { 
+  // Calls function to get invalid receipts, which in turn calls getValidReceiptsRequest
+  getUnvalidReceiptsRequest(); 
 }
+
+// Add click event listener to the receipts table
 receiptsTable.addEventListener('click', function(e) {
   accessReceipt(e);
 });
 
+/**
+ * Initialize the receipt form and tenant property options.
+ */
 const requireRecieptForm = document.getElementById("receipt-form");
 const tenantPropertyOption = document.getElementById("receipt-tenant-property-option");
 if (requireRecieptForm && tenantPropertyOption) {
-  selectMonthsHelper(tenantPropertyOption); // Aide a selectionner les mois pour les reçus
+  // Helper function to select months for receipts
+  selectMonthsHelper(tenantPropertyOption);
 }
 
+/**
+ * Update the total payments displayed on the page.
+ */
 const totalPayments = document.getElementById('total-payments');
 totalPayments.textContent = getNumberOfPayments() ?? 0;
 
+/**
+ * Handle the password setting modal display.
+ */
 const modal = document.getElementById('modal-set-pwd');
 const modalContent = document.querySelector('.modal-content');
 
 let setPwd = localStorage.getItem('setPwd');
 if (setPwd != 1 && modal && modalContent) {
+  // Show the modal if password is not set
   modal.classList.remove('hidden');
-  modal.classList.add('visible'); // Affiche la modale
+  modal.classList.add('visible');
+  
   setTimeout(() => {
     modal.classList.add('show');
     modalContent.classList.add('show');
@@ -31,14 +48,12 @@ if (setPwd != 1 && modal && modalContent) {
   const setpwdForm = document.getElementById('set-pwd-form');
   if (setpwdForm) {
     const userNameDiv = document.getElementById('user-name');
-    console.log("oui oui");
     if (userNameDiv) {
-      console.log("oui non");
-      console.log('trouvé', userNameDiv);
-      // Réinitialise le message
+      // Reset and set the user name in the modal
       userNameDiv.textContent = '';
       userNameDiv.textContent = localStorage.getItem('userName');
     }
+    // Add event listener for form submission
     setpwdForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       setpwdRequest();
@@ -46,78 +61,81 @@ if (setPwd != 1 && modal && modalContent) {
   }
 }
 
+/**
+ * Toggle sidebar visibility.
+ */
 document.getElementById('btn').addEventListener('click', function() {
   document.querySelector('.sidebar').classList.toggle('open');
 });
 
-  // Sélectionner tous les liens de menu
-  const menuLinks = document.querySelectorAll('.sidebar ul li a');
+/**
+ * Handle menu link clicks and load corresponding content.
+ */
+const menuLinks = document.querySelectorAll('.sidebar ul li a');
 
-  menuLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
+menuLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
 
-      // Supprimer la classe active de tous les liens
-      menuLinks.forEach(l => l.classList.remove('active'));
+    // Remove active class from all menu links
+    menuLinks.forEach(l => l.classList.remove('active'));
 
-      // Ajouter la classe active au lien cliqué
-      this.classList.add('active');
+    // Add active class to the clicked link
+    this.classList.add('active');
 
-      // Cacher les éléments actuels et afficher le contenu correspondant
-      document.querySelector('.details').innerHTML = ''; // Nettoyer la section details
+    // Clear the current details section
+    document.querySelector('.details').innerHTML = '';
 
-      if (this.id === 'dash-button') {
-        fetch(tenantURL + '/tenant-dashboard')
-          .then(response => response.text())
-          .then(data => {
-            document.querySelector('.details').innerHTML = data;
-            
-            const receiptsTable = document.getElementById('receipts-table');
-            const tenantPropertyOption = document.getElementById('receipt-tenant-property-option');
-            selectMonthsHelper(tenantPropertyOption); // Aide a selectionner les mois pour les reçus
-            if (receiptsTable) {
-              getUnvalidReceiptsRequest(); // Elle appelera à son tour getValidReceiptsRequest()
-              receiptsTable.addEventListener('click', function(e) {
-                accessReceipt(e);
-              });
-            }
-         });
-      }
-      
-      
-      if (this.id === 'discuss-button') {
-        fetch(tenantURL + '/tenant-discussion')
-          .then(response => response.text())
-          .then(data => {
-            document.querySelector('.details').innerHTML = data;
-            
-            const messageForm = document.getElementById('message-form');
+    // Fetch and display content based on the clicked menu item
+    if (this.id === 'dash-button') {
+      fetch(tenantURL + '/tenant-dashboard')
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector('.details').innerHTML = data;
+          
+          const receiptsTable = document.getElementById('receipts-table');
+          const tenantPropertyOption = document.getElementById('receipt-tenant-property-option');
+          selectMonthsHelper(tenantPropertyOption); // Helper for selecting receipt months
+          if (receiptsTable) {
+            getUnvalidReceiptsRequest(); // Calls function to get invalid receipts
+            receiptsTable.addEventListener('click', function(e) {
+              accessReceipt(e);
+            });
+          }
+       });
+    }
+    
+    if (this.id === 'discuss-button') {
+      fetch(tenantURL + '/tenant-discussion')
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector('.details').innerHTML = data;
+          
+          const messageForm = document.getElementById('message-form');
 
-            if(messageForm) {
-              sendMessageRequest();
-            }
-            getMessagesRequest();
-            deleteMessageLogic();
-        });
-      }
+          if (messageForm) {
+            sendMessageRequest();
+          }
+          getMessagesRequest();
+          deleteMessageLogic();
+      });
+    }
 
-      if (this.id === 'profile-button') {
-        fetch(tenantURL + '/tenant-profile')
-          .then(response => response.text())
-          .then(data => {
-            document.querySelector('.details').innerHTML = data;
+    if (this.id === 'profile-button') {
+      fetch(tenantURL + '/tenant-profile')
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector('.details').innerHTML = data;
 
-            const tenantForm = document.getElementById('tenant-form');
-            if (tenantForm) {
-              getTenantPropertyRequest(1);
-              tenantForm.addEventListener('submit', async function (e) {
-                e.preventDefault();
-                updateTenant();
-              });
-            }
-        })
-      }
-    })
+          const tenantForm = document.getElementById('tenant-form');
+          if (tenantForm) {
+            getTenantPropertyRequest(1);
+            tenantForm.addEventListener('submit', async function (e) {
+              e.preventDefault();
+              updateTenant();
+            });
+          }
+      });
+    }
   });
-
-      
+});

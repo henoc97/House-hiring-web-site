@@ -1,5 +1,3 @@
-
-
 // websocketServer.js
 
 const WebSocket = require('ws');
@@ -9,78 +7,85 @@ const tokenVerification = require('../middlewares/socket/auth');
 const { ownerMessageSender } = require('../controller/owner/support');
 const { tenantMessageSender } = require('../controller/tenant/support');
 
+/**
+ * Initializes WebSocket server and handles WebSocket connections.
+ * @param {Object} server - The HTTP server to attach the WebSocket server to.
+ */
 module.exports = (server) => {
     const wss = new WebSocket.Server({ server });
 
     wss.on('connection', (ws, request) => {
-        // Ajouter une propriété pour suivre l'état de vie du client
+        // Initialize connection state
         ws.isAlive = true;
 
-        // Vérification du token
+        // Verify token and handle database connection
         tokenVerification(ws, request, async () => {
-            // Connexion à la base de données
-            await dbConnection(ws, async () => {
-                console.log('Nouveau client connecté avec ID:', ws.user.userId);
+            try {
+                await dbConnection(ws, () => {
+                    console.log('New client connected with ID:', ws.user.userId);
 
-                const isOwner = ws.user.userEmail !== undefined;
-                const isTenant = ws.user.prTenId !== undefined;
-                
-                if (isOwner) {
-                    ws.isTenant = false;
-                    ws.signId = ws.user.userId; // Signer la connexion
-                } else if (isTenant) {
-                    ws.isTenant = true;
-                    ws.signId = ws.user.userId; // Signer la connexion
-                }
+                    // Determine user type and handle accordingly
+                    const isOwner = ws.user.userEmail !== undefined;
+                    const isTenant = ws.user.prTenId !== undefined;
+                    
+                    ws.isTenant = isTenant;
+                    ws.signId = ws.user.userId; // Set user ID for the session
 
-                // Gérer les messages reçus
-                ws.on('message', async (message) => {
-                    try {
-                        const messageObject = JSON.parse(message);
-                        console.log("message: " + messageObject);
-                        const isVoid = messageObject.message === '';
-                        // Appel du gestionnaire approprié selon le type d'utilisateur
-                        if (isOwner && !isVoid) {
-                            await ownerMessageSender(ws, messageObject, wss);
-                        } else if (isTenant && !isVoid) {
-                            await tenantMessageSender(ws, messageObject, wss);
+                    // Handle incoming messages
+                    ws.on('message', async (message) => {
+                        try {
+                            const messageObject = JSON.parse(message);
+                            console.log("Received message:", messageObject);
+
+                            if (messageObject.message === '') {
+                                return; // Ignore empty messages
+                            }
+
+                            // Delegate message handling based on user type
+                            if (isOwner) {
+                                await ownerMessageSender(ws, messageObject, wss);
+                            } else if (isTenant) {
+                                await tenantMessageSender(ws, messageObject, wss);
+                            }
+                        } catch (err) {
+                            console.error('Error processing message:', err);
                         }
-                    } catch (err) {
-                        console.error('Erreur lors du traitement du message:', err);
-                    }
-                });
+                    });
 
-                // Gérer le pong reçu en réponse au ping
-                ws.on('pong', () => {
-                    ws.isAlive = true;
-                });
+                    // Handle pong responses to pings
+                    ws.on('pong', () => {
+                        ws.isAlive = true;
+                    });
 
-                // Gérer la déconnexion
-                ws.on('close', () => {
-                    console.log('Client déconnecté');
-                    if (ws.connection) {
-                        ws.connection.release();  // Libérer la connexion à la base de données
-                        console.log('Connexion MySQL libérée');
-                    }
+                    // Handle client disconnection
+                    ws.on('close', () => {
+                        console.log('Client disconnected');
+                        if (ws.connection) {
+                            ws.connection.release();  // Release database connection
+                            console.log('Database connection released');
+                        }
+                    });
                 });
-            });
+            } catch (err) {
+                console.error('Error handling WebSocket connection:', err);
+            }
         });
     });
 
-    // Mécanisme de ping-pong pour détecter les connexions inactives
+    // Periodic ping-pong to detect inactive connections
     const interval = setInterval(() => {
         wss.clients.forEach((client) => {
             if (client.isAlive === false) {
-                console.log('Connexion perdue pour le client ID:', client.signId);
-                return client.terminate();  // Terminer la connexion si le client ne répond pas
+                console.log('Connection lost for client ID:', client.signId);
+                return client.terminate();  // Terminate inactive connection
             }
 
-            client.isAlive = false;  // Marquer le client comme non vivant
-            client.ping(() => {});   // Envoyer un ping au client
+            client.isAlive = false;  // Mark client as not alive
+            client.ping();           // Send ping to client
         });
-    }, 30000);  // Ping toutes les 30 secondes
+    }, 30000);  // Ping every 30 seconds
 
     wss.on('close', () => {
-        clearInterval(interval);
+        clearInterval(interval);  // Clean up interval on server close
     });
 };

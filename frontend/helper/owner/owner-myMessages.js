@@ -1,36 +1,49 @@
-
-
+/**
+ * Fetches messages for a specific tenant and updates the chat interface.
+ * The function retrieves messages from the server, formats them by date,
+ * and displays them in the chat container, grouping messages by their date.
+ *
+ * @param {number} tenantId - The ID of the tenant for whom messages are being fetched.
+ */
 function getMessagesRequest(tenantId) {
+    // Retrieve the access token from local storage
     let token = localStorage.getItem('accessToken');
+
+    // Send a POST request to the server to fetch messages for the given tenant
     fetch(host + 'my-messages', {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer ' + token,
-            'Content-Type': 'application/json'
+            'Authorization': 'Bearer ' + token, // Add authorization token to headers
+            'Content-Type': 'application/json'  // Set content type to JSON
         },
         body: JSON.stringify({
-            "tenantId": tenantId
+            "tenantId": tenantId // Send tenant ID in the request body
         })
     })
     .then(response => {
+        // Check if the response is OK (status code 200-299)
         if (!response.ok) {
+            // Handle unauthorized or forbidden responses
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => getMessagesRequest(tenantId));
+                return renewAccessToken().then(() => getMessagesRequest(tenantId)); // Renew token and retry request
             }
-            // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+            // Handle other HTTP errors (e.g., 500 Internal Server Error)
             window.location.href = ownerError;
-            throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+            throw new Error('HTTP error ' + response.status); // Throw error to trigger catch block
         }
+        // Parse the JSON response
         return response.json();
     })
     .then(data => {
-        if (!data) return; // Si data est undefined (en cas de redirection), arrêter l'exécution
+        // Check if data is undefined or null
+        if (!data) return; // Stop execution if data is undefined (e.g., due to redirection)
+
         console.log("Messages received:", data); // Log the received data
 
         // Assuming 'data' is an array of messages
         const messages = data;
 
-        // Function to format date
+        // Function to format date for display
         function formatDate(date) {
             return new Date(date).toLocaleDateString('fr-FR', {
                 day: '2-digit',
@@ -49,18 +62,20 @@ function getMessagesRequest(tenantId) {
             return acc;
         }, {});
 
+        // Get the chat container element
         const chatContainer = document.getElementById('chat-container');
         if (chatContainer) {
             chatContainer.innerHTML = ''; // Clear existing messages
 
+            // Iterate over grouped messages
             Object.keys(groupedMessages).forEach(dateKey => {
-                // Create a date separator
+                // Create a date separator element
                 const dateDiv = document.createElement('div');
                 dateDiv.classList.add('date-separator');
                 dateDiv.innerHTML = `<span>${formatDate(dateKey)}</span>`;
                 chatContainer.appendChild(dateDiv);
 
-                // Append messages for this date
+                // Append messages for the current date
                 groupedMessages[dateKey].forEach(message => {
                     console.log("Message data:", message); // Log each message
                     
@@ -72,7 +87,7 @@ function getMessagesRequest(tenantId) {
                     // Determine if the message is from the owner or tenant
                     const isOwnerMessage = message.by_owner == 1;
 
-                    // Add classes and styles based on message sender
+                    // Add classes and styles based on the sender
                     if (!isOwnerMessage) {
                         messageDiv.classList.add('sender');
                     } else {
@@ -99,6 +114,8 @@ function getMessagesRequest(tenantId) {
         }
     })
     .catch((error) => {
+        // Redirect on error and log the error details
         window.location.href = ownerError;
-        console.error('Error fetching messages:', error)});
+        console.error('Error fetching messages:', error);
+    });
 }

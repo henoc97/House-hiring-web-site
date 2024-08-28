@@ -1,7 +1,11 @@
-
-
+/**
+ * Fetches messages for the tenant and updates the chat container with the retrieved messages.
+ * @function
+ * @returns {void}
+ */
 function getMessagesRequest() {
-    let token = localStorage.getItem('accessTokenTenant');
+    const token = localStorage.getItem('accessTokenTenant');
+
     fetch(hostTenant + 'my-messages', {
         method: 'POST',
         headers: {
@@ -14,19 +18,20 @@ function getMessagesRequest() {
             if (response.status === 401 || response.status === 403) {
                 return renewAccessToken().then(() => getMessagesRequest());
             }
-            // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+            // Redirect in case of other HTTP errors (e.g., 500)
             window.location.href = tenantError;
-            throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+            throw new Error('HTTP error ' + response.status); // Throw an error to trigger the .catch
         }
         return response.json();
-      })
+    })
     .then(data => {
         console.log("Messages received:", data); // Log the received data
 
-        // Assuming 'data' is an array of messages
-        const messages = data;
-
-        // Function to format date
+        /**
+         * Formats a date to a readable string in French.
+         * @param {Date|string} date - The date to format.
+         * @returns {string} The formatted date string.
+         */
         function formatDate(date) {
             return new Date(date).toLocaleDateString('fr-FR', {
                 day: '2-digit',
@@ -36,7 +41,7 @@ function getMessagesRequest() {
         }
 
         // Group messages by date
-        const groupedMessages = messages.reduce((acc, message) => {
+        const groupedMessages = data.reduce((acc, message) => {
             const date = new Date(message.date_time).toDateString();
             if (!acc[date]) {
                 acc[date] = [];
@@ -59,22 +64,22 @@ function getMessagesRequest() {
                 // Append messages for this date
                 groupedMessages[dateKey].forEach(message => {
                     console.log("Message data:", message); // Log each message
-                    
+
                     // Create a new message div
                     const messageDiv = document.createElement('div');
                     messageDiv.classList.add('message');
                     messageDiv.setAttribute('data-id', message.id); // Attach the message ID
 
                     // Determine if the message is from the owner or tenant
-                    const isOwnerMessage = message.by_tenant == 1;
-                    
+                    const isOwnerMessage = message.by_tenant === 1;
+
                     // Add classes and styles based on message sender
                     if (!isOwnerMessage) {
                         messageDiv.classList.add('sender');
                     } else {
                         messageDiv.classList.add('receiver');
                     }
-                    
+
                     // Format the message content and timestamp
                     const formattedDate = new Date(message.date_time).toLocaleString('fr-FR', {
                         hour: '2-digit',
@@ -85,7 +90,7 @@ function getMessagesRequest() {
                         <p>${message.message}</p>
                         <span class="timestamp">${formattedDate}</span>
                     `;
-                    
+
                     // Append the message to the chat container
                     chatContainer.appendChild(messageDiv);
                 });
@@ -96,5 +101,6 @@ function getMessagesRequest() {
     })
     .catch((error) => {
         window.location.href = tenantError;
-        console.error('Error fetching messages:', error)});
+        console.error('Error fetching messages:', error);
+    });
 }

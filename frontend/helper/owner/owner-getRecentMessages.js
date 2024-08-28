@@ -1,44 +1,60 @@
-
-
-
+/**
+ * Fetches recent messages from the server and updates the UI.
+ * 
+ * This function sends a POST request to the server to retrieve recent messages.
+ * If the request is successful, it updates the table with the received messages.
+ * It also handles token renewal in case of authentication errors.
+ */
 function getRecentMessagesRequest() {
+  // Retrieve the access token from localStorage
   let token = localStorage.getItem('accessToken');
+
+  // Send a POST request to fetch recent messages
   fetch(host + 'recent-messages', {
       method: 'POST',
-      headers: {
+      headers: { 
           'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
       },
   })
   .then(response => {
+    // Check if the response is not OK
     if (!response.ok) {
+        // Handle unauthorized or forbidden errors
         if (response.status === 401 || response.status === 403) {
             return renewAccessToken().then(() => getRecentMessagesRequest());
         }
-        // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+        // Redirect in case of other HTTP errors (e.g., 500)
         window.location.href = ownerError;
-        throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+        throw new Error('HTTP error ' + response.status); // Throw an error to trigger the .catch
     }
-      return response.json();
+    // Parse the response JSON
+    return response.json();
   })
   .then(data => {
-      console.log("data received:", data); // Log les données reçues
-      console.log('received recent : ', data);
-      // Si les propriétés sont enveloppées dans un objet { myProperties }
+      console.log("Data received:", data); // Log received data
+      console.log('Received recent messages:', data);
+
+      // Assuming messages are in an array
       const recentMessages = data;
 
+      // Get the table body element
       const tableBody = document.getElementById("recent-messages-table");
       if (tableBody) {
           tableBody.innerHTML = ''; // Clear existing rows
 
+          // Iterate over the recent messages and create table rows
           recentMessages.forEach((recentMessage) => {
-            console.log("recentMessages data:", recentMessage); // Log chaque propriété
+            console.log("Recent messages data:", recentMessage); // Log each message data
+
+            // Format the date and time
             const formattedHour = new Date(recentMessage.date_time).toLocaleString('fr-FR', {
               hour: '2-digit',
               minute: '2-digit',
               second: '2-digit',
             });
-            
+
+            // Create a new table row
             const row = document.createElement('tr');
             row.dataset.id = recentMessage.tenantid;
             row.classList.add('recent-message-row');
@@ -54,36 +70,36 @@ function getRecentMessagesRequest() {
             tableBody.appendChild(row);
           });
 
-          // Sélectionne la modale des messages et son contenu
+          // Select the message modal and its content
           const messageModal = document.getElementById('message-modal');
           const messageModalContent = messageModal.querySelector('.modal-content');
       
-          // Quand l'utilisateur clique sur une  des recente discussions
+          // Add click event listeners to message rows
           const messages = document.querySelectorAll('.recent-message-row');
           messages.forEach(message => {
             message.addEventListener('click', function() {
               const tenantId = this.dataset.id;
-              // Affiche la modale des messages pour le locataire correspondant
+              // Display the message modal for the corresponding tenant
               const submitButton = document.querySelector('#message-form button[type="submit"]');
-              // Ajoute une classe ou un attribut pour identifier qu'il s'agit d'une modification
               submitButton.dataset.tenantId = tenantId;
               messageModal.style.display = 'block';
               setTimeout(() => {
                 messageModal.classList.add('show');
                 messageModalContent.classList.add('show');
-              }, 10); // Ajout du délai pour permettre la transition
-              // Charger les messages ou autres données si nécessaire
+              }, 10); // Add delay to allow for transition
+              // Load messages or other data if necessary
               getMessagesRequest(tenantId);
-              // alert("je suis la tenantID : " + tenantId);
               sendMessageRequest(tenantId);
               deleteMessageLogic(tenantId);
             });
           });
       } else {
-          console.error("Element with ID 'recent-tenants-table' not found.");
+          console.error("Element with ID 'recent-messages-table' not found.");
       }
   })
   .catch((error) => {
+    // Redirect on error
     window.location.href = ownerError;
-    console.error('Error fetching recent messages:', error)});
+    console.error('Error fetching recent messages:', error);
+  });
 }

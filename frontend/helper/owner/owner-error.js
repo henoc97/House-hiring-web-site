@@ -1,17 +1,19 @@
-
-
+// Add an event listener for when the DOM content is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Sélectionner le bouton
+    // Select the home button
     const btnHome = document.querySelector('.btn-home');
+    // Select the sign-in button
     const btnSign = document.querySelector('.btn-sign');
-    // Ajouter un écouteur d'événements pour le clic
+    
+    // Add a click event listener to the home button
     btnHome.addEventListener('click', function() {
-        // Rediriger vers la page d'accueil 
-        window.location.href = ownerDashboardURL; // page d'accueil
+        // Redirect to the home page
+        window.location.href = ownerDashboardURL; // Home page URL
     });
     
+    // Add a click event listener to the sign-in button
     btnSign.addEventListener('click', function() {
-        // Rediriger vers la page de sign 
-        window.location.href = ownerLogSignURL; 
+        // Redirect to the sign-in page
+        window.location.href = ownerLogSignURL; // Sign-in page URL
     });
 });

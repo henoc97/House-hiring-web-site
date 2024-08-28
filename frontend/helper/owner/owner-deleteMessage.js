@@ -1,6 +1,14 @@
-
+/**
+ * Handles message selection and deletion logic.
+ * @param {string} tenantId - The ID of the tenant for whom the messages are being handled.
+ */
 function deleteMessageLogic(tenantId) {
     let selectedMessages = new Set();
+    
+    /**
+     * Handles message selection and toggles the delete icon state.
+     * @param {Event} event - The event triggered by a click on a message.
+     */
     function handleMessageSelection(event) {
         if (event.target.classList.contains('message')) {
             const messageDiv = event.target;
@@ -13,7 +21,7 @@ function deleteMessageLogic(tenantId) {
                 messageDiv.classList.add('selected');
             }
 
-            // Activer ou désactiver l'icône de suppression en fonction des messages sélectionnés
+            // Enable or disable the delete icon based on selected messages
             const deleteIcon = document.getElementById('delete-selected');
             if (selectedMessages.size === 0) {
                 deleteIcon.classList.remove('enabled');
@@ -30,20 +38,22 @@ function deleteMessageLogic(tenantId) {
 
     document.getElementById('delete-selected').addEventListener('click', () => {
         if (document.getElementById('delete-selected').classList.contains('disabled')) {
-            return; // Ne fait rien si l'icône est désactivée
+            return; // Do nothing if the icon is disabled
         }
         Array.from(selectedMessages).forEach(messageID => {
             const messageDiv = document.querySelector(`[data-id="${messageID}"]`);
             chatContainer.removeChild(messageDiv);
             deleteSelectedMessage(messageID);
         });
-        selectedMessages.clear(); // Réinitialiser la sélection
+        selectedMessages.clear(); // Reset the selection
         document.getElementById('delete-selected').classList.remove('enabled');
-        document.getElementById('delete-selected').classList.add('disabled'); // Réinitialiser l'état de l'icône
-        // alert('tenantId ' + tenantId);
-        // getMessagesRequest(tenantId); // Recharger les messages après suppression
+        document.getElementById('delete-selected').classList.add('disabled'); // Reset the icon state
     });
 
+    /**
+     * Deletes a selected message from the server.
+     * @param {string} messageId - The ID of the message to delete.
+     */
     function deleteSelectedMessage(messageId) {
         let token = localStorage.getItem('accessToken'); 
 
@@ -60,20 +70,18 @@ function deleteMessageLogic(tenantId) {
                 if (response.status === 401 || response.status === 403) {
                     return renewAccessToken().then(() => deleteSelectedMessage(messageId));
                 }
-                // Redirection en cas d'autres erreurs HTTP (par exemple 500)
+                // Redirect in case of other HTTP errors (e.g., 500)
                 window.location.href = ownerError;
-                throw new Error('HTTP error ' + response.status); // Lancer une erreur pour déclencher le .catch
+                throw new Error('HTTP error ' + response.status); // Throw an error to trigger the .catch
             }
             return response.json();
         })
         .then(data => {
-            
+            // Handle any additional logic or updates here if needed
         })
         .catch(error => {
             window.location.href = ownerError; 
-            console.error('Erreur:', error);
+            console.error('Error:', error);
         });
     }
-
 }
-

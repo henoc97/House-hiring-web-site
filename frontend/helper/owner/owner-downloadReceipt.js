@@ -1,32 +1,37 @@
-
-
+/**
+ * Converts the specified HTML element to a PDF and triggers the download.
+ */
 function downloadPDF() {
-  // Sélectionne l'élément HTML à convertir en PDF en utilisant son ID
-  const element = document.getElementById('receipt');
+    // Selects the HTML element to convert to PDF using its ID
+    const element = document.getElementById('receipt');
+    const receiptData = JSON.parse(localStorage.getItem('selectedReceipt'));
 
-  // Formate la date du mois payé pour l'utiliser dans le nom du fichier PDF
-  const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
-      month: 'long',   // Formate le mois en texte long (ex: "janvier")
-      year: 'numeric'  // Formate l'année en quatre chiffres
-  }).replace(',', '').replace(/\//g, '-'); // Remplace les virgules et les barres obliques par des tirets pour un formatage uniforme
+  if (receiptData) {
 
-  // Définit les options pour la conversion en PDF
-  const options = {
-      margin: [0.5, 0.5, 0.5, 0.5], // Définit les marges du PDF (en pouces)
-      filename: `recu_${formattedMonthpayed}_${receiptData.lastname}.pdf`, // Nom du fichier PDF en incluant la date formatée
-      image: { type: 'jpeg', quality: 1.0 }, // Spécifie le format et la qualité de l'image pour le rendu
-      html2canvas: {
-          scale: 3, // Augmente l'échelle pour améliorer la résolution du rendu
-          letterRendering: true, // Améliore le rendu des lettres pour une meilleure lisibilité
-          useCORS: true // Permet de charger les ressources externes (images, etc.) via CORS
-      },
-      jsPDF: {
-          unit: 'px', // Définit l'unité de mesure en pixels pour correspondre à l'élément HTML
-          format: [element.offsetWidth, element.offsetHeight], // Définit la taille du PDF en fonction des dimensions de l'élément HTML
-          orientation: 'portrait' // Définit l'orientation du PDF en mode portrait
-      }
-  };
-
-  // Convertit l'élément HTML en PDF en utilisant les options définies et déclenche le téléchargement du fichier
-  html2pdf().set(options).from(element).save();
+      // Formats the date of the paid month to use in the PDF file name
+      const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
+          month: 'long',   // Formats the month as a long text (e.g., "January")
+        year: 'numeric'  // Formats the year in four digits
+        }).replace(',', '').replace(/\//g, '-'); // Replaces commas and slashes with dashes for uniform formatting
+    
+        // Defines options for the PDF conversion
+        const options = {
+            margin: [0.5, 0.5, 0.5, 0.5], // Sets the PDF margins (in inches)
+            filename: `receipt_${formattedMonthpayed}_${receiptData.lastname}.pdf`, // PDF file name including the formatted date
+            image: { type: 'jpeg', quality: 1.0 }, // Specifies the format and quality of the image for rendering
+            html2canvas: {
+                scale: 3, // Increases the scale to improve rendering resolution
+                letterRendering: true, // Enhances letter rendering for better readability
+                useCORS: true // Allows loading external resources (images, etc.) via CORS
+            },
+            jsPDF: {
+                unit: 'px', // Sets the unit of measurement to pixels to match the HTML element
+                format: [element.offsetWidth, element.offsetHeight], // Sets the PDF size based on the dimensions of the HTML element
+                orientation: 'portrait' // Sets the PDF orientation to portrait mode
+            }
+        };
+        
+        // Converts the HTML element to a PDF using the defined options and triggers the file download
+        html2pdf().set(options).from(element).save();
+    }
 }

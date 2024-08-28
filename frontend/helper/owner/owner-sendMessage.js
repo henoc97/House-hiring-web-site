@@ -1,11 +1,15 @@
-
-
+/**
+ * Initializes a WebSocket connection for sending messages to a specific tenant.
+ * Closes any existing WebSocket connection, opens a new one, and sets up event handlers
+ * for receiving and sending messages.
+ * @param {number} tenantId - The ID of the tenant to whom the messages will be sent.
+ */
 function sendMessageRequest(tenantId) {
     let token = localStorage.getItem('accessToken');
 
     if (window.ws) {
-        window.ws.close();
-        getRecentMessagesRequest();
+        window.ws.close(); // Close existing WebSocket connection
+        getRecentMessagesRequest(); // Fetch recent messages
         console.log('Previous WebSocket connection closed');
     }
 
@@ -19,55 +23,57 @@ function sendMessageRequest(tenantId) {
         let messageObject;
 
         try {
-            messageObject = JSON.parse(event.data);
+            messageObject = JSON.parse(event.data); // Parse incoming message
         } catch (err) {
-            console.error('Erreur lors du parsing du message:', err);
+            console.error('Erreur lors du parsing du message:', err); // Log parsing errors
             return;
         }
 
         if (messageObject && messageObject.message && messageObject.tenantid == tenantId) {
-            console.log('Message socket : ' + messageObject.message);
-            displayMessageOwner(messageObject);
+            console.log('Message socket : ' + messageObject.message); // Log the received message
+            displayMessageOwner(messageObject); // Display the message
         }
     };
 
-    // Retirer tout ancien écouteur d'événement
+    // Remove old event listener and add a new one
     const form = document.getElementById('message-form');
     const newForm = form.cloneNode(true);
     form.parentNode.replaceChild(newForm, form);
 
-    // Ajouter un nouvel écouteur d'événements avec le tenantId mis à jour
     newForm.addEventListener('submit', function(event) {
         let message = document.getElementById('owner-message').value;
         event.preventDefault();
-        if (message.trim() !== '') ws.send(JSON.stringify({ tenantId, message }));
-        document.getElementById('message-form').reset();
+        if (message.trim() !== '') {
+            window.ws.send(JSON.stringify({ tenantId, message })); // Send the message
+        }
+        document.getElementById('message-form').reset(); // Reset the form
     });
 }
 
-
-
+/**
+ * Displays a message in the chat container.
+ * Creates a new message element, formats it based on the sender, and appends it to the chat container.
+ * @param {Object} message - The message object containing details to display.
+ * @param {number} message.id - The unique identifier of the message.
+ * @param {string} message.message - The content of the message.
+ * @param {string} message.date_time - The timestamp of when the message was sent.
+ * @param {number} message.by_owner - Indicator of whether the message is from the owner (1) or tenant (0).
+ */
 function displayMessageOwner(message) {
     const chatContainer = document.getElementById('chat-container');
     if (chatContainer) {
-        console.log("Message data:", message); // Log each message
+        console.log("Message data:", message); // Log the message data
         
-        // Create a new message div
+        // Create and style a new message div
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
         messageDiv.setAttribute('data-id', message.id); // Attach the message ID
 
-        // Determine if the message is from the owner or tenant
-        const isOwnerMessage = message.by_owner == 1;
+        // Determine message sender and apply corresponding styles
+        const isOwnerMessage = message.by_owner === 1;
+        messageDiv.classList.add(isOwnerMessage ? 'receiver' : 'sender');
         
-        // Add classes and styles based on message sender
-        if (!isOwnerMessage) {
-            messageDiv.classList.add('sender');
-        } else {
-            messageDiv.classList.add('receiver');
-        }
-        
-        // Format the message content and timestamp
+        // Format and display the message content and timestamp
         const formattedDate = new Date(message.date_time).toLocaleString('fr-FR', {
             hour: '2-digit',
             minute: '2-digit'
@@ -78,14 +84,13 @@ function displayMessageOwner(message) {
             <span class="timestamp">${formattedDate}</span>
         `;
         
-        // Append the message to the chat container
-        chatContainer.appendChild(messageDiv);
+        chatContainer.appendChild(messageDiv); // Append the new message
 
-        // Force the browser to render the new content
+        // Scroll to the bottom of the chat container to show the latest message
         setTimeout(() => {
             chatContainer.scrollTop = chatContainer.scrollHeight;
-        }, 0); // Adjust the delay if necessary
+        }, 0);
     } else {
-        console.error("Element with ID 'chat-container' not found.");
+        console.error("Element with ID 'chat-container' not found."); // Log if chat container is not found
     }
 }
