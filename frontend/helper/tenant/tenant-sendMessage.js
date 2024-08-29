@@ -9,7 +9,6 @@ function sendMessageRequest() {
     const ws = new WebSocket(hostSocket + `?userType=${encodeURIComponent('tenant')}`);
     
     ws.onopen = () => {
-        // console.log('WebSocket connection established');
     };
     
     ws.onmessage = event => {
@@ -20,7 +19,6 @@ function sendMessageRequest() {
             messageObject = JSON.parse(event.data);
         } catch (err) {
             window.location.href = tenantError;
-            // console.error('Error parsing message:', err);
             return;
         }
         
@@ -54,7 +52,6 @@ function sendMessageRequest() {
 function displayMessage(message) {
     const chatContainer = document.getElementById('chat-container');
     if (chatContainer) {
-        // console.log("Message data:", message); // Log each message
         
         // Create a new message div
         const messageDiv = document.createElement('div');
@@ -90,6 +87,5 @@ function displayMessage(message) {
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }, 0); // Adjust the delay if necessary
     } else {
-        // console.error("Element with ID 'chat-container' not found.");
     }
 }

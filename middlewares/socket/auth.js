@@ -20,21 +20,17 @@ module.exports = (ws, request, callback) => {
     const url = new URL(request.url, `https://${request.headers.host}`);
     const userType = url.searchParams.get('userType'); // Extract user type from URL
     const cookies = cookie.parse(request.headers.cookie || '');
-    console.log('request.cookies : ', cookies);
     const token = cookies[`${userType}Token`]; // or 'tenantToken', 'adminToken', etc.
 
-    console.log("Token from cookie:", token);
 
     if (!token) {
         ws.close(4000, 'Token missing');
-        console.log('Token missing');
         return;
     }
 
     jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) => {
         if (err) {
             ws.close(4001, 'Invalid token');
-            console.log('Invalid token');
             return;
         }
 

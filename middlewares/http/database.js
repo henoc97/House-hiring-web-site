@@ -18,7 +18,7 @@ const {logger} = require('../../src/logger/logRotation');
 module.exports = async (req, res, next) => {
     try {
         req.connection = await pool.getConnection();
-        console.log('Connected to MySQL');
+         logger.info('Connected to MySQL');
         next(); // Proceed to the next middleware or route handler
     } catch (err) {
         logger.error('Error acquiring connection from pool:', err);

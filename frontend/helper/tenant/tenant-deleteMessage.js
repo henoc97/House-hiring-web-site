@@ -89,7 +89,6 @@ function deleteMessageLogic() {
         })
         .catch(error => {
             window.location.href = tenantError;
-            // console.error('Error:', error);
         });
     }
 }

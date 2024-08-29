@@ -30,7 +30,6 @@ body {
   line-height: 1.6;
   word-spacing: 0.05em;
   letter-spacing: 0.01em;
-  /* width: 100%; */
   max-width: 800px; /* Ajustez cette valeur selon vos besoins */
   margin: auto; /* Centrez le contenu */
   margin-top: 15px;

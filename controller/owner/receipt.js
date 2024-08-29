@@ -20,7 +20,6 @@ module.exports.requireReceipt = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Payment receipt created:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: "Request successful", data: rows[0][0] });
     } catch (err) {
@@ -44,7 +43,6 @@ module.exports.receiptUnValid = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Invalid receipts:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
@@ -76,7 +74,6 @@ module.exports.validateReceipt = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Receipt validated:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
@@ -100,7 +97,6 @@ module.exports.receiptValid = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Valid receipts:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
@@ -132,7 +128,6 @@ module.exports.deleteReceipt = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Receipt deleted:', rows);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows);
     } catch (err) {

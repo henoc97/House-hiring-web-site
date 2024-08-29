@@ -21,8 +21,6 @@ const { readCookie } = require('../../functions/cookies')
 module.exports = (type) => {
     return (req, res, next) => {
         const token = readCookie(req, `${type}Token`);
-        console.log('type: ' + type);
-        console.log('token: ' + token);
         if (!token) {
             return res.status(401).json({ message: 'Token not provided' });
         }
@@ -34,7 +32,6 @@ module.exports = (type) => {
             }
 
             req.user = decoded; // Attach the decoded token data to the request object
-            console.log('decoded: ', JSON.stringify(decoded));
             next(); // Proceed to the next middleware or route handler
         });
     };

@@ -41,7 +41,7 @@ const sendOTPemail = async (email, pwd, codeOTP) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent: ' + info.response);
+     logger.info('Email sent: ' + info.response);
   } catch (error) {
     logger.error('Error occurred while sending OTP email:', error);
   }
@@ -71,7 +71,7 @@ const sendResetPwdOTPemail = async (email, codeOTP) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent: ' + info.response);
+     logger.info('Email sent: ' + info.response);
   } catch (error) {
     logger.error('Error occurred while sending password reset email:', error);
   }

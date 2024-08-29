@@ -23,7 +23,6 @@ module.exports = (server) => {
         tokenVerification(ws, request, async () => {
             try {
                 dbConnection(ws, () => {
-                    console.log('New client connected with ID:', ws.user.userId);
 
                     // Determine user type and handle accordingly
                     const isOwner = ws.user.userEmail !== undefined;
@@ -37,7 +36,6 @@ module.exports = (server) => {
                     ws.on('message', async (message) => {
                         try {
                             const messageObject = JSON.parse(message);
-                            console.log("Received message:", messageObject);
 
                             if (messageObject.message === '') {
                                 return; // Ignore empty messages
@@ -61,10 +59,8 @@ module.exports = (server) => {
 
                     // Handle client disconnection
                     ws.on('close', () => {
-                        console.log('Client disconnected');
                         if (ws.connection) {
                             ws.connection.release(); // Release database connection
-                            console.log('Database connection released');
                         }
                     });
                 });
@@ -78,7 +74,6 @@ module.exports = (server) => {
     const interval = setInterval(() => {
         wss.clients.forEach((client) => {
             if (client.isAlive === false) {
-                console.log('Connection lost for client ID:', client.signId);
                 return client.terminate();  // Terminate inactive connection
             }
 

@@ -19,11 +19,9 @@ module.exports.tenantProperty = async (req, res) => {
 
         // Check if rows contain data
         if (rows && rows.length > 0) {
-            console.log('Properties retrieved:', rows[0]);
             logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json(rows[0]);
         } else {
-            console.warn('No properties found for tenant ID:', req.user.prTenId);
             logger.warn(`404 Not Found: ${req.method} ${req.url}`);
             res.status(404).json({ message: 'No properties found' });
         }

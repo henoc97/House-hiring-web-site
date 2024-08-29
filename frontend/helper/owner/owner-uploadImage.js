@@ -23,9 +23,8 @@ function uploadedImageLogic(uploadForm) {
             // Checks if the response is not OK
             if (!response.ok) {
                 if (response.status === 401 || response.status === 403) {
-                    alert("Problème avec l'authentification. Renouvellement du token d'accès.");
                     // Attempts to renew the access token and retries the upload
-                    return renewAccessToken().then(() => uploadedImageLogic(uploadForm));
+                    window.location.href = ownerError;
                 }
                 window.location.href = ownerError; // Redirects to an error page
                 throw new Error('Erreur lors de l\'upload du fichier'); // Throws an error if the response is not OK

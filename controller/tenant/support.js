@@ -122,7 +122,6 @@ module.exports.deleteMessage = async (req, res) => {
     const { messageId } = req.body;
 
     // Validate input
-    console.log("typeof messageId: " + typeof messageId);
     if (!messageId) {
         logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Valid message ID is required.' });

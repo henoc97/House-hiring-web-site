@@ -23,7 +23,6 @@ function getTenantPropertyRequest(type) {
     return response.json();
 })
   .then(data => {
-    // console.log("data received:", data); // Log the received data
 
     // Process the data based on the type
     if (type == 1) {
@@ -34,7 +33,6 @@ function getTenantPropertyRequest(type) {
   })
   .catch((error) => {
     window.location.href = tenantError;
-    // console.error('Error fetching tenant property:', error);
   });
 }
 
@@ -45,14 +43,6 @@ function getTenantPropertyRequest(type) {
 function tenantPropertyProfile(data) {
   // console.log('data:', data);
   const tenantProperty = data[0];
-  
-  // Fill the profile form with the current owner data
-  // console.log("tenantProperty : " + JSON.stringify(tenantProperty));
-  // console.log("tenantProperty : " + tenantProperty.lastname);
-  // console.log("tenantProperty : " + tenantProperty.firstname);
-  // console.log("tenantProperty : " + tenantProperty.contactmoov);
-  // console.log("tenantProperty : " + tenantProperty.contacttg);
-
   document.getElementById('tenant-lastname').value = tenantProperty.lastname;
   document.getElementById('tenant-firstname').value = tenantProperty.firstname;
   document.getElementById('tenant-contact-moov').value = tenantProperty.contactmoov;
@@ -75,8 +65,6 @@ function tenantPropertyOptionConstructor(tenantProperty) {
     tenantPropertyOption.innerHTML = ''; // Clear existing options
     
     tenantProperty.forEach((tp) => {
-      // console.log("Property data:", tp); // Log each property
-      
       // Create a new option element for each tenant property
       const option = document.createElement('option');
       option.value = tp.id;

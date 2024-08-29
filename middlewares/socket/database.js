@@ -17,7 +17,7 @@ module.exports = async (ws, callback) => {
     try {
         // Acquire a connection from the pool
         ws.connection = await pool.getConnection();
-        console.log('Connected to MySQL');
+        logger.info('Connected to MySQL');
         
         // Proceed to the next step
         await callback();

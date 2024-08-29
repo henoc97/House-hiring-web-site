@@ -38,7 +38,6 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
   })
   .then(response => {
     if (!response.ok) {
-      // console.log(`Network error: ${response.status}`);
       if (response.status === 401) {
         alert('Accès interdit. Vérifiez vos informations de connexion.');
       } 
@@ -65,7 +64,6 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
       }
   })
   .catch(error => {
-      // console.error('Error:', error);
       messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer.";
       messageDiv.classList.add('red-message');
       messageDiv.classList.remove('green-message');

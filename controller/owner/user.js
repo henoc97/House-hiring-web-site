@@ -22,7 +22,8 @@ module.exports.getOtp = async (req, res) => {
 
     if (mailTest(email)) {
         const otp = generateOTPCode(); // Ensure that generateOTPCode() generates a valid OTP
-        sendOTPemail(email, pwd, otp);
+        const pwdhashed = await hashPassword(pwd);
+        sendOTPemail(email, pwdhashed, otp);
         emailOtp[email] = otp;
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: 'Request successful' });
@@ -46,7 +47,6 @@ module.exports.getResetPwdOtp = async (req, res) => {
         var result;
         try {
             const [rows] = await req.connection.query("CALL owner_by_email(?)", [email]);
-            console.log(rows);
             result = rows[0];
         } catch (error) {
             logger.error('Error: ' + error);
@@ -83,7 +83,6 @@ module.exports.updatePwdOwner = async (req, res) => {
     try {
         // Vérification de l'OTP
         if (resetPwdEmailOtp[email] !== otp) {
-            console.log("OTP invalide", resetPwdEmailOtp[email], otp);
             logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
             return res.status(400).json({ message: 'OTP invalide' });
         }
@@ -126,29 +125,22 @@ module.exports.updatePwdOwner = async (req, res) => {
  */
 module.exports.createUserOwner = async (req, res) => {
     const { email, pwd, otp } = req.body;
-    console.log(email, pwd, otp);
     
     if (!mailTest(email)) {
-        console.log("Invalid email: " + email);
         logger.warn(`404 Not Found: ${req.method} ${req.url}`);
         return res.status(404).json({ message: 'Enter a valid email' });
     }
 
     if (emailOtp[email] !== otp) {
-        console.log("Invalid OTP", emailOtp[email], otp);
         logger.warn(`404 Not Found: ${req.method} ${req.url}`);
         return res.status(404).json({ message: 'OTP invalide' });
     } else {
         delete emailOtp.email; // Corrected typo here
     }
     
-    console.log(email, pwd, otp);
     try {
-        const pwdhashed = await hashPassword(pwd);
-        console.log(pwdhashed);
-        const [result] = await req.connection.query("CALL insert_owner(?, ?)", [pwdhashed, email]);
+        const [result] = await req.connection.query("CALL insert_owner(?, ?)", [pwd, email]);
         const objIDSold = result[0][0]; // Object containing ID and balance
-        console.log(objIDSold);
         const user = { id: objIDSold.id, email: email };
         const token = generateOwnerToken(user, "4d");
         createSecureCookie(res, token, 'owner');
@@ -175,7 +167,6 @@ module.exports.createUserOwner = async (req, res) => {
  */
 module.exports.userAuth = async (req, res) => {
     const { email, pwd } = req.body;
-    console.log(email, pwd);
     
     if (!mailTest(email)) {
         logger.warn(`404 Not Found: ${req.method} ${req.url}`);
@@ -184,19 +175,14 @@ module.exports.userAuth = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query("CALL show_owner(?)", [email]);
-        console.log(rows[0]);
-        console.log('show_owner', rows[0][0].pwd);
         if (rows[0][0].length === 0) {
-            console.log('User not found');
             logger.warn(`404 Not Found: ${req.method} ${req.url}`);
             return res.status(404).json({ message: 'No user found' });
         }
         
         const pwdhashed = rows[0][0].pwd;
-        console.log("Password: ", pwd, " Hashed: ", pwdhashed);
         if (await comparePasswords(pwd, pwdhashed)) {
             const user = User.jsonToNewUser(rows[0][0]);
-            console.log("User: ", user);
             const token = generateOwnerToken(user, "4d");
             createSecureCookie(res, token, 'owner');
             logger.info(`200 OK: ${req.method} ${req.url}`);
@@ -229,11 +215,8 @@ module.exports.myOwner = async (req, res) => {
         const userId = req.user.userId;
         const query = "CALL owner_by_id(?)";
         const values = [userId];
-        console.log("UserId: " + userId);
         try {
             const [rows] = await req.connection.query(query, values);
-            console.log(rows[0]);
-            console.log("Owner rows: ", rows);
             logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json(rows[0][0]);
         } catch (error) {
@@ -241,7 +224,6 @@ module.exports.myOwner = async (req, res) => {
             res.status(500).json({ message: 'Server error' });
         }
     } catch (error) {
-        console.log('Error executing', error);
         logger.error('Error: ' + error);
         res.status(500).json({ message: 'Server error' });
     } finally {
@@ -266,7 +248,6 @@ module.exports.updateOwner = async (req, res) => {
 
         try {
             const [result] = await req.connection.query(query, values);
-            console.log(result);
             logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json({ message: "Request successful" });
         } catch (error) {
@@ -295,7 +276,6 @@ module.exports.updateSold = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query("CALL update_sold(?, ?)", [userId, spend]);
-        console.log('Update Sold Result:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0].update_sold);
     } catch (error) {
@@ -324,14 +304,12 @@ module.exports.uploadImg = async (req, res) => {
 
         // Retrieve the old image URL
         const [rows1] = await req.connection.query('CALL get_old_img_url(?)', [req.user.userId]);
-        console.log('Old Image URL Result:', JSON.stringify(rows1, null, 2));
         
         const oldImgUrl = rows1[0] && rows1[0][0] ? rows1[0][0].img_url : null;
 
         // Remove the old image from the filesystem if it exists
         if (oldImgUrl) {
             const oldImgPath = path.join(__dirname, '..', '..', 'frontend', oldImgUrl);
-            console.log('Deleting old image at path:', oldImgPath);
             if (fs.existsSync(oldImgPath)) {
                 fs.unlinkSync(oldImgPath);
             }
@@ -373,7 +351,6 @@ module.exports.insertSubscription = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Subscription Insert Result:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (error) {

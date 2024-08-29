@@ -14,7 +14,6 @@ function addUnvalidReceipt(unvalidReceipt) {
     year: 'numeric'
   }).replace(',', '').replace(/\//g, '-');
 
-  // console.log("unvalidReceipt data:", unvalidReceipt); // Log the receipt data
 
   // Create a new row for the table
   const row = document.createElement('tr');
@@ -63,7 +62,6 @@ function getUnvalidReceiptsRequest() {
   .then(data => {
     if (!data) return; // Stop execution if data is undefined (e.g., redirection)
 
-    // console.log("data received:", data); // Log the received data
 
     const unvalidReceipts = data;
     getValidReceiptsRequest();
@@ -77,12 +75,10 @@ function getUnvalidReceiptsRequest() {
       
       addDropdownsListener(); // Ensure the dropdowns are correctly initialized
     } else {
-      // console.error("Element with ID 'receipts-table' not found.");
     }
   })
   .catch((error) => {
     window.location.href = tenantError;
-    // console.error('Error fetching unvalid receipts:', error);
   });
 }
 
@@ -97,14 +93,12 @@ function addDropdownsListener() {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
-        // console.log('Dropdown clicked:', target);
         const dropdown = target.closest('.dropdown');
         dropdown.classList.toggle('show');
         event.stopPropagation();
       }
 
       if (target.classList.contains('delete-icon')) {
-        // console.log('Delete icon clicked:', target);
         const receiptId = target.dataset.id;
         deleteReceiptTenant(receiptId);
       }
@@ -120,7 +114,6 @@ function addDropdownsListener() {
       }
     });
   } else {
-    // console.error("Element with ID 'receipts-table' not found.");
   }
 }
 
@@ -144,7 +137,7 @@ function deleteReceiptTenant(receiptId) {
           window.location.href = tenantLogSignURL;
         }
         // Redirect for other HTTP errors (e.g., 500)
-        // window.location.href = tenantError;
+        window.location.href = tenantError;
         throw new Error('HTTP error ' + response.status); // Throw error to trigger .catch
     }
     return response.json();
@@ -157,7 +150,6 @@ function deleteReceiptTenant(receiptId) {
       }
   })
   .catch(error => {
-    // window.location.href = tenantError;
-    // console.error('Error deleting receipt:', error);
+    window.location.href = tenantError;
   });
 }

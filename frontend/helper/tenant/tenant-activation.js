@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
   })
   .catch(error => {
     // Log the error and show an alert message for errors during account creation
-    // console.error('Error:', error);  // Log the full error in the console
-    alert('Error creating account: invalid link'); // Show a descriptive error message
+    alert('Erreur lors de la création du compte : lien non valide'); // Show a descriptive error message
   });
 });

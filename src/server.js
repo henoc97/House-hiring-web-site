@@ -12,28 +12,25 @@ const helmet = require('helmet');
 const compression = require('compression');
 require('dotenv').config();
 
-
 const { ROOT_URL } = require('./endpoint');
 const cspMiddleware = require('../middlewares/http/csp');
-const {logger} = require('./logger/logRotation');
+const { logger } = require('./logger/logRotation');
 
-
-// Construire les chemins absolus
+// Build absolute paths for SSL certificates
 const privateKeyPath = path.resolve(__dirname, '../ssl/server.key');
 const certificatePath = path.resolve(__dirname, '../ssl/server.crt');
 
-// Charger les certificats
+// Load SSL certificates
 const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
 const certificate = fs.readFileSync(certificatePath, 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
-// Create Express application and HTTP server
+// Create an Express application and an HTTPS server
 const app = express();
 const server = https.createServer(credentials, app);
 
-// Import and configure WebSocket server
-const configureWebSocket = require('./websocketServer');
-configureWebSocket(server);
+// Configure and create apicache instance
+const cache = apicache.middleware;
 
 // Configure EJS template engine
 app.set('view engine', 'ejs');
@@ -45,8 +42,8 @@ const viewsPath = {
     admin: path.join(__dirname, '../frontend/views/admin'),
 };
 
-// use CSP middleware
-app.use(cspMiddleware)
+// Use CSP middleware
+app.use(cspMiddleware);
 
 // Configure middlewares
 app.use(cors({
@@ -60,18 +57,17 @@ app.use(cookieParser());
 app.use(helmet({ contentSecurityPolicy: false })); // Disable default CSP directives from Helmet
 app.use(compression()); // Compress HTTP responses
 
-// Create a write stream for logging
+// Log incoming requests
 app.use((req, res, next) => {
     logger.info(`${req.method} ${req.url}`);
     next();
-  });
+});
 
 // Configure static file serving with caching
-// const staticOptions = { maxAge: '1d' }; // Cache static files for 1 day
-app.use(express.static(path.join(__dirname, '../frontend/css'))); // staticOptions
-app.use('/icon', express.static(path.join(__dirname, '../frontend/icon'))); // staticOptions
-app.use('/img', express.static(path.join(__dirname, '../frontend/img'))); // staticOptions
-app.use(express.static(path.join(__dirname, '../frontend/helper'))); // staticOptions
+app.use(express.static(path.join(__dirname, '../frontend/css'), { maxAge: '1d' })); // Cache static files for 1 day
+app.use('/icon', express.static(path.join(__dirname, '../frontend/icon'), { maxAge: '1d' })); // Cache static files for 1 day
+app.use('/img', express.static(path.join(__dirname, '../frontend/img'), { maxAge: '1d' })); // Cache static files for 1 day
+app.use(express.static(path.join(__dirname, '../frontend/helper'), { maxAge: '1d' })); // Cache static files for 1 day
 
 // Import routers
 const frontendAdmin = require('./routers/frontendAdmin');
@@ -82,27 +78,27 @@ const backendAdmin = require('./routers/backendAdmin');
 const backendOwner = require('./routers/backendOwner');
 const backendTenant = require('./routers/backendTenant');
 
-// Configure routes
-app.use('/admin', (req, res, next) => {
+// Configure routes with caching
+app.use('/admin', cache('10 minutes'), (req, res, next) => {
     app.set('views', viewsPath.admin);
     next();
 }, frontendAdmin);
 
-app.use('/owner', (req, res, next) => {
+app.use('/owner', cache('10 minutes'), (req, res, next) => {
     app.set('views', viewsPath.owner);
     next();
 }, frontendOwner);
 
-app.use('/tenant', (req, res, next) => {
+app.use('/tenant', cache('10 minutes'), (req, res, next) => {
     app.set('views', viewsPath.tenant);
     next();
 }, frontendTenant);
 
-// Configure backend routes
-app.use('/backend-csp-report', backendCspReport);
-app.use('/backend-admin', backendAdmin);
-app.use('/backend-owner', backendOwner);
-app.use('/backend-tenant', backendTenant);
+// Configure backend routes with caching
+app.use('/backend-csp-report', cache('15 minutes'), backendCspReport);
+app.use('/backend-admin', cache('15 minutes'), backendAdmin);
+app.use('/backend-owner', cache('15 minutes'), backendOwner);
+app.use('/backend-tenant', cache('15 minutes'), backendTenant);
 
 // Middleware to handle unhandled errors
 app.use((err, req, res, next) => {

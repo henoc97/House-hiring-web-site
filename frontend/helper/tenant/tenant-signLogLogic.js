@@ -34,7 +34,6 @@ function makeRequest() {
     return response.json();
   })
   .then(data => {
-    // console.log(data);
     // Store tokens if authentication is successful
     if (data.message == 'Request successful') {
       window.location.href = tenantDashboardURL; 
@@ -43,8 +42,6 @@ function makeRequest() {
     }
   })
   .catch(error => {
-    // console.error('Error:', error);
-    // alert('Une erreur est survenue. Veuillez réessayer.');
   });
 }
 

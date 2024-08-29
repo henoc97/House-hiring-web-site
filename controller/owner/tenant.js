@@ -39,7 +39,6 @@ module.exports.tenantsProperties = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Tenant Properties:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (queryError) {
@@ -60,12 +59,10 @@ module.exports.tenantsProperties = async (req, res) => {
  */
 module.exports.recentTenants = async (req, res) => {
     const query = "CALL recent_tenants(?)";
-    console.log('user ID:', req.user.userId);
     const values = [req.user.userId];
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Recent Tenants:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (queryError) {
@@ -90,7 +87,6 @@ module.exports.allTenants = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('All Tenants:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (queryError) {
@@ -116,7 +112,6 @@ module.exports.myTenant = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Tenant by ID:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
@@ -168,7 +163,6 @@ module.exports.updateTenantConnectKey = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Tenant Connect Key Updated:', rows);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ key: keyword });
     } catch (queryError) {
@@ -194,7 +188,6 @@ module.exports.deleteTenant = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Tenant Deleted:', rows);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows);
     } catch (err) {
@@ -220,7 +213,6 @@ module.exports.deletePropertyTenant = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Property Tenant Deleted:', rows);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows);
     } catch (err) {

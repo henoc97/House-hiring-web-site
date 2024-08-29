@@ -19,7 +19,6 @@ module.exports.sendMessage = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
-        console.log('Message inserted:', rows[0]);
         logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: "Request successful" });
     } catch (err) {
@@ -47,7 +46,6 @@ module.exports.ownerMessageSender = async (ws, messageObject, wss) => {
         return;
     }
 
-    console.log(`Received message from owner for tenant ID ${tenantId}: ${message}`);
 
     const query = "CALL insert_message_owner(?, ?, ?)";
     const values = [ws.user.userId, tenantId, message];

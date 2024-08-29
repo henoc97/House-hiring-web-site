@@ -44,7 +44,6 @@ function requireRecieptRequest() {
           return response.json();
         })
         .then(unvalidReceipt => {
-              // console.log("Unvalid receipt response: " + JSON.stringify(unvalidReceipt));
               document.getElementById('receipt-form').reset();
               // Optionally handle further processing of the receipt
               addUnvalidReceipt(unvalidReceipt['data']);
@@ -52,7 +51,6 @@ function requireRecieptRequest() {
         })
         .catch(error => {
             // window.location.href = tenantError;
-            // console.error('Error:', error);
         });
     });
   

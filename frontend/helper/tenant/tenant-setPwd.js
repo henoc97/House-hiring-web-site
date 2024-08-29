@@ -14,7 +14,6 @@ function setpwdRequest() {
   const messageDiv = document.getElementById('set-pwd-message');
 
   if (messageDiv) {
-      // console.log('Found', messageDiv);
       // Reset the message
       messageDiv.textContent = '';
   }
@@ -43,7 +42,7 @@ function setpwdRequest() {
             window.location.href = tenantLogSignURL;
           }
           // Redirect in case of other HTTP errors (e.g., 500)
-        //   window.location.href = tenantError;
+          window.location.href = tenantError;
           throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
       }
       return response.json();
@@ -72,7 +71,6 @@ function setpwdRequest() {
       getUnvalidReceiptsRequest(); // This will in turn call getValidReceiptsRequest()
   })
   .catch(error => {
-    //   window.location.href = tenantError;
-      // console.error('Error:', error);
+      window.location.href = tenantError;
   });
 }

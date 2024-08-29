@@ -46,7 +46,6 @@ function insertSubscriptionAdmin() {
     })
     .catch(error => {
         window.location.href = adminError;
-        // console.error('Error inserting subscription:', error);
     });
 }
 
@@ -88,6 +87,5 @@ function validSubscription(subscriptionId, id, ref, method) {
         }
     })
     .catch(error => {
-        // console.error('Error validating subscription:', error);
     });
 }
