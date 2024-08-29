@@ -69,3 +69,17 @@ body {
 .btn-home:hover, .btn-sign:hover {
     background: -webkit-linear-gradient(left, var(--blue), var(--white-blue), var(--gray));
 }
+
+
+
+@media screen and (max-width: 600.00px) {
+    .btn-home, .btn-sign {
+        padding: 5px;
+        margin: 8px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+    
+}

@@ -49,20 +49,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     // Populate receipt details
     receiptDetails.innerHTML = `
-      <p><strong>Receipt Number:</strong> ${receiptData.receiptNumber} </p>
-      <p><strong>Issue Date:</strong> ${validationDate} </p>
-      <p><strong>Tenant's Name:</strong> ${receiptData.lastname} ${receiptData.firstname} </p>
-      <p><strong>Tenant's Address:</strong> ${receiptData.address} </p>
-      <p><strong>Rent Amount:</strong> ${receiptData.sumpayed} FCFA</p>
-      <p><strong>Payment for the Month of:</strong> ${formattedMonthpayed}</p>
-      <p id="payment-date"><strong>Payment Date:</strong> ${formattedDate}</p>
+      <p><strong>Receipt Number:</strong> ${receiptData.receiptNumber ?? ''} </p>
+      <p><strong>Issue Date:</strong> ${validationDate ?? ''} </p>
+      <p><strong>Tenant's Name:</strong> ${receiptData.lastname ?? ''} ${receiptData.firstname ?? ''} </p>
+      <p><strong>Tenant's Address:</strong> ${receiptData.address ?? ''} </p>
+      <p><strong>Rent Amount:</strong> ${receiptData.sumpayed ?? ''} FCFA</p>
+      <p><strong>Payment for the Month of:</strong> ${formattedMonthpayed ?? ''}</p>
+      <p id="payment-date"><strong>Payment Date:</strong> ${formattedDate ?? ''}</p>
     `;
     
     // Populate owner details
     ownerDetails.innerHTML = `
-      <p><strong>Owner's Name:</strong> ${receiptData.owner_lastname} ${receiptData.owner_firstname}</p>
-      <p><strong>Phone:</strong> ${receiptData.owner_contactmoov} / ${receiptData.owner_contacttg}</p>
-      <p><strong>Email:</strong> ${receiptData.owner_email}</p>
+      <p><strong>Owner's Name:</strong> ${receiptData.owner_lastname ?? ''} ${receiptData.owner_firstname ?? ''}</p>
+      <p><strong>Phone:</strong> ${receiptData.owner_contactmoov ?? ''} / ${receiptData.owner_contacttg ?? ''}</p>
+      <p><strong>Email:</strong> ${receiptData.owner_email ?? ''}</p>
     `;
     
     // Set the source of the signature image

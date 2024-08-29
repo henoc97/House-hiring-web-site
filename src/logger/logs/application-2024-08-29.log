@@ -3646,3 +3646,2957 @@
 2024-08-29T05:28:48.809Z info: 200 OK: POST /recent-messages
 2024-08-29T05:28:50.718Z info: POST /backend-owner/recent-messages
 2024-08-29T05:28:50.727Z info: 200 OK: POST /recent-messages
+2024-08-29T07:58:54.373Z info: GET /owner/owner
+2024-08-29T07:58:54.425Z info: GET /main-owner.css
+2024-08-29T07:58:54.475Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T07:58:54.493Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T07:58:54.508Z info: GET /owner/owner-myMessages.js
+2024-08-29T07:58:54.524Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T07:58:54.540Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T07:58:54.542Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T07:58:54.543Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T07:58:54.548Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T07:58:54.549Z info: GET /owner/owner-createTenant.js
+2024-08-29T07:58:54.550Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T07:58:54.551Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T07:58:54.555Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T07:58:54.557Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T07:58:54.557Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T07:58:54.558Z info: GET /owner/owner-sendMessage.js
+2024-08-29T07:58:54.560Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T07:58:54.562Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T07:58:54.564Z info: GET /owner/owner-uploadImage.js
+2024-08-29T07:58:54.568Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T07:58:54.568Z info: GET /owner/owner-frontendManager.js
+2024-08-29T07:58:54.570Z info: GET /public/endpoints.js
+2024-08-29T07:58:54.571Z info: GET /public/variablesState.js
+2024-08-29T07:58:54.571Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T07:58:54.571Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T07:58:54.600Z info: POST /backend-owner/receipt-unValid
+2024-08-29T07:58:54.603Z info: POST /backend-owner/recent-tenants
+2024-08-29T07:58:54.604Z info: POST /backend-owner/update-sold
+2024-08-29T07:58:54.636Z info: Connected to MySQL
+2024-08-29T07:58:54.640Z info: Connected to MySQL
+2024-08-29T07:58:54.641Z info: Connected to MySQL
+2024-08-29T07:58:54.650Z info: 200 OK: POST /update-sold
+2024-08-29T07:58:54.652Z info: 200 OK: POST /receipt-unValid
+2024-08-29T07:58:54.653Z info: 200 OK: POST /recent-tenants
+2024-08-29T07:58:54.887Z info: GET /icon/favicon.ico
+2024-08-29T07:58:54.956Z info: GET /icon/favicon.ico
+2024-08-29T07:58:56.830Z info: GET /tenant/tenant
+2024-08-29T07:58:56.892Z info: GET /main-tenant.css
+2024-08-29T07:58:56.906Z info: GET /public/endpoints.js
+2024-08-29T07:58:56.910Z info: GET /public/variablesState.js
+2024-08-29T07:58:56.913Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T07:58:56.918Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T07:58:56.921Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T07:58:56.927Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T07:58:56.933Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T07:58:56.935Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T07:58:56.951Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T07:58:56.952Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T07:58:56.952Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T07:58:56.956Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T07:58:56.964Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T07:58:56.967Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T07:58:57.016Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T07:58:57.017Z info: Connected to MySQL
+2024-08-29T07:58:57.027Z info: POST /backend-tenant/tenant-property
+2024-08-29T07:58:57.028Z info: Connected to MySQL
+2024-08-29T07:58:57.032Z info: 200 OK: POST /receipt-unValid
+2024-08-29T07:58:57.036Z info: 200 OK: POST /tenant-property
+2024-08-29T07:58:57.303Z info: POST /backend-tenant/receipt-valid
+2024-08-29T07:58:57.306Z info: Connected to MySQL
+2024-08-29T07:58:57.316Z info: GET /icon/favicon.ico
+2024-08-29T07:58:57.321Z info: 200 OK: POST /receipt-valid
+2024-08-29T07:58:57.350Z info: GET /icon/favicon.ico
+2024-08-29T07:58:59.715Z info: GET /tenant/tenant
+2024-08-29T07:58:59.750Z info: GET /main-tenant.css
+2024-08-29T07:58:59.801Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T07:58:59.830Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T07:58:59.838Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T07:58:59.843Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T07:58:59.846Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T07:58:59.848Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T07:58:59.860Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T07:58:59.865Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T07:58:59.875Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T07:58:59.878Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T07:58:59.884Z info: GET /public/endpoints.js
+2024-08-29T07:58:59.889Z info: GET /public/variablesState.js
+2024-08-29T07:58:59.898Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T07:58:59.900Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T07:58:59.926Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T07:58:59.933Z info: POST /backend-tenant/tenant-property
+2024-08-29T07:59:00.027Z info: POST /backend-tenant/receipt-valid
+2024-08-29T07:59:00.031Z info: GET /icon/favicon.ico
+2024-08-29T07:59:00.049Z info: GET /icon/favicon.ico
+2024-08-29T07:59:03.232Z info: GET /owner/owner
+2024-08-29T07:59:03.251Z info: GET /main-owner.css
+2024-08-29T07:59:03.255Z info: GET /public/endpoints.js
+2024-08-29T07:59:03.257Z info: GET /public/variablesState.js
+2024-08-29T07:59:03.258Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T07:59:03.261Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T07:59:03.263Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T07:59:03.267Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T07:59:03.269Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T07:59:03.272Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T07:59:03.275Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T07:59:03.277Z info: GET /owner/owner-createTenant.js
+2024-08-29T07:59:03.278Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T07:59:03.280Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T07:59:03.282Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T07:59:03.283Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T07:59:03.285Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T07:59:03.287Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T07:59:03.291Z info: GET /owner/owner-myMessages.js
+2024-08-29T07:59:03.293Z info: GET /owner/owner-sendMessage.js
+2024-08-29T07:59:03.295Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T07:59:03.296Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T07:59:03.297Z info: GET /owner/owner-uploadImage.js
+2024-08-29T07:59:03.299Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T07:59:03.301Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T07:59:03.305Z info: GET /owner/owner-frontendManager.js
+2024-08-29T07:59:03.312Z info: POST /backend-owner/receipt-unValid
+2024-08-29T07:59:03.314Z info: POST /backend-owner/recent-tenants
+2024-08-29T07:59:03.316Z info: POST /backend-owner/update-sold
+2024-08-29T07:59:03.405Z info: GET /icon/favicon.ico
+2024-08-29T07:59:03.423Z info: GET /icon/favicon.ico
+2024-08-29T07:59:31.631Z info: GET /owner/owner
+2024-08-29T07:59:31.705Z info: POST /backend-owner/receipt-unValid
+2024-08-29T07:59:31.717Z info: POST /backend-owner/recent-tenants
+2024-08-29T07:59:31.734Z info: POST /backend-owner/update-sold
+2024-08-29T07:59:31.805Z info: GET /icon/favicon.ico
+2024-08-29T07:59:31.852Z info: GET /icon/favicon.ico
+2024-08-29T07:59:32.968Z info: GET /owner/owner
+2024-08-29T07:59:33.023Z info: POST /backend-owner/receipt-unValid
+2024-08-29T07:59:33.028Z info: POST /backend-owner/recent-tenants
+2024-08-29T07:59:33.031Z info: POST /backend-owner/update-sold
+2024-08-29T07:59:33.076Z info: GET /icon/favicon.ico
+2024-08-29T07:59:33.089Z info: GET /icon/favicon.ico
+2024-08-29T08:00:26.152Z info: GET /owner/owner-profile
+2024-08-29T08:00:26.171Z info: POST /backend-owner/my-owner
+2024-08-29T08:00:26.171Z info: Connected to MySQL
+2024-08-29T08:00:26.179Z info: 200 OK: POST /my-owner
+2024-08-29T08:00:26.188Z info: GET /owner/null
+2024-08-29T08:00:26.190Z warn: 404 Not Found: GET /owner/null
+2024-08-29T08:00:30.849Z info: GET /owner/owner-tenants
+2024-08-29T08:00:30.887Z info: POST /backend-owner/all-tenants
+2024-08-29T08:00:30.888Z info: Connected to MySQL
+2024-08-29T08:00:30.902Z info: POST /backend-owner/recent-messages
+2024-08-29T08:00:30.903Z info: Connected to MySQL
+2024-08-29T08:00:30.913Z info: 200 OK: POST /all-tenants
+2024-08-29T08:00:30.916Z info: 200 OK: POST /recent-messages
+2024-08-29T08:00:32.610Z info: GET /owner/owner-properties
+2024-08-29T08:00:32.627Z info: POST /backend-owner/my-properties
+2024-08-29T08:00:32.627Z info: Connected to MySQL
+2024-08-29T08:00:32.639Z info: 200 OK: POST /my-properties
+2024-08-29T08:00:33.764Z info: GET /owner/owner-tenant-home
+2024-08-29T08:00:33.798Z info: POST /backend-owner/Tenants-properties
+2024-08-29T08:00:33.799Z info: Connected to MySQL
+2024-08-29T08:00:33.805Z info: POST /backend-owner/my-properties
+2024-08-29T08:00:33.812Z info: 200 OK: POST /Tenants-properties
+2024-08-29T08:00:34.633Z info: GET /owner/owner-tenant-home
+2024-08-29T08:00:34.656Z info: POST /backend-owner/Tenants-properties
+2024-08-29T08:00:34.662Z info: POST /backend-owner/my-properties
+2024-08-29T08:00:35.577Z info: GET /owner/owner-receipts
+2024-08-29T08:00:35.605Z info: POST /backend-owner/receipt-valid
+2024-08-29T08:00:35.607Z info: Connected to MySQL
+2024-08-29T08:00:35.614Z info: POST /backend-owner/Tenants-properties
+2024-08-29T08:00:35.624Z info: 200 OK: POST /receipt-valid
+2024-08-29T08:00:36.859Z info: GET /owner/owner-subscription
+2024-08-29T08:00:40.900Z info: GET /owner/owner-dashboard
+2024-08-29T08:00:40.924Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:00:40.934Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:00:47.853Z info: GET /owner/owner-profile
+2024-08-29T08:00:47.864Z info: POST /backend-owner/my-owner
+2024-08-29T08:00:47.870Z info: GET /owner/null
+2024-08-29T08:00:52.289Z info: GET /owner/owner-tenants
+2024-08-29T08:00:52.300Z info: POST /backend-owner/all-tenants
+2024-08-29T08:00:52.307Z info: POST /backend-owner/recent-messages
+2024-08-29T08:00:54.382Z info: GET /owner/owner-profile
+2024-08-29T08:00:54.410Z info: POST /backend-owner/my-owner
+2024-08-29T08:00:54.421Z info: GET /owner/null
+2024-08-29T08:01:17.977Z info: GET /owner/owner-sign-log
+2024-08-29T08:01:18.025Z info: GET /sign-log-style.css
+2024-08-29T08:01:18.046Z info: GET /public/logSignScript.js
+2024-08-29T08:01:18.048Z info: GET /public/signLogAnimation.js
+2024-08-29T08:01:18.051Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:01:46.612Z info: POST /backend-owner/user-auth
+2024-08-29T08:01:46.612Z info: Connected to MySQL
+2024-08-29T08:01:46.687Z info: 200 OK: POST /user-auth
+2024-08-29T08:01:46.702Z info: GET /owner/owner
+2024-08-29T08:01:46.743Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:01:46.749Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:01:46.755Z info: POST /backend-owner/update-sold
+2024-08-29T08:02:05.664Z info: GET /owner/owner-profile
+2024-08-29T08:02:05.681Z info: POST /backend-owner/my-owner
+2024-08-29T08:02:05.691Z info: GET /owner/null
+2024-08-29T08:04:40.097Z info: GET /owner/owner-sign-log
+2024-08-29T08:04:40.194Z info: GET /icon/favicon.ico
+2024-08-29T08:04:40.214Z info: GET /icon/favicon.ico
+2024-08-29T08:04:49.077Z info: POST /backend-owner/user-auth
+2024-08-29T08:04:49.119Z info: GET /owner/owner
+2024-08-29T08:04:49.189Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:04:49.194Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:04:49.200Z info: POST /backend-owner/update-sold
+2024-08-29T08:06:52.622Z info: GET /owner/owner-subscription
+2024-08-29T08:07:04.134Z info: GET /owner/owner
+2024-08-29T08:07:04.178Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:07:04.201Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:07:04.207Z info: POST /backend-owner/update-sold
+2024-08-29T08:07:04.209Z info: Connected to MySQL
+2024-08-29T08:07:04.213Z info: Connected to MySQL
+2024-08-29T08:07:04.215Z info: Connected to MySQL
+2024-08-29T08:07:04.221Z info: 200 OK: POST /recent-tenants
+2024-08-29T08:07:04.226Z info: 200 OK: POST /receipt-unValid
+2024-08-29T08:07:04.228Z info: 200 OK: POST /update-sold
+2024-08-29T08:07:04.229Z info: GET /icon/favicon.ico
+2024-08-29T08:07:04.249Z info: GET /icon/favicon.ico
+2024-08-29T08:07:22.031Z info: GET /owner/owner-profile
+2024-08-29T08:07:22.062Z info: POST /backend-owner/my-owner
+2024-08-29T08:07:22.064Z info: Connected to MySQL
+2024-08-29T08:07:22.083Z info: 200 OK: POST /my-owner
+2024-08-29T08:07:22.096Z info: GET /img/d56c85f2-ff44-476c-bcb2-c02657c964e7.png
+2024-08-29T08:07:38.314Z info: GET /owner/owner-tenants
+2024-08-29T08:07:38.333Z info: POST /backend-owner/all-tenants
+2024-08-29T08:07:38.333Z info: Connected to MySQL
+2024-08-29T08:07:38.341Z info: POST /backend-owner/recent-messages
+2024-08-29T08:07:38.341Z info: Connected to MySQL
+2024-08-29T08:07:38.345Z info: 200 OK: POST /all-tenants
+2024-08-29T08:07:38.347Z info: 200 OK: POST /recent-messages
+2024-08-29T08:07:44.565Z info: GET /owner/owner-properties
+2024-08-29T08:07:44.584Z info: POST /backend-owner/my-properties
+2024-08-29T08:07:44.585Z info: Connected to MySQL
+2024-08-29T08:07:44.591Z info: 200 OK: POST /my-properties
+2024-08-29T08:07:46.643Z info: GET /owner/owner-tenant-home
+2024-08-29T08:07:46.669Z info: POST /backend-owner/Tenants-properties
+2024-08-29T08:07:46.670Z info: Connected to MySQL
+2024-08-29T08:07:46.674Z info: 200 OK: POST /Tenants-properties
+2024-08-29T08:07:46.679Z info: POST /backend-owner/my-properties
+2024-08-29T08:07:48.766Z info: GET /owner/owner-receipts
+2024-08-29T08:07:48.776Z info: POST /backend-owner/receipt-valid
+2024-08-29T08:07:48.777Z info: Connected to MySQL
+2024-08-29T08:07:48.781Z info: POST /backend-owner/Tenants-properties
+2024-08-29T08:07:48.783Z info: 200 OK: POST /receipt-valid
+2024-08-29T08:07:51.425Z info: GET /owner/owner-subscription
+2024-08-29T08:08:56.664Z info: GET /owner/owner
+2024-08-29T08:08:56.683Z info: GET /main-owner.css
+2024-08-29T08:08:56.729Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T08:08:56.897Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T08:08:56.902Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T08:08:56.905Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T08:08:56.908Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T08:08:56.913Z info: GET /owner/owner-createTenant.js
+2024-08-29T08:08:56.919Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T08:08:56.947Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T08:08:56.956Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T08:08:56.960Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T08:08:56.963Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T08:08:56.966Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T08:08:56.971Z info: GET /owner/owner-myMessages.js
+2024-08-29T08:08:56.991Z info: GET /owner/owner-sendMessage.js
+2024-08-29T08:08:56.993Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T08:08:56.996Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T08:08:57.000Z info: GET /owner/owner-uploadImage.js
+2024-08-29T08:08:57.005Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T08:08:57.009Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T08:08:57.025Z info: GET /owner/owner-frontendManager.js
+2024-08-29T08:08:57.034Z info: GET /public/endpoints.js
+2024-08-29T08:08:57.036Z info: GET /public/variablesState.js
+2024-08-29T08:08:57.040Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T08:08:57.042Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T08:08:57.899Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:08:57.905Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:08:57.914Z info: POST /backend-owner/update-sold
+2024-08-29T08:09:08.029Z info: GET /icon/favicon.ico
+2024-08-29T08:09:08.043Z info: GET /icon/favicon.ico
+2024-08-29T08:09:19.888Z info: GET /owner/owner-sign-log
+2024-08-29T08:09:19.911Z info: GET /sign-log-style.css
+2024-08-29T08:09:19.929Z info: GET /public/logSignScript.js
+2024-08-29T08:09:19.936Z info: GET /public/signLogAnimation.js
+2024-08-29T08:09:19.943Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:09:33.942Z info: POST /backend-owner/user-auth
+2024-08-29T08:09:33.943Z info: Connected to MySQL
+2024-08-29T08:09:34.099Z warn: 404 Not Found: POST /user-auth
+2024-08-29T08:09:47.205Z info: POST /backend-owner/user-auth
+2024-08-29T08:09:53.743Z info: POST /backend-owner/user-auth
+2024-08-29T08:09:58.271Z info: POST /backend-csp-report/csp-violation
+2024-08-29T08:10:02.100Z info: GET /owner/owner-send-email
+2024-08-29T08:10:02.141Z info: GET /owner/owner-sendEmailLogic.js
+2024-08-29T08:10:07.203Z info: POST /backend-owner/get-reset-pwd-otp
+2024-08-29T08:10:07.203Z info: Connected to MySQL
+2024-08-29T08:10:07.212Z info: 200 OK: POST /get-reset-pwd-otp
+2024-08-29T08:10:10.865Z info: Email sent: 250 2.0.0 OK  1724919010 a640c23a62f3a-a8988feaf3fsm45073766b.40 - gsmtp
+2024-08-29T08:10:31.126Z info: GET /owner/owner-reset-pwd?email=amaviganhenoc@gmail.com&otp=761345
+2024-08-29T08:10:31.176Z info: GET /sign-log-style.css
+2024-08-29T08:10:31.190Z info: GET /public/endpoints.js
+2024-08-29T08:10:31.192Z info: GET /owner/owner-resetPwdLogic.js
+2024-08-29T08:10:52.131Z info: POST /backend-csp-report/csp-violation
+2024-08-29T08:11:05.774Z info: POST /backend-owner/reset-pwd
+2024-08-29T08:11:05.776Z info: Connected to MySQL
+2024-08-29T08:11:05.898Z info: 200 OK: POST /reset-pwd
+2024-08-29T08:11:05.916Z info: GET /owner/owner-sign-log
+2024-08-29T08:11:05.977Z info: GET /public/logSignScript.js
+2024-08-29T08:11:05.997Z info: GET /public/signLogAnimation.js
+2024-08-29T08:11:06.000Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:11:19.308Z info: POST /backend-owner/user-auth
+2024-08-29T08:15:50.851Z info: GET /tenant/tenant
+2024-08-29T08:15:50.883Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T08:15:50.884Z info: Connected to MySQL
+2024-08-29T08:15:50.889Z info: 200 OK: POST /receipt-unValid
+2024-08-29T08:15:50.892Z info: POST /backend-tenant/tenant-property
+2024-08-29T08:15:50.892Z info: Connected to MySQL
+2024-08-29T08:15:50.898Z info: 200 OK: POST /tenant-property
+2024-08-29T08:15:50.957Z info: POST /backend-tenant/receipt-valid
+2024-08-29T08:15:50.957Z info: Connected to MySQL
+2024-08-29T08:15:50.960Z info: GET /icon/favicon.ico
+2024-08-29T08:15:50.962Z info: 200 OK: POST /receipt-valid
+2024-08-29T08:15:50.983Z info: GET /icon/favicon.ico
+2024-08-29T08:15:54.486Z info: GET /tenant/tenant
+2024-08-29T08:15:54.506Z info: GET /main-tenant.css
+2024-08-29T08:15:54.528Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T08:15:54.575Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T08:15:54.576Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T08:15:54.581Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T08:15:54.583Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T08:15:54.584Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T08:15:54.593Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T08:15:54.599Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T08:15:54.601Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T08:15:54.602Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T08:15:54.605Z info: GET /public/endpoints.js
+2024-08-29T08:15:54.607Z info: GET /public/variablesState.js
+2024-08-29T08:15:54.615Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T08:15:54.622Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T08:15:54.649Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T08:15:54.655Z info: POST /backend-tenant/tenant-property
+2024-08-29T08:15:54.706Z info: POST /backend-tenant/receipt-valid
+2024-08-29T08:15:54.711Z info: GET /icon/favicon.ico
+2024-08-29T08:15:54.728Z info: GET /icon/favicon.ico
+2024-08-29T08:18:30.731Z info: GET /owner/owner-sign-log
+2024-08-29T08:18:30.802Z info: GET /sign-log-style.css
+2024-08-29T08:18:30.822Z info: GET /public/logSignScript.js
+2024-08-29T08:18:30.823Z info: GET /public/endpoints.js
+2024-08-29T08:18:30.828Z info: GET /public/signLogAnimation.js
+2024-08-29T08:18:30.830Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:18:40.442Z info: POST /backend-owner/user-auth
+2024-08-29T08:18:50.090Z info: POST /backend-owner/user-auth
+2024-08-29T08:19:00.697Z info: POST /backend-owner/user-auth
+2024-08-29T08:19:31.611Z info: GET /owner/owner-send-email
+2024-08-29T08:19:31.645Z info: GET /owner/owner-sendEmailLogic.js
+2024-08-29T08:19:37.003Z info: POST /backend-owner/get-reset-pwd-otp
+2024-08-29T08:21:51.743Z info: POST /backend-owner/get-reset-pwd-otp
+2024-08-29T08:35:58.300Z info: GET /owner/owner-send-email
+2024-08-29T08:35:58.355Z info: GET /sign-log-style.css
+2024-08-29T08:35:58.475Z info: GET /icon/favicon.ico
+2024-08-29T08:35:58.504Z info: GET /icon/favicon.ico
+2024-08-29T08:36:05.097Z info: POST /backend-owner/get-reset-pwd-otp
+2024-08-29T08:36:05.167Z info: Connected to MySQL
+2024-08-29T08:36:05.187Z info: 200 OK: POST /get-reset-pwd-otp
+2024-08-29T08:36:08.433Z info: Email sent: 250 2.0.0 OK  1724920568 4fb4d7f45d1cf-5c226c72d40sm427045a12.31 - gsmtp
+2024-08-29T08:36:27.360Z info: GET /owner/owner-reset-pwd?email=nononephew@gmail.com&otp=993690
+2024-08-29T08:36:27.677Z info: GET /sign-log-style.css
+2024-08-29T08:36:27.696Z info: GET /public/endpoints.js
+2024-08-29T08:36:27.700Z info: GET /owner/owner-resetPwdLogic.js
+2024-08-29T08:36:38.578Z info: POST /backend-owner/reset-pwd
+2024-08-29T08:36:38.578Z info: Connected to MySQL
+2024-08-29T08:36:38.709Z info: 200 OK: POST /reset-pwd
+2024-08-29T08:36:38.732Z info: GET /owner/owner-sign-log
+2024-08-29T08:36:38.785Z info: GET /public/logSignScript.js
+2024-08-29T08:36:38.813Z info: GET /public/signLogAnimation.js
+2024-08-29T08:36:38.818Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:36:56.711Z info: GET /owner/owner-sign-log
+2024-08-29T08:36:56.755Z info: GET /public/logSignScript.js
+2024-08-29T08:36:56.775Z info: GET /public/signLogAnimation.js
+2024-08-29T08:36:56.777Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:37:02.694Z info: POST /backend-owner/user-auth
+2024-08-29T08:37:02.695Z info: Connected to MySQL
+2024-08-29T08:37:02.833Z info: 200 OK: POST /user-auth
+2024-08-29T08:37:02.857Z info: GET /owner/owner
+2024-08-29T08:37:02.920Z info: GET /main-owner.css
+2024-08-29T08:37:02.982Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T08:37:03.075Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T08:37:03.077Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T08:37:03.082Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T08:37:03.085Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T08:37:03.098Z info: GET /owner/owner-createTenant.js
+2024-08-29T08:37:03.103Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T08:37:03.118Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T08:37:03.121Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T08:37:03.122Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T08:37:03.128Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T08:37:03.137Z info: GET /owner/owner-myMessages.js
+2024-08-29T08:37:03.141Z info: GET /owner/owner-sendMessage.js
+2024-08-29T08:37:03.155Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T08:37:03.157Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T08:37:03.158Z info: GET /owner/owner-uploadImage.js
+2024-08-29T08:37:03.169Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T08:37:03.174Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T08:37:03.186Z info: GET /owner/owner-frontendManager.js
+2024-08-29T08:37:03.198Z info: GET /public/variablesState.js
+2024-08-29T08:37:03.200Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T08:37:03.202Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T08:37:03.204Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T08:37:03.235Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:37:03.236Z info: Connected to MySQL
+2024-08-29T08:37:03.243Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:37:03.248Z info: POST /backend-owner/update-sold
+2024-08-29T08:37:03.257Z info: 200 OK: POST /receipt-unValid
+2024-08-29T08:37:03.265Z info: Connected to MySQL
+2024-08-29T08:37:03.271Z info: Connected to MySQL
+2024-08-29T08:37:03.277Z info: 200 OK: POST /update-sold
+2024-08-29T08:37:03.287Z info: 200 OK: POST /recent-tenants
+2024-08-29T08:37:20.016Z info: GET /owner/owner
+2024-08-29T08:37:20.209Z info: GET /main-owner.css
+2024-08-29T08:37:20.257Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T08:37:20.421Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T08:37:20.438Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T08:37:20.450Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T08:37:20.465Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T08:37:20.470Z info: GET /owner/owner-createTenant.js
+2024-08-29T08:37:20.473Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T08:37:20.511Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T08:37:20.517Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T08:37:20.521Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T08:37:20.525Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T08:37:20.536Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T08:37:20.538Z info: GET /owner/owner-myMessages.js
+2024-08-29T08:37:20.577Z info: GET /owner/owner-sendMessage.js
+2024-08-29T08:37:20.579Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T08:37:20.582Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T08:37:20.585Z info: GET /owner/owner-uploadImage.js
+2024-08-29T08:37:20.588Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T08:37:20.590Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T08:37:20.620Z info: GET /owner/owner-frontendManager.js
+2024-08-29T08:37:20.624Z info: GET /public/endpoints.js
+2024-08-29T08:37:20.626Z info: GET /public/variablesState.js
+2024-08-29T08:37:20.631Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T08:37:20.633Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T08:37:20.688Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:37:20.691Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:37:20.697Z info: POST /backend-owner/update-sold
+2024-08-29T08:37:29.511Z info: GET /owner/owner-sign-log
+2024-08-29T08:37:29.540Z info: GET /sign-log-style.css
+2024-08-29T08:37:29.570Z info: GET /public/logSignScript.js
+2024-08-29T08:37:29.588Z info: GET /public/signLogAnimation.js
+2024-08-29T08:37:29.591Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:37:38.178Z info: POST /backend-owner/user-auth
+2024-08-29T08:37:38.218Z info: GET /owner/owner
+2024-08-29T08:37:38.282Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:37:38.303Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:37:38.309Z info: POST /backend-owner/update-sold
+2024-08-29T08:39:25.925Z info: GET /owner/owner-sign-log
+2024-08-29T08:39:36.331Z info: POST /backend-owner/user-auth
+2024-08-29T08:39:36.365Z info: GET /owner/owner
+2024-08-29T08:39:36.424Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:39:36.453Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:39:36.464Z info: POST /backend-owner/update-sold
+2024-08-29T08:41:08.229Z info: GET /owner/owner-sign-log
+2024-08-29T08:41:20.464Z info: POST /backend-owner/user-auth
+2024-08-29T08:41:20.484Z info: GET /owner/owner
+2024-08-29T08:41:20.546Z info: POST /backend-owner/receipt-unValid
+2024-08-29T08:41:20.566Z info: POST /backend-owner/recent-tenants
+2024-08-29T08:41:20.591Z info: POST /backend-owner/update-sold
+2024-08-29T08:49:17.208Z info: GET /owner/owner-sign-log
+2024-08-29T08:49:17.850Z info: GET /sign-log-style.css
+2024-08-29T08:49:17.907Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T08:49:17.908Z info: GET /public/logSignScript.js
+2024-08-29T08:49:17.909Z info: GET /public/endpoints.js
+2024-08-29T08:49:17.910Z info: GET /public/signLogAnimation.js
+2024-08-29T08:49:20.637Z info: GET /icon/favicon.ico
+2024-08-29T08:53:56.170Z info: GET /owner/owner-sign-log
+2024-08-29T08:53:56.376Z info: GET /sign-log-style.css
+2024-08-29T08:53:56.756Z info: GET /icon/favicon.ico
+2024-08-29T08:54:00.539Z info: GET /owner/owner-sign-log
+2024-08-29T08:54:00.991Z info: GET /icon/favicon.ico
+2024-08-29T08:54:25.599Z info: POST /backend-csp-report/csp-violation
+2024-08-29T09:37:31.453Z info: GET /owner/owner-sign-log
+2024-08-29T09:37:31.542Z info: GET /sign-log-style.css
+2024-08-29T09:37:31.564Z info: GET /public/logSignScript.js
+2024-08-29T09:37:31.571Z info: GET /public/endpoints.js
+2024-08-29T09:37:31.575Z info: GET /public/signLogAnimation.js
+2024-08-29T09:37:31.577Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T09:37:38.443Z info: GET /icon/favicon.ico
+2024-08-29T09:37:38.456Z info: GET /icon/favicon.ico
+2024-08-29T09:38:12.582Z info: GET /owner/owner-sign-log
+2024-08-29T09:38:12.621Z info: GET /sign-log-style.css
+2024-08-29T09:38:12.665Z info: GET /public/logSignScript.js
+2024-08-29T09:38:12.668Z info: GET /public/endpoints.js
+2024-08-29T09:38:12.671Z info: GET /public/signLogAnimation.js
+2024-08-29T09:38:12.674Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T09:38:12.741Z info: GET /icon/favicon.ico
+2024-08-29T09:38:12.755Z info: GET /icon/favicon.ico
+2024-08-29T09:38:36.734Z info: GET /sign-log-style.css
+2024-08-29T09:42:20.424Z info: GET /owner/owner-sign-log
+2024-08-29T09:42:20.439Z info: GET /sign-log-style.css
+2024-08-29T09:42:20.465Z info: GET /public/logSignScript.js
+2024-08-29T09:42:20.467Z info: GET /public/endpoints.js
+2024-08-29T09:42:20.474Z info: GET /public/signLogAnimation.js
+2024-08-29T09:42:20.477Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T09:42:20.785Z info: GET /icon/favicon.ico
+2024-08-29T09:42:20.803Z info: GET /icon/favicon.ico
+2024-08-29T10:05:15.344Z info: GET /owner/owner-sign-log
+2024-08-29T10:05:15.414Z info: GET /sign-log-style.css
+2024-08-29T10:05:15.425Z info: GET /public/logSignScript.js
+2024-08-29T10:05:15.434Z info: GET /public/endpoints.js
+2024-08-29T10:05:15.435Z info: GET /public/signLogAnimation.js
+2024-08-29T10:05:15.437Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:05:18.984Z info: GET /icon/favicon.ico
+2024-08-29T10:05:18.993Z info: GET /icon/favicon.ico
+2024-08-29T10:05:33.210Z info: GET /sign-log-style.css
+2024-08-29T10:06:47.037Z info: GET /owner/owner-sign-log
+2024-08-29T10:06:47.061Z info: GET /sign-log-style.css
+2024-08-29T10:06:47.078Z info: GET /public/logSignScript.js
+2024-08-29T10:06:47.080Z info: GET /public/endpoints.js
+2024-08-29T10:06:47.084Z info: GET /public/signLogAnimation.js
+2024-08-29T10:06:47.087Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:06:47.331Z info: GET /icon/favicon.ico
+2024-08-29T10:06:47.349Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.305Z info: GET /owner/owner-sign-log
+2024-08-29T10:06:48.327Z info: GET /sign-log-style.css
+2024-08-29T10:06:48.329Z info: GET /public/logSignScript.js
+2024-08-29T10:06:48.330Z info: GET /public/endpoints.js
+2024-08-29T10:06:48.331Z info: GET /public/signLogAnimation.js
+2024-08-29T10:06:48.332Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:06:48.398Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.412Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.464Z info: GET /owner/owner-sign-log
+2024-08-29T10:06:48.480Z info: GET /sign-log-style.css
+2024-08-29T10:06:48.481Z info: GET /public/logSignScript.js
+2024-08-29T10:06:48.483Z info: GET /public/endpoints.js
+2024-08-29T10:06:48.484Z info: GET /public/signLogAnimation.js
+2024-08-29T10:06:48.485Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:06:48.543Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.556Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.615Z info: GET /owner/owner-sign-log
+2024-08-29T10:06:48.628Z info: GET /sign-log-style.css
+2024-08-29T10:06:48.629Z info: GET /public/logSignScript.js
+2024-08-29T10:06:48.631Z info: GET /public/endpoints.js
+2024-08-29T10:06:48.632Z info: GET /public/signLogAnimation.js
+2024-08-29T10:06:48.633Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:06:48.690Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.701Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.766Z info: GET /owner/owner-sign-log
+2024-08-29T10:06:48.780Z info: GET /sign-log-style.css
+2024-08-29T10:06:48.782Z info: GET /public/logSignScript.js
+2024-08-29T10:06:48.783Z info: GET /public/endpoints.js
+2024-08-29T10:06:48.783Z info: GET /public/signLogAnimation.js
+2024-08-29T10:06:48.784Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:06:48.842Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.852Z info: GET /icon/favicon.ico
+2024-08-29T10:06:48.994Z info: GET /owner/owner-sign-log
+2024-08-29T10:06:49.008Z info: GET /sign-log-style.css
+2024-08-29T10:06:49.009Z info: GET /public/logSignScript.js
+2024-08-29T10:06:49.011Z info: GET /public/endpoints.js
+2024-08-29T10:06:49.012Z info: GET /public/signLogAnimation.js
+2024-08-29T10:06:49.013Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:06:49.076Z info: GET /icon/favicon.ico
+2024-08-29T10:06:49.088Z info: GET /icon/favicon.ico
+2024-08-29T10:07:11.004Z info: GET /owner/owner-sign-log
+2024-08-29T10:07:11.018Z info: GET /sign-log-style.css
+2024-08-29T10:07:11.037Z info: GET /public/logSignScript.js
+2024-08-29T10:07:11.044Z info: GET /public/endpoints.js
+2024-08-29T10:07:11.046Z info: GET /public/signLogAnimation.js
+2024-08-29T10:07:11.047Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:07:11.093Z info: GET /icon/favicon.ico
+2024-08-29T10:07:11.107Z info: GET /icon/favicon.ico
+2024-08-29T10:08:01.513Z info: GET /owner/owner-sign-log
+2024-08-29T10:08:01.540Z info: GET /sign-log-style.css
+2024-08-29T10:08:01.562Z info: GET /public/logSignScript.js
+2024-08-29T10:08:01.563Z info: GET /public/endpoints.js
+2024-08-29T10:08:01.565Z info: GET /public/signLogAnimation.js
+2024-08-29T10:08:01.566Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:08:01.612Z info: GET /icon/favicon.ico
+2024-08-29T10:08:01.627Z info: GET /icon/favicon.ico
+2024-08-29T10:08:22.614Z info: GET /owner/owner-sign-log
+2024-08-29T10:08:22.683Z info: GET /sign-log-style.css
+2024-08-29T10:08:22.699Z info: GET /public/logSignScript.js
+2024-08-29T10:08:22.701Z info: GET /public/endpoints.js
+2024-08-29T10:08:22.706Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:08:22.707Z info: GET /public/signLogAnimation.js
+2024-08-29T10:08:25.662Z info: GET /icon/favicon.ico
+2024-08-29T10:08:25.676Z info: GET /icon/favicon.ico
+2024-08-29T10:10:18.220Z info: GET /owner/owner-sign-log
+2024-08-29T10:10:18.230Z info: GET /sign-log-style.css
+2024-08-29T10:10:18.244Z info: GET /public/logSignScript.js
+2024-08-29T10:10:18.253Z info: GET /public/endpoints.js
+2024-08-29T10:10:18.253Z info: GET /public/signLogAnimation.js
+2024-08-29T10:10:18.254Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:10:18.311Z info: GET /icon/favicon.ico
+2024-08-29T10:10:18.324Z info: GET /icon/favicon.ico
+2024-08-29T10:11:04.895Z info: GET /sign-log-style.css
+2024-08-29T10:11:24.660Z info: GET /backend-owner/user-auth
+2024-08-29T10:11:24.713Z info: Connected to MySQL
+2024-08-29T10:13:30.342Z info: GET /owner/owner-sign-log
+2024-08-29T10:13:30.357Z info: GET /sign-log-style.css
+2024-08-29T10:13:30.383Z info: GET /public/logSignScript.js
+2024-08-29T10:13:30.384Z info: GET /public/endpoints.js
+2024-08-29T10:13:30.388Z info: GET /public/signLogAnimation.js
+2024-08-29T10:13:30.390Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:13:30.509Z info: GET /icon/favicon.ico
+2024-08-29T10:13:30.524Z info: GET /icon/favicon.ico
+2024-08-29T10:13:31.738Z info: GET /owner/owner-sign-log
+2024-08-29T10:13:31.758Z info: GET /sign-log-style.css
+2024-08-29T10:13:31.760Z info: GET /public/logSignScript.js
+2024-08-29T10:13:31.763Z info: GET /public/endpoints.js
+2024-08-29T10:13:31.765Z info: GET /public/signLogAnimation.js
+2024-08-29T10:13:31.766Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:13:31.840Z info: GET /icon/favicon.ico
+2024-08-29T10:13:31.856Z info: GET /icon/favicon.ico
+2024-08-29T10:13:31.934Z info: GET /owner/owner-sign-log
+2024-08-29T10:13:31.949Z info: GET /sign-log-style.css
+2024-08-29T10:13:31.949Z info: GET /public/logSignScript.js
+2024-08-29T10:13:31.950Z info: GET /public/endpoints.js
+2024-08-29T10:13:31.951Z info: GET /public/signLogAnimation.js
+2024-08-29T10:13:31.952Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:13:32.016Z info: GET /icon/favicon.ico
+2024-08-29T10:13:32.026Z info: GET /icon/favicon.ico
+2024-08-29T10:13:32.139Z info: GET /owner/owner-sign-log
+2024-08-29T10:13:32.153Z info: GET /sign-log-style.css
+2024-08-29T10:13:32.154Z info: GET /public/logSignScript.js
+2024-08-29T10:13:32.154Z info: GET /public/endpoints.js
+2024-08-29T10:13:32.154Z info: GET /public/signLogAnimation.js
+2024-08-29T10:13:32.155Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:13:32.218Z info: GET /icon/favicon.ico
+2024-08-29T10:13:32.232Z info: GET /icon/favicon.ico
+2024-08-29T10:13:32.364Z info: GET /owner/owner-sign-log
+2024-08-29T10:13:32.373Z info: GET /sign-log-style.css
+2024-08-29T10:13:32.375Z info: GET /public/logSignScript.js
+2024-08-29T10:13:32.377Z info: GET /public/endpoints.js
+2024-08-29T10:13:32.380Z info: GET /public/signLogAnimation.js
+2024-08-29T10:13:32.381Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:13:32.448Z info: GET /icon/favicon.ico
+2024-08-29T10:13:32.464Z info: GET /icon/favicon.ico
+2024-08-29T10:13:40.589Z info: GET /owner/owner
+2024-08-29T10:13:40.625Z info: GET /main-owner.css
+2024-08-29T10:13:40.665Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:13:40.735Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:13:40.736Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:13:40.748Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:13:40.749Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:13:40.753Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:13:40.757Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:13:40.773Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:13:40.776Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:13:40.780Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:13:40.782Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:13:40.789Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:13:40.791Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:13:40.806Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:13:40.812Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:13:40.815Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:13:40.816Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:13:40.818Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:13:40.821Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:13:40.830Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:13:40.840Z info: GET /public/endpoints.js
+2024-08-29T10:13:40.841Z info: GET /public/variablesState.js
+2024-08-29T10:13:40.844Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:13:40.847Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:13:54.370Z info: GET /owner/owner-error
+2024-08-29T10:13:54.474Z info: GET /error-style.css
+2024-08-29T10:13:54.484Z info: GET /public/endpoints.js
+2024-08-29T10:13:54.486Z info: GET /owner/owner-error.js
+2024-08-29T10:13:56.875Z info: GET /icon/favicon.ico
+2024-08-29T10:13:56.881Z info: GET /icon/favicon.ico
+2024-08-29T10:14:01.778Z info: GET /owner/owner
+2024-08-29T10:14:01.804Z info: GET /main-owner.css
+2024-08-29T10:14:01.827Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:14:01.916Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:14:01.918Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:14:01.919Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:14:01.925Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:14:01.928Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:14:01.931Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:14:01.948Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:14:01.951Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:14:01.958Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:14:01.959Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:14:01.966Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:14:01.969Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:14:01.986Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:14:01.988Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:14:01.996Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:14:01.998Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:14:02.009Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:14:02.010Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:14:02.024Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:14:02.026Z info: GET /public/endpoints.js
+2024-08-29T10:14:02.030Z info: GET /public/variablesState.js
+2024-08-29T10:14:02.033Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:14:02.036Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:14:02.094Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:14:02.099Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:14:02.101Z info: POST /backend-owner/update-sold
+2024-08-29T10:14:02.106Z info: Connected to MySQL
+2024-08-29T10:14:02.108Z info: Connected to MySQL
+2024-08-29T10:14:02.109Z info: Connected to MySQL
+2024-08-29T10:14:02.114Z info: GET /owner/owner-sign-log
+2024-08-29T10:14:02.119Z info: GET /owner/owner-error
+2024-08-29T10:14:02.123Z info: GET /owner/owner-error
+2024-08-29T10:14:02.132Z info: GET /owner/owner-sign-log
+2024-08-29T10:14:02.140Z info: GET /owner/owner-error
+2024-08-29T10:14:02.158Z info: GET /error-style.css
+2024-08-29T10:14:02.163Z info: GET /public/endpoints.js
+2024-08-29T10:14:02.164Z info: GET /owner/owner-error.js
+2024-08-29T10:14:03.955Z info: GET /owner/owner-sign-log
+2024-08-29T10:14:03.985Z info: GET /sign-log-style.css
+2024-08-29T10:14:03.987Z info: GET /public/logSignScript.js
+2024-08-29T10:14:03.988Z info: GET /public/endpoints.js
+2024-08-29T10:14:03.989Z info: GET /public/signLogAnimation.js
+2024-08-29T10:14:03.992Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:14:12.954Z info: POST /backend-owner/user-auth
+2024-08-29T10:14:12.963Z info: Connected to MySQL
+2024-08-29T10:14:13.144Z info: 200 OK: POST /user-auth
+2024-08-29T10:14:13.151Z info: GET /owner/owner
+2024-08-29T10:14:13.176Z info: GET /main-owner.css
+2024-08-29T10:14:13.224Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:14:13.303Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:14:13.305Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:14:13.319Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:14:13.321Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:14:13.324Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:14:13.331Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:14:13.347Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:14:13.351Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:14:13.353Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:14:13.357Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:14:13.360Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:14:13.373Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:14:13.389Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:14:13.395Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:14:13.397Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:14:13.399Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:14:13.401Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:14:13.411Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:14:13.426Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:14:13.429Z info: GET /public/endpoints.js
+2024-08-29T10:14:13.430Z info: GET /public/variablesState.js
+2024-08-29T10:14:13.433Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:14:13.435Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:14:13.467Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:14:13.468Z info: Connected to MySQL
+2024-08-29T10:14:13.479Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:14:13.482Z info: POST /backend-owner/update-sold
+2024-08-29T10:14:13.490Z info: Connected to MySQL
+2024-08-29T10:14:13.494Z info: Connected to MySQL
+2024-08-29T10:14:13.504Z info: 200 OK: POST /update-sold
+2024-08-29T10:14:13.506Z info: 200 OK: POST /recent-tenants
+2024-08-29T10:14:13.510Z info: 200 OK: POST /receipt-unValid
+2024-08-29T10:14:33.957Z info: GET /owner/owner
+2024-08-29T10:14:33.970Z info: GET /main-owner.css
+2024-08-29T10:14:33.995Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:14:34.071Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:14:34.073Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:14:34.073Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:14:34.074Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:14:34.075Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:14:34.075Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:14:34.085Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:14:34.086Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:14:34.087Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:14:34.088Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:14:34.089Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:14:34.089Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:14:34.102Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:14:34.103Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:14:34.104Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:14:34.104Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:14:34.105Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:14:34.106Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:14:34.120Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:14:34.127Z info: GET /public/endpoints.js
+2024-08-29T10:14:34.129Z info: GET /public/variablesState.js
+2024-08-29T10:14:34.130Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:14:34.131Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:14:34.351Z info: GET /owner/owner-error
+2024-08-29T10:14:34.418Z info: GET /error-style.css
+2024-08-29T10:14:34.434Z info: GET /public/endpoints.js
+2024-08-29T10:14:34.446Z info: GET /owner/owner-error.js
+2024-08-29T10:14:36.877Z info: GET /icon/favicon.ico
+2024-08-29T10:14:36.890Z info: GET /icon/favicon.ico
+2024-08-29T10:15:36.976Z info: GET /owner/owner
+2024-08-29T10:15:36.997Z info: GET /main-owner.css
+2024-08-29T10:15:37.031Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:15:37.107Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:15:37.108Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:15:37.109Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:15:37.110Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:15:37.115Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:15:37.119Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:15:37.134Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:15:37.136Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:15:37.137Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:15:37.141Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:15:37.145Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:15:37.148Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:15:37.162Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:15:37.163Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:15:37.167Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:15:37.169Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:15:37.176Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:15:37.178Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:15:37.185Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:15:37.186Z info: GET /public/endpoints.js
+2024-08-29T10:15:37.188Z info: GET /public/variablesState.js
+2024-08-29T10:15:37.189Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:15:37.189Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:15:37.216Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:15:37.216Z info: Connected to MySQL
+2024-08-29T10:15:37.219Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:15:37.219Z info: Connected to MySQL
+2024-08-29T10:15:37.222Z info: POST /backend-owner/update-sold
+2024-08-29T10:15:37.222Z info: Connected to MySQL
+2024-08-29T10:15:37.393Z info: GET /owner/owner-sign-log
+2024-08-29T10:15:37.399Z info: GET /owner/owner-error
+2024-08-29T10:15:37.407Z info: GET /owner/owner-sign-log
+2024-08-29T10:15:37.416Z info: GET /owner/owner-error
+2024-08-29T10:15:37.422Z info: GET /owner/owner-error
+2024-08-29T10:15:37.436Z info: GET /error-style.css
+2024-08-29T10:15:37.436Z info: GET /public/endpoints.js
+2024-08-29T10:15:37.437Z info: GET /owner/owner-error.js
+2024-08-29T10:15:39.190Z info: GET /owner/owner-sign-log
+2024-08-29T10:15:39.208Z info: GET /sign-log-style.css
+2024-08-29T10:15:39.209Z info: GET /public/logSignScript.js
+2024-08-29T10:15:39.212Z info: GET /public/endpoints.js
+2024-08-29T10:15:39.213Z info: GET /public/signLogAnimation.js
+2024-08-29T10:15:39.229Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T10:16:05.382Z info: POST /backend-owner/user-auth
+2024-08-29T10:16:05.386Z info: Connected to MySQL
+2024-08-29T10:16:05.459Z info: 200 OK: POST /user-auth
+2024-08-29T10:16:05.471Z info: GET /owner/owner
+2024-08-29T10:16:05.491Z info: GET /main-owner.css
+2024-08-29T10:16:05.529Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:16:05.589Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:16:05.590Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:16:05.600Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:16:05.601Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:16:05.603Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:16:05.605Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:16:05.619Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:16:05.621Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:16:05.625Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:16:05.625Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:16:05.632Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:16:05.636Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:16:05.652Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:16:05.653Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:16:05.655Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:16:05.656Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:16:05.661Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:16:05.664Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:16:05.674Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:16:05.677Z info: GET /public/endpoints.js
+2024-08-29T10:16:05.678Z info: GET /public/variablesState.js
+2024-08-29T10:16:05.679Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:16:05.682Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:16:05.705Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:16:05.706Z info: Connected to MySQL
+2024-08-29T10:16:05.712Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:16:05.717Z info: POST /backend-owner/update-sold
+2024-08-29T10:16:05.721Z info: 200 OK: POST /receipt-unValid
+2024-08-29T10:16:05.725Z info: Connected to MySQL
+2024-08-29T10:16:05.727Z info: Connected to MySQL
+2024-08-29T10:16:05.728Z info: 200 OK: POST /recent-tenants
+2024-08-29T10:16:05.729Z info: 200 OK: POST /update-sold
+2024-08-29T10:16:58.878Z info: GET /owner/owner-profile
+2024-08-29T10:16:58.899Z info: POST /backend-owner/my-owner
+2024-08-29T10:16:58.900Z info: Connected to MySQL
+2024-08-29T10:16:58.904Z info: 200 OK: POST /my-owner
+2024-08-29T10:16:58.910Z info: GET /img/d56c85f2-ff44-476c-bcb2-c02657c964e7.png
+2024-08-29T10:17:08.693Z info: GET /owner/owner
+2024-08-29T10:17:08.718Z info: GET /main-owner.css
+2024-08-29T10:17:08.752Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:17:08.850Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:17:08.851Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:17:08.865Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:17:08.866Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:17:08.867Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:17:08.869Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:17:08.881Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:17:08.888Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:17:08.890Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:17:08.894Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:17:08.895Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:17:08.898Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:17:08.914Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:17:08.923Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:17:08.928Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:17:08.934Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:17:08.943Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:17:08.946Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:17:08.965Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:17:08.966Z info: GET /public/endpoints.js
+2024-08-29T10:17:08.967Z info: GET /public/variablesState.js
+2024-08-29T10:17:08.970Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:17:08.978Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:17:09.005Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:17:09.006Z info: Connected to MySQL
+2024-08-29T10:17:09.009Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:17:09.010Z info: Connected to MySQL
+2024-08-29T10:17:09.013Z info: POST /backend-owner/update-sold
+2024-08-29T10:17:09.014Z info: Connected to MySQL
+2024-08-29T10:17:09.017Z info: 200 OK: POST /receipt-unValid
+2024-08-29T10:17:09.018Z info: 200 OK: POST /recent-tenants
+2024-08-29T10:17:09.020Z info: 200 OK: POST /update-sold
+2024-08-29T10:17:09.052Z info: GET /icon/favicon.ico
+2024-08-29T10:17:09.078Z info: GET /icon/favicon.ico
+2024-08-29T10:17:09.909Z info: GET /owner/owner-profile
+2024-08-29T10:17:09.928Z info: POST /backend-owner/my-owner
+2024-08-29T10:17:09.928Z info: Connected to MySQL
+2024-08-29T10:17:09.932Z info: 200 OK: POST /my-owner
+2024-08-29T10:17:09.939Z info: GET /img/d56c85f2-ff44-476c-bcb2-c02657c964e7.png
+2024-08-29T10:17:11.080Z info: GET /owner/owner-properties
+2024-08-29T10:17:11.105Z info: POST /backend-owner/my-properties
+2024-08-29T10:17:11.107Z info: Connected to MySQL
+2024-08-29T10:17:11.117Z info: 200 OK: POST /my-properties
+2024-08-29T10:17:11.797Z info: GET /owner/owner-tenants
+2024-08-29T10:17:11.818Z info: POST /backend-owner/all-tenants
+2024-08-29T10:17:11.818Z info: Connected to MySQL
+2024-08-29T10:17:11.825Z info: POST /backend-owner/recent-messages
+2024-08-29T10:17:11.825Z info: Connected to MySQL
+2024-08-29T10:17:11.851Z info: 200 OK: POST /all-tenants
+2024-08-29T10:17:11.857Z info: 200 OK: POST /recent-messages
+2024-08-29T10:17:17.390Z info: GET /owner/owner-properties
+2024-08-29T10:17:17.397Z info: POST /backend-owner/my-properties
+2024-08-29T10:17:17.398Z info: Connected to MySQL
+2024-08-29T10:17:17.401Z info: 200 OK: POST /my-properties
+2024-08-29T10:17:19.069Z info: GET /owner/owner-tenant-home
+2024-08-29T10:17:19.087Z info: POST /backend-owner/Tenants-properties
+2024-08-29T10:17:19.088Z info: Connected to MySQL
+2024-08-29T10:17:19.098Z info: 200 OK: POST /Tenants-properties
+2024-08-29T10:17:19.109Z info: POST /backend-owner/my-properties
+2024-08-29T10:17:19.109Z info: Connected to MySQL
+2024-08-29T10:17:19.115Z info: 200 OK: POST /my-properties
+2024-08-29T10:17:20.676Z info: GET /owner/owner-receipts
+2024-08-29T10:17:20.704Z info: POST /backend-owner/receipt-valid
+2024-08-29T10:17:20.705Z info: Connected to MySQL
+2024-08-29T10:17:20.709Z info: POST /backend-owner/Tenants-properties
+2024-08-29T10:17:20.710Z info: Connected to MySQL
+2024-08-29T10:17:20.716Z info: 200 OK: POST /receipt-valid
+2024-08-29T10:17:20.718Z info: 200 OK: POST /Tenants-properties
+2024-08-29T10:17:22.494Z info: GET /owner/owner-subscription
+2024-08-29T10:17:31.411Z info: GET /owner/owner-dashboard
+2024-08-29T10:17:31.423Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:17:31.423Z info: Connected to MySQL
+2024-08-29T10:17:31.431Z info: 200 OK: POST /receipt-unValid
+2024-08-29T10:17:31.439Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:17:31.440Z info: Connected to MySQL
+2024-08-29T10:17:31.443Z info: 200 OK: POST /recent-tenants
+2024-08-29T10:17:33.667Z info: GET /owner/owner-receipt
+2024-08-29T10:17:33.694Z info: GET /receipt.css
+2024-08-29T10:17:33.702Z info: GET /public/endpoints.js
+2024-08-29T10:17:33.713Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:17:33.728Z info: GET /public/variablesState.js
+2024-08-29T10:17:33.729Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T10:17:33.730Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:17:33.731Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T10:17:38.420Z info: GET /img/d56c85f2-ff44-476c-bcb2-c02657c964e7.png
+2024-08-29T10:17:57.885Z info: POST /backend-owner/validate-receipt
+2024-08-29T10:17:57.886Z info: Connected to MySQL
+2024-08-29T10:17:57.901Z info: 200 OK: POST /validate-receipt
+2024-08-29T10:17:57.905Z info: POST /backend-owner/update-sold
+2024-08-29T10:17:57.905Z info: Connected to MySQL
+2024-08-29T10:17:57.913Z info: 200 OK: POST /update-sold
+2024-08-29T10:17:57.919Z info: GET /owner/owner
+2024-08-29T10:17:57.937Z info: GET /main-owner.css
+2024-08-29T10:17:57.942Z info: GET /public/endpoints.js
+2024-08-29T10:17:57.963Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:17:58.012Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:17:58.074Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:17:58.076Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:17:58.078Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:17:58.079Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:17:58.081Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:17:58.090Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:17:58.104Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:17:58.109Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:17:58.111Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:17:58.113Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:17:58.114Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:17:58.128Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:17:58.139Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:17:58.142Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:17:58.144Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:17:58.146Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:17:58.149Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:17:58.157Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:17:58.170Z info: GET /public/variablesState.js
+2024-08-29T10:17:58.173Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:17:58.175Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:17:58.201Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:17:58.202Z info: Connected to MySQL
+2024-08-29T10:17:58.206Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:17:58.207Z info: Connected to MySQL
+2024-08-29T10:17:58.213Z info: POST /backend-owner/update-sold
+2024-08-29T10:17:58.214Z info: Connected to MySQL
+2024-08-29T10:17:58.216Z info: 200 OK: POST /receipt-unValid
+2024-08-29T10:17:58.217Z info: 200 OK: POST /recent-tenants
+2024-08-29T10:17:58.219Z info: 200 OK: POST /update-sold
+2024-08-29T10:18:01.179Z info: GET /owner/owner-profile
+2024-08-29T10:18:01.199Z info: POST /backend-owner/my-owner
+2024-08-29T10:18:01.199Z info: Connected to MySQL
+2024-08-29T10:18:01.205Z info: 200 OK: POST /my-owner
+2024-08-29T10:18:01.213Z info: GET /img/d56c85f2-ff44-476c-bcb2-c02657c964e7.png
+2024-08-29T10:18:09.699Z info: POST /backend-owner/update-owner
+2024-08-29T10:18:09.700Z info: Connected to MySQL
+2024-08-29T10:18:09.708Z info: 200 OK: POST /update-owner
+2024-08-29T10:18:16.426Z info: POST /backend-owner/update-owner
+2024-08-29T10:18:16.426Z info: Connected to MySQL
+2024-08-29T10:18:16.442Z info: 200 OK: POST /update-owner
+2024-08-29T10:18:30.711Z info: POST /backend-owner//upload
+2024-08-29T10:18:30.713Z info: Connected to MySQL
+2024-08-29T10:18:30.740Z info: 200 OK: POST /upload
+2024-08-29T10:18:30.745Z info: POST /backend-owner/update-sold
+2024-08-29T10:18:30.745Z info: Connected to MySQL
+2024-08-29T10:18:30.754Z info: 200 OK: POST /update-sold
+2024-08-29T10:18:30.762Z info: GET /img/5df1f21a-4ffa-4fe9-a215-b83a874aa786.jpg
+2024-08-29T10:18:41.772Z info: POST /backend-owner//upload
+2024-08-29T10:18:41.773Z info: Connected to MySQL
+2024-08-29T10:18:41.785Z info: 200 OK: POST /upload
+2024-08-29T10:18:41.794Z info: POST /backend-owner/update-sold
+2024-08-29T10:18:41.795Z info: Connected to MySQL
+2024-08-29T10:18:41.803Z info: 200 OK: POST /update-sold
+2024-08-29T10:18:41.809Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T10:18:45.188Z info: GET /owner/owner-tenants
+2024-08-29T10:18:45.201Z info: POST /backend-owner/all-tenants
+2024-08-29T10:18:45.201Z info: Connected to MySQL
+2024-08-29T10:18:45.206Z info: POST /backend-owner/recent-messages
+2024-08-29T10:18:45.207Z info: Connected to MySQL
+2024-08-29T10:18:45.212Z info: 200 OK: POST /recent-messages
+2024-08-29T10:18:45.215Z info: 200 OK: POST /all-tenants
+2024-08-29T10:18:50.695Z info: POST /backend-owner/my-messages
+2024-08-29T10:18:50.695Z info: Connected to MySQL
+2024-08-29T10:18:50.703Z info: 200 OK: POST /my-messages
+2024-08-29T10:18:50.723Z info: GET /?userType=owner
+2024-08-29T10:18:50.725Z warn: 404 Not Found: GET /?userType=owner
+2024-08-29T10:19:12.190Z info: POST /backend-owner/recent-messages
+2024-08-29T10:19:12.191Z info: Connected to MySQL
+2024-08-29T10:19:12.198Z info: 200 OK: POST /recent-messages
+2024-08-29T10:19:15.370Z info: POST /backend-owner/my-messages
+2024-08-29T10:19:15.371Z info: Connected to MySQL
+2024-08-29T10:19:15.380Z info: 200 OK: POST /my-messages
+2024-08-29T10:19:15.394Z info: POST /backend-owner/recent-messages
+2024-08-29T10:19:15.395Z info: Connected to MySQL
+2024-08-29T10:19:15.402Z info: 200 OK: POST /recent-messages
+2024-08-29T10:19:15.406Z info: GET /?userType=owner
+2024-08-29T10:19:15.408Z warn: 404 Not Found: GET /?userType=owner
+2024-08-29T10:19:27.497Z info: POST /backend-owner/recent-messages
+2024-08-29T10:19:27.497Z info: Connected to MySQL
+2024-08-29T10:19:27.501Z info: 200 OK: POST /recent-messages
+2024-08-29T10:23:10.081Z info: GET /main-owner.css
+2024-08-29T10:36:14.828Z info: GET /owner/owner
+2024-08-29T10:36:14.851Z info: GET /main-owner.css
+2024-08-29T10:36:14.915Z info: GET /owner/owner-createTenant.js
+2024-08-29T10:36:14.985Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T10:36:14.986Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T10:36:14.994Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T10:36:14.999Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T10:36:15.001Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T10:36:15.007Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T10:36:15.021Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T10:36:15.023Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T10:36:15.025Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T10:36:15.026Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T10:36:15.033Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T10:36:15.040Z info: GET /owner/owner-myMessages.js
+2024-08-29T10:36:15.050Z info: GET /owner/owner-sendMessage.js
+2024-08-29T10:36:15.051Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T10:36:15.053Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T10:36:15.054Z info: GET /owner/owner-uploadImage.js
+2024-08-29T10:36:15.061Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T10:36:15.075Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T10:36:15.085Z info: GET /owner/owner-frontendManager.js
+2024-08-29T10:36:15.088Z info: GET /public/endpoints.js
+2024-08-29T10:36:15.089Z info: GET /public/variablesState.js
+2024-08-29T10:36:15.090Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T10:36:15.093Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T10:36:15.123Z info: POST /backend-owner/receipt-unValid
+2024-08-29T10:36:15.125Z info: Connected to MySQL
+2024-08-29T10:36:15.134Z info: POST /backend-owner/recent-tenants
+2024-08-29T10:36:15.135Z info: Connected to MySQL
+2024-08-29T10:36:15.138Z info: POST /backend-owner/update-sold
+2024-08-29T10:36:15.139Z info: Connected to MySQL
+2024-08-29T10:36:15.142Z info: 200 OK: POST /receipt-unValid
+2024-08-29T10:36:15.143Z info: 200 OK: POST /recent-tenants
+2024-08-29T10:36:15.144Z info: 200 OK: POST /update-sold
+2024-08-29T10:36:15.285Z info: GET /icon/favicon.ico
+2024-08-29T10:36:15.311Z info: GET /icon/favicon.ico
+2024-08-29T10:36:21.391Z info: GET /owner/owner-profile
+2024-08-29T10:36:21.399Z info: POST /backend-owner/my-owner
+2024-08-29T10:36:21.399Z info: Connected to MySQL
+2024-08-29T10:36:21.401Z info: 200 OK: POST /my-owner
+2024-08-29T10:36:21.405Z info: GET /owner/null
+2024-08-29T10:36:21.407Z warn: 404 Not Found: GET /owner/null
+2024-08-29T10:36:22.413Z info: GET /owner/owner-tenants
+2024-08-29T10:36:22.430Z info: POST /backend-owner/all-tenants
+2024-08-29T10:36:22.431Z info: Connected to MySQL
+2024-08-29T10:36:22.437Z info: 200 OK: POST /all-tenants
+2024-08-29T10:36:22.444Z info: POST /backend-owner/recent-messages
+2024-08-29T10:36:22.444Z info: Connected to MySQL
+2024-08-29T10:36:22.453Z info: 200 OK: POST /recent-messages
+2024-08-29T10:36:25.813Z info: POST /backend-owner/my-messages
+2024-08-29T10:36:25.814Z info: Connected to MySQL
+2024-08-29T10:36:25.819Z info: 200 OK: POST /my-messages
+2024-08-29T10:36:25.846Z info: GET /?userType=owner
+2024-08-29T10:36:25.847Z warn: 404 Not Found: GET /?userType=owner
+2024-08-29T10:36:33.544Z info: POST /backend-owner/recent-messages
+2024-08-29T10:36:33.545Z info: Connected to MySQL
+2024-08-29T10:36:33.552Z info: 200 OK: POST /recent-messages
+2024-08-29T10:36:38.369Z info: GET /main-owner.css
+2024-08-29T10:36:45.058Z info: POST /backend-owner/my-messages
+2024-08-29T10:36:45.059Z info: Connected to MySQL
+2024-08-29T10:36:45.064Z info: POST /backend-owner/recent-messages
+2024-08-29T10:36:45.065Z info: Connected to MySQL
+2024-08-29T10:36:45.075Z info: 200 OK: POST /my-messages
+2024-08-29T10:36:45.078Z info: 200 OK: POST /recent-messages
+2024-08-29T10:36:45.085Z info: GET /?userType=owner
+2024-08-29T10:36:45.088Z warn: 404 Not Found: GET /?userType=owner
+2024-08-29T10:36:52.616Z info: POST /backend-owner/recent-messages
+2024-08-29T10:36:52.617Z info: Connected to MySQL
+2024-08-29T10:36:52.622Z info: 200 OK: POST /recent-messages
+2024-08-29T10:39:34.575Z info: GET /owner/owner
+2024-08-29T10:40:10.819Z info: GET /owner/owner
+2024-08-29T10:40:30.820Z info: GET /owner/owner
+2024-08-29T10:41:01.858Z info: GET /owner/owner
+2024-08-29T10:55:18.151Z info: GET /owner/owner
+2024-08-29T10:59:14.760Z info: GET /owner/owner
+2024-08-29T10:59:17.417Z info: GET /owner/owner
+2024-08-29T10:59:20.031Z info: GET /owner/owner
+2024-08-29T10:59:31.541Z info: GET /owner/owner
+2024-08-29T10:59:39.801Z info: GET /owner/owner
+2024-08-29T10:59:43.354Z info: GET /owner/owner
+2024-08-29T10:59:57.408Z info: GET /owner/owner
+2024-08-29T11:00:12.100Z info: GET /owner/owner
+2024-08-29T11:00:18.571Z info: GET /owner/owner-sig,-log
+2024-08-29T11:09:54.903Z info: GET /owner/owner
+2024-08-29T11:09:58.988Z info: GET /owner/owner
+2024-08-29T11:10:22.024Z info: GET /owner/owner
+2024-08-29T11:10:25.328Z info: GET /owner/owner
+2024-08-29T11:10:52.691Z info: GET /owner/owner
+2024-08-29T11:11:18.397Z info: GET /owner/owner-sign-log
+2024-08-29T11:11:25.569Z info: GET /owner/owner
+2024-08-29T11:11:30.111Z info: GET /owner/owner
+2024-08-29T11:11:31.121Z info: GET /owner/owner
+2024-08-29T11:11:31.607Z info: GET /owner/owner
+2024-08-29T11:11:35.646Z info: GET /owner/owner
+2024-08-29T11:12:05.325Z info: GET /owner/owner
+2024-08-29T11:12:07.277Z info: GET /owner/owner
+2024-08-29T11:12:07.973Z info: GET /owner/owner
+2024-08-29T11:12:08.494Z info: GET /owner/owner
+2024-08-29T11:12:08.992Z info: GET /owner/owner
+2024-08-29T11:12:09.584Z info: GET /owner/owner
+2024-08-29T11:12:10.268Z info: GET /owner/owner
+2024-08-29T11:12:10.866Z info: GET /owner/owner
+2024-08-29T11:12:13.540Z info: GET /owner/owner
+2024-08-29T11:12:34.339Z info: GET /owner/owner
+2024-08-29T11:38:46.631Z info: GET /owner/owner
+2024-08-29T11:38:49.607Z info: GET /owner/owner
+2024-08-29T11:38:56.856Z info: GET /owner/owner
+2024-08-29T11:39:06.337Z info: GET /owner/owner
+2024-08-29T11:39:07.204Z info: GET /owner/owner
+2024-08-29T11:39:07.370Z info: GET /owner/owner
+2024-08-29T11:39:07.547Z info: GET /owner/owner
+2024-08-29T11:39:07.736Z info: GET /owner/owner
+2024-08-29T11:39:07.973Z info: GET /owner/owner
+2024-08-29T11:39:08.204Z info: GET /owner/owner
+2024-08-29T11:39:09.575Z info: GET /owner/owner
+2024-08-29T11:39:10.126Z info: GET /owner/owner
+2024-08-29T11:39:52.335Z info: GET /owner/owner
+2024-08-29T11:44:02.673Z info: GET /owner/owner-sign-log
+2024-08-29T11:46:01.711Z info: GET /
+2024-08-29T11:53:25.187Z info: GET /owner/owner
+2024-08-29T11:53:26.742Z info: GET /owner/owner
+2024-08-29T11:53:26.967Z info: GET /owner/owner
+2024-08-29T11:53:27.158Z info: GET /owner/owner
+2024-08-29T11:53:27.374Z info: GET /owner/owner
+2024-08-29T11:53:37.405Z info: GET /owner/owner-sign-log
+2024-08-29T11:53:40.454Z info: GET /owner/owner-sign-log
+2024-08-29T11:53:40.815Z info: GET /owner/owner
+2024-08-29T11:53:50.124Z info: GET /owner/owner-sign-log
+2024-08-29T11:53:52.608Z info: GET /owner/owner
+2024-08-29T11:54:17.070Z info: GET /owner/owner
+2024-08-29T11:54:51.005Z info: GET /owner/owner
+2024-08-29T11:57:38.240Z info: GET /owner/owner
+2024-08-29T11:57:56.315Z info: GET /owner/owner-sign-log
+2024-08-29T11:57:59.534Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:01.461Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:02.689Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:03.605Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:04.458Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:05.229Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:05.857Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:06.399Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:06.607Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:06.828Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:06.999Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:07.181Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:07.335Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:07.542Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:07.704Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:07.855Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:08.065Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:08.245Z info: GET /owner/owner-sign-log
+2024-08-29T11:58:08.466Z info: GET /owner/owner-sign-log
+2024-08-29T12:01:48.712Z info: GET /owner/owner-sign-log
+2024-08-29T12:01:58.518Z info: GET /owner/owner
+2024-08-29T12:02:02.657Z info: GET /owner/owner-sign-log
+2024-08-29T12:02:14.620Z info: GET /owner/owner
+2024-08-29T12:08:23.584Z info: GET /owner/owner-sign-log
+2024-08-29T12:08:26.062Z info: GET /owner/owner-sign-log
+2024-08-29T12:09:42.510Z info: GET /owner/owner-sign-log
+2024-08-29T12:09:57.860Z info: GET /owner/owner
+2024-08-29T12:09:59.168Z info: GET /owner/owner-sign-log
+2024-08-29T12:09:59.419Z info: GET /owner/owner-sign-log
+2024-08-29T12:09:59.639Z info: GET /owner/owner-sign-log
+2024-08-29T12:09:59.851Z info: GET /owner/owner-sign-log
+2024-08-29T12:10:00.021Z info: GET /owner/owner-sign-log
+2024-08-29T12:10:00.209Z info: GET /owner/owner-sign-log
+2024-08-29T12:10:00.391Z info: GET /owner/owner-sign-log
+2024-08-29T12:10:00.572Z info: GET /owner/owner-sign-log
+2024-08-29T12:10:00.757Z info: GET /owner/owner-sign-log
+2024-08-29T12:10:06.435Z info: GET /owner/owner-sign-log
+2024-08-29T12:10:25.017Z info: GET /owner/owner
+2024-08-29T12:10:40.951Z info: GET /owner/owner
+2024-08-29T12:10:45.416Z info: GET /owner/owner
+2024-08-29T12:25:00.890Z info: GET /owner/owner
+2024-08-29T12:25:00.992Z info: GET /main-owner.css
+2024-08-29T12:25:01.160Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:25:01.188Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:25:01.193Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:25:01.201Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:25:01.210Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:25:01.223Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:25:01.260Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:25:01.264Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:25:01.267Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:25:01.269Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:25:01.270Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:25:01.274Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:25:01.297Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:25:01.303Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:25:01.304Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:25:01.305Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:25:01.307Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:25:01.312Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:25:01.324Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:25:01.329Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:25:01.330Z info: GET /public/endpoints.js
+2024-08-29T12:25:01.331Z info: GET /public/variablesState.js
+2024-08-29T12:25:01.332Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:25:01.341Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:25:07.516Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:25:07.528Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:25:07.586Z info: POST /backend-owner/update-sold
+2024-08-29T12:25:07.589Z info: Connected to MySQL
+2024-08-29T12:25:07.596Z info: Connected to MySQL
+2024-08-29T12:25:07.601Z info: Connected to MySQL
+2024-08-29T12:25:07.621Z info: GET /owner/owner-sign-log
+2024-08-29T12:25:07.638Z info: GET /owner/owner-error
+2024-08-29T12:25:07.646Z info: GET /owner/owner-error
+2024-08-29T12:25:07.686Z info: GET /owner/owner-error
+2024-08-29T12:25:07.718Z info: GET /error-style.css
+2024-08-29T12:25:07.719Z info: GET /public/endpoints.js
+2024-08-29T12:25:07.737Z info: GET /owner/owner-error.js
+2024-08-29T12:25:09.890Z info: GET /icon/favicon.ico
+2024-08-29T12:25:09.900Z info: GET /icon/favicon.ico
+2024-08-29T12:25:46.265Z info: GET /owner/owner-sign-log
+2024-08-29T12:25:46.284Z info: GET /sign-log-style.css
+2024-08-29T12:25:46.303Z info: GET /public/logSignScript.js
+2024-08-29T12:25:46.325Z info: GET /public/endpoints.js
+2024-08-29T12:25:46.329Z info: GET /public/signLogAnimation.js
+2024-08-29T12:25:46.332Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:26:03.047Z info: GET /sign-log-style.css
+2024-08-29T12:26:17.898Z info: GET /owner/owner-sign-log
+2024-08-29T12:26:17.921Z info: GET /sign-log-style.css
+2024-08-29T12:26:17.961Z info: GET /public/logSignScript.js
+2024-08-29T12:26:17.968Z info: GET /public/endpoints.js
+2024-08-29T12:26:17.973Z info: GET /public/signLogAnimation.js
+2024-08-29T12:26:17.981Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:26:18.014Z info: GET /icon/favicon.ico
+2024-08-29T12:26:18.036Z info: GET /icon/favicon.ico
+2024-08-29T12:27:35.617Z info: GET /owner/owner-sign-log
+2024-08-29T12:27:35.658Z info: GET /sign-log-style.css
+2024-08-29T12:27:35.693Z info: GET /public/logSignScript.js
+2024-08-29T12:27:35.695Z info: GET /public/endpoints.js
+2024-08-29T12:27:35.700Z info: GET /public/signLogAnimation.js
+2024-08-29T12:27:35.710Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:27:35.767Z info: GET /icon/favicon.ico
+2024-08-29T12:27:35.787Z info: GET /icon/favicon.ico
+2024-08-29T12:31:23.519Z info: GET /owner/owner-sign-log
+2024-08-29T12:31:23.546Z info: GET /sign-log-style.css
+2024-08-29T12:31:23.601Z info: GET /public/logSignScript.js
+2024-08-29T12:31:23.610Z info: GET /public/endpoints.js
+2024-08-29T12:31:23.614Z info: GET /public/signLogAnimation.js
+2024-08-29T12:31:23.618Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:31:23.721Z info: GET /icon/favicon.ico
+2024-08-29T12:31:23.781Z info: GET /icon/favicon.ico
+2024-08-29T12:31:46.118Z info: POST /backend-owner/user-auth
+2024-08-29T12:31:46.130Z info: Connected to MySQL
+2024-08-29T12:31:46.435Z info: 200 OK: POST /user-auth
+2024-08-29T12:31:46.496Z info: GET /owner/owner
+2024-08-29T12:31:46.554Z info: GET /main-owner.css
+2024-08-29T12:31:46.640Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:31:46.721Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:31:46.758Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:31:46.781Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:31:46.784Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:31:46.788Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:31:46.790Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:31:46.795Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:31:46.803Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:31:46.810Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:31:46.812Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:31:46.814Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:31:46.823Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:31:46.826Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:31:46.835Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:31:46.841Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:31:46.843Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:31:46.844Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:31:46.845Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:31:46.849Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:31:46.857Z info: GET /public/endpoints.js
+2024-08-29T12:31:46.861Z info: GET /public/variablesState.js
+2024-08-29T12:31:46.864Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:31:46.865Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:31:46.891Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:31:46.892Z info: Connected to MySQL
+2024-08-29T12:31:46.899Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:31:46.904Z info: POST /backend-owner/update-sold
+2024-08-29T12:31:46.914Z info: Connected to MySQL
+2024-08-29T12:31:46.926Z info: Connected to MySQL
+2024-08-29T12:31:46.943Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:31:46.949Z info: 200 OK: POST /update-sold
+2024-08-29T12:31:46.959Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:35:39.125Z info: GET /owner/owner
+2024-08-29T12:35:39.201Z info: GET /main-owner.css
+2024-08-29T12:35:39.272Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:35:39.348Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:35:39.392Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:35:39.394Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:35:39.396Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:35:39.397Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:35:39.404Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:35:39.407Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:35:39.415Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:35:39.422Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:35:39.425Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:35:39.427Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:35:39.429Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:35:39.430Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:35:39.440Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:35:39.442Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:35:39.443Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:35:39.444Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:35:39.446Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:35:39.448Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:35:39.457Z info: GET /public/endpoints.js
+2024-08-29T12:35:39.459Z info: GET /public/variablesState.js
+2024-08-29T12:35:39.460Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:35:39.462Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:35:39.478Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:35:39.479Z info: Connected to MySQL
+2024-08-29T12:35:39.486Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:35:39.486Z info: Connected to MySQL
+2024-08-29T12:35:39.493Z info: POST /backend-owner/update-sold
+2024-08-29T12:35:39.494Z info: Connected to MySQL
+2024-08-29T12:35:39.498Z info: GET /icon/favicon.ico
+2024-08-29T12:35:39.503Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:35:39.506Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:35:39.511Z info: 200 OK: POST /update-sold
+2024-08-29T12:35:39.529Z info: GET /icon/favicon.ico
+2024-08-29T12:45:43.166Z info: GET /owner/owner
+2024-08-29T12:45:43.217Z info: GET /main-owner.css
+2024-08-29T12:45:43.348Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:45:43.435Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:45:43.439Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:45:43.442Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:45:43.445Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:45:43.452Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:45:43.456Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:45:43.467Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:45:43.471Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:45:43.473Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:45:43.476Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:45:43.478Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:45:43.481Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:45:43.495Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:45:43.498Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:45:43.501Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:45:43.503Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:45:43.507Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:45:43.509Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:45:43.522Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:45:43.524Z info: GET /public/endpoints.js
+2024-08-29T12:45:43.527Z info: GET /public/variablesState.js
+2024-08-29T12:45:43.530Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:45:43.532Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:45:43.596Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:45:43.604Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:45:43.608Z info: POST /backend-owner/update-sold
+2024-08-29T12:45:43.610Z info: GET /icon/favicon.ico
+2024-08-29T12:45:43.644Z info: Connected to MySQL
+2024-08-29T12:45:43.652Z info: Connected to MySQL
+2024-08-29T12:45:43.660Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:45:43.663Z info: Connected to MySQL
+2024-08-29T12:45:43.666Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:45:43.668Z info: 200 OK: POST /update-sold
+2024-08-29T12:45:43.673Z info: GET /icon/favicon.ico
+2024-08-29T12:45:52.367Z info: GET /owner/owner-sign-log
+2024-08-29T12:45:52.406Z info: GET /sign-log-style.css
+2024-08-29T12:45:52.433Z info: GET /public/logSignScript.js
+2024-08-29T12:45:52.441Z info: GET /public/endpoints.js
+2024-08-29T12:45:52.449Z info: GET /public/signLogAnimation.js
+2024-08-29T12:45:52.452Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:45:59.722Z info: GET /owner/owner-sign-log
+2024-08-29T12:45:59.740Z info: GET /sign-log-style.css
+2024-08-29T12:45:59.759Z info: GET /public/endpoints.js
+2024-08-29T12:45:59.768Z info: GET /public/logSignScript.js
+2024-08-29T12:45:59.778Z info: GET /public/signLogAnimation.js
+2024-08-29T12:45:59.781Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:45:59.795Z info: GET /icon/favicon.ico
+2024-08-29T12:45:59.802Z info: GET /icon/favicon.ico
+2024-08-29T12:46:38.257Z info: GET /owner/owner-sign-log
+2024-08-29T12:46:38.282Z info: GET /sign-log-style.css
+2024-08-29T12:46:38.299Z info: GET /public/signLogAnimation.js
+2024-08-29T12:46:38.310Z info: GET /public/logSignScript.js
+2024-08-29T12:46:38.314Z info: GET /public/endpoints.js
+2024-08-29T12:46:38.328Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:46:38.342Z info: GET /icon/favicon.ico
+2024-08-29T12:46:38.349Z info: GET /icon/favicon.ico
+2024-08-29T12:47:06.219Z info: GET /owner/owner-sign-log
+2024-08-29T12:47:06.238Z info: GET /sign-log-style.css
+2024-08-29T12:47:06.248Z info: GET /public/logSignScript.js
+2024-08-29T12:47:06.262Z info: GET /public/endpoints.js
+2024-08-29T12:47:06.272Z info: GET /public/signLogAnimation.js
+2024-08-29T12:47:06.274Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:47:06.286Z info: GET /icon/favicon.ico
+2024-08-29T12:47:06.300Z info: GET /icon/favicon.ico
+2024-08-29T12:47:21.872Z info: POST /backend-owner/user-auth
+2024-08-29T12:47:21.920Z info: Connected to MySQL
+2024-08-29T12:47:22.017Z info: 200 OK: POST /user-auth
+2024-08-29T12:47:22.035Z info: GET /owner/owner
+2024-08-29T12:47:22.068Z info: GET /main-owner.css
+2024-08-29T12:47:22.096Z info: GET /public/endpoints.js
+2024-08-29T12:47:22.147Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:47:22.201Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:47:22.204Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:47:22.207Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:47:22.209Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:47:22.225Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:47:22.228Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:47:22.240Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:47:22.243Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:47:22.246Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:47:22.250Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:47:22.253Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:47:22.255Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:47:22.275Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:47:22.283Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:47:22.286Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:47:22.289Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:47:22.291Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:47:22.292Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:47:22.302Z info: GET /public/variablesState.js
+2024-08-29T12:47:22.304Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:47:22.305Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:47:22.306Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:47:22.321Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:47:22.322Z info: Connected to MySQL
+2024-08-29T12:47:22.329Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:47:22.332Z info: POST /backend-owner/update-sold
+2024-08-29T12:47:22.337Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:47:22.342Z info: Connected to MySQL
+2024-08-29T12:47:22.346Z info: Connected to MySQL
+2024-08-29T12:47:22.352Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:47:22.354Z info: 200 OK: POST /update-sold
+2024-08-29T12:49:36.517Z info: GET /owner/owner-sign-log
+2024-08-29T12:49:36.564Z info: GET /sign-log-style.css
+2024-08-29T12:49:36.581Z info: GET /public/logSignScript.js
+2024-08-29T12:49:36.588Z info: GET /public/endpoints.js
+2024-08-29T12:49:36.595Z info: GET /public/signLogAnimation.js
+2024-08-29T12:49:36.596Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:49:57.474Z info: POST /backend-owner/user-auth
+2024-08-29T12:49:57.475Z info: Connected to MySQL
+2024-08-29T12:49:57.565Z info: 200 OK: POST /user-auth
+2024-08-29T12:49:57.590Z info: GET /owner/owner
+2024-08-29T12:49:57.631Z info: GET /main-owner.css
+2024-08-29T12:49:57.720Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:49:57.753Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:49:57.754Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:49:57.759Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:49:57.761Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:49:57.762Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:49:57.773Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:49:57.780Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:49:57.781Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:49:57.784Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:49:57.791Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:49:57.792Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:49:57.803Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:49:57.815Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:49:57.817Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:49:57.819Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:49:57.830Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:49:57.832Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:49:57.842Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:49:57.853Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:49:57.855Z info: GET /public/endpoints.js
+2024-08-29T12:49:57.861Z info: GET /public/variablesState.js
+2024-08-29T12:49:57.862Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:49:57.873Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:49:57.897Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:49:57.899Z info: Connected to MySQL
+2024-08-29T12:49:57.912Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:49:57.913Z info: Connected to MySQL
+2024-08-29T12:49:57.919Z info: POST /backend-owner/update-sold
+2024-08-29T12:49:57.920Z info: Connected to MySQL
+2024-08-29T12:49:57.922Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:49:57.924Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:49:57.926Z info: 200 OK: POST /update-sold
+2024-08-29T12:50:11.152Z info: GET /owner/owner-tenants
+2024-08-29T12:50:11.175Z info: POST /backend-owner/all-tenants
+2024-08-29T12:50:11.176Z info: Connected to MySQL
+2024-08-29T12:50:11.192Z info: POST /backend-owner/recent-messages
+2024-08-29T12:50:11.193Z info: Connected to MySQL
+2024-08-29T12:50:11.222Z info: 200 OK: POST /recent-messages
+2024-08-29T12:50:11.226Z info: 200 OK: POST /all-tenants
+2024-08-29T12:50:18.231Z info: GET /owner/owner-dashboard
+2024-08-29T12:50:18.239Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:50:18.240Z info: Connected to MySQL
+2024-08-29T12:50:18.243Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:50:18.250Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:50:18.251Z info: Connected to MySQL
+2024-08-29T12:50:18.258Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:50:20.446Z info: GET /owner/owner-profile
+2024-08-29T12:50:20.463Z info: POST /backend-owner/my-owner
+2024-08-29T12:50:20.464Z info: Connected to MySQL
+2024-08-29T12:50:20.471Z info: 200 OK: POST /my-owner
+2024-08-29T12:50:20.477Z info: GET /owner/null
+2024-08-29T12:50:20.481Z warn: 404 Not Found: GET /owner/null
+2024-08-29T12:50:22.437Z info: GET /owner/owner-tenants
+2024-08-29T12:50:22.452Z info: POST /backend-owner/all-tenants
+2024-08-29T12:50:22.453Z info: Connected to MySQL
+2024-08-29T12:50:22.457Z info: POST /backend-owner/recent-messages
+2024-08-29T12:50:22.457Z info: Connected to MySQL
+2024-08-29T12:50:22.463Z info: 200 OK: POST /recent-messages
+2024-08-29T12:50:22.468Z info: 200 OK: POST /all-tenants
+2024-08-29T12:50:23.831Z info: GET /owner/owner-properties
+2024-08-29T12:50:23.844Z info: POST /backend-owner/my-properties
+2024-08-29T12:50:23.844Z info: Connected to MySQL
+2024-08-29T12:50:23.851Z info: 200 OK: POST /my-properties
+2024-08-29T12:50:25.068Z info: GET /owner/owner-tenant-home
+2024-08-29T12:50:25.083Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:50:25.084Z info: Connected to MySQL
+2024-08-29T12:50:25.087Z info: POST /backend-owner/my-properties
+2024-08-29T12:50:25.089Z info: Connected to MySQL
+2024-08-29T12:50:25.094Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:50:25.098Z info: 200 OK: POST /my-properties
+2024-08-29T12:50:26.298Z info: GET /owner/owner-receipts
+2024-08-29T12:50:26.313Z info: POST /backend-owner/receipt-valid
+2024-08-29T12:50:26.313Z info: Connected to MySQL
+2024-08-29T12:50:26.317Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:50:26.318Z info: Connected to MySQL
+2024-08-29T12:50:26.320Z info: 200 OK: POST /receipt-valid
+2024-08-29T12:50:26.321Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:50:27.242Z info: GET /owner/owner-subscription
+2024-08-29T12:50:31.778Z info: GET /owner/owner-dashboard
+2024-08-29T12:50:31.784Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:50:31.785Z info: Connected to MySQL
+2024-08-29T12:50:31.793Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:50:31.798Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:50:31.798Z info: Connected to MySQL
+2024-08-29T12:50:31.801Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:51:23.755Z info: GET /owner/owner-sign-log
+2024-08-29T12:51:23.832Z info: GET /sign-log-style.css
+2024-08-29T12:51:23.851Z info: GET /public/logSignScript.js
+2024-08-29T12:51:23.853Z info: GET /public/endpoints.js
+2024-08-29T12:51:23.859Z info: GET /public/signLogAnimation.js
+2024-08-29T12:51:23.861Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:51:24.184Z info: GET /icon/favicon.ico
+2024-08-29T12:51:24.201Z info: GET /icon/favicon.ico
+2024-08-29T12:51:33.344Z info: POST /backend-owner/user-auth
+2024-08-29T12:51:33.345Z info: Connected to MySQL
+2024-08-29T12:51:33.439Z info: 200 OK: POST /user-auth
+2024-08-29T12:51:33.457Z info: GET /owner/owner
+2024-08-29T12:51:33.534Z info: GET /main-owner.css
+2024-08-29T12:51:33.587Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:51:33.642Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:51:33.645Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:51:33.646Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:51:33.648Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:51:33.649Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:51:33.660Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:51:33.670Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:51:33.671Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:51:33.672Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:51:33.674Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:51:33.676Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:51:33.691Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:51:33.703Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:51:33.709Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:51:33.711Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:51:33.715Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:51:33.716Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:51:33.727Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:51:33.736Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:51:33.740Z info: GET /public/endpoints.js
+2024-08-29T12:51:33.742Z info: GET /public/variablesState.js
+2024-08-29T12:51:33.745Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:51:33.748Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:51:33.784Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:51:33.785Z info: Connected to MySQL
+2024-08-29T12:51:33.794Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:51:33.795Z info: Connected to MySQL
+2024-08-29T12:51:33.801Z info: POST /backend-owner/update-sold
+2024-08-29T12:51:33.801Z info: Connected to MySQL
+2024-08-29T12:51:33.804Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:51:33.807Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:51:33.808Z info: 200 OK: POST /update-sold
+2024-08-29T12:51:43.258Z info: GET /owner/owner-sign-log
+2024-08-29T12:51:43.276Z info: GET /sign-log-style.css
+2024-08-29T12:51:43.287Z info: GET /public/signLogAnimation.js
+2024-08-29T12:51:43.300Z info: GET /public/logSignScript.js
+2024-08-29T12:51:43.304Z info: GET /public/endpoints.js
+2024-08-29T12:51:43.309Z info: GET /owner/owner-signLogLogic.js
+2024-08-29T12:51:57.140Z info: POST /backend-owner/user-auth
+2024-08-29T12:51:57.141Z info: Connected to MySQL
+2024-08-29T12:51:57.264Z info: 200 OK: POST /user-auth
+2024-08-29T12:51:57.287Z info: GET /owner/owner
+2024-08-29T12:51:57.311Z info: GET /main-owner.css
+2024-08-29T12:51:57.320Z info: GET /public/variablesState.js
+2024-08-29T12:51:57.356Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T12:51:57.392Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T12:51:57.395Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T12:51:57.396Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T12:51:57.405Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T12:51:57.407Z info: GET /owner/owner-createTenant.js
+2024-08-29T12:51:57.409Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T12:51:57.415Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T12:51:57.417Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T12:51:57.418Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T12:51:57.418Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T12:51:57.421Z info: GET /owner/owner-myMessages.js
+2024-08-29T12:51:57.423Z info: GET /owner/owner-sendMessage.js
+2024-08-29T12:51:57.429Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T12:51:57.432Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T12:51:57.432Z info: GET /owner/owner-uploadImage.js
+2024-08-29T12:51:57.433Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T12:51:57.434Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T12:51:57.434Z info: GET /owner/owner-frontendManager.js
+2024-08-29T12:51:57.442Z info: GET /public/endpoints.js
+2024-08-29T12:51:57.444Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:51:57.446Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:51:57.446Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T12:51:57.452Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:51:57.453Z info: Connected to MySQL
+2024-08-29T12:51:57.458Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:51:57.458Z info: Connected to MySQL
+2024-08-29T12:51:57.464Z info: POST /backend-owner/update-sold
+2024-08-29T12:51:57.464Z info: Connected to MySQL
+2024-08-29T12:51:57.467Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:51:57.468Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:51:57.470Z info: 200 OK: POST /update-sold
+2024-08-29T12:52:00.273Z info: GET /owner/owner-profile
+2024-08-29T12:52:00.286Z info: POST /backend-owner/my-owner
+2024-08-29T12:52:00.286Z info: Connected to MySQL
+2024-08-29T12:52:00.290Z info: 200 OK: POST /my-owner
+2024-08-29T12:52:00.296Z info: GET /owner/null
+2024-08-29T12:52:00.297Z warn: 404 Not Found: GET /owner/null
+2024-08-29T12:52:01.092Z info: GET /owner/owner-tenants
+2024-08-29T12:52:01.131Z info: POST /backend-owner/all-tenants
+2024-08-29T12:52:01.132Z info: Connected to MySQL
+2024-08-29T12:52:01.144Z info: 200 OK: POST /all-tenants
+2024-08-29T12:52:01.151Z info: POST /backend-owner/recent-messages
+2024-08-29T12:52:01.152Z info: Connected to MySQL
+2024-08-29T12:52:01.160Z info: 200 OK: POST /recent-messages
+2024-08-29T12:52:03.252Z info: GET /owner/owner-properties
+2024-08-29T12:52:03.284Z info: POST /backend-owner/my-properties
+2024-08-29T12:52:03.285Z info: Connected to MySQL
+2024-08-29T12:52:03.289Z info: 200 OK: POST /my-properties
+2024-08-29T12:52:04.053Z info: GET /owner/owner-tenant-home
+2024-08-29T12:52:04.076Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:52:04.077Z info: Connected to MySQL
+2024-08-29T12:52:04.080Z info: POST /backend-owner/my-properties
+2024-08-29T12:52:04.081Z info: Connected to MySQL
+2024-08-29T12:52:04.084Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:52:04.085Z info: 200 OK: POST /my-properties
+2024-08-29T12:52:05.224Z info: GET /owner/owner-receipts
+2024-08-29T12:52:05.255Z info: POST /backend-owner/receipt-valid
+2024-08-29T12:52:05.256Z info: Connected to MySQL
+2024-08-29T12:52:05.260Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:52:05.261Z info: Connected to MySQL
+2024-08-29T12:52:05.266Z info: 200 OK: POST /receipt-valid
+2024-08-29T12:52:05.269Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:52:06.469Z info: GET /owner/owner-subscription
+2024-08-29T12:52:09.542Z info: GET /owner/owner-profile
+2024-08-29T12:52:09.554Z info: POST /backend-owner/my-owner
+2024-08-29T12:52:09.555Z info: Connected to MySQL
+2024-08-29T12:52:09.561Z info: 200 OK: POST /my-owner
+2024-08-29T12:52:09.571Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T12:52:10.613Z info: GET /owner/owner-tenants
+2024-08-29T12:52:10.628Z info: POST /backend-owner/all-tenants
+2024-08-29T12:52:10.629Z info: Connected to MySQL
+2024-08-29T12:52:10.639Z info: 200 OK: POST /all-tenants
+2024-08-29T12:52:10.647Z info: POST /backend-owner/recent-messages
+2024-08-29T12:52:10.647Z info: Connected to MySQL
+2024-08-29T12:52:10.661Z info: 200 OK: POST /recent-messages
+2024-08-29T12:52:11.487Z info: GET /owner/owner-properties
+2024-08-29T12:52:11.499Z info: POST /backend-owner/my-properties
+2024-08-29T12:52:11.499Z info: Connected to MySQL
+2024-08-29T12:52:11.503Z info: 200 OK: POST /my-properties
+2024-08-29T12:52:12.398Z info: GET /owner/owner-tenant-home
+2024-08-29T12:52:12.411Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:52:12.412Z info: Connected to MySQL
+2024-08-29T12:52:12.418Z info: POST /backend-owner/my-properties
+2024-08-29T12:52:12.418Z info: Connected to MySQL
+2024-08-29T12:52:12.424Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:52:12.427Z info: 200 OK: POST /my-properties
+2024-08-29T12:52:13.265Z info: GET /owner/owner-receipts
+2024-08-29T12:52:13.276Z info: POST /backend-owner/receipt-valid
+2024-08-29T12:52:13.276Z info: Connected to MySQL
+2024-08-29T12:52:13.280Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:52:13.281Z info: Connected to MySQL
+2024-08-29T12:52:13.284Z info: 200 OK: POST /receipt-valid
+2024-08-29T12:52:13.285Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:52:14.194Z info: GET /owner/owner-subscription
+2024-08-29T12:52:15.673Z info: GET /owner/owner-dashboard
+2024-08-29T12:52:15.678Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:52:15.678Z info: Connected to MySQL
+2024-08-29T12:52:15.679Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:52:15.680Z info: Connected to MySQL
+2024-08-29T12:52:15.682Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:52:15.683Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:52:33.674Z info: GET /owner/owner-properties
+2024-08-29T12:52:33.684Z info: POST /backend-owner/my-properties
+2024-08-29T12:52:33.686Z info: Connected to MySQL
+2024-08-29T12:52:33.693Z info: 200 OK: POST /my-properties
+2024-08-29T12:53:04.850Z info: POST /backend-owner/create-properties
+2024-08-29T12:53:04.851Z info: Connected to MySQL
+2024-08-29T12:53:04.881Z info: 200 OK: POST /create-properties
+2024-08-29T12:53:04.885Z info: POST /backend-owner/update-sold
+2024-08-29T12:53:04.885Z info: Connected to MySQL
+2024-08-29T12:53:04.894Z info: 200 OK: POST /update-sold
+2024-08-29T12:54:01.187Z info: GET /owner/owner-tenant-home
+2024-08-29T12:54:01.199Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:54:01.200Z info: Connected to MySQL
+2024-08-29T12:54:01.206Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:54:01.213Z info: POST /backend-owner/my-properties
+2024-08-29T12:54:01.214Z info: Connected to MySQL
+2024-08-29T12:54:01.219Z info: 200 OK: POST /my-properties
+2024-08-29T12:54:41.372Z info: POST /backend-owner/create-tenant
+2024-08-29T12:54:41.372Z info: Connected to MySQL
+2024-08-29T12:54:41.388Z info: 200 OK: POST /create-tenant
+2024-08-29T12:54:41.391Z info: POST /backend-owner/update-sold
+2024-08-29T12:54:41.391Z info: Connected to MySQL
+2024-08-29T12:54:41.396Z info: 200 OK: POST /update-sold
+2024-08-29T12:55:45.981Z info: GET /tenant/tenant-activate?key=52b3f23f&pr_ten=50
+2024-08-29T12:55:46.028Z info: GET /redirect.css
+2024-08-29T12:55:46.046Z info: GET /public/endpoints.js
+2024-08-29T12:55:46.053Z info: GET /tenant/tenant-activation.js
+2024-08-29T12:55:46.064Z info: POST /backend-tenant/activate-tenant-account
+2024-08-29T12:55:46.065Z info: Connected to MySQL
+2024-08-29T12:55:46.072Z info: 200 OK: POST /activate-tenant-account
+2024-08-29T12:55:46.082Z info: GET /favicon.ico
+2024-08-29T12:55:46.083Z warn: 404 Not Found: GET /favicon.ico
+2024-08-29T12:55:46.096Z info: GET /tenant/tenant
+2024-08-29T12:55:46.120Z info: GET /main-tenant.css
+2024-08-29T12:55:46.151Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T12:55:46.184Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T12:55:46.185Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T12:55:46.186Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T12:55:46.187Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T12:55:46.188Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T12:55:46.196Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T12:55:46.201Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T12:55:46.202Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T12:55:46.203Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T12:55:46.203Z info: GET /public/endpoints.js
+2024-08-29T12:55:46.204Z info: GET /public/variablesState.js
+2024-08-29T12:55:46.213Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T12:55:46.217Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T12:55:46.228Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T12:55:46.228Z info: Connected to MySQL
+2024-08-29T12:55:46.231Z info: POST /backend-tenant/tenant-property
+2024-08-29T12:55:46.232Z info: Connected to MySQL
+2024-08-29T12:55:46.236Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:55:46.237Z info: 200 OK: POST /tenant-property
+2024-08-29T12:55:46.242Z info: POST /backend-tenant/receipt-valid
+2024-08-29T12:55:46.242Z info: Connected to MySQL
+2024-08-29T12:55:46.247Z info: 200 OK: POST /receipt-valid
+2024-08-29T12:56:12.437Z info: POST /backend-tenant//set-pwd
+2024-08-29T12:56:12.439Z info: Connected to MySQL
+2024-08-29T12:56:12.587Z info: 200 OK: POST /set-pwd
+2024-08-29T12:56:12.591Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T12:56:12.591Z info: Connected to MySQL
+2024-08-29T12:56:12.593Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:56:12.596Z info: POST /backend-tenant/receipt-valid
+2024-08-29T12:56:12.597Z info: Connected to MySQL
+2024-08-29T12:56:12.601Z info: 200 OK: POST /receipt-valid
+2024-08-29T12:56:25.089Z info: GET /owner/owner-tenant-home
+2024-08-29T12:56:25.102Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:56:25.103Z info: Connected to MySQL
+2024-08-29T12:56:25.111Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:56:25.118Z info: POST /backend-owner/my-properties
+2024-08-29T12:56:25.119Z info: Connected to MySQL
+2024-08-29T12:56:25.126Z info: 200 OK: POST /my-properties
+2024-08-29T12:56:43.570Z info: POST /backend-tenant/tenant-property
+2024-08-29T12:56:43.571Z info: Connected to MySQL
+2024-08-29T12:56:43.577Z info: 200 OK: POST /tenant-property
+2024-08-29T12:56:46.218Z info: POST /backend-tenant/require-receipt
+2024-08-29T12:56:46.219Z info: Connected to MySQL
+2024-08-29T12:56:46.234Z info: 200 OK: POST /require-receipt
+2024-08-29T12:56:46.246Z info: POST /backend-tenant/require-receipt
+2024-08-29T12:56:46.246Z info: Connected to MySQL
+2024-08-29T12:56:46.255Z info: 200 OK: POST /require-receipt
+2024-08-29T12:56:49.539Z info: GET /owner/owner-dashboard
+2024-08-29T12:56:49.548Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:56:49.549Z info: Connected to MySQL
+2024-08-29T12:56:49.555Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:56:49.556Z info: Connected to MySQL
+2024-08-29T12:56:49.561Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:56:49.564Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:57:24.004Z info: GET /owner/owner-properties
+2024-08-29T12:57:24.019Z info: POST /backend-owner/my-properties
+2024-08-29T12:57:24.020Z info: Connected to MySQL
+2024-08-29T12:57:24.027Z info: 200 OK: POST /my-properties
+2024-08-29T12:58:03.920Z info: POST /backend-owner/create-properties
+2024-08-29T12:58:03.921Z info: Connected to MySQL
+2024-08-29T12:58:03.935Z info: 200 OK: POST /create-properties
+2024-08-29T12:58:03.941Z info: POST /backend-owner/update-sold
+2024-08-29T12:58:03.942Z info: Connected to MySQL
+2024-08-29T12:58:03.948Z info: 200 OK: POST /update-sold
+2024-08-29T12:58:09.249Z info: GET /owner/owner-tenant-home
+2024-08-29T12:58:09.257Z info: POST /backend-owner/Tenants-properties
+2024-08-29T12:58:09.258Z info: Connected to MySQL
+2024-08-29T12:58:09.262Z info: 200 OK: POST /Tenants-properties
+2024-08-29T12:58:09.267Z info: POST /backend-owner/my-properties
+2024-08-29T12:58:09.267Z info: Connected to MySQL
+2024-08-29T12:58:09.270Z info: 200 OK: POST /my-properties
+2024-08-29T12:58:50.047Z info: POST /backend-owner/create-tenant
+2024-08-29T12:58:50.048Z info: Connected to MySQL
+2024-08-29T12:58:50.063Z info: 200 OK: POST /create-tenant
+2024-08-29T12:58:50.074Z info: POST /backend-owner/update-sold
+2024-08-29T12:58:50.075Z info: Connected to MySQL
+2024-08-29T12:58:50.080Z info: 200 OK: POST /update-sold
+2024-08-29T12:59:06.202Z info: GET /tenant/tenant-activate?key=02f30010&pr_ten=51
+2024-08-29T12:59:06.277Z info: GET /redirect.css
+2024-08-29T12:59:06.283Z info: GET /public/endpoints.js
+2024-08-29T12:59:06.290Z info: GET /tenant/tenant-activation.js
+2024-08-29T12:59:06.444Z info: POST /backend-tenant/activate-tenant-account
+2024-08-29T12:59:06.444Z info: Connected to MySQL
+2024-08-29T12:59:06.450Z info: 200 OK: POST /activate-tenant-account
+2024-08-29T12:59:06.612Z info: GET /tenant/tenant
+2024-08-29T12:59:06.626Z info: GET /favicon.ico
+2024-08-29T12:59:06.627Z warn: 404 Not Found: GET /favicon.ico
+2024-08-29T12:59:06.650Z info: GET /main-tenant.css
+2024-08-29T12:59:06.657Z info: GET /public/endpoints.js
+2024-08-29T12:59:06.664Z info: GET /public/variablesState.js
+2024-08-29T12:59:06.673Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T12:59:06.704Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T12:59:06.710Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T12:59:06.714Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T12:59:06.715Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T12:59:06.716Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T12:59:06.720Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T12:59:06.725Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T12:59:06.727Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T12:59:06.728Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T12:59:06.729Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T12:59:06.729Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T12:59:06.834Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T12:59:06.835Z info: Connected to MySQL
+2024-08-29T12:59:06.841Z info: POST /backend-tenant/tenant-property
+2024-08-29T12:59:06.842Z info: Connected to MySQL
+2024-08-29T12:59:06.846Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:59:06.848Z info: 200 OK: POST /tenant-property
+2024-08-29T12:59:06.887Z info: POST /backend-tenant/receipt-valid
+2024-08-29T12:59:06.888Z info: Connected to MySQL
+2024-08-29T12:59:06.892Z info: 200 OK: POST /receipt-valid
+2024-08-29T12:59:11.541Z info: POST /backend-csp-report/csp-violation
+2024-08-29T12:59:16.785Z info: POST /backend-tenant//set-pwd
+2024-08-29T12:59:16.786Z info: Connected to MySQL
+2024-08-29T12:59:16.942Z info: 200 OK: POST /set-pwd
+2024-08-29T12:59:16.953Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T12:59:16.954Z info: Connected to MySQL
+2024-08-29T12:59:16.958Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:59:16.967Z info: POST /backend-tenant/receipt-valid
+2024-08-29T12:59:16.968Z info: Connected to MySQL
+2024-08-29T12:59:16.973Z info: 200 OK: POST /receipt-valid
+2024-08-29T12:59:36.933Z info: POST /backend-tenant/tenant-property
+2024-08-29T12:59:36.934Z info: Connected to MySQL
+2024-08-29T12:59:36.940Z info: 200 OK: POST /tenant-property
+2024-08-29T12:59:40.792Z info: POST /backend-tenant/require-receipt
+2024-08-29T12:59:40.793Z info: Connected to MySQL
+2024-08-29T12:59:40.807Z info: 200 OK: POST /require-receipt
+2024-08-29T12:59:40.819Z info: POST /backend-tenant/require-receipt
+2024-08-29T12:59:40.819Z info: Connected to MySQL
+2024-08-29T12:59:40.832Z info: POST /backend-tenant/require-receipt
+2024-08-29T12:59:40.832Z info: Connected to MySQL
+2024-08-29T12:59:40.837Z info: 200 OK: POST /require-receipt
+2024-08-29T12:59:40.844Z info: 200 OK: POST /require-receipt
+2024-08-29T12:59:45.468Z info: GET /owner/owner-dashboard
+2024-08-29T12:59:45.494Z info: POST /backend-owner/receipt-unValid
+2024-08-29T12:59:45.495Z info: Connected to MySQL
+2024-08-29T12:59:45.499Z info: POST /backend-owner/recent-tenants
+2024-08-29T12:59:45.499Z info: Connected to MySQL
+2024-08-29T12:59:45.505Z info: 200 OK: POST /receipt-unValid
+2024-08-29T12:59:45.508Z info: 200 OK: POST /recent-tenants
+2024-08-29T12:59:58.620Z info: GET /owner/owner-receipt
+2024-08-29T12:59:58.681Z info: GET /receipt.css
+2024-08-29T12:59:58.723Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T12:59:58.724Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T12:59:58.726Z info: GET /public/endpoints.js
+2024-08-29T12:59:58.729Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T12:59:58.730Z info: GET /public/variablesState.js
+2024-08-29T12:59:58.731Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:00:01.289Z info: GET /owner/null
+2024-08-29T13:00:01.290Z warn: 404 Not Found: GET /owner/null
+2024-08-29T13:00:13.984Z info: GET /owner/owner-tenants
+2024-08-29T13:00:14.004Z info: POST /backend-owner/all-tenants
+2024-08-29T13:00:14.005Z info: Connected to MySQL
+2024-08-29T13:00:14.019Z info: 200 OK: POST /all-tenants
+2024-08-29T13:00:14.033Z info: POST /backend-owner/recent-messages
+2024-08-29T13:00:14.033Z info: Connected to MySQL
+2024-08-29T13:00:14.038Z info: 200 OK: POST /recent-messages
+2024-08-29T13:00:15.915Z info: GET /owner/owner-profile
+2024-08-29T13:00:15.936Z info: POST /backend-owner/my-owner
+2024-08-29T13:00:15.936Z info: Connected to MySQL
+2024-08-29T13:00:15.941Z info: 200 OK: POST /my-owner
+2024-08-29T13:00:15.951Z info: GET /owner/null
+2024-08-29T13:00:15.952Z warn: 404 Not Found: GET /owner/null
+2024-08-29T13:00:28.275Z info: POST /backend-owner//upload
+2024-08-29T13:00:28.277Z info: Connected to MySQL
+2024-08-29T13:00:28.304Z info: 200 OK: POST /upload
+2024-08-29T13:00:28.316Z info: POST /backend-owner/update-sold
+2024-08-29T13:00:28.317Z info: Connected to MySQL
+2024-08-29T13:00:28.323Z info: 200 OK: POST /update-sold
+2024-08-29T13:00:28.326Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:00:33.683Z info: GET /owner/owner-dashboard
+2024-08-29T13:00:33.698Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:00:33.699Z info: Connected to MySQL
+2024-08-29T13:00:33.704Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:00:33.717Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:00:33.717Z info: Connected to MySQL
+2024-08-29T13:00:33.720Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:00:35.650Z info: GET /owner/owner-receipt
+2024-08-29T13:00:35.677Z info: GET /receipt.css
+2024-08-29T13:00:35.679Z info: GET /public/endpoints.js
+2024-08-29T13:00:35.685Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:00:35.687Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:00:35.695Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:00:35.696Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:00:35.696Z info: GET /public/variablesState.js
+2024-08-29T13:00:35.726Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:03:05.738Z info: GET /owner/owner-receipt
+2024-08-29T13:03:05.762Z info: GET /receipt.css
+2024-08-29T13:03:05.793Z info: GET /public/endpoints.js
+2024-08-29T13:03:05.817Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:03:05.819Z info: GET /public/variablesState.js
+2024-08-29T13:03:05.820Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:03:05.827Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:03:05.828Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:03:05.869Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:03:05.943Z info: GET /icon/favicon.ico
+2024-08-29T13:03:05.961Z info: GET /icon/favicon.ico
+2024-08-29T13:03:07.526Z info: GET /owner/owner-receipt
+2024-08-29T13:03:07.555Z info: GET /receipt.css
+2024-08-29T13:03:07.559Z info: GET /public/endpoints.js
+2024-08-29T13:03:07.563Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:03:07.566Z info: GET /public/variablesState.js
+2024-08-29T13:03:07.567Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:03:07.569Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:03:07.570Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:03:07.606Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:03:07.639Z info: GET /icon/favicon.ico
+2024-08-29T13:03:07.650Z info: GET /icon/favicon.ico
+2024-08-29T13:04:04.239Z info: GET /owner/owner-receipt
+2024-08-29T13:04:04.258Z info: GET /receipt.css
+2024-08-29T13:04:04.277Z info: GET /public/endpoints.js
+2024-08-29T13:04:04.296Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:04:04.297Z info: GET /public/variablesState.js
+2024-08-29T13:04:04.298Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:04:04.303Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:04:04.304Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:04:04.318Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:04:04.354Z info: GET /icon/favicon.ico
+2024-08-29T13:04:04.370Z info: GET /icon/favicon.ico
+2024-08-29T13:04:28.632Z info: POST /backend-owner/validate-receipt
+2024-08-29T13:04:28.633Z info: Connected to MySQL
+2024-08-29T13:04:28.648Z info: 200 OK: POST /validate-receipt
+2024-08-29T13:04:28.654Z info: POST /backend-owner/update-sold
+2024-08-29T13:04:28.654Z info: Connected to MySQL
+2024-08-29T13:04:28.660Z info: 200 OK: POST /update-sold
+2024-08-29T13:04:28.663Z info: GET /owner/owner
+2024-08-29T13:04:28.679Z info: GET /main-owner.css
+2024-08-29T13:04:28.697Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:04:28.731Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T13:04:28.763Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T13:04:28.763Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T13:04:28.770Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T13:04:28.772Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T13:04:28.772Z info: GET /owner/owner-createTenant.js
+2024-08-29T13:04:28.777Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T13:04:28.783Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T13:04:28.784Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T13:04:28.785Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T13:04:28.788Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T13:04:28.790Z info: GET /owner/owner-myMessages.js
+2024-08-29T13:04:28.796Z info: GET /owner/owner-sendMessage.js
+2024-08-29T13:04:28.805Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T13:04:28.807Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T13:04:28.809Z info: GET /owner/owner-uploadImage.js
+2024-08-29T13:04:28.813Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T13:04:28.815Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T13:04:28.822Z info: GET /owner/owner-frontendManager.js
+2024-08-29T13:04:28.830Z info: GET /public/endpoints.js
+2024-08-29T13:04:28.832Z info: GET /public/variablesState.js
+2024-08-29T13:04:28.833Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T13:04:28.840Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:04:28.869Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:04:28.870Z info: Connected to MySQL
+2024-08-29T13:04:28.876Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:04:28.876Z info: Connected to MySQL
+2024-08-29T13:04:28.880Z info: POST /backend-owner/update-sold
+2024-08-29T13:04:28.881Z info: Connected to MySQL
+2024-08-29T13:04:28.885Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:04:28.888Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:04:28.890Z info: 200 OK: POST /update-sold
+2024-08-29T13:04:31.781Z info: GET /owner/owner-receipts
+2024-08-29T13:04:31.800Z info: POST /backend-owner/receipt-valid
+2024-08-29T13:04:31.800Z info: Connected to MySQL
+2024-08-29T13:04:31.805Z info: POST /backend-owner/Tenants-properties
+2024-08-29T13:04:31.806Z info: Connected to MySQL
+2024-08-29T13:04:31.811Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:04:31.814Z info: 200 OK: POST /Tenants-properties
+2024-08-29T13:04:33.893Z info: GET /owner/owner-receipt
+2024-08-29T13:04:33.927Z info: GET /receipt.css
+2024-08-29T13:04:33.930Z info: GET /public/endpoints.js
+2024-08-29T13:04:33.949Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:04:33.951Z info: GET /public/variablesState.js
+2024-08-29T13:04:33.961Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:04:33.968Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:04:33.970Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:04:33.979Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:04:36.384Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:04:36.385Z info: GET /receipt.css
+2024-08-29T13:04:36.386Z info: POST /backend-csp-report/csp-violation
+2024-08-29T13:04:40.877Z info: GET /owner/owner
+2024-08-29T13:04:40.955Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:04:40.956Z info: Connected to MySQL
+2024-08-29T13:04:40.959Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:04:40.959Z info: Connected to MySQL
+2024-08-29T13:04:40.961Z info: POST /backend-owner/update-sold
+2024-08-29T13:04:40.962Z info: Connected to MySQL
+2024-08-29T13:04:40.963Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:04:40.964Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:04:40.966Z info: 200 OK: POST /update-sold
+2024-08-29T13:04:47.239Z info: GET /tenant/tenant-dashboard
+2024-08-29T13:04:47.269Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:04:47.269Z info: Connected to MySQL
+2024-08-29T13:04:47.275Z info: 200 OK: POST /tenant-property
+2024-08-29T13:04:47.279Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:04:47.279Z info: Connected to MySQL
+2024-08-29T13:04:47.284Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:04:47.292Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:04:47.292Z info: Connected to MySQL
+2024-08-29T13:04:47.296Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:04:50.738Z info: GET /tenant/tenant-dashboard
+2024-08-29T13:04:50.751Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:04:50.752Z info: Connected to MySQL
+2024-08-29T13:04:50.761Z info: 200 OK: POST /tenant-property
+2024-08-29T13:04:50.771Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:04:50.772Z info: Connected to MySQL
+2024-08-29T13:04:50.778Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:04:50.787Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:04:50.787Z info: Connected to MySQL
+2024-08-29T13:04:50.793Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:04:55.725Z info: GET /owner/owner-receipt
+2024-08-29T13:04:55.755Z info: GET /receipt.css
+2024-08-29T13:04:55.757Z info: GET /public/endpoints.js
+2024-08-29T13:04:55.779Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:04:55.786Z info: GET /public/variablesState.js
+2024-08-29T13:04:55.788Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:04:55.797Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:04:55.798Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:04:58.268Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T13:05:06.044Z info: GET /owner/owner-receipt
+2024-08-29T13:05:06.064Z info: GET /receipt.css
+2024-08-29T13:05:06.080Z info: GET /public/endpoints.js
+2024-08-29T13:05:06.109Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:05:06.123Z info: GET /public/variablesState.js
+2024-08-29T13:05:06.125Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:05:06.126Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:05:06.127Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:05:06.132Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T13:05:09.649Z info: POST /backend-owner/validate-receipt
+2024-08-29T13:05:09.651Z info: Connected to MySQL
+2024-08-29T13:05:09.669Z info: 200 OK: POST /validate-receipt
+2024-08-29T13:05:09.678Z info: POST /backend-owner/update-sold
+2024-08-29T13:05:09.678Z info: Connected to MySQL
+2024-08-29T13:05:09.688Z info: 200 OK: POST /update-sold
+2024-08-29T13:05:09.709Z info: GET /owner/owner
+2024-08-29T13:05:09.750Z info: GET /main-owner.css
+2024-08-29T13:05:09.752Z info: GET /public/endpoints.js
+2024-08-29T13:05:09.758Z info: GET /public/variablesState.js
+2024-08-29T13:05:09.762Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:05:09.767Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T13:05:09.772Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:05:09.777Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T13:05:09.782Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T13:05:09.783Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T13:05:09.787Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T13:05:09.791Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T13:05:09.793Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T13:05:09.797Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T13:05:09.799Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T13:05:09.802Z info: GET /owner/owner-myMessages.js
+2024-08-29T13:05:09.805Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T13:05:09.810Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T13:05:09.811Z info: GET /owner/owner-uploadImage.js
+2024-08-29T13:05:09.811Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T13:05:09.814Z info: GET /owner/owner-frontendManager.js
+2024-08-29T13:05:09.822Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T13:05:09.828Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T13:05:09.829Z info: GET /owner/owner-sendMessage.js
+2024-08-29T13:05:09.831Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T13:05:09.836Z info: GET /owner/owner-createTenant.js
+2024-08-29T13:05:09.843Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:05:09.843Z info: Connected to MySQL
+2024-08-29T13:05:09.850Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:05:09.851Z info: Connected to MySQL
+2024-08-29T13:05:09.854Z info: POST /backend-owner/update-sold
+2024-08-29T13:05:09.854Z info: Connected to MySQL
+2024-08-29T13:05:09.858Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:05:09.859Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:05:09.860Z info: 200 OK: POST /update-sold
+2024-08-29T13:05:13.405Z info: GET /owner/owner-receipts
+2024-08-29T13:05:13.419Z info: POST /backend-owner/receipt-valid
+2024-08-29T13:05:13.420Z info: Connected to MySQL
+2024-08-29T13:05:13.424Z info: POST /backend-owner/Tenants-properties
+2024-08-29T13:05:13.425Z info: Connected to MySQL
+2024-08-29T13:05:13.429Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:05:13.434Z info: 200 OK: POST /Tenants-properties
+2024-08-29T13:05:22.044Z info: GET /tenant/tenant-dashboard
+2024-08-29T13:05:22.060Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:05:22.061Z info: Connected to MySQL
+2024-08-29T13:05:22.070Z info: 200 OK: POST /tenant-property
+2024-08-29T13:05:22.077Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:05:22.078Z info: Connected to MySQL
+2024-08-29T13:05:22.084Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:05:22.093Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:05:22.093Z info: Connected to MySQL
+2024-08-29T13:05:22.098Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:05:24.492Z info: GET /tenant/tenant-receipt
+2024-08-29T13:05:24.515Z info: GET /receipt.css
+2024-08-29T13:05:24.518Z info: GET /public/endpoints.js
+2024-08-29T13:05:24.545Z info: GET /tenant/tenant-goDownloadReceipt.js
+2024-08-29T13:05:24.547Z info: GET /tenant/tenant-downloadReceipt.js
+2024-08-29T13:05:24.562Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T13:05:26.782Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T13:05:26.786Z info: POST /backend-csp-report/csp-violation
+2024-08-29T13:05:26.801Z info: GET /receipt.css
+2024-08-29T13:05:30.420Z info: GET /tenant/tenant-receipt
+2024-08-29T13:05:30.456Z info: GET /receipt.css
+2024-08-29T13:05:30.475Z info: GET /public/endpoints.js
+2024-08-29T13:05:30.476Z info: GET /tenant/tenant-goDownloadReceipt.js
+2024-08-29T13:05:30.477Z info: GET /tenant/tenant-downloadReceipt.js
+2024-08-29T13:05:30.543Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:05:32.656Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:05:32.657Z info: GET /receipt.css
+2024-08-29T13:05:32.657Z info: POST /backend-csp-report/csp-violation
+2024-08-29T13:05:39.040Z info: GET /tenant/tenant-discussion
+2024-08-29T13:05:39.049Z info: POST /backend-tenant/my-messages
+2024-08-29T13:05:39.049Z info: Connected to MySQL
+2024-08-29T13:05:39.052Z info: 200 OK: POST /my-messages
+2024-08-29T13:05:39.066Z info: Connected to MySQL
+2024-08-29T13:05:42.384Z info: GET /owner/owner-tenants
+2024-08-29T13:05:42.430Z info: POST /backend-owner/all-tenants
+2024-08-29T13:05:42.431Z info: Connected to MySQL
+2024-08-29T13:05:42.444Z info: POST /backend-owner/recent-messages
+2024-08-29T13:05:42.445Z info: Connected to MySQL
+2024-08-29T13:05:42.448Z info: 200 OK: POST /all-tenants
+2024-08-29T13:05:42.450Z info: 200 OK: POST /recent-messages
+2024-08-29T13:05:45.100Z info: POST /backend-owner/my-messages
+2024-08-29T13:05:45.100Z info: Connected to MySQL
+2024-08-29T13:05:45.108Z info: 200 OK: POST /my-messages
+2024-08-29T13:05:45.130Z info: Connected to MySQL
+2024-08-29T13:05:53.834Z info: POST /backend-owner/recent-messages
+2024-08-29T13:05:53.834Z info: Connected to MySQL
+2024-08-29T13:05:53.840Z info: 200 OK: POST /recent-messages
+2024-08-29T13:05:59.345Z info: POST /backend-owner/my-messages
+2024-08-29T13:05:59.346Z info: Connected to MySQL
+2024-08-29T13:05:59.352Z info: POST /backend-owner/recent-messages
+2024-08-29T13:05:59.352Z info: Connected to MySQL
+2024-08-29T13:05:59.357Z info: 200 OK: POST /my-messages
+2024-08-29T13:05:59.359Z info: 200 OK: POST /recent-messages
+2024-08-29T13:05:59.363Z info: Connected to MySQL
+2024-08-29T13:06:11.095Z info: GET /owner/owner-profile
+2024-08-29T13:06:11.100Z info: POST /backend-owner/my-owner
+2024-08-29T13:06:11.101Z info: Connected to MySQL
+2024-08-29T13:06:11.103Z info: 200 OK: POST /my-owner
+2024-08-29T13:06:11.106Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T13:06:12.974Z info: GET /owner/owner-tenants
+2024-08-29T13:06:12.985Z info: POST /backend-owner/all-tenants
+2024-08-29T13:06:12.986Z info: Connected to MySQL
+2024-08-29T13:06:12.997Z info: 200 OK: POST /all-tenants
+2024-08-29T13:06:13.010Z info: POST /backend-owner/recent-messages
+2024-08-29T13:06:13.011Z info: Connected to MySQL
+2024-08-29T13:06:13.015Z info: 200 OK: POST /recent-messages
+2024-08-29T13:06:19.225Z info: POST /backend-owner/my-messages
+2024-08-29T13:06:19.226Z info: Connected to MySQL
+2024-08-29T13:06:19.231Z info: 200 OK: POST /my-messages
+2024-08-29T13:06:19.246Z info: Connected to MySQL
+2024-08-29T13:06:21.900Z info: GET /tenant/tenant-discussion
+2024-08-29T13:06:21.904Z info: POST /backend-tenant/my-messages
+2024-08-29T13:06:21.904Z info: Connected to MySQL
+2024-08-29T13:06:21.906Z info: 200 OK: POST /my-messages
+2024-08-29T13:06:21.933Z info: Connected to MySQL
+2024-08-29T13:07:04.239Z info: POST /backend-owner/recent-messages
+2024-08-29T13:07:04.240Z info: Connected to MySQL
+2024-08-29T13:07:04.251Z info: 200 OK: POST /recent-messages
+2024-08-29T13:07:05.864Z info: POST /backend-owner/recent-messages
+2024-08-29T13:07:05.864Z info: Connected to MySQL
+2024-08-29T13:07:05.869Z info: 200 OK: POST /recent-messages
+2024-08-29T13:07:10.983Z info: POST /backend-owner/my-messages
+2024-08-29T13:07:10.985Z info: Connected to MySQL
+2024-08-29T13:07:10.992Z info: POST /backend-owner/recent-messages
+2024-08-29T13:07:10.993Z info: Connected to MySQL
+2024-08-29T13:07:10.998Z info: 200 OK: POST /my-messages
+2024-08-29T13:07:11.000Z info: 200 OK: POST /recent-messages
+2024-08-29T13:07:11.007Z info: Connected to MySQL
+2024-08-29T13:07:17.248Z info: POST /backend-owner/delete-message
+2024-08-29T13:07:17.248Z info: Connected to MySQL
+2024-08-29T13:07:17.255Z info: POST /backend-owner/delete-message
+2024-08-29T13:07:17.255Z info: Connected to MySQL
+2024-08-29T13:07:17.267Z info: 200 OK: POST /delete-message
+2024-08-29T13:07:17.268Z info: 200 OK: POST /delete-message
+2024-08-29T13:07:19.929Z info: POST /backend-owner/recent-messages
+2024-08-29T13:07:19.930Z info: Connected to MySQL
+2024-08-29T13:07:19.936Z info: 200 OK: POST /recent-messages
+2024-08-29T13:07:20.829Z info: GET /owner/owner-tenants
+2024-08-29T13:07:20.847Z info: POST /backend-owner/all-tenants
+2024-08-29T13:07:20.847Z info: Connected to MySQL
+2024-08-29T13:07:20.849Z info: POST /backend-owner/recent-messages
+2024-08-29T13:07:20.850Z info: Connected to MySQL
+2024-08-29T13:07:20.851Z info: 200 OK: POST /all-tenants
+2024-08-29T13:07:20.852Z info: 200 OK: POST /recent-messages
+2024-08-29T13:07:23.489Z info: POST /backend-owner/my-messages
+2024-08-29T13:07:23.490Z info: Connected to MySQL
+2024-08-29T13:07:23.496Z info: POST /backend-owner/recent-messages
+2024-08-29T13:07:23.497Z info: Connected to MySQL
+2024-08-29T13:07:23.501Z info: 200 OK: POST /my-messages
+2024-08-29T13:07:23.503Z info: 200 OK: POST /recent-messages
+2024-08-29T13:07:23.517Z info: Connected to MySQL
+2024-08-29T13:07:24.658Z info: POST /backend-owner/recent-messages
+2024-08-29T13:07:24.659Z info: Connected to MySQL
+2024-08-29T13:07:24.661Z info: 200 OK: POST /recent-messages
+2024-08-29T13:07:30.728Z info: POST /backend-tenant/delete-message
+2024-08-29T13:07:30.729Z info: Connected to MySQL
+2024-08-29T13:07:30.746Z info: 200 OK: POST /delete-message
+2024-08-29T13:07:40.420Z info: GET /tenant/tenant-profile
+2024-08-29T13:07:40.437Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:07:40.437Z info: Connected to MySQL
+2024-08-29T13:07:40.444Z info: 200 OK: POST /tenant-property
+2024-08-29T13:08:02.379Z info: GET /owner/owner-properties
+2024-08-29T13:08:02.384Z info: POST /backend-owner/my-properties
+2024-08-29T13:08:02.385Z info: Connected to MySQL
+2024-08-29T13:08:02.387Z info: 200 OK: POST /my-properties
+2024-08-29T13:08:06.866Z info: POST /backend-owner/my-property
+2024-08-29T13:08:06.867Z info: Connected to MySQL
+2024-08-29T13:08:06.871Z info: 200 OK: POST /my-property
+2024-08-29T13:08:12.765Z info: POST /backend-owner/update-property
+2024-08-29T13:08:12.765Z info: Connected to MySQL
+2024-08-29T13:08:12.773Z info: 200 OK: POST /update-property
+2024-08-29T13:08:14.764Z info: GET /tenant/tenant-profile
+2024-08-29T13:08:14.771Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:08:14.771Z info: Connected to MySQL
+2024-08-29T13:08:14.773Z info: 200 OK: POST /tenant-property
+2024-08-29T13:08:33.496Z info: GET /owner/owner-receipts
+2024-08-29T13:08:33.501Z info: POST /backend-owner/receipt-valid
+2024-08-29T13:08:33.501Z info: Connected to MySQL
+2024-08-29T13:08:33.504Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:08:33.510Z info: POST /backend-owner/Tenants-properties
+2024-08-29T13:08:33.510Z info: Connected to MySQL
+2024-08-29T13:08:33.514Z info: 200 OK: POST /Tenants-properties
+2024-08-29T13:08:38.158Z info: GET /owner/owner
+2024-08-29T13:08:38.269Z info: GET /main-owner.css
+2024-08-29T13:08:38.293Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T13:08:38.366Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T13:08:38.367Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T13:08:38.368Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T13:08:38.374Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T13:08:38.377Z info: GET /owner/owner-createTenant.js
+2024-08-29T13:08:38.378Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T13:08:38.391Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T13:08:38.395Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T13:08:38.396Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T13:08:38.397Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T13:08:38.397Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T13:08:38.399Z info: GET /owner/owner-myMessages.js
+2024-08-29T13:08:38.408Z info: GET /owner/owner-sendMessage.js
+2024-08-29T13:08:38.410Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T13:08:38.412Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T13:08:38.413Z info: GET /owner/owner-uploadImage.js
+2024-08-29T13:08:38.415Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T13:08:38.416Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T13:08:38.430Z info: GET /owner/owner-frontendManager.js
+2024-08-29T13:08:38.433Z info: GET /public/endpoints.js
+2024-08-29T13:08:38.434Z info: GET /public/variablesState.js
+2024-08-29T13:08:38.434Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:08:38.438Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:08:38.811Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:08:38.812Z info: Connected to MySQL
+2024-08-29T13:08:38.814Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:08:38.815Z info: Connected to MySQL
+2024-08-29T13:08:38.817Z info: POST /backend-owner/update-sold
+2024-08-29T13:08:38.817Z info: Connected to MySQL
+2024-08-29T13:08:38.911Z info: GET /owner/owner-error
+2024-08-29T13:08:38.986Z info: GET /error-style.css
+2024-08-29T13:08:38.989Z info: GET /public/endpoints.js
+2024-08-29T13:08:38.991Z info: GET /owner/owner-error.js
+2024-08-29T13:08:42.283Z info: GET /icon/favicon.ico
+2024-08-29T13:08:42.292Z info: GET /icon/favicon.ico
+2024-08-29T13:08:45.696Z info: GET /owner/owner-error
+2024-08-29T13:08:45.723Z info: GET /error-style.css
+2024-08-29T13:08:45.729Z info: GET /public/endpoints.js
+2024-08-29T13:08:45.732Z info: GET /owner/owner-error.js
+2024-08-29T13:08:45.741Z info: GET /icon/favicon.ico
+2024-08-29T13:08:45.748Z info: GET /icon/favicon.ico
+2024-08-29T13:08:46.734Z info: GET /owner/owner-error
+2024-08-29T13:08:46.757Z info: GET /error-style.css
+2024-08-29T13:08:46.757Z info: GET /public/endpoints.js
+2024-08-29T13:08:46.758Z info: GET /owner/owner-error.js
+2024-08-29T13:08:46.780Z info: GET /icon/favicon.ico
+2024-08-29T13:08:46.788Z info: GET /icon/favicon.ico
+2024-08-29T13:09:05.206Z info: GET /te/owner-error
+2024-08-29T13:09:05.208Z warn: 404 Not Found: GET /te/owner-error
+2024-08-29T13:09:05.259Z info: GET /error-style.css
+2024-08-29T13:09:29.946Z info: GET /admin/admin-sign-log
+2024-08-29T13:09:29.993Z info: GET /sign-log-style.css
+2024-08-29T13:09:30.012Z info: GET /public/endpoints.js
+2024-08-29T13:09:30.015Z info: GET /admin/admin-signLogLogic.js
+2024-08-29T13:09:37.624Z info: POST /backend-admin/admin-auth
+2024-08-29T13:09:37.624Z info: Connected to MySQL
+2024-08-29T13:09:37.761Z info: 200 OK: POST /admin-auth
+2024-08-29T13:09:37.788Z info: GET /admin/admin
+2024-08-29T13:09:37.874Z info: GET /main-admin.css
+2024-08-29T13:09:37.889Z info: GET /public/endpoints.js
+2024-08-29T13:09:37.929Z info: GET /public/variablesState.js
+2024-08-29T13:09:37.945Z info: GET /admin/admin-getSubscriptions.js
+2024-08-29T13:09:37.958Z info: GET /admin/admin-insertValidSubscription.js
+2024-08-29T13:09:37.971Z info: GET /admin/admin-frontendManager.js
+2024-08-29T13:09:37.999Z info: POST /backend-admin/get-all-subscriptions
+2024-08-29T13:09:38.000Z info: Connected to MySQL
+2024-08-29T13:09:38.040Z info: 200 OK: POST /get-all-subscriptions
+2024-08-29T13:10:48.003Z info: GET /owner/owner-subscription
+2024-08-29T13:11:12.482Z info: POST /backend-owner/insert-subscription
+2024-08-29T13:11:12.483Z info: Connected to MySQL
+2024-08-29T13:11:12.499Z info: 200 OK: POST /insert-subscription
+2024-08-29T13:11:16.984Z info: GET /admin/admin
+2024-08-29T13:11:17.015Z info: GET /main-admin.css
+2024-08-29T13:11:17.019Z info: GET /public/endpoints.js
+2024-08-29T13:11:17.032Z info: GET /public/variablesState.js
+2024-08-29T13:11:17.038Z info: GET /admin/admin-getSubscriptions.js
+2024-08-29T13:11:17.045Z info: GET /admin/admin-insertValidSubscription.js
+2024-08-29T13:11:17.051Z info: GET /admin/admin-frontendManager.js
+2024-08-29T13:11:17.059Z info: POST /backend-admin/get-all-subscriptions
+2024-08-29T13:11:17.059Z info: Connected to MySQL
+2024-08-29T13:11:17.062Z info: 200 OK: POST /get-all-subscriptions
+2024-08-29T13:11:17.068Z info: GET /icon/favicon.ico
+2024-08-29T13:11:17.089Z info: GET /icon/favicon.ico
+2024-08-29T13:11:37.249Z info: POST /backend-admin/update-owner-sold
+2024-08-29T13:11:37.249Z info: Connected to MySQL
+2024-08-29T13:11:37.265Z info: 200 OK: POST /update-owner-sold
+2024-08-29T13:11:39.742Z info: GET /owner/owner-subscription
+2024-08-29T13:11:41.812Z info: GET /owner/owner-dashboard
+2024-08-29T13:11:41.820Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:11:41.821Z info: Connected to MySQL
+2024-08-29T13:11:41.824Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:11:41.830Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:11:41.831Z info: Connected to MySQL
+2024-08-29T13:11:41.836Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:11:45.297Z info: GET /owner/owner
+2024-08-29T13:11:45.322Z info: GET /main-owner.css
+2024-08-29T13:11:45.371Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T13:11:45.407Z info: GET /public/endpoints.js
+2024-08-29T13:11:45.422Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T13:11:45.422Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T13:11:45.423Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T13:11:45.426Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T13:11:45.430Z info: GET /owner/owner-createTenant.js
+2024-08-29T13:11:45.433Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T13:11:45.435Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T13:11:45.436Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T13:11:45.436Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T13:11:45.437Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T13:11:45.438Z info: GET /owner/owner-myMessages.js
+2024-08-29T13:11:45.439Z info: GET /owner/owner-sendMessage.js
+2024-08-29T13:11:45.442Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T13:11:45.443Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T13:11:45.444Z info: GET /owner/owner-uploadImage.js
+2024-08-29T13:11:45.447Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T13:11:45.448Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T13:11:45.449Z info: GET /owner/owner-frontendManager.js
+2024-08-29T13:11:45.451Z info: GET /public/variablesState.js
+2024-08-29T13:11:45.452Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:11:45.453Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T13:11:45.453Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:11:45.458Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:11:45.459Z info: Connected to MySQL
+2024-08-29T13:11:45.463Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:11:45.463Z info: Connected to MySQL
+2024-08-29T13:11:45.466Z info: POST /backend-owner/update-sold
+2024-08-29T13:11:45.466Z info: Connected to MySQL
+2024-08-29T13:11:45.468Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:11:45.469Z info: GET /icon/favicon.ico
+2024-08-29T13:11:45.469Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:11:45.470Z info: 200 OK: POST /update-sold
+2024-08-29T13:11:45.484Z info: GET /icon/favicon.ico
+2024-08-29T13:12:17.936Z info: POST /backend-owner/delete-receipt
+2024-08-29T13:12:17.937Z info: Connected to MySQL
+2024-08-29T13:12:17.955Z info: 200 OK: POST /delete-receipt
+2024-08-29T13:12:21.466Z info: GET /owner/owner-tenants
+2024-08-29T13:12:21.474Z info: POST /backend-owner/all-tenants
+2024-08-29T13:12:21.475Z info: Connected to MySQL
+2024-08-29T13:12:21.489Z info: 200 OK: POST /all-tenants
+2024-08-29T13:12:21.508Z info: POST /backend-owner/recent-messages
+2024-08-29T13:12:21.508Z info: Connected to MySQL
+2024-08-29T13:12:21.513Z info: 200 OK: POST /recent-messages
+2024-08-29T13:12:30.339Z info: POST /backend-owner/my-tenant
+2024-08-29T13:12:30.340Z info: Connected to MySQL
+2024-08-29T13:12:30.345Z info: 200 OK: POST /my-tenant
+2024-08-29T13:12:35.050Z info: POST /backend-owner/update-tenant
+2024-08-29T13:12:35.051Z info: Connected to MySQL
+2024-08-29T13:12:35.061Z info: 200 OK: POST /update-tenant
+2024-08-29T13:12:42.226Z info: GET /tenant/tenant-dashboard
+2024-08-29T13:12:42.234Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:12:42.234Z info: Connected to MySQL
+2024-08-29T13:12:42.239Z info: 200 OK: POST /tenant-property
+2024-08-29T13:12:42.242Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:12:42.243Z info: Connected to MySQL
+2024-08-29T13:12:42.246Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:12:42.250Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:12:42.250Z info: Connected to MySQL
+2024-08-29T13:12:42.253Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:12:46.929Z info: GET /tenant/tenant
+2024-08-29T13:12:46.975Z info: GET /main-tenant.css
+2024-08-29T13:12:47.058Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T13:12:47.061Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T13:12:47.064Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T13:12:47.078Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T13:12:47.079Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T13:12:47.081Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T13:12:47.087Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T13:12:47.090Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T13:12:47.091Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T13:12:47.094Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T13:12:47.095Z info: GET /public/endpoints.js
+2024-08-29T13:12:47.096Z info: GET /public/variablesState.js
+2024-08-29T13:12:47.100Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T13:12:47.101Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T13:12:47.112Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:12:47.112Z info: Connected to MySQL
+2024-08-29T13:12:47.116Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:12:47.117Z info: Connected to MySQL
+2024-08-29T13:12:47.121Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:12:47.122Z info: 200 OK: POST /tenant-property
+2024-08-29T13:12:47.126Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:12:47.127Z info: Connected to MySQL
+2024-08-29T13:12:47.129Z info: GET /icon/favicon.ico
+2024-08-29T13:12:47.130Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:12:47.136Z info: GET /icon/favicon.ico
+2024-08-29T13:12:52.135Z info: GET /tenant/tenant-discussion
+2024-08-29T13:12:52.141Z info: POST /backend-tenant/my-messages
+2024-08-29T13:12:52.141Z info: Connected to MySQL
+2024-08-29T13:12:52.143Z info: 200 OK: POST /my-messages
+2024-08-29T13:12:52.168Z info: Connected to MySQL
+2024-08-29T13:12:53.778Z info: GET /tenant/tenant-profile
+2024-08-29T13:12:53.785Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:12:53.785Z info: Connected to MySQL
+2024-08-29T13:12:53.787Z info: 200 OK: POST /tenant-property
+2024-08-29T13:12:58.070Z info: GET /tenant/tenant-dashboard
+2024-08-29T13:12:58.076Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:12:58.077Z info: Connected to MySQL
+2024-08-29T13:12:58.085Z info: 200 OK: POST /tenant-property
+2024-08-29T13:12:58.101Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:12:58.101Z info: Connected to MySQL
+2024-08-29T13:12:58.103Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:12:58.105Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:12:58.106Z info: Connected to MySQL
+2024-08-29T13:12:58.108Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:13:08.946Z info: GET /owner/owner
+2024-08-29T13:13:08.959Z info: GET /main-owner.css
+2024-08-29T13:13:08.972Z info: GET /public/endpoints.js
+2024-08-29T13:13:08.998Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T13:13:09.032Z info: GET /public/variablesState.js
+2024-08-29T13:13:09.046Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T13:13:09.047Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T13:13:09.048Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T13:13:09.054Z info: GET /owner/owner-createTenant.js
+2024-08-29T13:13:09.057Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T13:13:09.060Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T13:13:09.061Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T13:13:09.062Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T13:13:09.063Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T13:13:09.063Z info: GET /owner/owner-myMessages.js
+2024-08-29T13:13:09.064Z info: GET /owner/owner-sendMessage.js
+2024-08-29T13:13:09.070Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T13:13:09.071Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T13:13:09.073Z info: GET /owner/owner-uploadImage.js
+2024-08-29T13:13:09.074Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T13:13:09.074Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T13:13:09.074Z info: GET /owner/owner-frontendManager.js
+2024-08-29T13:13:09.078Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:13:09.079Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T13:13:09.079Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:13:09.080Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T13:13:09.088Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:13:09.088Z info: Connected to MySQL
+2024-08-29T13:13:09.090Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:13:09.090Z info: Connected to MySQL
+2024-08-29T13:13:09.092Z info: POST /backend-owner/update-sold
+2024-08-29T13:13:09.092Z info: Connected to MySQL
+2024-08-29T13:13:09.094Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:13:09.095Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:13:09.096Z info: 200 OK: POST /update-sold
+2024-08-29T13:13:09.107Z info: GET /icon/favicon.ico
+2024-08-29T13:13:09.120Z info: GET /icon/favicon.ico
+2024-08-29T13:13:10.098Z info: GET /owner/owner-tenants
+2024-08-29T13:13:10.104Z info: POST /backend-owner/all-tenants
+2024-08-29T13:13:10.104Z info: Connected to MySQL
+2024-08-29T13:13:10.106Z info: POST /backend-owner/recent-messages
+2024-08-29T13:13:10.107Z info: Connected to MySQL
+2024-08-29T13:13:10.109Z info: 200 OK: POST /all-tenants
+2024-08-29T13:13:10.110Z info: 200 OK: POST /recent-messages
+2024-08-29T13:13:27.817Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:13:27.817Z info: Connected to MySQL
+2024-08-29T13:13:27.819Z info: 200 OK: POST /tenant-property
+2024-08-29T13:13:29.947Z info: GET /tenant/tenant?tenant-property=50&months=2024-06-01&sumpayed=50000
+2024-08-29T13:13:29.979Z info: GET /main-tenant.css
+2024-08-29T13:13:29.998Z info: GET /public/endpoints.js
+2024-08-29T13:13:30.036Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T13:13:30.050Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T13:13:30.051Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T13:13:30.057Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T13:13:30.059Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T13:13:30.060Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T13:13:30.062Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T13:13:30.066Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T13:13:30.067Z info: GET /public/variablesState.js
+2024-08-29T13:13:30.069Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T13:13:30.069Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T13:13:30.070Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T13:13:30.071Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T13:13:30.084Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:13:30.085Z info: Connected to MySQL
+2024-08-29T13:13:30.091Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:13:30.091Z info: Connected to MySQL
+2024-08-29T13:13:30.093Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:13:30.094Z info: 200 OK: POST /tenant-property
+2024-08-29T13:13:30.099Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:13:30.100Z info: Connected to MySQL
+2024-08-29T13:13:30.105Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:13:32.961Z info: GET /owner/owner-dashboard
+2024-08-29T13:13:32.972Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:13:32.972Z info: Connected to MySQL
+2024-08-29T13:13:32.979Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:13:32.980Z info: Connected to MySQL
+2024-08-29T13:13:32.986Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:13:32.989Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:13:43.277Z info: GET /owner/owner-receipt
+2024-08-29T13:13:43.303Z info: GET /receipt.css
+2024-08-29T13:13:43.318Z info: GET /public/endpoints.js
+2024-08-29T13:13:43.330Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:13:43.344Z info: GET /public/variablesState.js
+2024-08-29T13:13:43.346Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:13:43.347Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:13:43.348Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:13:43.358Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T13:13:55.672Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:13:55.673Z info: Connected to MySQL
+2024-08-29T13:13:55.677Z info: 200 OK: POST /tenant-property
+2024-08-29T13:13:57.952Z info: POST /backend-tenant/require-receipt
+2024-08-29T13:13:57.953Z info: Connected to MySQL
+2024-08-29T13:13:57.968Z info: 200 OK: POST /require-receipt
+2024-08-29T13:14:00.602Z info: GET /owner/owner-dashboard
+2024-08-29T13:14:00.608Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:14:00.608Z info: Connected to MySQL
+2024-08-29T13:14:00.610Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:14:00.616Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:14:00.617Z info: Connected to MySQL
+2024-08-29T13:14:00.620Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:14:03.385Z info: GET /owner/owner-receipt
+2024-08-29T13:14:03.420Z info: GET /receipt.css
+2024-08-29T13:14:03.443Z info: GET /public/endpoints.js
+2024-08-29T13:14:03.458Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:14:03.475Z info: GET /public/variablesState.js
+2024-08-29T13:14:03.477Z info: GET /owner/owner-toggleValidateDownloadReceipt.js
+2024-08-29T13:14:03.479Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:14:03.480Z info: GET /owner/owner-downloadReceipt.js
+2024-08-29T13:14:03.489Z info: GET /img/7332c607-2547-4ab7-83ba-237482e82d1e.png
+2024-08-29T13:14:05.983Z info: POST /backend-owner/validate-receipt
+2024-08-29T13:14:05.983Z info: Connected to MySQL
+2024-08-29T13:14:05.998Z info: 200 OK: POST /validate-receipt
+2024-08-29T13:14:06.007Z info: POST /backend-owner/update-sold
+2024-08-29T13:14:06.008Z info: Connected to MySQL
+2024-08-29T13:14:06.023Z info: 200 OK: POST /update-sold
+2024-08-29T13:14:06.042Z info: GET /owner/owner
+2024-08-29T13:14:06.081Z info: GET /main-owner.css
+2024-08-29T13:14:06.085Z info: GET /public/endpoints.js
+2024-08-29T13:14:06.087Z info: GET /public/variablesState.js
+2024-08-29T13:14:06.089Z info: GET /owner/owner-updateSoldUtils.js
+2024-08-29T13:14:06.090Z info: GET /owner/owner-getUnvalidReceipt.js
+2024-08-29T13:14:06.095Z info: GET /owner/owner-validateReceiptLogic.js
+2024-08-29T13:14:06.100Z info: GET /owner/owner-ownerUtil.js
+2024-08-29T13:14:06.101Z info: GET /owner/owner-createPropertyRequest.js
+2024-08-29T13:14:06.104Z info: GET /owner/owner-getPropertiesRequest.js
+2024-08-29T13:14:06.105Z info: GET /owner/owner-createTenant.js
+2024-08-29T13:14:06.106Z info: GET /owner/owner-getTenantProperty.js
+2024-08-29T13:14:06.114Z info: GET /owner/owner-showModalTenant.js
+2024-08-29T13:14:06.116Z info: GET /owner/owner-requireReceiptRequest.js
+2024-08-29T13:14:06.117Z info: GET /owner/owner-getValidReceipt.js
+2024-08-29T13:14:06.117Z info: GET /owner/owner-getRecentMessages.js
+2024-08-29T13:14:06.119Z info: GET /owner/owner-myMessages.js
+2024-08-29T13:14:06.130Z info: GET /owner/owner-receiptMonthHelper.js
+2024-08-29T13:14:06.131Z info: GET /owner/owner-uploadImage.js
+2024-08-29T13:14:06.132Z info: GET /owner/owner-accessReceipt.js
+2024-08-29T13:14:06.133Z info: GET /owner/owner-insertSubscription.js
+2024-08-29T13:14:06.133Z info: GET /owner/owner-frontendManager.js
+2024-08-29T13:14:06.140Z info: GET /owner/owner-getAllTenants.js
+2024-08-29T13:14:06.141Z info: GET /owner/owner-sendMessage.js
+2024-08-29T13:14:06.141Z info: GET /owner/owner-deleteMessage.js
+2024-08-29T13:14:06.143Z info: GET /owner/owner-getRecentTenants.js
+2024-08-29T13:14:06.153Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:14:06.153Z info: Connected to MySQL
+2024-08-29T13:14:06.156Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:14:06.157Z info: Connected to MySQL
+2024-08-29T13:14:06.159Z info: POST /backend-owner/update-sold
+2024-08-29T13:14:06.159Z info: Connected to MySQL
+2024-08-29T13:14:06.162Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:14:06.164Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:14:06.165Z info: 200 OK: POST /update-sold
+2024-08-29T13:14:09.272Z info: GET /tenant/tenant-dashboard
+2024-08-29T13:14:09.286Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:14:09.286Z info: Connected to MySQL
+2024-08-29T13:14:09.291Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:14:09.292Z info: Connected to MySQL
+2024-08-29T13:14:09.298Z info: 200 OK: POST /tenant-property
+2024-08-29T13:14:09.300Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:14:09.308Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:14:09.308Z info: Connected to MySQL
+2024-08-29T13:14:09.316Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:16:35.441Z info: GET /admin/admin
+2024-08-29T13:16:35.480Z info: GET /main-admin.css
+2024-08-29T13:16:35.486Z info: GET /public/endpoints.js
+2024-08-29T13:16:35.499Z info: GET /public/variablesState.js
+2024-08-29T13:16:35.505Z info: GET /admin/admin-getSubscriptions.js
+2024-08-29T13:16:35.515Z info: GET /admin/admin-insertValidSubscription.js
+2024-08-29T13:16:35.522Z info: GET /admin/admin-frontendManager.js
+2024-08-29T13:16:35.533Z info: POST /backend-admin/get-all-subscriptions
+2024-08-29T13:16:35.534Z info: Connected to MySQL
+2024-08-29T13:16:35.538Z info: 200 OK: POST /get-all-subscriptions
+2024-08-29T13:16:35.550Z info: GET /icon/favicon.ico
+2024-08-29T13:16:35.574Z info: GET /icon/favicon.ico
+2024-08-29T13:16:36.489Z info: GET /admin/admin
+2024-08-29T13:16:36.524Z info: GET /main-admin.css
+2024-08-29T13:16:36.533Z info: GET /public/endpoints.js
+2024-08-29T13:16:36.540Z info: GET /public/variablesState.js
+2024-08-29T13:16:36.548Z info: GET /admin/admin-getSubscriptions.js
+2024-08-29T13:16:36.554Z info: GET /admin/admin-insertValidSubscription.js
+2024-08-29T13:16:36.562Z info: GET /admin/admin-frontendManager.js
+2024-08-29T13:16:36.571Z info: POST /backend-admin/get-all-subscriptions
+2024-08-29T13:16:36.572Z info: Connected to MySQL
+2024-08-29T13:16:36.582Z info: 200 OK: POST /get-all-subscriptions
+2024-08-29T13:16:36.596Z info: GET /icon/favicon.ico
+2024-08-29T13:16:36.609Z info: GET /icon/favicon.ico
+2024-08-29T13:16:47.511Z info: GET /admin/admin
+2024-08-29T13:16:47.540Z info: GET /main-admin.css
+2024-08-29T13:16:47.553Z info: GET /public/endpoints.js
+2024-08-29T13:16:58.380Z info: GET /admin/admin
+2024-08-29T13:16:58.497Z info: GET /main-admin.css
+2024-08-29T13:16:58.508Z info: GET /public/endpoints.js
+2024-08-29T13:16:58.517Z info: GET /public/variablesState.js
+2024-08-29T13:16:58.552Z info: GET /admin/admin-getSubscriptions.js
+2024-08-29T13:16:58.560Z info: GET /admin/admin-insertValidSubscription.js
+2024-08-29T13:16:58.567Z info: GET /admin/admin-frontendManager.js
+2024-08-29T13:16:58.577Z info: POST /backend-admin/get-all-subscriptions
+2024-08-29T13:16:58.578Z info: Connected to MySQL
+2024-08-29T13:16:58.583Z info: 200 OK: POST /get-all-subscriptions
+2024-08-29T13:16:59.104Z info: GET /icon/favicon.ico
+2024-08-29T13:16:59.112Z info: GET /icon/favicon.ico
+2024-08-29T13:18:36.089Z info: POST /backend-admin/insert-subscription
+2024-08-29T13:18:36.090Z info: Connected to MySQL
+2024-08-29T13:18:36.099Z info: 200 OK: POST /insert-subscription
+2024-08-29T13:18:43.022Z info: POST /backend-admin/delete-subscription
+2024-08-29T13:18:43.023Z info: Connected to MySQL
+2024-08-29T13:18:43.029Z info: POST /backend-admin/delete-subscription
+2024-08-29T13:18:43.030Z info: Connected to MySQL
+2024-08-29T13:18:43.044Z info: 200 OK: POST /delete-subscription
+2024-08-29T13:18:43.045Z info: 200 OK: POST /delete-subscription
+2024-08-29T13:23:26.646Z info: GET /admin/admin
+2024-08-29T13:23:26.692Z info: GET /main-admin.css
+2024-08-29T13:23:26.704Z info: GET /public/variablesState.js
+2024-08-29T13:23:26.712Z info: GET /admin/admin-getSubscriptions.js
+2024-08-29T13:23:26.713Z info: GET /admin/admin-insertValidSubscription.js
+2024-08-29T13:23:26.716Z info: GET /admin/admin-frontendManager.js
+2024-08-29T13:23:26.716Z info: GET /public/endpoints.js
+2024-08-29T13:23:26.952Z info: POST /backend-admin/get-all-subscriptions
+2024-08-29T13:23:26.960Z info: GET /icon/favicon.ico
+2024-08-29T13:23:26.982Z info: Connected to MySQL
+2024-08-29T13:23:26.989Z info: 200 OK: POST /get-all-subscriptions
+2024-08-29T13:23:26.997Z info: GET /icon/favicon.ico
+2024-08-29T13:24:14.307Z info: GET /admin/admin-error
+2024-08-29T13:24:14.388Z info: GET /error-style.css
+2024-08-29T13:24:14.396Z info: GET /public/endpoints.js
+2024-08-29T13:24:14.397Z info: GET /admin/admin-error.js
+2024-08-29T13:24:14.503Z info: GET /icon/favicon.ico
+2024-08-29T13:24:14.507Z info: GET /icon/favicon.ico
+2024-08-29T13:24:28.873Z info: GET /error-style.css
+2024-08-29T13:25:52.515Z info: GET /admin/admin-error
+2024-08-29T13:25:52.540Z info: GET /error-style.css
+2024-08-29T13:25:52.553Z info: GET /public/endpoints.js
+2024-08-29T13:25:52.557Z info: GET /admin/admin-error.js
+2024-08-29T13:25:52.583Z info: GET /icon/favicon.ico
+2024-08-29T13:25:52.596Z info: GET /icon/favicon.ico
+2024-08-29T13:26:18.682Z info: GET /admin/admin-error
+2024-08-29T13:26:18.748Z info: GET /error-style.css
+2024-08-29T13:26:18.775Z info: GET /public/endpoints.js
+2024-08-29T13:26:18.785Z info: GET /admin/admin-error.js
+2024-08-29T13:26:18.837Z info: GET /icon/favicon.ico
+2024-08-29T13:26:18.854Z info: GET /icon/favicon.ico
+2024-08-29T13:26:32.987Z info: GET /admin/admin
+2024-08-29T13:26:33.060Z info: GET /main-admin.css
+2024-08-29T13:26:33.098Z info: GET /public/endpoints.js
+2024-08-29T13:26:33.100Z info: GET /public/variablesState.js
+2024-08-29T13:26:33.102Z info: GET /admin/admin-getSubscriptions.js
+2024-08-29T13:26:33.106Z info: GET /admin/admin-insertValidSubscription.js
+2024-08-29T13:26:33.110Z info: GET /admin/admin-frontendManager.js
+2024-08-29T13:26:33.152Z info: POST /backend-admin/get-all-subscriptions
+2024-08-29T13:26:33.180Z info: Connected to MySQL
+2024-08-29T13:26:33.194Z info: 200 OK: POST /get-all-subscriptions
+2024-08-29T13:27:32.837Z info: GET /owner/owner-profile
+2024-08-29T13:27:32.870Z info: POST /backend-owner/my-owner
+2024-08-29T13:27:32.872Z info: Connected to MySQL
+2024-08-29T13:27:32.883Z info: 200 OK: POST /my-owner
+2024-08-29T13:27:32.906Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:27:33.788Z info: GET /owner/owner-tenants
+2024-08-29T13:27:33.821Z info: POST /backend-owner/all-tenants
+2024-08-29T13:27:33.822Z info: Connected to MySQL
+2024-08-29T13:27:33.839Z info: 200 OK: POST /all-tenants
+2024-08-29T13:27:33.844Z info: POST /backend-owner/recent-messages
+2024-08-29T13:27:33.845Z info: Connected to MySQL
+2024-08-29T13:27:33.856Z info: 200 OK: POST /recent-messages
+2024-08-29T13:27:40.548Z info: POST /backend-owner/delete-tenant
+2024-08-29T13:27:40.549Z info: Connected to MySQL
+2024-08-29T13:27:40.588Z info: 200 OK: POST /delete-tenant
+2024-08-29T13:27:43.198Z info: POST /backend-owner/my-messages
+2024-08-29T13:27:43.198Z info: Connected to MySQL
+2024-08-29T13:27:43.212Z info: 200 OK: POST /my-messages
+2024-08-29T13:27:43.228Z info: POST /backend-owner/recent-messages
+2024-08-29T13:27:43.229Z info: Connected to MySQL
+2024-08-29T13:27:43.244Z info: 200 OK: POST /recent-messages
+2024-08-29T13:27:43.258Z info: Connected to MySQL
+2024-08-29T13:27:44.840Z info: POST /backend-owner/recent-messages
+2024-08-29T13:27:44.854Z info: Connected to MySQL
+2024-08-29T13:27:44.863Z info: 200 OK: POST /recent-messages
+2024-08-29T13:27:50.522Z info: POST /backend-owner/delete-tenant
+2024-08-29T13:27:50.523Z info: Connected to MySQL
+2024-08-29T13:27:50.549Z info: 200 OK: POST /delete-tenant
+2024-08-29T13:27:52.076Z info: GET /owner/owner-properties
+2024-08-29T13:27:52.101Z info: POST /backend-owner/my-properties
+2024-08-29T13:27:52.101Z info: Connected to MySQL
+2024-08-29T13:27:52.108Z info: 200 OK: POST /my-properties
+2024-08-29T13:27:54.994Z info: POST /backend-owner/delete-property
+2024-08-29T13:27:54.996Z info: Connected to MySQL
+2024-08-29T13:27:55.017Z info: 200 OK: POST /delete-property
+2024-08-29T13:27:58.981Z info: POST /backend-owner/delete-property
+2024-08-29T13:27:58.982Z info: Connected to MySQL
+2024-08-29T13:27:58.995Z info: 200 OK: POST /delete-property
+2024-08-29T13:28:00.624Z info: GET /owner/owner-tenant-home
+2024-08-29T13:28:00.650Z info: POST /backend-owner/Tenants-properties
+2024-08-29T13:28:00.652Z info: Connected to MySQL
+2024-08-29T13:28:00.660Z info: 200 OK: POST /Tenants-properties
+2024-08-29T13:28:00.666Z info: POST /backend-owner/my-properties
+2024-08-29T13:28:00.667Z info: Connected to MySQL
+2024-08-29T13:28:00.673Z info: 200 OK: POST /my-properties
+2024-08-29T13:28:02.012Z info: GET /owner/owner-receipts
+2024-08-29T13:28:02.041Z info: POST /backend-owner/receipt-valid
+2024-08-29T13:28:02.041Z info: Connected to MySQL
+2024-08-29T13:28:02.046Z info: POST /backend-owner/Tenants-properties
+2024-08-29T13:28:02.047Z info: Connected to MySQL
+2024-08-29T13:28:02.054Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:28:02.057Z info: 200 OK: POST /Tenants-properties
+2024-08-29T13:28:04.355Z info: GET /owner/owner-subscription
+2024-08-29T13:28:07.374Z info: GET /owner/owner-dashboard
+2024-08-29T13:28:07.401Z info: POST /backend-owner/receipt-unValid
+2024-08-29T13:28:07.402Z info: Connected to MySQL
+2024-08-29T13:28:07.414Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:28:07.426Z info: POST /backend-owner/recent-tenants
+2024-08-29T13:28:07.427Z info: Connected to MySQL
+2024-08-29T13:28:07.434Z info: 200 OK: POST /recent-tenants
+2024-08-29T13:28:08.130Z info: GET /owner/owner-profile
+2024-08-29T13:28:08.153Z info: POST /backend-owner/my-owner
+2024-08-29T13:28:08.154Z info: Connected to MySQL
+2024-08-29T13:28:08.157Z info: 200 OK: POST /my-owner
+2024-08-29T13:28:08.163Z info: GET /img/80f410be-ec54-4b38-8a33-fca1e7c555c6.jpg
+2024-08-29T13:28:08.797Z info: GET /owner/owner-tenants
+2024-08-29T13:28:08.825Z info: POST /backend-owner/all-tenants
+2024-08-29T13:28:08.826Z info: Connected to MySQL
+2024-08-29T13:28:08.831Z info: POST /backend-owner/recent-messages
+2024-08-29T13:28:08.832Z info: Connected to MySQL
+2024-08-29T13:28:08.837Z info: 200 OK: POST /all-tenants
+2024-08-29T13:28:08.839Z info: 200 OK: POST /recent-messages
+2024-08-29T13:28:18.549Z info: GET /tenant/tenant
+2024-08-29T13:28:18.597Z info: GET /main-tenant.css
+2024-08-29T13:28:18.634Z info: GET /public/endpoints.js
+2024-08-29T13:28:18.687Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T13:28:18.704Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T13:28:18.705Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T13:28:18.714Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T13:28:18.717Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T13:28:18.721Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T13:28:18.724Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T13:28:18.726Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T13:28:18.728Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T13:28:18.731Z info: GET /public/variablesState.js
+2024-08-29T13:28:18.732Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T13:28:18.737Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T13:28:18.741Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T13:28:18.755Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:28:18.756Z info: Connected to MySQL
+2024-08-29T13:28:18.763Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:28:18.763Z info: Connected to MySQL
+2024-08-29T13:28:18.770Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:28:18.772Z info: 200 OK: POST /tenant-property
+2024-08-29T13:28:18.834Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:28:18.835Z info: Connected to MySQL
+2024-08-29T13:28:18.838Z info: GET /icon/favicon.ico
+2024-08-29T13:28:18.840Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:28:18.862Z info: GET /icon/favicon.ico
+2024-08-29T13:28:20.444Z info: GET /tenant/tenant
+2024-08-29T13:28:20.472Z info: GET /main-tenant.css
+2024-08-29T13:28:20.477Z info: GET /public/endpoints.js
+2024-08-29T13:28:20.481Z info: GET /public/variablesState.js
+2024-08-29T13:28:20.485Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T13:28:20.488Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T13:28:20.492Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T13:28:20.495Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T13:28:20.500Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T13:28:20.505Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T13:28:20.508Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T13:28:20.510Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T13:28:20.510Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T13:28:20.512Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T13:28:20.516Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T13:28:20.520Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T13:28:20.540Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:28:20.540Z info: Connected to MySQL
+2024-08-29T13:28:20.543Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:28:20.543Z info: Connected to MySQL
+2024-08-29T13:28:20.545Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:28:20.547Z info: 200 OK: POST /tenant-property
+2024-08-29T13:28:20.575Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:28:20.576Z info: Connected to MySQL
+2024-08-29T13:28:20.579Z info: GET /icon/favicon.ico
+2024-08-29T13:28:20.580Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:28:20.590Z info: GET /icon/favicon.ico
+2024-08-29T13:28:47.365Z info: GET /tenant/tenant-sign-log
+2024-08-29T13:28:47.395Z info: GET /sign-log-style.css
+2024-08-29T13:28:47.428Z info: GET /public/endpoints.js
+2024-08-29T13:28:47.442Z info: GET /public/signLogAnimation.js
+2024-08-29T13:28:47.444Z info: GET /tenant/tenant-signLogLogic.js
+2024-08-29T13:28:58.474Z info: POST /backend-tenant/auth-tenant-account
+2024-08-29T13:28:58.475Z info: Connected to MySQL
+2024-08-29T13:28:58.604Z info: 200 OK: POST /auth-tenant-account
+2024-08-29T13:28:58.641Z info: GET /tenant/tenant
+2024-08-29T13:28:58.690Z info: GET /main-tenant.css
+2024-08-29T13:28:58.809Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T13:28:58.811Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T13:28:58.815Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T13:28:58.818Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T13:28:58.826Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T13:28:58.835Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T13:28:58.842Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T13:28:58.845Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T13:28:58.848Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T13:28:58.850Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T13:28:58.852Z info: GET /public/endpoints.js
+2024-08-29T13:28:58.853Z info: GET /public/variablesState.js
+2024-08-29T13:28:58.863Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T13:28:58.868Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T13:28:58.886Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:28:58.887Z info: Connected to MySQL
+2024-08-29T13:28:58.895Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:28:58.895Z info: Connected to MySQL
+2024-08-29T13:28:58.901Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:28:58.904Z info: 200 OK: POST /tenant-property
+2024-08-29T13:28:58.908Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:28:58.908Z info: Connected to MySQL
+2024-08-29T13:28:58.913Z info: 200 OK: POST /receipt-valid
+2024-08-29T13:29:03.242Z info: POST /backend-csp-report/csp-violation
+2024-08-29T13:29:14.303Z info: GET /tenant/tenant-sign-log
+2024-08-29T13:29:14.346Z info: GET /sign-log-style.css
+2024-08-29T13:29:14.366Z info: GET /public/endpoints.js
+2024-08-29T13:29:14.371Z info: GET /public/signLogAnimation.js
+2024-08-29T13:29:14.372Z info: GET /tenant/tenant-signLogLogic.js
+2024-08-29T13:29:21.397Z info: POST /backend-tenant/auth-tenant-account
+2024-08-29T13:29:21.398Z info: Connected to MySQL
+2024-08-29T13:29:21.400Z warn: 404 Not Found: POST /auth-tenant-account
+2024-08-29T13:29:39.590Z info: GET /owner/owner-tenants
+2024-08-29T13:29:39.604Z info: POST /backend-owner/all-tenants
+2024-08-29T13:29:39.604Z info: Connected to MySQL
+2024-08-29T13:29:39.619Z info: 200 OK: POST /all-tenants
+2024-08-29T13:29:39.622Z info: POST /backend-owner/recent-messages
+2024-08-29T13:29:39.622Z info: Connected to MySQL
+2024-08-29T13:29:39.632Z info: 200 OK: POST /recent-messages
+2024-08-29T13:29:50.278Z info: POST /backend-owner/my-tenant
+2024-08-29T13:29:50.278Z info: Connected to MySQL
+2024-08-29T13:29:50.283Z info: 200 OK: POST /my-tenant
+2024-08-29T13:29:52.683Z info: POST /backend-owner/update-tenant-key
+2024-08-29T13:29:52.683Z info: Connected to MySQL
+2024-08-29T13:29:52.691Z info: 200 OK: POST /update-tenant-key
+2024-08-29T13:30:03.356Z info: GET /tenant/tenant-reset-pwd
+2024-08-29T13:30:03.395Z info: GET /sign-log-style.css
+2024-08-29T13:30:03.404Z info: GET /public/endpoints.js
+2024-08-29T13:30:03.430Z info: GET /tenant/tenant-resetPwdLogic.js
+2024-08-29T13:30:27.666Z info: POST /backend-tenant/reset-pwd
+2024-08-29T13:30:27.666Z info: Connected to MySQL
+2024-08-29T13:30:27.794Z info: 200 OK: POST /reset-pwd
+2024-08-29T13:30:27.815Z info: GET /tenant/tenant-sign-log
+2024-08-29T13:30:27.854Z info: GET /sign-log-style.css
+2024-08-29T13:30:27.871Z info: GET /tenant/tenant-signLogLogic.js
+2024-08-29T13:30:27.898Z info: GET /public/endpoints.js
+2024-08-29T13:30:27.907Z info: GET /public/signLogAnimation.js
+2024-08-29T13:30:41.156Z info: POST /backend-tenant/auth-tenant-account
+2024-08-29T13:30:41.157Z info: Connected to MySQL
+2024-08-29T13:30:50.761Z info: POST /backend-tenant/auth-tenant-account
+2024-08-29T13:30:50.762Z info: Connected to MySQL
+2024-08-29T13:30:50.856Z info: 200 OK: POST /auth-tenant-account
+2024-08-29T13:30:50.873Z info: GET /tenant/tenant
+2024-08-29T13:30:50.896Z info: GET /main-tenant.css
+2024-08-29T13:30:50.915Z info: GET /public/endpoints.js
+2024-08-29T13:30:50.964Z info: GET /tenant/tenant-sendMessage.js
+2024-08-29T13:30:51.013Z info: GET /tenant/tenant-requireReceiptRequest.js
+2024-08-29T13:30:51.015Z info: GET /tenant/tenant-getTenantProperty.js
+2024-08-29T13:30:51.016Z info: GET /tenant/tenant-updateProfile.js
+2024-08-29T13:30:51.019Z info: GET /tenant/tenant-receiptMonthHelper.js
+2024-08-29T13:30:51.022Z info: GET /tenant/tenant-myMessages.js
+2024-08-29T13:30:51.026Z info: GET /tenant/tenant-deleteMessage.js
+2024-08-29T13:30:51.034Z info: GET /tenant/tenant-accessReceipt.js
+2024-08-29T13:30:51.037Z info: GET /tenant/tenant-frontendManager.js
+2024-08-29T13:30:51.039Z info: GET /public/variablesState.js
+2024-08-29T13:30:51.039Z info: GET /tenant/tenant-setPwd.js
+2024-08-29T13:30:51.041Z info: GET /tenant/tenant-getUnvalidReceipt.js
+2024-08-29T13:30:51.043Z info: GET /tenant/tenant-getValidReceipt.js
+2024-08-29T13:30:51.068Z info: POST /backend-tenant/receipt-unValid
+2024-08-29T13:30:51.069Z info: Connected to MySQL
+2024-08-29T13:30:51.077Z info: POST /backend-tenant/tenant-property
+2024-08-29T13:30:51.078Z info: Connected to MySQL
+2024-08-29T13:30:51.083Z info: 200 OK: POST /receipt-unValid
+2024-08-29T13:30:51.086Z info: 200 OK: POST /tenant-property
+2024-08-29T13:30:51.099Z info: POST /backend-tenant/receipt-valid
+2024-08-29T13:30:51.099Z info: Connected to MySQL
+2024-08-29T13:30:51.103Z info: 200 OK: POST /receipt-valid

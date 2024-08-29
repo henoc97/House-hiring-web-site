@@ -58,20 +58,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       // Update the receipt details container with the formatted data
       receiptDetails.innerHTML = `
-          <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber}</p>
-          <p><strong>Date d'Émission :</strong> ${validationDate}</p>
-          <p><strong>Nom du Locataire :</strong> ${receiptData.lastname} ${receiptData.firstname}</p>
-          <p><strong>Adresse du Locataire :</strong> ${receiptData.address}</p>
-          <p><strong>Montant du Loyer :</strong> ${receiptData.sumpayed} FCFA</p>
-          <p><strong>Règlement du mois de :</strong> ${formattedMonthpayed}</p>
-          <p id="payment-date"><strong>Date de Paiement :</strong> ${formattedDate}</p>
+          <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber ?? ''}</p>
+          <p><strong>Date d'Émission :</strong> ${validationDate ?? ''}</p>
+          <p><strong>Nom du Locataire :</strong> ${receiptData.lastname ?? ''} ${receiptData.firstname ?? ''}</p>
+          <p><strong>Adresse du Locataire :</strong> ${receiptData.address ?? ''}</p>
+          <p><strong>Montant du Loyer :</strong> ${receiptData.sumpayed ?? ''} FCFA</p>
+          <p><strong>Règlement du mois de :</strong> ${formattedMonthpayed ?? ''}</p>
+          <p id="payment-date"><strong>Date de Paiement :</strong> ${formattedDate ?? ''}</p>
       `;
 
       // Update the owner details container with the owner's information
       ownerDetails.innerHTML = `
-          <p><strong>Nom du Propriétaire :</strong> ${receiptData.owner_lastname} ${receiptData.owner_firstname}</p>
-          <p><strong>Téléphone :</strong> ${receiptData.owner_contactmoov} / ${receiptData.owner_contacttg}</p>
-          <p><strong>Email :</strong> ${receiptData.owner_email}</p>
+          <p><strong>Nom du Propriétaire :</strong> ${receiptData.owner_lastname ?? ''} ${receiptData.owner_firstname ?? ''}</p>
+          <p><strong>Téléphone :</strong> ${receiptData.owner_contactmoov ?? ''} / ${receiptData.owner_contacttg ?? ''}</p>
+          <p><strong>Email :</strong> ${receiptData.owner_email ?? ''}</p>
       `;
 
       // Set the source of the signature image
