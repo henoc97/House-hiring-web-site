@@ -367,6 +367,13 @@
   padding-left: 2rem;
 }
 
+.red-message {
+  color: var(--red) !important;
+}
+.green-message {
+  color: var(--green) !important;
+}
+
 .details .badge {
   position: relative;
   display: inline-block;

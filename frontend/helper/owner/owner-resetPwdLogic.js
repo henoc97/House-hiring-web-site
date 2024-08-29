@@ -12,13 +12,9 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
   // Reset the message display
   messageDiv.textContent = '';
 
-  // Check if the passwords match
-  if (pwd !== pwd1) {
-      messageDiv.textContent = "Les mots de passe ne correspondent pas."; // Alerts in French
-      messageDiv.classList.remove('green-message');
-      messageDiv.classList.add('red-message');
-      return;
-  }
+  const value  = validatePassword(pwd, pwd1, messageDiv);
+
+  if (value === false) return;
 
   // Send the POST request via fetch
   fetch(host + 'reset-pwd', {

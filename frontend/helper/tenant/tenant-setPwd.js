@@ -18,12 +18,10 @@ function setpwdRequest() {
       messageDiv.textContent = '';
   }
 
-  // Check if the passwords match
-  if (pwd !== pwd1) {
-      messageDiv.textContent = "Les mots de passe ne correspondent pas.";
-      messageDiv.style.color = 'red';
-      return;
-  }
+  const value  = validatePassword(pwd, pwd1, messageDiv);
+
+  if (value == false) return;
+
   let userName = localStorage.getItem('userName');
   fetch(hostTenant + '/set-pwd', {
       method: 'POST',
