@@ -9,7 +9,7 @@ function validateReceiptLogic() {
 
   if (receiptData) {
 
-    const toPay = (receiptData.sumpayed * validateReceiptPrice); // Calculates the amount to pay for receipt validation
+    const toPay = (receiptData.sumpayed * validateReceiptPrice) < 200 ? 200 : (receiptData.sumpayed * validateReceiptPrice); // Calculates the amount to pay for receipt validation
     
     // Checks if the balance is sufficient
     if ((getsold() - toPay) > 0) {
