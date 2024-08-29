@@ -2,6 +2,7 @@ const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 const path = require('path');
+const {logger} = require('../src/logger/logRotation');
 
 const { ownerRedirectURL, ownerResetPwdURL } = require('../src/endpoint');
 
@@ -42,7 +43,7 @@ const sendOTPemail = async (email, pwd, codeOTP) => {
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent: ' + info.response);
   } catch (error) {
-    console.error('Error occurred while sending OTP email:', error);
+    logger.error('Error occurred while sending OTP email:', error);
   }
 };
 
@@ -72,7 +73,7 @@ const sendResetPwdOTPemail = async (email, codeOTP) => {
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent: ' + info.response);
   } catch (error) {
-    console.error('Error occurred while sending password reset email:', error);
+    logger.error('Error occurred while sending password reset email:', error);
   }
 };
 

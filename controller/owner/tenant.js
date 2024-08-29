@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const {logger} = require('../../src/logger/logRotation');
 
 /**
  * Creates a new tenant in the database.
@@ -14,9 +15,10 @@ module.exports.createTenant = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Error executing query:', queryError);
+        logger.error('Error executing query:', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -38,9 +40,10 @@ module.exports.tenantsProperties = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Tenant Properties:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (queryError) {
-        console.error('Error executing query:', queryError);
+        logger.error('Error executing query:', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -63,9 +66,10 @@ module.exports.recentTenants = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Recent Tenants:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (queryError) {
-        console.error('Error executing query:', queryError);
+        logger.error('Error executing query:', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -87,9 +91,10 @@ module.exports.allTenants = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('All Tenants:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (queryError) {
-        console.error('Error executing query:', queryError);
+        logger.error('Error executing query:', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -112,9 +117,10 @@ module.exports.myTenant = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Tenant by ID:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Error executing query:', queryError);
+        logger.error('Error executing query:', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -136,9 +142,10 @@ module.exports.updateTenant = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Error executing query:', queryError);
+        logger.error('Error executing query:', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -162,9 +169,10 @@ module.exports.updateTenantConnectKey = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Tenant Connect Key Updated:', rows);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ key: keyword });
     } catch (queryError) {
-        console.error('Error executing query:', queryError);
+        logger.error('Error executing query:', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -187,9 +195,10 @@ module.exports.deleteTenant = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Tenant Deleted:', rows);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -212,9 +221,10 @@ module.exports.deletePropertyTenant = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Property Tenant Deleted:', rows);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {

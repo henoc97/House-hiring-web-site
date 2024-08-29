@@ -3,19 +3,18 @@
  * @param {number} type - The type of request (1 for profile, other for options).
  */
 function getTenantPropertyRequest(type) {
-  let token = localStorage.getItem('accessTokenTenant');
   fetch(hostTenant + 'tenant-property', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    },
+    headers: { 
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include',
   })
   .then(response => {
     if (!response.ok) {
         // Handle authentication/authorization errors
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getTenantPropertyRequest(type));
+          window.location.href = tenantLogSignURL;
         }
         // Redirect for other HTTP errors (e.g., 500)
         window.location.href = tenantError;

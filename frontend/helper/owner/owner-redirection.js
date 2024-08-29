@@ -26,19 +26,14 @@ document.addEventListener("DOMContentLoaded", function() {
     return response.json();
   })
   .then(data => {
-    // console.log("data: " + JSON.stringify(data));
-    if (data.accessToken) {
-      // console.log(data.accessToken);
+    if (data.message == 'Request successful') {
       localStorage.setItem('sold', data.sold);
-      localStorage.setItem('accessToken', data.accessToken);
-      setCookie("refreshToken", data.refreshToken, 7);
       window.location.href = ownerDashboardURL;
     } else {
       alert('Erreur de login'); // Shows a login error message in French
     }
   })
   .catch(error => {
-    // console.error('Error:', error);  // Logs the full error in the console
     alert('Erreur lors de la création du compte : ' + error.message); // Shows an error message in French
   });
 });

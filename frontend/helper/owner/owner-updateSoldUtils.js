@@ -21,7 +21,7 @@ function getsold() {
 */
 function showNewSold() {
   document.getElementById('sold').innerHTML = 
-      `<h3>Solde : ${getsold()}</h3>`;
+  `<h3>Solde : ${getsold()}</h3>`;
 }
 
 /**
@@ -30,25 +30,22 @@ function showNewSold() {
 */
 function updateSoldRequest(spend) {
   // Retrieve the access token from localStorage
-  let token = localStorage.getItem('accessToken');
   
   // Send a POST request to update the balance
   fetch(host + 'update-sold', {
       method: 'POST',
-      headers: {
-          'Authorization': 'Bearer ' + token,
+      headers: { 
           'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
           "spend": spend
       })
   })
   .then(response => response.json())
   .then(data => {
-      // console.log("data received:", data); // Log the received data
       
       const sold = data;
-      // console.log("sold : ", sold);
       
       setSold(sold); // Update localStorage with the new balance
       
@@ -56,6 +53,5 @@ function updateSoldRequest(spend) {
       document.getElementById('sold').innerHTML = `<h3>Solde : ${sold}</h3>`;
   })
   .catch((error) => { 
-    // console.error('Error fetching updateSoldRequest:', error)
   });
 }

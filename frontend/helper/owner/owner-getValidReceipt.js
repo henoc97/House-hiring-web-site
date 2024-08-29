@@ -13,7 +13,6 @@ function setNumberOfPayments(numberOfPayments) {
  * @returns {number} The number of payments. Returns 0 if the value is 'undefined' or not found.
  */
 function getNumberOfPayments() {
-  // console.log("Function getNumberOfPayments is working.");
   // Check if the stored value is 'undefined' and return 0 if true
   if (localStorage.getItem('numberOfPayments') === 'undefined') return 0;
   // Return the stored number of payments
@@ -28,7 +27,6 @@ function showNumberOfPayments() {
   if (totalPayments) {
     totalPayments.textContent = getNumberOfPayments(); // Set the text content to the number of payments
   } else {
-    // console.error("Element with ID 'total-payments' not found.");
   }
 }
 
@@ -39,22 +37,20 @@ function showNumberOfPayments() {
  * and displays the receipts in a table. It also sets up event listeners for delete actions.
  */
 function getValidReceiptsRequest() {
-  // Retrieve the access token from localStorage
-  let token = localStorage.getItem('accessToken');
 
   // Send a POST request to fetch valid receipts
   fetch(host + 'receipt-valid', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    },
+    headers: { 
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include',
   })
   .then(response => {
     // Check if the response status indicates unauthorized or forbidden access
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) {
-        return renewAccessToken().then(() => getValidReceiptsRequest());
+        window.location.href = ownerLogSignURL;
       }
       // Redirect in case of other HTTP errors (e.g., 500)
       window.location.href = ownerError;
@@ -67,7 +63,6 @@ function getValidReceiptsRequest() {
     // Check if data is available; if not, exit the function
     if (!data) return;
 
-    // console.log("Data received:", data); // Log the received data
 
     // If the properties are wrapped in an object { myProperties }
     const valiReceipts = data;
@@ -82,7 +77,6 @@ function getValidReceiptsRequest() {
 
       // Iterate over the valid receipts and create table rows
       valiReceipts.forEach((validReceipt) => {
-        // console.log("Valid receipt data:", validReceipt); // Log each receipt
 
         const formattedDate = new Date(validReceipt.monthpayed).toLocaleString('fr-FR', {
           month: 'long',
@@ -117,11 +111,9 @@ function getValidReceiptsRequest() {
       addDropdownsListenerReceiptTable("valid-receipts-table");
 
     } else {
-      // console.error("Element with ID 'valid-receipts-table' not found.");
     }
   })
   .catch((error) => {
     // Log error if fetching fails
-    // console.error('Error fetching valid receipts:', error);
   });
 }

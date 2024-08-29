@@ -6,10 +6,11 @@ const dbConnection = require('../middlewares/socket/database');
 const tokenVerification = require('../middlewares/socket/auth');
 const { ownerMessageSender } = require('../controller/owner/support');
 const { tenantMessageSender } = require('../controller/tenant/support');
+const {logger} = require('./logger/logRotation');
 
 /**
  * Initializes WebSocket server and handles WebSocket connections.
- * @param {Object} server - The HTTP server to attach the WebSocket server to.
+ * @param {Object} server - The HTTPS server to attach the WebSocket server to.
  */
 module.exports = (server) => {
     const wss = new WebSocket.Server({ server });
@@ -21,15 +22,16 @@ module.exports = (server) => {
         // Verify token and handle database connection
         tokenVerification(ws, request, async () => {
             try {
-                await dbConnection(ws, () => {
+                dbConnection(ws, () => {
                     console.log('New client connected with ID:', ws.user.userId);
 
                     // Determine user type and handle accordingly
                     const isOwner = ws.user.userEmail !== undefined;
                     const isTenant = ws.user.prTenId !== undefined;
-                    
+
                     ws.isTenant = isTenant;
                     ws.signId = ws.user.userId; // Set user ID for the session
+
 
                     // Handle incoming messages
                     ws.on('message', async (message) => {
@@ -48,7 +50,7 @@ module.exports = (server) => {
                                 await tenantMessageSender(ws, messageObject, wss);
                             }
                         } catch (err) {
-                            console.error('Error processing message:', err);
+                            logger.error('Error processing message:', err);
                         }
                     });
 
@@ -61,13 +63,13 @@ module.exports = (server) => {
                     ws.on('close', () => {
                         console.log('Client disconnected');
                         if (ws.connection) {
-                            ws.connection.release();  // Release database connection
+                            ws.connection.release(); // Release database connection
                             console.log('Database connection released');
                         }
                     });
                 });
             } catch (err) {
-                console.error('Error handling WebSocket connection:', err);
+                logger.error('Error handling WebSocket connection:', err);
             }
         });
     });

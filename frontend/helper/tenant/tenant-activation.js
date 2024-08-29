@@ -32,14 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // console.log("data: " + JSON.stringify(data));
     
     // Check if the data contains an access token
-    if (data.accessToken) {
-      // Log the access token and store it in localStorage
-      // console.log(data.accessToken);
-      localStorage.setItem('accessTokenTenant', data.accessToken);
-      
-      // Set a refresh token cookie valid for 7 days
-      setCookie("refreshTokenTenant", data.refreshToken, 7);
-      
+    if (data.message == 'Request successful') {
+   
       // Store additional user information in localStorage
       localStorage.setItem('setPwd', 0);
       localStorage.setItem('userName', data.userName + data.count);

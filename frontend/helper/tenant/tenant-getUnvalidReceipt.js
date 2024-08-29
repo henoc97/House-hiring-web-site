@@ -41,19 +41,18 @@ function addUnvalidReceipt(unvalidReceipt) {
  * Fetches unvalidated receipts from the server and populates the table.
  */
 function getUnvalidReceiptsRequest() {
-  let token = localStorage.getItem('accessTokenTenant');
   fetch(hostTenant + 'receipt-unValid', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    },
+    headers: { 
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include',
   })
   .then(response => {
     if (!response.ok) {
         // Handle authentication/authorization errors
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getUnvalidReceiptsRequest());
+          window.location.href = tenantLogSignURL;
         }
         // Redirect for other HTTP errors (e.g., 500)
         window.location.href = tenantError;
@@ -130,20 +129,19 @@ function addDropdownsListener() {
  * @param {string} receiptId - The ID of the receipt to delete.
  */
 function deleteReceiptTenant(receiptId) {
-  let token = localStorage.getItem('accessTokenTenant');
   fetch(hostTenant + "delete-receipt", {
       method: 'POST',
-      headers: {
-          'Authorization': 'Bearer ' + token,
+      headers: { 
           'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({ "id": receiptId })
   })
   .then(response => {
     if (!response.ok) {
         // Handle authentication/authorization errors
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => deleteReceiptTenant(receiptId));
+          window.location.href = tenantLogSignURL;
         }
         // Redirect for other HTTP errors (e.g., 500)
         // window.location.href = tenantError;

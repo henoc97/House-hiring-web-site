@@ -1,5 +1,6 @@
 const crypto = require('crypto');
-const { root } = require('../../src/endpoint');
+const { ROOT_URL, SOCKET_URL } = require('../../src/endpoint');
+const {logger} = require('../../src/logger/logRotation');
 
 /**
  * Middleware to generate a nonce and set Content Security Policy (CSP) headers.
@@ -21,15 +22,15 @@ module.exports = (req, res, next) => {
 
   // Define the Content Security Policy (CSP) based on the environment
   const cspPolicy = process.env.NODE_ENV === 'production'
-    ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'nonce-${res.locals.nonce}' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline'; style-src-elem 'self' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' ${root}; report-uri /backend-csp-report/csp-violation;`
-    : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' 'nonce-${res.locals.nonce}' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' ${root}; report-uri /backend-csp-report/csp-violation;`
+    ? `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'nonce-${res.locals.nonce}' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; style-src-elem 'self' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' ${ROOT_URL} ${SOCKET_URL}; report-uri /backend-csp-report/csp-violation;`
+    : `default-src 'self'; script-src 'self' 'nonce-${res.locals.nonce}' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' 'nonce-${res.locals.nonce}' https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://unpkg.com; img-src 'self' data:; connect-src 'self' ${ROOT_URL} ${SOCKET_URL}; report-uri /backend-csp-report/csp-violation;`
 
   try {
     // Set the CSP header with the constructed policy
     res.setHeader('Content-Security-Policy', cspPolicy);
   } catch (error) {
     // Log any error that occurs while setting the header
-    console.error('Error setting CSP header:', error);
+    logger.error('Error setting CSP header:', error);
   }
 
   // Proceed to the next middleware function

@@ -26,12 +26,10 @@ document.addEventListener("DOMContentLoaded", function() {
     return response.json();
   })
   .then(data => {
-    // console.log("data: " + JSON.stringify(data));
     localStorage.setItem('tempId', data.id); // Stores the temporary ID in localStorage
     window.location.href = ownerResetPwdURL; // Redirects to the password reset URL
   })
   .catch(error => {
-    // console.error('Error:', error);  // Logs the full error in the console
     alert('Erreur lors de la vérification du compte : ' + error.message); // Shows an error message in French
   });
 });

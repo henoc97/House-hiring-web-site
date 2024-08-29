@@ -23,9 +23,7 @@ function makeRequest() {
   })
   .then(data => {
       // Handle successful authentication
-      if (data.accessToken) {
-          localStorage.setItem('accessTokenAdmin', data.accessToken);
-          setCookie("refreshTokenAdmin", data.refreshToken, 7);
+      if (data.message == "Token generated") {
           window.location.href = adminDashboardURL;
       } else {
           // If no accessToken is returned

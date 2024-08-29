@@ -4,7 +4,7 @@ const sharp = require('sharp');
 
 // Middleware
 const dbMiddleware = require('../../middlewares/http/database');
-const authMiddleware = require('../../middlewares/http/auth');
+const authMiddleware = require('../../middlewares/http/auth')('owner');
 
 // Controllers
 const {
@@ -13,7 +13,6 @@ const {
     createUserOwner,
     userAuth,
     updateSold,
-    refreshToken,
     updateOwner,
     myOwner,
     updatePwdOwner,
@@ -65,12 +64,6 @@ router.use(dbMiddleware);
  * POST /get-otp
  */
 router.post('/get-otp', getOtp);
-
-/**
- * Refresh authentication token.
- * POST /refresh-token
- */
-router.post('/refresh-token', refreshToken);
 
 /**
  * Create a new user owner.

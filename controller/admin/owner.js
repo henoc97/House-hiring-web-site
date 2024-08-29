@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const {logger} = require('../../src/logger/logRotation');
 
 /**
  * Retrieves subscription information by its ID.
@@ -12,9 +13,10 @@ module.exports.mySubscription = async (req, res) => {
     
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Error executing query', queryError);
+        logger.error('Error executing query', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -35,9 +37,10 @@ module.exports.updateOwnerSold = async (req, res) => {
     
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: 'Update successful' });
     } catch (queryError) {
-        console.error('Error executing query', queryError);
+        logger.error('Error executing query', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -56,9 +59,10 @@ module.exports.subscriptions = async (req, res) => {
     
     try {
         const [rows] = await req.connection.query(query);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (queryError) {
-        console.error('Error executing query', queryError);
+        logger.error('Error executing query', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -79,9 +83,10 @@ module.exports.insertSubscription = async (req, res) => {
     
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Error executing query', queryError);
+        logger.error('Error executing query', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -102,9 +107,10 @@ module.exports.deleteSubscription = async (req, res) => {
     
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (queryError) {
-        console.error('Error executing query', queryError);
+        logger.error('Error executing query', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -125,9 +131,10 @@ module.exports.isDeletedSubscription = async (req, res) => {
     
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: 'Request successful' });
     } catch (queryError) {
-        console.error('Error executing query', queryError);
+        logger.error('Error executing query', queryError);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {

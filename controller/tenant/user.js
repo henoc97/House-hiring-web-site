@@ -1,5 +1,7 @@
 const { hashPassword, comparePasswords } = require("../../functions/hashComparePwd");
 const { generateTenantToken } = require("../../functions/token");
+const {logger} = require('../../src/logger/logRotation');
+const { createSecureCookie } = require('../../functions/cookies')
 
 // Tenant Account Activation Controller
 /**
@@ -12,6 +14,7 @@ module.exports.activateTenantAccount = async (req, res) => {
 
     // Validate input
     if (!key || !prTenId) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing key or prTenId' });
     }
 
@@ -20,22 +23,21 @@ module.exports.activateTenantAccount = async (req, res) => {
         const obj = result[0][0];
 
         if (!obj) {
+            logger.warn(`404 Not Found: ${req.method} ${req.url}`);
             return res.status(404).json({ message: 'No result found for the provided key' });
         }
-
-        const newAccessToken = generateTenantToken({ id: obj.id, prTenId }, "2d");
-        const newRefreshToken = generateTenantToken({ id: obj.id, prTenId }, "7d");
-
+        const user = { id: obj.id, prTenId };
+        const token = generateTenantToken(user, "4d");
+        createSecureCookie(res, token, 'tenant');
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({
-            refreshToken: newRefreshToken,
-            accessToken: newAccessToken,
             createTime: obj.create_time,
             userName: obj.firstname.split(' ')[0].toLowerCase(),
             count: obj.count,
             message: 'Request successful'
         });
     } catch (error) {
-        console.error('Error activating tenant account:', error);
+        logger.error('Error activating tenant account:', error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     } finally {
         if (req.connection) {
@@ -54,7 +56,8 @@ module.exports.setPwd = async (req, res) => {
     const { pwd, userName } = req.body;
 
     // Validate input
-    if (!pwd || !userName) {
+    if (!pwd) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing password or userName' });
     }
 
@@ -64,9 +67,10 @@ module.exports.setPwd = async (req, res) => {
         const values = [req.user.userId, pwdHashed, userName];
 
         await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: 'Request successful' });
     } catch (error) {
-        console.error('Error setting password:', error);
+        logger.error('Error setting password:', error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     } finally {
         if (req.connection) {
@@ -85,6 +89,7 @@ module.exports.userAuth = async (req, res) => {
 
     // Validate input
     if (!userName || !pwd) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing userName or password' });
     }
 
@@ -92,24 +97,24 @@ module.exports.userAuth = async (req, res) => {
         const [rows] = await req.connection.query("CALL show_tenant_by_username(?)", [userName]);
 
         if (rows[0].length === 0) {
+            logger.warn(`404 Not Found: ${req.method} ${req.url}`);
             return res.status(404).json({ message: 'User not found' });
         }
 
         const user = rows[0][0];
         if (await comparePasswords(pwd, user.pwd)) {
-            const newAccessToken = generateTenantToken({ id: user.id, prTenId: user.pr_ten_id }, "2d");
-            const newRefreshToken = generateTenantToken({ id: user.id, prTenId: user.pr_ten_id }, "7d");
-
+            const tenantUser = { id: user.id, prTenId: user.pr_ten_id };
+            const token = generateTenantToken(tenantUser, "4d");
+            createSecureCookie(res, token, 'tenant');
+            logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json({
-                refreshToken: newRefreshToken,
-                accessToken: newAccessToken,
                 message: 'Request successful'
             });
         } else {
             res.status(401).json({ message: 'Incorrect password' });
         }
     } catch (error) {
-        console.error('Error during user authentication:', error);
+        logger.error('Error during user authentication:', error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     } finally {
         if (req.connection) {
@@ -132,12 +137,14 @@ module.exports.myTenant = async (req, res) => {
         const [rows] = await req.connection.query(query, values);
 
         if (rows[0].length === 0) {
+            logger.warn(`404 Not Found: ${req.method} ${req.url}`);
             return res.status(404).json({ message: 'Tenant not found' });
         }
 
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (error) {
-        console.error('Error retrieving tenant details:', error);
+        logger.error('Error retrieving tenant details:', error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     } finally {
         if (req.connection) {
@@ -156,6 +163,7 @@ module.exports.updateTenant = async (req, res) => {
 
     // Validate input
     if (!firstname || !lastname || !contactmoov || !contacttg || !date) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing parameters' });
     }
 
@@ -164,9 +172,10 @@ module.exports.updateTenant = async (req, res) => {
 
     try {
         const [result] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(result[0][0]);
     } catch (error) {
-        console.error('Error updating tenant:', error);
+        logger.error('Error updating tenant:', error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     } finally {
         if (req.connection) {
@@ -185,6 +194,7 @@ module.exports.updatePwdTenant = async (req, res) => {
 
     // Validate input
     if (!code || !pwd) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing code or password' });
     }
 
@@ -194,9 +204,10 @@ module.exports.updatePwdTenant = async (req, res) => {
         const values = [code, pwdHashed];
 
         await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: 'Request successful' });
     } catch (error) {
-        console.error('Error updating password:', error);
+        logger.error('Error updating password:', error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     } finally {
         if (req.connection) {

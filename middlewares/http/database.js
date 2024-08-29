@@ -1,5 +1,6 @@
 // middlewares/database.js
 const pool = require('../../database/connection');
+const {logger} = require('../../src/logger/logRotation');
 
 /**
  * Middleware to attach a database connection to the request object.
@@ -20,7 +21,7 @@ module.exports = async (req, res, next) => {
         console.log('Connected to MySQL');
         next(); // Proceed to the next middleware or route handler
     } catch (err) {
-        console.error('Error acquiring connection from pool:', err);
+        logger.error('Error acquiring connection from pool:', err);
         res.status(500).json({ message: 'Server error' });
     }
 };

@@ -14,13 +14,8 @@ const closeModal = document.querySelector('.modal .close');
  * Adds event listeners to each edit icon to show the modal.
  */
 document.querySelectorAll('.edit-icon').forEach(icon => {
-  icon.addEventListener('click', function() {
-    alert('Clicked'); // Alert for debugging purposes
-    
-    const tenantId = this.dataset.id; // Get the tenant ID from the data-id attribute
-    
+  icon.addEventListener('click', function() {    
     // TODO: Populate the form with tenant data here (use tenantId)
-    
     modal.style.display = 'block'; // Show the modal
     setTimeout(() => {
       modal.classList.add('show');

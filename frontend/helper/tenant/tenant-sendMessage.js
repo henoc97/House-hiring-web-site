@@ -6,8 +6,7 @@
  * @returns {void}
  */
 function sendMessageRequest() {
-    let token = localStorage.getItem('accessTokenTenant');
-    const ws = new WebSocket(hostSocket + `?token=${encodeURIComponent(token)}`);
+    const ws = new WebSocket(hostSocket + `?userType=${encodeURIComponent('tenant')}`);
     
     ws.onopen = () => {
         // console.log('WebSocket connection established');

@@ -174,17 +174,17 @@ function getValidReceiptsRequest() {
 
   fetch(hostTenant + 'receipt-valid', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    },
+    headers: { 
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include',
   })
   .then(response => {
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) {
-        return renewAccessToken().then(() => getValidReceiptsRequest());
+        window.location.href = tenantLogSignURL;
       }
-      window.location.href = tenantError;
+      // window.location.href = tenantError;
       throw new Error('HTTP error ' + response.status);
     }
     return response.json();
@@ -285,6 +285,6 @@ function getValidReceiptsRequest() {
   })
   .catch(error => {
     // console.error('Error:', error);
-    window.location.href = tenantError;
+    // window.location.href = tenantError;
   });
 }

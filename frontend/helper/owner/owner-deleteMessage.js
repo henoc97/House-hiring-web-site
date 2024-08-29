@@ -55,12 +55,10 @@ function deleteMessageLogic(tenantId) {
      * @param {string} messageId - The ID of the message to delete.
      */
     function deleteSelectedMessage(messageId) {
-        let token = localStorage.getItem('accessToken'); 
 
         fetch(host + 'delete-message', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ messageId })
@@ -68,7 +66,7 @@ function deleteMessageLogic(tenantId) {
         .then(response => {
             if (!response.ok) {
                 if (response.status === 401 || response.status === 403) {
-                    return renewAccessToken().then(() => deleteSelectedMessage(messageId));
+                    window.location.href = ownerLogSignURL;
                 }
                 // Redirect in case of other HTTP errors (e.g., 500)
                 window.location.href = ownerError;
@@ -81,7 +79,6 @@ function deleteMessageLogic(tenantId) {
         })
         .catch(error => {
             window.location.href = ownerError; 
-            // console.error('Error:', error);
         });
     }
 }

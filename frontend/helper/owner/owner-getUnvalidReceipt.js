@@ -8,23 +8,20 @@
  * with the received data. It also sets up event listeners for delete actions.
  */
 function getUnvalidReceiptsRequest() {
-  // Retrieve the access token from localStorage
-  let token = localStorage.getItem('accessToken');
 
   // Send a POST request to fetch invalid receipts
   fetch(host + 'receipt-unValid', {
     method: 'POST',
-    headers: {
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    },
+    headers: { 
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include',
   })
   .then(response => {
     // Check if the response status indicates unauthorized or forbidden access
     if (!response.ok) {
         if ((response.status === 401 || response.status === 403)) {
-        // alert("Problem with authorization. Attempting to renew access token.");
-        return renewAccessToken().then(() => getUnvalidReceiptsRequest());
+        window.location.href = ownerLogSignURL;
       }
       window.location.href = ownerError;
     }
@@ -35,7 +32,6 @@ function getUnvalidReceiptsRequest() {
     // Check if data is available; if not, exit the function
     if (!data) return;
 
-    // console.log("Data received:", data); // Log the received data
 
     const unvalidReceipts = data;
     const tableBody = document.getElementById("unvalid-receipts-table");
@@ -49,7 +45,6 @@ function getUnvalidReceiptsRequest() {
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
         
-        // console.log("Unvalid receipt data:", unvalidReceipt); // Log each receipt
 
         // Create a new table row
         const row = document.createElement('tr');
@@ -79,13 +74,11 @@ function getUnvalidReceiptsRequest() {
       addDropdownsListenerReceiptTable("unvalid-receipts-table");
 
     } else {
-      // console.error("Element with ID 'unvalid-receipts-table' not found.");
     }
   })
   .catch((error) => {
     // Redirect and log error if fetching fails
     window.location.href = ownerError;
-    // console.error('Error fetching invalid receipts:', error);
   });
 }
 
@@ -95,23 +88,21 @@ function getUnvalidReceiptsRequest() {
  * @param {number} receiptId - The ID of the receipt to delete.
  */
 function deleteReceipt(receiptId) {
-  // Retrieve the access token from localStorage
-  let token = localStorage.getItem('accessToken');
 
   // Send a POST request to delete the receipt
   fetch(host + "delete-receipt", {
       method: 'POST',
-      headers: {
-          'Authorization': 'Bearer ' + token,
+      headers: { 
           'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({ "id": receiptId })
   })
   .then(response => {
     // Check if the response status indicates unauthorized or forbidden access
     if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => deleteReceipt(receiptId));
+            window.location.href = ownerLogSignURL;
         }
         // Redirect in case of other HTTP errors (e.g., 500)
         window.location.href = ownerError;
@@ -130,7 +121,6 @@ function deleteReceipt(receiptId) {
   .catch(error => {
     // Redirect and log error if deletion fails
     window.location.href = ownerError;
-    // console.error('Error deleting receipt:', error);
   });
 }
 
@@ -146,13 +136,11 @@ function addDropdownsListenerReceiptTable(tableId) {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
-        // console.log('Dropdown clicked:', target);
         const dropdown = target.closest('.dropdown');
         dropdown.classList.toggle('show');
         event.stopPropagation();
       }
       if (target.classList.contains('delete-icon')) {
-        // console.log('Delete icon clicked:', target);
         const receiptId = target.dataset.id;
         deleteReceipt(receiptId);
       }
@@ -168,6 +156,5 @@ function addDropdownsListenerReceiptTable(tableId) {
       }
     });
   } else {
-    // console.error(`Element with ID ${tableId} not found.`);
   }
 }

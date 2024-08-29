@@ -1,3 +1,6 @@
+const {logger} = require('../../src/logger/logRotation');
+
+
 /**
  * Handles the creation of a payment receipt.
  * @param {Object} req - The request object containing idTenantProperty, sumpayed, and monthpayed.
@@ -8,6 +11,7 @@ module.exports.requireReceipt = async (req, res) => {
 
     // Validate input
     if (idTenantProperty === undefined || sumpayed === undefined || monthpayed === undefined) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing parameters' });
     }
 
@@ -17,9 +21,10 @@ module.exports.requireReceipt = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Payment receipt created:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: "Request successful", data: rows[0][0] });
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -40,9 +45,10 @@ module.exports.receiptUnValid = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Invalid receipts:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -61,6 +67,7 @@ module.exports.validateReceipt = async (req, res) => {
 
     // Validate input
     if (id === undefined) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing receipt id' });
     }
 
@@ -70,9 +77,10 @@ module.exports.validateReceipt = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Receipt validated:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -93,9 +101,10 @@ module.exports.receiptValid = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Valid receipts:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -114,6 +123,7 @@ module.exports.deleteReceipt = async (req, res) => {
 
     // Validate input
     if (id === undefined) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing receipt id' });
     }
 
@@ -123,9 +133,10 @@ module.exports.deleteReceipt = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Receipt deleted:', rows);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {

@@ -1,6 +1,7 @@
 // middlewares/database.js
 
 const pool = require('../../database/connection');
+const {logger} = require('../../src/logger/logRotation');
 
 /**
  * Middleware to establish a database connection for WebSocket requests.
@@ -22,7 +23,7 @@ module.exports = async (ws, callback) => {
         await callback();
     } catch (err) {
         // Log and close the WebSocket connection on error
-        console.error('Error acquiring database connection:', err);
+        logger.error('Error acquiring database connection:', err);
         ws.close(4002, 'Database connection error');
     }
 };

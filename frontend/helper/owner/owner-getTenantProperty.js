@@ -13,7 +13,6 @@ function setNumberOfTenantsProperties(numberOfTenantsProperties) {
  * @returns {number} The number of tenant properties. Returns 0 if the value is undefined.
  */
 function getNumberOfTenantsProperties() {
-  // console.log("Function executed successfully");
   // Check if the stored value is 'undefined' and return 0 if true
   if (localStorage.getItem('numberOfTenantsProperties') === 'undefined') return 0;
   // Return the stored value as a string
@@ -29,7 +28,6 @@ function showNumberOfTenantsProperties() {
   if (totalTenantsProperties) {
     totalTenantsProperties.textContent = getNumberOfTenantsProperties();
   } else {
-    // console.error("Element with ID 'total-tenants-properties' not found.");
   }
 }
 
@@ -41,23 +39,20 @@ function showNumberOfTenantsProperties() {
  *                          2: Display as options
  */
 function getTenantsPropertiesRequest(type) {
-  // Retrieve the access token from localStorage
-  let token = localStorage.getItem('accessToken');
-
   // Send a POST request to fetch tenants properties
   fetch(host + 'Tenants-properties', {
       method: 'POST',
-      headers: {
-          'Authorization': 'Bearer ' + token,
+      headers: { 
           'Content-Type': 'application/json'
       },
+      credentials: 'include',
   })
   .then(response => {
     // Check if the response is not OK
     if (!response.ok) {
         // Handle unauthorized or forbidden errors
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getTenantsPropertiesRequest(type));
+            window.location.href = ownerLogSignURL;
         }
         // Redirect in case of other HTTP errors (e.g., 500)
         window.location.href = ownerError;
@@ -67,7 +62,6 @@ function getTenantsPropertiesRequest(type) {
     return response.json();
   })
   .then(data => {
-      // console.log("Data received:", data); // Log received data
 
       // Store the number of tenant properties and update the display
       const tenantsproperties = data;
@@ -84,7 +78,6 @@ function getTenantsPropertiesRequest(type) {
   .catch((error) => {
     // Handle any errors during the fetch operation
     window.location.href = ownerError;
-    // console.error('Error fetching tenants properties:', error);
   });
 }
 
@@ -100,14 +93,12 @@ function tenantsPropertiestableConstructor(tenantsproperties) {
 
     // Iterate over the tenants properties and create table rows
     tenantsproperties.forEach((tenantproperty) => {
-      // console.log("Tenants properties data:", tenantproperty); // Log each property
       addtenantsPropertiestable(tenantproperty);
     });
 
     addDropdownsListenerTenPrTable();
 
   } else {
-    // console.error("Element with ID 'tenants-properties-table' not found.");
   }
 }
 
@@ -123,13 +114,11 @@ function addDropdownsListenerTenPrTable() {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
-        // console.log('Dropdown clicked:', target);
         const dropdown = target.closest('.dropdown');
         dropdown.classList.toggle('show');
         event.stopPropagation();
       }
       if (target.classList.contains('delete-icon')) {
-        // console.log('Delete icon clicked:', target);
         const tenantPropertyId = target.dataset.id;
         deleteTenantProperty(tenantPropertyId);
       }
@@ -145,7 +134,6 @@ function addDropdownsListenerTenPrTable() {
       }
     });
   } else {
-    // console.error("Element with ID 'tenants-properties-table' not found.");
   }
 }
 
@@ -160,7 +148,6 @@ function tenantsPropertiesOptionConstructor(tenantsproperties) {
     tenantsPropertiesOption.innerHTML = ''; // Clear existing options
 
     tenantsproperties.forEach((tenantproperty) => {
-      // console.log("Property data:", tenantproperty); // Log each property
       const option = document.createElement('option');
       option.value = tenantproperty.id;
       option.dataset.price = tenantproperty.price; 
@@ -174,7 +161,6 @@ function tenantsPropertiesOptionConstructor(tenantsproperties) {
       }
     });
   } else {
-    // console.error("Element with ID 'tenants-properties-option' not found.");
   }
 }
 
@@ -184,16 +170,13 @@ function tenantsPropertiesOptionConstructor(tenantsproperties) {
  * @param {number} tenantPropertyId - The ID of the tenant property to delete.
  */
 function deleteTenantProperty(tenantPropertyId) {
-  // Retrieve the access token from localStorage
-  let token = localStorage.getItem('accessToken');
-
   // Send a POST request to delete the tenant property
   fetch(host + "delete-tenant-property", {
       method: 'POST',
-      headers: {
-          'Authorization': 'Bearer ' + token,
+      headers: { 
           'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({ "id": tenantPropertyId })
   })
   .then(response => {
@@ -201,7 +184,7 @@ function deleteTenantProperty(tenantPropertyId) {
     if (!response.ok) {
         // Handle unauthorized or forbidden errors
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => deleteTenantProperty(tenantPropertyId));
+            window.location.href = ownerLogSignURL;
         }
         // Redirect in case of other HTTP errors (e.g., 500)
         window.location.href = ownerError;
@@ -220,6 +203,5 @@ function deleteTenantProperty(tenantPropertyId) {
   .catch(error => {
     // Handle any errors during the delete operation
     window.location.href = ownerError;
-    // console.error('Error deleting property:', error);
   });
 }

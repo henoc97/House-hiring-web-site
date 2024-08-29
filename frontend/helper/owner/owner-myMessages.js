@@ -6,16 +6,14 @@
  * @param {number} tenantId - The ID of the tenant for whom messages are being fetched.
  */
 function getMessagesRequest(tenantId) {
-    // Retrieve the access token from local storage
-    let token = localStorage.getItem('accessToken');
-
+    
     // Send a POST request to the server to fetch messages for the given tenant
     fetch(host + 'my-messages', {
         method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + token, // Add authorization token to headers
-            'Content-Type': 'application/json'  // Set content type to JSON
-        },
+        headers: { 
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include',
         body: JSON.stringify({
             "tenantId": tenantId // Send tenant ID in the request body
         })
@@ -25,7 +23,7 @@ function getMessagesRequest(tenantId) {
         if (!response.ok) {
             // Handle unauthorized or forbidden responses
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => getMessagesRequest(tenantId)); // Renew token and retry request
+                window.location.href = ownerLogSignURL;
             }
             // Handle other HTTP errors (e.g., 500 Internal Server Error)
             window.location.href = ownerError;
@@ -38,7 +36,6 @@ function getMessagesRequest(tenantId) {
         // Check if data is undefined or null
         if (!data) return; // Stop execution if data is undefined (e.g., due to redirection)
 
-        // console.log("Messages received:", data); // Log the received data
 
         // Assuming 'data' is an array of messages
         const messages = data;
@@ -77,7 +74,6 @@ function getMessagesRequest(tenantId) {
 
                 // Append messages for the current date
                 groupedMessages[dateKey].forEach(message => {
-                    // console.log("Message data:", message); // Log each message
                     
                     // Create a new message div
                     const messageDiv = document.createElement('div');
@@ -110,12 +106,10 @@ function getMessagesRequest(tenantId) {
                 });
             });
         } else {
-            // console.error("Element with ID 'chat-container' not found.");
         }
     })
     .catch((error) => {
         // Redirect on error and log the error details
         window.location.href = ownerError;
-        // console.error('Error fetching messages:', error);
     });
 }

@@ -15,9 +15,7 @@ function requireRecieptRequest() {
         alert("Please select at least one month.");
         return;
     }
-  
-    let token = localStorage.getItem('accessTokenTenant');
-  
+    
     // Calculate the cost per month if the total cost is divided equally
     let costPerMonth = parseFloat(sumpayed) / months.length;
   
@@ -25,10 +23,10 @@ function requireRecieptRequest() {
     months.forEach(month => {
         fetch(hostTenant + 'require-receipt', {
             method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + token,
+            headers: { 
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 "sumpayed": costPerMonth,
                 "monthpayed": month.trim()
@@ -37,10 +35,10 @@ function requireRecieptRequest() {
         .then(response => {
           if (!response.ok) {
               if (response.status === 401 || response.status === 403) {
-                  return renewAccessToken().then(() => requireRecieptRequest());
+                window.location.href = tenantLogSignURL;
               }
               // Redirect on other HTTP errors (e.g., 500)
-              window.location.href = tenantError;
+            //   window.location.href = tenantError;
               throw new Error('HTTP error ' + response.status); // Throw an error to trigger the .catch
           }
           return response.json();
@@ -53,7 +51,7 @@ function requireRecieptRequest() {
               // addDropdownsListener(); // Uncomment if needed
         })
         .catch(error => {
-            window.location.href = tenantError;
+            // window.location.href = tenantError;
             // console.error('Error:', error);
         });
     });

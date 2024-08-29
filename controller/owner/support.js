@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const {logger} = require('../../src/logger/logRotation');
 
 /**
  * Handles sending a message from an owner to a tenant.
@@ -19,9 +20,10 @@ module.exports.sendMessage = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Message inserted:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: "Request successful" });
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -41,7 +43,7 @@ module.exports.ownerMessageSender = async (ws, messageObject, wss) => {
 
     // Validate input
     if (!tenantId || !message) {
-        console.error('Missing data for message sending');
+        logger.error('Missing data for message sending');
         return;
     }
 
@@ -56,11 +58,11 @@ module.exports.ownerMessageSender = async (ws, messageObject, wss) => {
         if (rows && rows.length > 0 && rows[0].length > 0) {
             result = rows[0][0]; // First object of the first row
         } else {
-            console.error('No data returned by the stored procedure');
+            logger.error('No data returned by the stored procedure');
             return;
         }
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         return;
     } finally {
         if (ws.connection) {
@@ -96,9 +98,10 @@ module.exports.myMessages = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -118,9 +121,10 @@ module.exports.recentMessages = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -147,9 +151,10 @@ module.exports.deleteMessage = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: "Request successful" });
     } catch (err) {
-        console.error('Error executing query:', err);
+        logger.error('Error executing query:', err);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {

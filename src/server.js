@@ -1,24 +1,35 @@
 // server.js
 
 const express = require('express');
-const http = require('http');
+const https = require('https');
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const apicache = require('apicache');
 const helmet = require('helmet');
 const compression = require('compression');
-const morgan = require('morgan');
 require('dotenv').config();
 
 
-const { root } = require('./endpoint');
+const { ROOT_URL } = require('./endpoint');
 const cspMiddleware = require('../middlewares/http/csp');
+const {logger} = require('./logger/logRotation');
+
+
+// Construire les chemins absolus
+const privateKeyPath = path.resolve(__dirname, '../ssl/server.key');
+const certificatePath = path.resolve(__dirname, '../ssl/server.crt');
+
+// Charger les certificats
+const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+const certificate = fs.readFileSync(certificatePath, 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 
 // Create Express application and HTTP server
 const app = express();
-const server = http.createServer(app);
+const server = https.createServer(credentials, app);
 
 // Import and configure WebSocket server
 const configureWebSocket = require('./websocketServer');
@@ -39,23 +50,21 @@ app.use(cspMiddleware)
 
 // Configure middlewares
 app.use(cors({
-    origin: `${root}`,
+    origin: `${ROOT_URL}`,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+app.use(cookieParser());
 app.use(helmet({ contentSecurityPolicy: false })); // Disable default CSP directives from Helmet
 app.use(compression()); // Compress HTTP responses
 
 // Create a write stream for logging
-const logStream = fs.createWriteStream(path.join(__dirname, '/log/access.log'), { flags: 'a' });
-// Setup logging for different environments
-if (process.env.NODE_ENV === 'production') {
-    app.use(morgan('combined', { stream: logStream })); // Log to file only in production
-} else {
-    app.use(morgan('dev')); // More detailed logging for development
-}
+app.use((req, res, next) => {
+    logger.info(`${req.method} ${req.url}`);
+    next();
+  });
 
 // Configure static file serving with caching
 // const staticOptions = { maxAge: '1d' }; // Cache static files for 1 day
@@ -97,17 +106,18 @@ app.use('/backend-tenant', backendTenant);
 
 // Middleware to handle unhandled errors
 app.use((err, req, res, next) => {
-    console.error('Unhandled error:', err.stack);
+    logger.error('Unhandled error:', err.stack);
     res.status(500).sendFile(path.join(__dirname, '../frontend/error/error-page500.html'));
 });
 
 // Middleware to handle 404 errors
 app.use((req, res) => {
+    logger.warn(`404 Not Found: ${req.method} ${req.url}`);
     res.status(404).sendFile(path.join(__dirname, '../frontend/error/error-page404.html'));
 });
 
 // Start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8443;
 server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`HTTPS Server is running on port ${port}`);
 });

@@ -2,6 +2,7 @@
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const {logger} = require('../src/logger/logRotation');
 
 /**
  * Secret key used for signing JWTs.
@@ -31,7 +32,7 @@ function generateOwnerToken(user, time) {
         const token = jwt.sign(payload, SECRET_KEY, options);
         return token;
     } catch (error) {
-        console.error('Error generating owner token:', error);
+        logger.error('Error generating owner token:', error);
         throw new Error('Failed to generate owner token.');
     }
 }
@@ -58,7 +59,7 @@ function generateTenantToken(user, time) {
         const token = jwt.sign(payload, SECRET_KEY, options);
         return token;
     } catch (error) {
-        console.error('Error generating tenant token:', error);
+        logger.error('Error generating tenant token:', error);
         throw new Error('Failed to generate tenant token.');
     }
 }
@@ -85,7 +86,7 @@ function generateAdminToken(user, time) {
         const token = jwt.sign(payload, SECRET_KEY, options);
         return token;
     } catch (error) {
-        console.error('Error generating admin token:', error);
+        logger.error('Error generating admin token:', error);
         throw new Error('Failed to generate admin token.');
     }
 }

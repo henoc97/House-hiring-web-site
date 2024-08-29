@@ -11,7 +11,6 @@ function setNumberOfTenants(numberOfTenants) {
  * @returns {number} The number of tenants.
  */
 function getNumberOfTenants() {
-  // console.log("Function getNumberOfTenants is called");
   const numberOfTenants = localStorage.getItem('numberOfTenants');
   return numberOfTenants === null ? 0 : parseInt(numberOfTenants, 10);
 }
@@ -28,20 +27,18 @@ function showNumberOfTenants() {
  * Fetches all tenants and updates the UI accordingly.
  */
 function getAllTenantsRequest() {
-  const token = localStorage.getItem('accessToken');
 
-  // console.log('Fetching all tenants with token:', token);
   fetch(host + 'all-tenants', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
   })
   .then(response => {
     if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getAllTenantsRequest());
+            window.location.href = ownerLogSignURL;
         }
         window.location.href = ownerError;
         throw new Error('HTTP error ' + response.status);
@@ -49,7 +46,6 @@ function getAllTenantsRequest() {
     return response.json();
   })
   .then(data => {
-    // console.log("Data received:", data);
 
     const allTenants = data;
     setNumberOfTenants(allTenants.length);
@@ -60,7 +56,6 @@ function getAllTenantsRequest() {
       tableBody.innerHTML = '';
 
       allTenants.forEach((tenant) => {
-        // console.log("Tenant data:", tenant);
         addTenantToTable(tenant);
       });
 
@@ -149,19 +144,16 @@ function getAllTenantsRequest() {
               if (window.ws) {
                 window.ws.close();
                 getRecentMessagesRequest();
-                // console.log('WebSocket connection closed');
               }
             }, 300);
           }
         }
       };
     } else {
-      // console.error("Element with ID 'all-tenants-table' not found.");
     }
   })
   .catch((error) => {
     window.location.href = ownerError;
-    // console.error('Error fetching tenants:', error);
   });
 }
 
@@ -170,19 +162,18 @@ function getAllTenantsRequest() {
  * @param {number} tenantId - The ID of the tenant to edit.
  */
 function editTenant(tenantId) {
-  const token = localStorage.getItem('accessToken');
   fetch(host + "my-tenant", {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ "id": tenantId })
   })
   .then(response => {
     if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => editTenant(tenantId));
+            window.location.href = ownerLogSignURL;
         }
         window.location.href = ownerError;
         throw new Error('HTTP error ' + response.status);
@@ -190,7 +181,6 @@ function editTenant(tenantId) {
     return response.json();
   })
   .then(data => {
-    // console.log("Editing tenant:", data);
     document.getElementById('edit-lastname').value = data.lastname;
     document.getElementById('edit-firstname').value = data.firstname;
     document.getElementById('edit-contact-moov').value = data.contactmoov;
@@ -207,7 +197,6 @@ function editTenant(tenantId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    // console.error('Error fetching tenant details:', error);
   });
 }
 
@@ -224,19 +213,18 @@ function updateTenant(editingId) {
     contacttg: document.getElementById('edit-contact-tg').value,
     date: document.getElementById('edit-date').value,
   };
-  const token = localStorage.getItem('accessToken');
   fetch(host + "update-tenant", {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify(updatedData)
   })
   .then(response => {
     if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => updateTenant(editingId));
+            window.location.href = ownerLogSignURL;
         }
         window.location.href = ownerError;
         throw new Error('HTTP error ' + response.status);
@@ -244,7 +232,6 @@ function updateTenant(editingId) {
     return response.json();
   })
   .then(data => {
-    // console.log('Tenant updated:', data);
     const formattedDate = new Date(data.create_time).toLocaleString('fr-FR', {
       day: '2-digit',
       month: 'long',
@@ -262,7 +249,6 @@ function updateTenant(editingId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    // console.error('Error updating tenant:', error);
   });
 }
 
@@ -299,19 +285,18 @@ function resetForm() {
  * @param {number} tenantId - The ID of the tenant to delete.
  */
 function deleteTenant(tenantId) {
-  const token = localStorage.getItem('accessToken');
   fetch(host + "delete-tenant", {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ "id": tenantId })
   })
   .then(response => {
     if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => deleteTenant(tenantId));
+            window.location.href = ownerLogSignURL;
         }
         window.location.href = ownerError;
         throw new Error('HTTP error ' + response.status);
@@ -319,7 +304,6 @@ function deleteTenant(tenantId) {
     return response.json();
   })
   .then(data => {
-    // console.log('Tenant deleted:', data);
     const row = document.getElementById("all-tenants-table")
       .querySelector(`tr[data-id="${tenantId}"]`);
     if (row) {
@@ -330,7 +314,6 @@ function deleteTenant(tenantId) {
   })
   .catch(error => {
     window.location.href = ownerError;
-    // console.error('Error deleting tenant:', error);
   });
 }
 
@@ -339,19 +322,18 @@ function deleteTenant(tenantId) {
  * @param {number} tenantId - The ID of the tenant whose messages are to be fetched.
  */
 function getMessagesRequest(tenantId) {
-  const token = localStorage.getItem('accessToken');
   fetch(host + 'get-messages', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ "tenantId": tenantId })
   })
   .then(response => {
     if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getMessagesRequest(tenantId));
+            window.location.href = ownerLogSignURL;
         }
         window.location.href = ownerError;
         throw new Error('HTTP error ' + response.status);
@@ -359,7 +341,6 @@ function getMessagesRequest(tenantId) {
     return response.json();
   })
   .then(data => {
-    // console.log("Messages received:", data);
     const messageList = document.getElementById('message-list');
     if (messageList) {
       messageList.innerHTML = '';
@@ -369,12 +350,10 @@ function getMessagesRequest(tenantId) {
         messageList.appendChild(messageItem);
       });
     } else {
-      // console.error("Element with ID 'message-list' not found.");
     }
   })
   .catch(error => {
     window.location.href = ownerError;
-    // console.error('Error fetching messages:', error);
   });
 }
 
@@ -387,13 +366,12 @@ function sendMessageRequest(tenantId) {
   submitButton.addEventListener('click', function(event) {
     event.preventDefault();
     const messageContent = document.querySelector('#message-content').value;
-    const token = localStorage.getItem('accessToken');
     fetch(host + 'send-message', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         "tenantId": tenantId,
         "content": messageContent
@@ -402,7 +380,7 @@ function sendMessageRequest(tenantId) {
     .then(response => {
       if (!response.ok) {
           if (response.status === 401 || response.status === 403) {
-              return renewAccessToken().then(() => sendMessageRequest(tenantId));
+              window.location.href = ownerLogSignURL;
           }
           window.location.href = ownerError;
           throw new Error('HTTP error ' + response.status);
@@ -410,13 +388,11 @@ function sendMessageRequest(tenantId) {
       return response.json();
     })
     .then(data => {
-      // console.log('Message sent:', data);
       document.querySelector('#message-content').value = '';
       getMessagesRequest(tenantId);
     })
     .catch(error => {
       window.location.href = ownerError;
-      // console.error('Error sending message:', error);
     });
   });
 }
@@ -429,19 +405,18 @@ function deleteMessageLogic(tenantId) {
   document.querySelectorAll('.delete-message-icon').forEach(icon => {
     icon.addEventListener('click', function() {
       const messageId = this.dataset.id;
-      const token = localStorage.getItem('accessToken');
       fetch(host + 'delete-message', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({ "messageId": messageId })
       })
       .then(response => {
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => deleteMessageLogic(tenantId));
+                window.location.href = ownerLogSignURL;
             }
             window.location.href = ownerError;
             throw new Error('HTTP error ' + response.status);
@@ -449,13 +424,58 @@ function deleteMessageLogic(tenantId) {
         return response.json();
       })
       .then(data => {
-        // console.log('Message deleted:', data);
         getMessagesRequest(tenantId);
       })
       .catch(error => {
         window.location.href = ownerError;
-        // console.error('Error deleting message:', error);
       });
     });
+  });
+}
+
+/**
+ * Updates the tenant's key and copies the new key to the clipboard.
+ * 
+ * @param {number|string} editingId - The ID of the tenant whose key is being updated.
+ * @returns {void}
+ * 
+ * This function sends a POST request to update the tenant's key based on the provided ID.
+ * If the response is successful, it copies the new key to the clipboard and displays an alert.
+ * In case of an HTTP error (401, 403, etc.), the user is redirected to the appropriate error page.
+ * Any other errors will also redirect the user to an error page.
+ */
+function updateTenantKey(editingId) {
+  const updatedData = {
+    id : editingId
+  };
+  fetch(host + "update-tenant-key", {  
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body : JSON.stringify(updatedData)
+  })
+  .then(response => {
+    if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          window.location.href = ownerLogSignURL;
+        }
+        // Redirect in case of other HTTP errors (e.g., 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Trigger the .catch by throwing an error
+    }
+    return response.json();
+  })
+  .then(data => {
+    navigator.clipboard.writeText("Code : " + data.key).then(() => {
+        alert('Code d\'activation copié dans le presse-papiers !');
+    }).catch(err => {
+      window.location.href = ownerError;
+    });
+    resetForm();
+  })
+  .catch(error => {
+    window.location.href = ownerError;
   });
 }

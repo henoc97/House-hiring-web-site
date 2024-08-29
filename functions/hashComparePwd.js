@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const {logger} = require('../src/logger/logRotation');
 
 /**
  * Hashes a password using bcrypt.
@@ -14,7 +15,7 @@ const hashPassword = async function (password) {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         return hashedPassword;
     } catch (error) {
-        console.error('Error while hashing password:', error);
+        logger.error('Error while hashing password:', error);
         throw new Error('Error while hashing password.');
     }
 };
@@ -32,7 +33,7 @@ async function comparePasswords(plainPassword, hashedPassword) {
         const result = await bcrypt.compare(plainPassword, hashedPassword);
         return result;
     } catch (error) {
-        console.error('Error during password comparison:', error);
+        logger.error('Error during password comparison:', error);
         throw new Error('Error during password comparison.');
     }
 }
@@ -45,6 +46,6 @@ module.exports = { hashPassword, comparePasswords };
 //         const hashedPwd = await hashPassword('examplePassword');
 //         console.log('Hashed Password:', hashedPwd);
 //     } catch (error) {
-//         console.error('Error in example usage:', error);
+//         logger.error('Error in example usage:', error);
 //     }
 // })();

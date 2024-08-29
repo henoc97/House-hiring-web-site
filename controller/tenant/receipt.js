@@ -1,3 +1,4 @@
+const {logger} = require('../../src/logger/logRotation');
 
 
 /**
@@ -12,6 +13,7 @@ module.exports.requireReceipt = async (req, res) => {
 
     // Validate input
     if (!sumpayed || !monthpayed) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Invalid input data' });
     }
 
@@ -20,9 +22,10 @@ module.exports.requireReceipt = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: "Request successful", data: rows[0][0] });
     } catch (err) {
-        console.error('Error executing query in requireReceipt:', err);
+        logger.error('Error executing query in requireReceipt:', err);
         res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
@@ -45,9 +48,10 @@ module.exports.receiptUnvalid = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query in receiptUnvalid:', err);
+        logger.error('Error executing query in receiptUnvalid:', err);
         res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
@@ -71,9 +75,10 @@ module.exports.receiptValid = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query in receiptValid:', err);
+        logger.error('Error executing query in receiptValid:', err);
         res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
@@ -95,6 +100,7 @@ module.exports.deleteReceipt = async (req, res) => {
 
     // Validate input
     if (!id) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Invalid receipt ID' });
     }
 
@@ -103,9 +109,10 @@ module.exports.deleteReceipt = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows);
     } catch (err) {
-        console.error('Error executing query in deleteReceipt:', err);
+        logger.error('Error executing query in deleteReceipt:', err);
         res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {

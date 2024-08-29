@@ -36,10 +36,7 @@ function makeRequest() {
   .then(data => {
     // console.log(data);
     // Store tokens if authentication is successful
-    if (data.accessToken) {
-      // console.log(data.accessToken);
-      localStorage.setItem('accessTokenTenant', data.accessToken);
-      setCookie("refreshTokenTenant", data.refreshToken, 7);
+    if (data.message == 'Request successful') {
       window.location.href = tenantDashboardURL; 
     } else {
       alert('Erreur de login. Veuillez vérifier vos informations.');

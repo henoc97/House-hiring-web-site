@@ -21,7 +21,6 @@ function addTenantToTable(tenant) {
   // Reformat unpaid months
   const formattedLate = late.split(',').map(formatMonthYear).join(', ');
   const formattedLateIsUndifined = formattedLate != 'undefined-';
-  // console.log("formattedLate: ", formattedLate); 
   
   const row = document.createElement('tr');
   row.dataset.id = tenant.id;
@@ -109,7 +108,6 @@ function addtenantsPropertiestable(tenantProperty) {
           alert('Lien d\'activation copié dans le presse-papiers !');
       }).catch(err => {
         window.location.href = ownerError;
-        // console.error('Failed to copy link: ', err);
       });
     });
   }
@@ -126,14 +124,12 @@ function createTenantRequest() {
     let contactmoov = document.getElementById('tenant-contact-moov').value;
     let contacttg = document.getElementById('tenant-contact-tg').value;
 
-    let token = localStorage.getItem('accessToken');
-
     fetch(host + 'create-tenant', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({
         "id": id,
         "lastname": lastname,
@@ -145,7 +141,7 @@ function createTenantRequest() {
     .then(response => {
       if (!response.ok) {
           if (response.status === 401 || response.status === 403) {
-              return renewAccessToken().then(() => createTenantRequest());
+            window.location.href = ownerLogSignURL;
           }
           // Redirect in case of other HTTP errors (e.g., 500)
           window.location.href = ownerError;
@@ -155,7 +151,6 @@ function createTenantRequest() {
     })
     .then(data => {
         updateSoldRequest(registerTenant);
-        // console.log(data);
         document.getElementById('tenant-form').reset();
         addtenantsPropertiestable(data);
         removePropertyOptionByValue(id);
@@ -163,7 +158,6 @@ function createTenantRequest() {
     })
     .catch(error => {
       window.location.href = ownerError;
-      // console.error('Error:', error);
     });
   } else {
     alert(`solde insuffisant. Cette opération coûte ${registerTenant} XOF`);
@@ -187,6 +181,5 @@ function removePropertyOptionByValue(value) {
           }
       }
   } else {
-      // console.error("Element with ID 'property-option' not found.");
   }
 }

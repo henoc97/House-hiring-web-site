@@ -49,19 +49,18 @@ function addSubscription(subscription) {
  * Sends a request to get all subscriptions and updates the table.
  */
 function getSubscriptionsRequest() {
-  const token = localStorage.getItem('accessTokenAdmin');
 
   fetch(hostAdmin + 'get-all-subscriptions', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
   })
   .then(response => {
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) {
-        return renewAccessToken().then(() => getSubscriptionsRequest());
+        window.location.href = adminLogSignURL;
       }
       // Redirect in case of other HTTP errors (e.g., 500)
       window.location.href = adminError;
@@ -139,20 +138,19 @@ function addDropdownsListener() {
  * @param {string} subscriptionId - The ID of the subscription to delete.
  */
 function deletesubscription(subscriptionId) {
-  const token = localStorage.getItem('accessTokenAdmin');
 
   fetch(hostAdmin + "delete-subscription", {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ "id": subscriptionId })
   })
   .then(response => {
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) {
-        return renewAccessToken().then(() => deletesubscription(subscriptionId));
+        window.location.href = adminLogSignURL;
       }
       // Redirect in case of other HTTP errors (e.g., 500)
       window.location.href = adminError;

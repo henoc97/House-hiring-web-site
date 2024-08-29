@@ -4,19 +4,18 @@
  * @returns {void}
  */
 function getMessagesRequest() {
-    const token = localStorage.getItem('accessTokenTenant');
 
     fetch(hostTenant + 'my-messages', {
         method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + token,
+        headers: { 
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include',
     })
     .then(response => {
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => getMessagesRequest());
+                window.location.href = tenantLogSignURL;
             }
             // Redirect in case of other HTTP errors (e.g., 500)
             window.location.href = tenantError;

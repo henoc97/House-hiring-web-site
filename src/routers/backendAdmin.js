@@ -3,12 +3,11 @@ const router = express.Router();
 
 // Middleware
 const dbMiddleware = require('../../middlewares/http/database');
-const authMiddleware = require('../../middlewares/http/auth');
+const authMiddleware = require('../../middlewares/http/auth')('admin');
 
 // Controllers
 const {
     userAuth,
-    refreshToken
 } = require('../../controller/admin/user');
 const {
     mySubscription,
@@ -76,7 +75,7 @@ router.post('/delete-subscription', isDeletedSubscription);
  * This should be the last middleware added.
  */
 router.use((err, req, res, next) => {
-    console.error('Server Error:', err.stack);
+    logger.error('Server Error:', err.stack);
     res.status(500).json({ message: 'An unexpected error occurred' });
 });
 

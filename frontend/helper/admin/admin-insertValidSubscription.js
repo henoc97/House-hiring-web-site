@@ -10,20 +10,19 @@ function insertSubscriptionAdmin() {
         method: document.querySelector('input[name="payment-method"]:checked').value,
     };
 
-    let token = localStorage.getItem('accessTokenAdmin');
 
     fetch(hostAdmin + "insert-subscription", {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify(insertedData)
     })
     .then(response => {
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => insertSubscription());
+                window.location.href = adminLogSignURL;
             }
             // Redirect in case of other HTTP errors (e.g., 500)
             window.location.href = adminError;
@@ -59,20 +58,19 @@ function insertSubscriptionAdmin() {
  * @param {string} method - The payment method.
  */
 function validSubscription(subscriptionId, id, ref, method) {
-    let token = localStorage.getItem('accessTokenAdmin');
 
     fetch(hostAdmin + "update-owner-sold", {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer ' + token,
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({ id, ref, method })
     })
     .then(response => {
         if (!response.ok) {
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => validSubscription(subscriptionId, id, ref, method));
+                window.location.href = adminLogSignURL;
             }
             // Throw an error for other HTTP errors
             throw new Error('HTTP error ' + response.status);

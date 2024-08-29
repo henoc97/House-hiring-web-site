@@ -19,7 +19,7 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
 
   // Check if the passwords match
   if (pwd !== pwd1) {
-      messageDiv.textContent = "Passwords do not match.";
+      messageDiv.textContent = "Les mots de passe ne correspondent pas.";
       messageDiv.classList.remove('green-message');
       messageDiv.classList.add('red-message');
       return;
@@ -40,14 +40,14 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
     if (!response.ok) {
       // console.log(`Network error: ${response.status}`);
       if (response.status === 401) {
-        alert('Access denied. Please check your information.');
+        alert('Accès interdit. Vérifiez vos informations de connexion.');
       } 
       if (response.status === 404 || response.status === 500) {
-        messageDiv.textContent = "An error occurred. Incorrect code.";
+        messageDiv.textContent = "Une erreur s'est produite. Code incorrect.";
         messageDiv.classList.add('red-message');
         messageDiv.classList.remove('green-message');
       } else {
-        alert('The server is temporarily unavailable. Please try again later.');
+        alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
         throw new Error(`Network error: ${response.status}`);
       }
     }
@@ -59,14 +59,14 @@ document.getElementById('reset-form').addEventListener('submit', function(event)
           document.getElementById('reset-form').reset();
           window.location.href = tenantLogSignURL;
       } else {
-        messageDiv.textContent = "An error occurred. Incorrect code.";
+        messageDiv.textContent = "Une erreur s'est produite. Code incorrect.";
         messageDiv.classList.add('red-message');
         messageDiv.classList.remove('green-message');
       }
   })
   .catch(error => {
       // console.error('Error:', error);
-      messageDiv.textContent = "An error occurred. Please try again.";
+      messageDiv.textContent = "Une erreur s'est produite. Veuillez réessayer.";
       messageDiv.classList.add('red-message');
       messageDiv.classList.remove('green-message');
   });

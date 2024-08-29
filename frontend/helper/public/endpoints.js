@@ -14,13 +14,13 @@ const ip = "localhost";
  * Port number on which the server is running.
  * @constant {string}
  */
-const port = "3000";
+const port = "8443";
 
 /**
  * Base URL for the application.
  * @constant {string}
  */
-const root = 'http://' + ip + ':' + port + '/';
+const root = 'https://' + ip + ':' + port + '/';
 
 /**
  * Base URL for the backend owner service.
@@ -32,7 +32,7 @@ const host = root + "backend-owner/";
  * WebSocket URL for real-time communication.
  * @constant {string}
  */
-const hostSocket = "ws://" + ip  + ":" + port + "/";
+const hostSocket = "wss://" + ip  + ":" + port + "/";
 
 /**
  * Base URL for the backend tenant service.

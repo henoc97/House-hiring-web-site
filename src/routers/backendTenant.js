@@ -3,13 +3,11 @@ const router = express.Router();
 
 // Middleware
 const dbMiddleware = require('../../middlewares/http/database');
-const authMiddleware = require('../../middlewares/http/auth');
+const authMiddleware = require('../../middlewares/http/auth')('tenant');
 
 // Controllers
 const {
-    getotp,
     userAuth,
-    refreshToken,
     activateTenantAccount,
     setPwd,
     myTenant,

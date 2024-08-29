@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\amavi\\StudioProjects\\house-hiring-web-site\\src\\logger\\logs\\.853898f45059048e960fe8859f628ba58fecae1a-audit.json",
+    "files": [
+        {
+            "date": 1724850660776,
+            "name": "C:\\Users\\amavi\\StudioProjects\\house-hiring-web-site\\src\\logger\\logs\\application-2024-08-28.log",
+            "hash": "60004af9715eaefd60d4405a6ff1e8ddd753c0de0ceb5541f3df39e8c3323b37"
+        },
+        {
+            "date": 1724894402673,
+            "name": "C:\\Users\\amavi\\StudioProjects\\house-hiring-web-site\\src\\logger\\logs\\application-2024-08-29.log",
+            "hash": "458701b1b861dfeae914248aeee0d01e9cd4f3dd6fece1403ea13ab5e71ac001"
+        }
+    ],
+    "hashType": "sha256"
+}

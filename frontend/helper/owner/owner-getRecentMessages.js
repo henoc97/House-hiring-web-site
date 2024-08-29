@@ -6,23 +6,21 @@
  * It also handles token renewal in case of authentication errors.
  */
 function getRecentMessagesRequest() {
-  // Retrieve the access token from localStorage
-  let token = localStorage.getItem('accessToken');
 
   // Send a POST request to fetch recent messages
   fetch(host + 'recent-messages', {
       method: 'POST',
       headers: { 
-          'Authorization': 'Bearer ' + token,
           'Content-Type': 'application/json'
       },
+      credentials: 'include'
   })
   .then(response => {
     // Check if the response is not OK
     if (!response.ok) {
         // Handle unauthorized or forbidden errors
         if (response.status === 401 || response.status === 403) {
-            return renewAccessToken().then(() => getRecentMessagesRequest());
+          window.location.href = ownerLogSignURL;
         }
         // Redirect in case of other HTTP errors (e.g., 500)
         window.location.href = ownerError;
@@ -32,8 +30,6 @@ function getRecentMessagesRequest() {
     return response.json();
   })
   .then(data => {
-      // console.log("Data received:", data); // Log received data
-      // console.log('Received recent messages:', data);
 
       // Assuming messages are in an array
       const recentMessages = data;
@@ -45,7 +41,6 @@ function getRecentMessagesRequest() {
 
           // Iterate over the recent messages and create table rows
           recentMessages.forEach((recentMessage) => {
-            // console.log("Recent messages data:", recentMessage); // Log each message data
 
             // Format the date and time
             const formattedHour = new Date(recentMessage.date_time).toLocaleString('fr-FR', {
@@ -94,12 +89,10 @@ function getRecentMessagesRequest() {
             });
           });
       } else {
-          // console.error("Element with ID 'recent-messages-table' not found.");
       }
   })
   .catch((error) => {
     // Redirect on error
     window.location.href = ownerError;
-    // console.error('Error fetching recent messages:', error);
   });
 }

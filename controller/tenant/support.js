@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const {logger} = require('../../src/logger/logRotation');
 
 /**
  * Handles sending a message from a tenant.
@@ -12,6 +13,7 @@ module.exports.sendMessage = async (req, res) => {
 
     // Validate input
     if (!message) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Message content is required and must be a string.' });
     }
 
@@ -20,9 +22,10 @@ module.exports.sendMessage = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: 'Message sent successfully' });
     } catch (err) {
-        console.error('Error executing query in sendMessage:', err);
+        logger.error('Error executing query in sendMessage:', err);
         res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
@@ -45,7 +48,7 @@ module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
 
     // Validate input
     if (!message) {
-        console.error('Invalid message received:', messageObject);
+        logger.error('Invalid message received:', messageObject);
         return;
     }
 
@@ -58,11 +61,11 @@ module.exports.tenantMessageSender = async (ws, messageObject, wss) => {
         if (rows && rows.length > 0 && rows[0].length > 0) {
             result = rows[0][0]; // Get the first object from the first row
         } else {
-            console.error('No data returned by the stored procedure');
+            logger.error('No data returned by the stored procedure');
             return;
         }
     } catch (err) {
-        console.error('Error executing query in tenantMessageSender:', err);
+        logger.error('Error executing query in tenantMessageSender:', err);
         return;
     } finally {
         if (ws.connection) {
@@ -94,9 +97,10 @@ module.exports.myMessages = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0]);
     } catch (err) {
-        console.error('Error executing query in myMessages:', err);
+        logger.error('Error executing query in myMessages:', err);
         res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {
@@ -120,6 +124,7 @@ module.exports.deleteMessage = async (req, res) => {
     // Validate input
     console.log("typeof messageId: " + typeof messageId);
     if (!messageId) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Valid message ID is required.' });
     }
 
@@ -128,9 +133,10 @@ module.exports.deleteMessage = async (req, res) => {
 
     try {
         const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({ message: 'Message updated successfully' });
     } catch (err) {
-        console.error('Error executing query in deleteMessage:', err);
+        logger.error('Error executing query in deleteMessage:', err);
         res.status(500).json({ message: 'Internal Server Error' });
     } finally {
         if (req.connection) {

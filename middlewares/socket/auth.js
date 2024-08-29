@@ -2,11 +2,13 @@
 
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const cookie = require('cookie');
 
 /**
- * Middleware to verify WebSocket token.
+ * Middleware to verify WebSocket token using cookies.
  * 
- * This middleware extracts the token from the WebSocket request URL, verifies it using JWT, and attaches the decoded user information to the WebSocket object.
+ * This middleware extracts the token from the WebSocket request cookies, verifies it using JWT,
+ * and attaches the decoded user information to the WebSocket object.
  * If the token is missing or invalid, the WebSocket connection is closed with an appropriate status code and message.
  * 
  * @param {WebSocket} ws - The WebSocket connection object.
@@ -15,10 +17,13 @@ require('dotenv').config();
  * @returns {void}
  */
 module.exports = (ws, request, callback) => {
-    const url = new URL(request.url, `http://${request.headers.host}`);
-    const token = url.searchParams.get('token');
-    
-    console.log("Token:", token);
+    const url = new URL(request.url, `https://${request.headers.host}`);
+    const userType = url.searchParams.get('userType'); // Extract user type from URL
+    const cookies = cookie.parse(request.headers.cookie || '');
+    console.log('request.cookies : ', cookies);
+    const token = cookies[`${userType}Token`]; // or 'tenantToken', 'adminToken', etc.
+
+    console.log("Token from cookie:", token);
 
     if (!token) {
         ws.close(4000, 'Token missing');

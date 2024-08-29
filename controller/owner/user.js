@@ -8,6 +8,8 @@ const fs = require('fs');
 const path = require('path');
 const emailOtp = {};
 const resetPwdEmailOtp = {};
+const {logger} = require('../../src/logger/logRotation');
+const { createSecureCookie } = require('../../functions/cookies')
 
 /**
  * Generates an OTP (One-Time Password) and sends it to the provided email address.
@@ -22,9 +24,11 @@ module.exports.getOtp = async (req, res) => {
         const otp = generateOTPCode(); // Ensure that generateOTPCode() generates a valid OTP
         sendOTPemail(email, pwd, otp);
         emailOtp[email] = otp;
-        res.status(200).json({ message: 'OTP sent' });
+        logger.info(`200 OK: ${req.method} ${req.url}`);
+        res.status(200).json({ message: 'Request successful' });
     } else {
-        res.status(404).json({ message: 'Enter a valid email' });
+        logger.warn(`404 Not Found: ${req.method} ${req.url}`);
+        res.status(404).json({ message: 'Entrer un email valide' });
     }
 };
 
@@ -45,7 +49,7 @@ module.exports.getResetPwdOtp = async (req, res) => {
             console.log(rows);
             result = rows[0];
         } catch (error) {
-            console.error('Error: ' + error);
+            logger.error('Error: ' + error);
             res.status(500).json({ message: 'Internal Server Error', error });
         } finally {
             if (req.connection) {
@@ -55,39 +59,15 @@ module.exports.getResetPwdOtp = async (req, res) => {
         if (result.length > 0 && result[0].id) {
             sendResetPwdOTPemail(email, otp);
             resetPwdEmailOtp[email] = otp;
+            logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json({ message: 'OTP sent' });
         } else {
-            res.status(404).json({ message: 'Your email is not associated with any account.' });
+            logger.warn(`404 Not Found: ${req.method} ${req.url}`);
+            res.status(404).json({ message: 'Votre email n\'est associé à aucun compte.' });
         }
     } else {
+        logger.warn(`404 Not Found: ${req.method} ${req.url}`);
         res.status(404).json({ message: 'Enter a valid email' });
-    }
-};
-
-/**
- * Refreshes the access token using a provided refresh token.
- * @param {Object} req - The request object containing the refresh token.
- * @param {Object} res - The response object used to send the response.
- * @returns {void}
- */
-module.exports.refreshToken = (req, res) => {
-    const { refreshToken } = req.body;
-
-    if (!refreshToken) {
-        return res.status(401).json({ message: 'No refresh token provided' });
-    }
-
-    try {
-        const key = process.env.TOKEN_KEY;
-        const decoded = jwt.verify(refreshToken, key);
-
-        const user = { id: decoded.userId, email: decoded.userEmail };
-        const newAccessToken = generateOwnerToken(user, "15m");
-        const newRefreshToken = generateOwnerToken(user, "7d");
-
-        res.json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
-    } catch (err) {
-        res.status(401).json({ message: 'Invalid refresh token' });
     }
 };
 
@@ -96,6 +76,7 @@ module.exports.updatePwdOwner = async (req, res) => {
 
     // Validation des entrées
     if (!email || !otp || !pwd) {
+        logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Tous les champs sont requis' });
     }
 
@@ -103,6 +84,7 @@ module.exports.updatePwdOwner = async (req, res) => {
         // Vérification de l'OTP
         if (resetPwdEmailOtp[email] !== otp) {
             console.log("OTP invalide", resetPwdEmailOtp[email], otp);
+            logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
             return res.status(400).json({ message: 'OTP invalide' });
         }
 
@@ -118,14 +100,14 @@ module.exports.updatePwdOwner = async (req, res) => {
 
         try {
             const [result] = await req.connection.query(query, values);
-            console.log(result);
+            logger.info(`200 OK: ${req.method} ${req.url}`);
             return res.status(200).json({ message: "Mot de passe réinitialisé avec succès" });
         } catch (error) {
-            console.error('Erreur lors de l\'exécution de la requête SQL', error);
+            logger.error('Erreur lors de l\'exécution de la requête SQL', error);
             return res.status(500).json({ message: 'Erreur lors de la réinitialisation du mot de passe' });
         }
     } catch (error) {
-        console.error('Erreur lors de la réinitialisation du mot de passe', error);
+        logger.error('Erreur lors de la réinitialisation du mot de passe', error);
         return res.status(500).json({ message: 'Erreur serveur' });
     } finally {
         // Libération de la connexion
@@ -148,11 +130,13 @@ module.exports.createUserOwner = async (req, res) => {
     
     if (!mailTest(email)) {
         console.log("Invalid email: " + email);
+        logger.warn(`404 Not Found: ${req.method} ${req.url}`);
         return res.status(404).json({ message: 'Enter a valid email' });
     }
 
     if (emailOtp[email] !== otp) {
         console.log("Invalid OTP", emailOtp[email], otp);
+        logger.warn(`404 Not Found: ${req.method} ${req.url}`);
         return res.status(404).json({ message: 'OTP invalide' });
     } else {
         delete emailOtp.email; // Corrected typo here
@@ -165,17 +149,16 @@ module.exports.createUserOwner = async (req, res) => {
         const [result] = await req.connection.query("CALL insert_owner(?, ?)", [pwdhashed, email]);
         const objIDSold = result[0][0]; // Object containing ID and balance
         console.log(objIDSold);
-        const newAccessToken = generateOwnerToken({ id: objIDSold.id, email: email }, "2d");
-        const newRefreshToken = generateOwnerToken({ id: objIDSold.id, email: email }, "7d");
-        console.log(newAccessToken, newRefreshToken);
+        const user = { id: objIDSold.id, email: email };
+        const token = generateOwnerToken(user, "4d");
+        createSecureCookie(res, token, 'owner');
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({
-            refreshToken: newRefreshToken,
-            accessToken: newAccessToken,
             sold: objIDSold.sold,
             message: 'Request successful'
         });
     } catch (error) {
-        console.error('Error: ' + error);
+        logger.error('Error: ' + error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {
@@ -195,6 +178,7 @@ module.exports.userAuth = async (req, res) => {
     console.log(email, pwd);
     
     if (!mailTest(email)) {
+        logger.warn(`404 Not Found: ${req.method} ${req.url}`);
         return res.status(404).json({ message: 'Enter a valid email' });
     }
 
@@ -204,6 +188,7 @@ module.exports.userAuth = async (req, res) => {
         console.log('show_owner', rows[0][0].pwd);
         if (rows[0][0].length === 0) {
             console.log('User not found');
+            logger.warn(`404 Not Found: ${req.method} ${req.url}`);
             return res.status(404).json({ message: 'No user found' });
         }
         
@@ -212,19 +197,19 @@ module.exports.userAuth = async (req, res) => {
         if (await comparePasswords(pwd, pwdhashed)) {
             const user = User.jsonToNewUser(rows[0][0]);
             console.log("User: ", user);
-            const newAccessToken = generateOwnerToken({ id: user.userID, email: user.email }, "2d");
-            const newRefreshToken = generateOwnerToken({ id: user.userID, email: user.email }, "7d");
-            console.log(newAccessToken, newRefreshToken);
+            const token = generateOwnerToken(user, "4d");
+            createSecureCookie(res, token, 'owner');
+            logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json({
-                refreshToken: newRefreshToken,
-                accessToken: newAccessToken,
-                user: user.toJson()
+                user: user.toJson(),
+                message: 'Request successful'
             });
         } else {
+            logger.warn(`404 Not Found: ${req.method} ${req.url}`);
             res.status(404).json({ message: 'Incorrect password' });
         }
     } catch (error) {
-        console.error('Error: ' + error);
+        logger.error('Error: ' + error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {
@@ -249,14 +234,15 @@ module.exports.myOwner = async (req, res) => {
             const [rows] = await req.connection.query(query, values);
             console.log(rows[0]);
             console.log("Owner rows: ", rows);
+            logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json(rows[0][0]);
         } catch (error) {
-            console.error('Error executing query', error);
+            logger.error('Error executing query', error);
             res.status(500).json({ message: 'Server error' });
         }
     } catch (error) {
         console.log('Error executing', error);
-        console.error('Error: ' + error);
+        logger.error('Error: ' + error);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -281,13 +267,14 @@ module.exports.updateOwner = async (req, res) => {
         try {
             const [result] = await req.connection.query(query, values);
             console.log(result);
+            logger.info(`200 OK: ${req.method} ${req.url}`);
             res.status(200).json({ message: "Request successful" });
         } catch (error) {
-            console.error('Error executing query', error);
+            logger.error('Error executing query', error);
             res.status(500).json({ message: 'Server error' });
         }
     } catch (error) {
-        console.error('Error: ' + error);
+        logger.error('Error: ' + error);
         res.status(500).json({ message: 'Server error' });
     } finally {
         if (req.connection) {
@@ -309,9 +296,10 @@ module.exports.updateSold = async (req, res) => {
     try {
         const [rows] = await req.connection.query("CALL update_sold(?, ?)", [userId, spend]);
         console.log('Update Sold Result:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0].update_sold);
     } catch (error) {
-        console.error('Error updating sold:', error);
+        logger.error('Error updating sold:', error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {
@@ -330,6 +318,7 @@ module.exports.uploadImg = async (req, res) => {
     try {
         // Check if a file was uploaded
         if (!req.file) {
+            logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
@@ -355,13 +344,14 @@ module.exports.uploadImg = async (req, res) => {
         const [rows] = await req.connection.query(query, values);
 
         // Respond with the new image URL and filename
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json({
             imageUrl: imgUrl, // Publicly accessible path
             filename: req.file.filename
         });
 
     } catch (error) {
-        console.error('Error uploading image:', error);
+        logger.error('Error uploading image:', error);
         res.status(500).json({ message: 'Error uploading file' });
     } finally {
         if (req.connection) {
@@ -384,9 +374,10 @@ module.exports.insertSubscription = async (req, res) => {
     try {
         const [rows] = await req.connection.query(query, values);
         console.log('Subscription Insert Result:', rows[0]);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
         res.status(200).json(rows[0][0]);
     } catch (error) {
-        console.error('Error inserting subscription:', error);
+        logger.error('Error inserting subscription:', error);
         res.status(500).json({ message: 'Internal Server Error', error });
     } finally {
         if (req.connection) {

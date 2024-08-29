@@ -14,7 +14,7 @@ class User {
      * @param {number} sold - The balance or sold of the user.
      */
     constructor(id, firstname, lastname, email, pwd, contactmoov, contacttg, sold) {
-        this.userID = id;
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -30,7 +30,7 @@ class User {
      */
     toJson() {
         return {
-            id: this.userID,
+            id: this.id,
             firstname: this.firstname,
             lastname: this.lastname,
             email: this.email,

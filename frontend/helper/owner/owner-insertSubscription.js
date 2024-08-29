@@ -18,18 +18,14 @@ function insertSubscription() {
         method: document.querySelector('input[name="payment-method"]:checked').value,
     };
 
-    // console.log("inseredData: ", JSON.stringify(inseredData)); // Log the collected data for debugging
-
-    // Retrieve the access token from local storage
-    let token = localStorage.getItem('accessToken');
 
     // Send a POST request to the server with the subscription data
     fetch(host + "insert-subscription", {
         method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + token, // Add authorization token to headers
-            'Content-Type': 'application/json'  // Set content type to JSON
-        },
+        headers: { 
+          'Content-Type': 'application/json'
+      },
+      credentials: 'include',
         body: JSON.stringify(inseredData) // Send the collected data as JSON
     })
     .then(response => {
@@ -37,7 +33,7 @@ function insertSubscription() {
         if (!response.ok) {
             // Handle unauthorized or forbidden responses
             if (response.status === 401 || response.status === 403) {
-                return renewAccessToken().then(() => insertSubscription()); // Renew token and retry request
+                window.location.href = ownerLogSignURL;
             }
             // Handle other HTTP errors (e.g., 500 Internal Server Error)
             // window.location.href = ownerError;
@@ -57,6 +53,5 @@ function insertSubscription() {
     })
     .catch(error => {
         // Log the error and handle failure
-        // console.error('Error inserting subscription:', error); // Log the error to the console
     });
 }
