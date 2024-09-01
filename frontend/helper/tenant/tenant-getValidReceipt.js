@@ -160,7 +160,6 @@ function compareMonths(date1, date2) {
  * Fetches valid receipts from the server and updates the UI accordingly.
  */
 function getValidReceiptsRequest() {
-  let token = localStorage.getItem('accessTokenTenant');
   let createTime = new Date(localStorage.getItem('createTime'));
 
   fetch(hostTenant + 'receipt-valid', {

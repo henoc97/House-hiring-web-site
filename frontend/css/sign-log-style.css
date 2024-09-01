@@ -122,12 +122,11 @@ body {
 
 .wrapper {
   overflow: hidden;
-  width: 90vw; /* Légère augmentation de la largeur pour plus d'espace */
+  width: 90vw; 
   padding: 0px;
   border-radius: 15px;
-  /* background-color: red; */
-  margin-top: 40px; /* Augmente l'espace au-dessus du wrapper */
-  margin-bottom: 20px; /* Augmente l'espace au-dessus du wrapper */
+  margin-top: 40px; 
+  margin-bottom: 20px; 
 }
 
 .wrapper .wrapper-content {
@@ -136,20 +135,20 @@ body {
   grid-gap: 80px;
   justify-content: space-between;
   overflow: hidden;
-  width: 95%; /* Légère augmentation de la largeur pour plus d'espace */
+  width: 95%; 
   background: #fff;
-  padding: 40px; /* Augmente l'espace intérieur pour plus d'aération */
+  padding: 40px; 
   border-radius: 15px;
   margin: auto;
-  margin-top: 40px; /* Augmente l'espace au-dessus du wrapper-content */
+  margin-top: 40px; 
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper-form {
   overflow: hidden;
-  max-width: 420px; /* Augmente la largeur maximale du formulaire */
+  max-width: 420px; 
   background: #fff;
-  padding: 40px; /* Augmente l'espace intérieur pour plus de confort */
+  padding: 40px; 
   border-radius: 15px;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
 }

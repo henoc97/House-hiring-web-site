@@ -5,7 +5,7 @@ function insertSubscriptionAdmin() {
     // Collect subscription data from the form
     const insertedData = {
         email: document.getElementById('subscription-email').value,
-        ref: document.getElementById('subscription-trx-id').value,
+        ref: document.getElementById('subscription-txn-id').value,
         sumpaid: document.getElementById('subscription-amount').value,
         method: document.querySelector('input[name="payment-method"]:checked').value,
     };

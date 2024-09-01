@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
       localStorage.setItem('userName', data.userName + data.count);
       localStorage.setItem('createTime', data.createTime);
       
+      localStorage.setItem('numberOfPayments', 0);
+      localStorage.setItem('unpaidMonthsCount', 0);
+      localStorage.setItem('lastPaymentDate', '--');
+
       // Redirect to the tenant dashboard
       window.location.href = tenantDashboardURL;
     } else {

@@ -13,7 +13,7 @@ function insertSubscription() {
     // Collect data from the form
     const inseredData = {
         email: document.getElementById('subscription-email').value,
-        ref: document.getElementById('subscription-trx-id').value,
+        ref: document.getElementById('subscription-txn-id').value,
         sumpaid: document.getElementById('subscription-amount').value,
         method: document.querySelector('input[name="payment-method"]:checked').value,
     };
@@ -36,7 +36,7 @@ function insertSubscription() {
                 window.location.href = ownerLogSignURL;
             }
             // Handle other HTTP errors (e.g., 500 Internal Server Error)
-            // window.location.href = ownerError;
+            window.location.href = ownerError;
             throw new Error('HTTP error ' + response.status); // Throw error to trigger catch block
         }
         // Parse the JSON response
@@ -53,5 +53,6 @@ function insertSubscription() {
     })
     .catch(error => {
         // Log the error and handle failure
+        window.location.href = ownerError;
     });
 }

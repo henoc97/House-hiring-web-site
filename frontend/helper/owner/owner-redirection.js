@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function() {
   .then(data => {
     if (data.message == 'Request successful') {
       localStorage.setItem('sold', data.sold);
+      localStorage.setItem('numberOfTenants', 0);
+      localStorage.setItem('numberOfProperties', 0);
+      localStorage.setItem('numberOfTenantsProperties', 0);
+      localStorage.setItem('numberOfPayments', 0);
       window.location.href = ownerDashboardURL;
     } else {
       alert('Erreur de login'); // Shows a login error message in French

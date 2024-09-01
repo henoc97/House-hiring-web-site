@@ -53,6 +53,11 @@ function displayMessage(message) {
     const chatContainer = document.getElementById('chat-container');
     if (chatContainer) {
         
+        // Check if the message already exists
+        if (document.querySelector(`.message[data-id='${message.id}']`)) {
+            return; // Message already displayed, do nothing
+        }
+        
         // Create a new message div
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');

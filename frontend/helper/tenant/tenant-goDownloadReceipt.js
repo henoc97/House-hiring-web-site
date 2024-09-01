@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       const downloadBtn = document.createElement('button');
       downloadBtn.id = 'download-pdf';
       downloadBtn.onclick = downloadPDF;
-      downloadBtn.innerHTML = "Download PDF";
+      downloadBtn.innerHTML = "Télécharger en PDF";
       receiptBtns.appendChild(downloadBtn);
     }
     
@@ -37,9 +37,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
     }).replace(',', '').replace(/\//g, '-');
     
     const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
@@ -49,21 +46,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
     // Populate receipt details
     receiptDetails.innerHTML = `
-      <p><strong>Receipt Number:</strong> ${receiptData.receiptNumber ?? ''} </p>
-      <p><strong>Issue Date:</strong> ${validationDate ?? ''} </p>
-      <p><strong>Tenant's Name:</strong> ${receiptData.lastname ?? ''} ${receiptData.firstname ?? ''} </p>
-      <p><strong>Tenant's Address:</strong> ${receiptData.address ?? ''} </p>
-      <p><strong>Rent Amount:</strong> ${receiptData.sumpayed ?? ''} FCFA</p>
-      <p><strong>Payment for the Month of:</strong> ${formattedMonthpayed ?? ''}</p>
-      <p id="payment-date"><strong>Payment Date:</strong> ${formattedDate ?? ''}</p>
-    `;
+        <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber ?? ''}</p>
+        <p><strong>Date d'Émission :</strong> ${validationDate ?? ''}</p>
+        <p><strong>Nom du Locataire :</strong> ${receiptData.lastname ?? ''} ${receiptData.firstname ?? ''}</p>
+        <p><strong>Adresse du Locataire :</strong> ${receiptData.address ?? ''}</p>
+        <p><strong>Montant du Loyer :</strong> ${receiptData.sumpayed ?? ''} FCFA</p>
+        <p><strong>Règlement du mois de :</strong> ${formattedMonthpayed ?? ''}</p>
+        <p id="payment-date"><strong>Date de Paiement :</strong> ${formattedDate ?? ''}</p>
+      `;
     
     // Populate owner details
     ownerDetails.innerHTML = `
-      <p><strong>Owner's Name:</strong> ${receiptData.owner_lastname ?? ''} ${receiptData.owner_firstname ?? ''}</p>
-      <p><strong>Phone:</strong> ${receiptData.owner_contactmoov ?? ''} / ${receiptData.owner_contacttg ?? ''}</p>
-      <p><strong>Email:</strong> ${receiptData.owner_email ?? ''}</p>
-    `;
+      <p><strong>Nom du Propriétaire :</strong> ${receiptData.owner_lastname ?? ''} ${receiptData.owner_firstname ?? ''}</p>
+      <p><strong>Téléphone :</strong> ${receiptData.owner_contactmoov ?? ''} / ${receiptData.owner_contacttg ?? ''}</p>
+      <p><strong>Email :</strong> ${receiptData.owner_email ?? ''}</p>
+      `;
     
     // Set the source of the signature image
     document.getElementById('signature-image').src = receiptData.owner_img_url;

@@ -247,6 +247,14 @@
   margin-bottom: 10px;
 }
 
+.card-boxes .box {
+  transition: transform 0.3s;
+}
+
+.info-box:hover, .box:hover {
+  transform: translateY(-5px);
+}
+
 .card-boxes .box i {
   color: var(--purple);
 }
@@ -633,6 +641,7 @@ form button:hover {
     grid-template-columns: repeat(2, 1fr);
   }
   .details {
+    padding: 10px;
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -642,6 +651,7 @@ form button:hover {
     grid-template-columns: repeat(2, 1fr);
   }
   .details {
+    padding: 10px;
     grid-template-columns: repeat(1, 1fr);
     }
 }
@@ -652,6 +662,7 @@ form button:hover {
     grid-template-columns: repeat(1, 1fr);
   }
   .details {
+    padding: 10px;
     grid-template-columns: repeat(1, 1fr);
   }
   
