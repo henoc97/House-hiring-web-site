@@ -100,6 +100,8 @@ function createPropertyRequest() {
         updateSoldRequest(registerHomePrice);
         document.getElementById('property-form').reset();
         addPropertyToTable(data); // Add the new property to the table without reloading
+        setNumberOfProperties(parseInt(getNumberOfProperties(), 10) + 1);
+        showNumberOfProperties();
         showNewSold();
     })
     .catch(error => {

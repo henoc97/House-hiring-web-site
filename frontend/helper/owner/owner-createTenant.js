@@ -154,6 +154,10 @@ function createTenantRequest() {
         document.getElementById('tenant-form').reset();
         addtenantsPropertiestable(data);
         removePropertyOptionByValue(id);
+        setNumberOfTenantsProperties(parseInt(getNumberOfTenantsProperties(), 10) + 1);
+        setNumberOfTenants(parseInt(getNumberOfTenants(), 10) + 1);
+        showNumberOfTenants();
+        showNumberOfTenantsProperties();
         showNewSold();
     })
     .catch(error => {

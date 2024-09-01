@@ -67,7 +67,6 @@ function getTenantsPropertiesRequest(type) {
       const tenantsproperties = data;
       setNumberOfTenantsProperties(tenantsproperties.length);
       showNumberOfTenantsProperties();
-
       // Call the appropriate function based on the type
       if (type === 1) {
         tenantsPropertiestableConstructor(tenantsproperties);

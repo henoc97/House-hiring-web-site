@@ -47,7 +47,7 @@ function getPropertiesRequest(type) {
         window.location.href = ownerLogSignURL;
       }
       // Redirect on other HTTP errors (e.g., 500)
-      // window.location.href = ownerError;
+      window.location.href = ownerError;
       throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
     }
     return response.json();
@@ -56,18 +56,17 @@ function getPropertiesRequest(type) {
     // If properties are wrapped in an object { myProperties }
     const properties = data.myProperties || data;
 
-    setNumberOfProperties(properties.length);
-
-    showNumberOfProperties();
-
+    
     if (type == 1) {
       myPropertiesTableConstructor(properties);
+      setNumberOfProperties(properties.length);
+      showNumberOfProperties();
     } else {
       propertyOptionConstructor(properties);
     }
   })
   .catch((error) => {
-    // window.location.href = ownerError;
+    window.location.href = ownerError;
   });
 }
 
