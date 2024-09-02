@@ -55,14 +55,14 @@
   position: relative;
   height: 60px;
   min-width: 50px;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 60px;
   text-align: center;
   color: var(--white);
 }
 
 .sidebar .logo-details .logo-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--white);
   transition: all 0.5s ease;
@@ -71,7 +71,7 @@
 .sidebar ul li a i {
   position: relative;
   height: 50px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 50px;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .sidebar ul li a .links-name {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 400;
   color: var(--white);
   transition: 0.4s;
@@ -192,7 +192,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
 }
 
@@ -206,7 +206,7 @@
   display: inline-block;
   padding: 0rem 1rem;
   transform: translateY(20%);
-  font-size: 1.3rem
+  font-size: 1rem
 }
 
 .sold-wrapper {
@@ -257,7 +257,7 @@
 
 .card-boxes .box .numbers {
   position: relative;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 500;
   color: var(--dark-blue);
 }
@@ -265,13 +265,13 @@
 .card-boxes .box .box-topic, .profile-card-boxes .box .box-topic {
   position: relative;
   margin-top: 5px;
-  font-size: 1.1em;
+  font-size: 1em;
   color: var(--gray);
 }
 
 .card-boxes .box i, .profile-card-boxes .box i {
   position: relative;
-  font-size: 3.5em;
+  font-size: 3em;
   color: var(--dark-blue);
   margin-bottom: 10px;
 }
@@ -343,7 +343,7 @@
 
 .details .table-card table tbody tr td {
   position: relative;
-  font-size: .938rem;
+  font-size: .92rem;
   font-weight: 500;
   line-height: 1.2;
   color: var(--dark-blue);
@@ -360,7 +360,7 @@
   position: relative;
   display: inline-block;
   padding: 0.38em 0.65em;
-  font-size: 0.75em;
+  font-size: 0.73em;
   font-weight: 700;
   line-height: 1;
   color: var(--white);
@@ -430,7 +430,7 @@
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: bold;
 }
 
@@ -474,16 +474,16 @@
 
 #toggle-icon {
   cursor: pointer;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .modal-content .card-header h2 {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: var(--dark-blue);
 }
 
 .card .card-header h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--dark-blue);
 }
 
@@ -580,7 +580,7 @@
 
 .recent-message-text {
   margin: 0;
-  font-size: 14px; /* Ajustez la taille de la police si nécessaire */
+  font-size: 12px; /* Ajustez la taille de la police si nécessaire */
 }
 
 .red-message {
@@ -601,7 +601,7 @@
   margin: 10px auto 0;
   display: flex;
   flex-direction: column;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .message-container {
@@ -668,7 +668,7 @@
 }
 
 #delete-selected {
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   z-index: 10;
   position: absolute;
@@ -710,7 +710,7 @@
 
 /* Timestamp pour les messages */
 .timestamp {
-  font-size: 10px;
+  font-size: 9px;
   color: #888;
   position: absolute;
   bottom: -15px;
@@ -741,7 +741,7 @@
 }
 
 .info-box i {
-  font-size: 22px !important;
+  font-size: 20px !important;
   color: var(--purple2) !important;
   margin-right: 15px;
 }
@@ -752,19 +752,19 @@
 }
 
 .info-title {
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
   margin-bottom: 5px;
 }
 
 .info-title span {
   color: var(--blue);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .info-value {
-  font-size: 18px !important;
+  font-size: 16px !important;
   font-weight: bold;
   color: var(--green);
 }
@@ -772,7 +772,7 @@
 #subscription-info::placeholder {
   text-align: center;
   color: var(--dark-blue); /* Couleur du texte du placeholder */
-  font-size: 20px; /* Taille de la police du placeholder */
+  font-size: 18px; /* Taille de la police du placeholder */
   font-weight: bold;
   opacity: 1; /* Opacité du texte */
 }
@@ -792,7 +792,7 @@
 
 .payment-notice p {
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
 }
 
@@ -815,13 +815,13 @@ input[type="radio"] {
   cursor: pointer;
   position: relative;
   padding-left: 30px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   color: #333;
 }
 
 #action-indicator {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* Style pour le cercle des boutons radio */
@@ -878,7 +878,7 @@ form textarea {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 15px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 form button {
@@ -888,7 +888,7 @@ form button {
   border: none;
   border-radius: 15px;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -1000,7 +1000,7 @@ form button:hover {
   
   /* je dois retravailler cette partie (soit je commente le display) */
   .home-section .topbar .sold-wrapper {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   
   .sidebar.open,
