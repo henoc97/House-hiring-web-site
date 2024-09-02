@@ -39,7 +39,7 @@ function getOwner() {
           data.contactmoov == null || 
           data.contacttg == null) {
           document.querySelector('#action-indicator')
-              .textContent = 'Complete the information'; 
+              .textContent = 'Complèter les informations'; 
       }
 
       // Populate the form fields with the owner's data

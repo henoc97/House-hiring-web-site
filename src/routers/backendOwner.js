@@ -44,7 +44,6 @@ const {
     deleteReceipt
 } = require('../../controller/owner/receipt');
 const {
-    sendMessage,
     myMessages,
     recentMessages,
     deleteMessage
@@ -239,11 +238,6 @@ router.post('/delete-receipt', deleteReceipt);
  * Routes for message operations.
  */
 
-/**
- * Send a message.
- * POST /send-message
- */
-router.post('/send-message', sendMessage);
 
 /**
  * Get messages of the authenticated owner.

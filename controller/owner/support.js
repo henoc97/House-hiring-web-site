@@ -2,36 +2,6 @@ const WebSocket = require('ws');
 const {logger} = require('../../src/logger/logRotation');
 
 /**
- * Handles sending a message from an owner to a tenant.
- * @param {Object} req - The request object containing tenantId and message.
- * @param {Object} res - The response object.
- */
-module.exports.sendMessage = async (req, res) => {
-    const { tenantId, message } = req.body;
-
-    // Validate input
-    if (!tenantId || !message) {
-        return res.status(400).json({ message: 'Missing parameters' });
-    }
-
-    const query = "CALL insert_message_owner(?, ?, ?)";
-    const values = [req.user.userId, tenantId, message];
-
-    try {
-        const [rows] = await req.connection.query(query, values);
-        logger.info(`200 OK: ${req.method} ${req.url}`);
-        res.status(200).json({ message: "Request successful" });
-    } catch (err) {
-        logger.error('Error executing query:', err);
-        res.status(500).json({ message: 'Server error' });
-    } finally {
-        if (req.connection) {
-            req.connection.release();
-        }
-    }
-};
-
-/**
  * Handles the WebSocket message sending from an owner to a tenant.
  * @param {WebSocket} ws - The WebSocket connection object for the owner.
  * @param {Object} messageObject - Object containing tenantId and message.

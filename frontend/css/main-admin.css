@@ -251,7 +251,7 @@
   transition: transform 0.3s;
 }
 
-.info-box:hover, .box:hover {
+.info-box:hover, .card-boxes .box:hover {
   transform: translateY(-5px);
 }
 

@@ -358,46 +358,6 @@ function getMessagesRequest(tenantId) {
 }
 
 /**
- * Handles sending a message to a tenant.
- * @param {number} tenantId - The ID of the tenant to send a message to.
- */
-function sendMessageRequest(tenantId) {
-  const submitButton = document.querySelector('#message-form button[type="submit"]');
-  submitButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    const messageContent = document.querySelector('#message-content').value;
-    fetch(host + 'send-message', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        "tenantId": tenantId,
-        "content": messageContent
-      })
-    })
-    .then(response => {
-      if (!response.ok) {
-          if (response.status === 401 || response.status === 403) {
-              window.location.href = ownerLogSignURL;
-          }
-          window.location.href = ownerError;
-          throw new Error('HTTP error ' + response.status);
-      }
-      return response.json();
-    })
-    .then(data => {
-      document.querySelector('#message-content').value = '';
-      getMessagesRequest(tenantId);
-    })
-    .catch(error => {
-      window.location.href = ownerError;
-    });
-  });
-}
-
-/**
  * Handles the logic for deleting a message.
  * @param {number} tenantId - The ID of the tenant whose messages are being managed.
  */
