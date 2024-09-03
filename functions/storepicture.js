@@ -3,6 +3,7 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
+
 // Define the upload directory and ensure it exists
 const uploadDir = path.join(__dirname, '../frontend/img/');
 
