@@ -4,9 +4,9 @@ require('dotenv').config();
 
 /**
  * Renders the admin sign-in and log-in page.
- * GET /admin-sign-log
+ * GET /sign-log
  */
-router.get('/admin-sign-log', (req, res) => {
+router.get('/sign-log', (req, res) => {
     res.render('admin-sign-log', {
         nonce: res.locals.nonce // Passes nonce for CSP
     });
@@ -14,9 +14,9 @@ router.get('/admin-sign-log', (req, res) => {
 
 /**
  * Renders the admin error page.
- * GET /admin-error
+ * GET /error
  */
-router.get('/admin-error', (req, res) => {
+router.get('/error', (req, res) => {
     res.render('error-admin-request');
 });
 
@@ -24,7 +24,7 @@ router.get('/admin-error', (req, res) => {
  * Renders the main admin page with sidebar, topbar, and various sections.
  * GET /admin
  */
-router.get('/admin', (req, res) => {
+router.get('/home', (req, res) => {
     res.render('admin-index', {
         nonce: res.locals.nonce, // Passes nonce for CSP
         sidebar: 'admin-sidebar',
@@ -37,9 +37,9 @@ router.get('/admin', (req, res) => {
 
 /**
  * Renders the admin dashboard page with subscriptions and a subscription form.
- * GET /admin-dashboard
+ * GET /dashboard
  */
-router.get('/admin-dashboard', (req, res) => {
+router.get('/dashboard', (req, res) => {
     res.render('_admin-dashboard', {
         nonce: res.locals.nonce, // Passes nonce for CSP
         subscriptions: 'admin-subscriptions',

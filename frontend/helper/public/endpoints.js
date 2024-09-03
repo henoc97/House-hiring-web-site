@@ -56,7 +56,7 @@ const ownerURL = "/owner";
  * URL for the owner error page.
  * @constant {string}
  */
-const ownerError = root + 'owner/owner-error';
+const ownerError = root + 'owner/error';
 
 /**
  * Base URL for owner-related functionalities.
@@ -68,7 +68,7 @@ const ownerRoot = root + "owner";
  * Complete URL for the owner dashboard.
  * @constant {string}
  */
-const ownerDashboardURL = ownerRoot + ownerURL; // Not an error
+const ownerDashboardURL = ownerRoot + '/home'; 
 
 /**
  * URL path for the tenant dashboard.
@@ -86,71 +86,71 @@ const adminURL = "/admin";
  * URL for the admin error page.
  * @constant {string}
  */
-const adminError = root + "admin/admin-error";
+const adminError = root + "admin/error";
 
 /**
  * URL for the tenant error page.
  * @constant {string}
  */
-const tenantError = root + 'tenant/tenant-error';
+const tenantError = root + 'tenant/error';
 
 /**
  * Complete URL for the tenant dashboard.
  * @constant {string}
  */
-const tenantDashboardURL = root + "tenant" + tenantURL; // Not an error
+const tenantDashboardURL = root + "tenant" + '/home'; 
 
 /**
  * Complete URL for the admin dashboard.
  * @constant {string}
  */
-const adminDashboardURL = root + "admin" + adminURL; // Not an error
+const adminDashboardURL = root + "admin" + '/home'; 
 
 /**
  * URL for tenant activation.
  * The `tenantURL.substring(1)` removes the leading slash from the tenantURL path.
  * @constant {string}
  */
-const activateURL = root + tenantURL.substring(1) + "/tenant-activate";
+const activateURL = root + tenantURL.substring(1) + "/activate";
 
 /**
  * URL for owner receipt management.
  * @constant {string}
  */
-const receiptURL = ownerURL + "/owner-receipt";
+const receiptURL = ownerURL + "/receipt";
 
 /**
  * URL for tenant receipt management.
  * @constant {string}
  */
-const receiptURLTenant = tenantURL + "/tenant-receipt";
+const receiptURLTenant = tenantURL + "/receipt";
 
 /**
  * URL for owner sign log management.
  * @constant {string}
  */
-const ownerLogSignURL = ownerURL + "/owner-sign-log";
+const ownerLogSignURL = ownerURL + "/sign-log";
 
 /**
  * URL for admin sign log management.
  * @constant {string}
  */
-const adminLogSignURL = adminURL + "/admin-sign-log";
+const adminLogSignURL = adminURL + "/sign-log";
 
 /**
  * URL for tenant sign log management.
  * @constant {string}
  */
-const tenantLogSignURL = tenantURL + "/tenant-sign-log";
+const tenantLogSignURL = tenantURL + "/sign-log";
 
 /**
  * URL for sending email from the owner service.
  * @constant {string}
  */
-const ownerSendEmailURL = ownerRoot + "/owner-send-email";
+const ownerSendEmailURL = ownerRoot + "/send-email";
 
 /**
  * URL for tenant password reset.
  * @constant {string}
  */
-const tenantResetPwdURL = tenantURL + "/tenant-reset-pwd";
+const tenantResetPwdURL = tenantURL + "/reset-pwd";

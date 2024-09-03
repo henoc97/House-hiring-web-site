@@ -52,7 +52,7 @@ menuLinks.forEach(link => {
 
         // Fetch and display content based on the clicked menu link
         if (this.id === 'dash-button') {
-            fetch(adminURL + '/admin-dashboard')
+            fetch(adminURL + '/dashboard')
                 .then(response => response.text())
                 .then(data => {
                     // Update the details section with the fetched data

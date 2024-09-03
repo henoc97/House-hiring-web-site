@@ -22,7 +22,7 @@
 
 #logo {
   color: var(--orange);
-  font-size: 80px;
+  font-size: 60px;
   margin: 10px;
   margin-bottom: 20px;
 }
@@ -60,10 +60,6 @@ body {
   overflow: hidden;
   border-right: 3px solid var(--dark-blue); /* Curseur clignotant */
   animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
-}
-
-#sub-text {
-  color: var(--purple2);
 }
 
 #features-title {
@@ -114,7 +110,7 @@ body {
 }
 
 .features ul li i {
-  font-size: 24px; /* Augmente la taille des icônes */
+  font-size: 21px; /* Augmente la taille des icônes */
   font-weight: bold;
   color: var(--purple2);
   margin-right: 15px; /* Ajoute plus d'espace entre l'icône et le texte */
@@ -167,7 +163,6 @@ body {
 
 .title-text {
   width: 75vw; /* Légère augmentation de la largeur pour plus d'espace */
-  /* padding: 30px; */
   margin: auto;
   justify-content: left;
   
@@ -177,7 +172,7 @@ body {
   height: 100%;
   width: 100%;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   text-align: center;
   line-height: 48px;
@@ -215,7 +210,7 @@ body {
 
 .reset-pwd-notice p {
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
 }
 
@@ -275,7 +270,7 @@ input[type="radio"] {
   border-radius: 15px;
   border: 1px solid lightgrey;
   border-bottom-width: 2px;
-  font-size: 17px;
+  font-size: 15px;
   transition: all 0.3s ease;
 }
 .form-inner form .field input:focus {
@@ -337,7 +332,7 @@ form .btn:hover .btn-layer {
   color: #fff;
   padding-left: 0;
   border-radius: 15px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   cursor: pointer;
 }
@@ -350,7 +345,7 @@ form .btn:hover .btn-layer {
     width: 100% !important;
   }
   .features ul li, li i {
-    font-size: 12px !important;
+    font-size: 11px !important;
   }
   li i {
     margin-right: 5px !important;
@@ -374,7 +369,7 @@ form .btn:hover .btn-layer {
     width: 100% !important;
   }
   #logo {
-    font-size: 40px !important;
+    font-size: 36px !important;
     margin: 5px !important;
     margin-bottom: 15px !important;
   }
@@ -382,11 +377,11 @@ form .btn:hover .btn-layer {
     white-space: normal; /* Permet le retour à la ligne */
     animation: none; /* Désactive l'animation sur mobile */
     border-right: none; /* Supprime le curseur clignotant sur mobile */
-    font-size: 18px !important;
+    font-size: 16px !important;
     white-space: normal; /* Permet le retour à la ligne */
   }
   #sub-text {
-    font-size: 15px !important;
+    font-size: 13px !important;
   }
   
   .title-text .logo-details {
@@ -394,21 +389,21 @@ form .btn:hover .btn-layer {
     margin-bottom: 12px !important;
   }
   .form-inner form .field input {
-    font-size: 15px !important;
+    font-size: 13px !important;
   }
   form .btn input[type="submit"] {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
   .form-inner form .pass-link a,
   .form-inner form .signup-link {
-    font-size: 12px !important;
+    font-size: 11px !important;
     text-decoration: none;
   }
   .form-inner form .field input {
-    font-size: 15px !important; /* Réduit la taille de la police pour les inputs */
+    font-size: 13px !important; /* Réduit la taille de la police pour les inputs */
   }
   #features-title {
-    font-size: 20px !important; /* Réduit la taille du titre des fonctionnalités */
+    font-size: 18px !important; /* Réduit la taille du titre des fonctionnalités */
     margin-bottom: 20px !important;
   }
 }
@@ -421,7 +416,7 @@ form .btn:hover .btn-layer {
   }
   
   .features ul li, li i {
-    font-size: 16px !important;
+    font-size: 14px !important;
   }
   
   li i {
@@ -450,7 +445,7 @@ form .btn:hover .btn-layer {
   }
   
   #logo {
-    font-size: 60px !important;
+    font-size: 34px !important;
     margin: 10px !important;
     margin-bottom: 20px !important;
   }
@@ -459,12 +454,12 @@ form .btn:hover .btn-layer {
     white-space: normal; /* Permet le retour à la ligne */
     animation: none; /* Désactive l'animation */
     border-right: none; /* Supprime le curseur clignotant */
-    font-size: 24px !important;
+    font-size: 21px !important;
     white-space: normal; /* Permet le retour à la ligne */
   }
   
   #sub-text {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
   
   .title-text .logo-details {
@@ -475,25 +470,25 @@ form .btn:hover .btn-layer {
   }
   
   .form-inner form .field input {
-    font-size: 16px !important;
+    font-size: 14px !important;
   }
   
   form .btn input[type="submit"] {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   
   .form-inner form .pass-link a,
   .form-inner form .signup-link {
-    font-size: 14px !important;
+    font-size: 12px !important;
     text-decoration: none;
   }
   
   .form-inner form .field input {
-    font-size: 16px !important; /* Réduit la taille de la police pour les inputs */
+    font-size: 14px !important; /* Réduit la taille de la police pour les inputs */
   }
   
   #features-title {
-    font-size: 24px !important; /* Réduit la taille du titre des fonctionnalités */
+    font-size: 21px !important; /* Réduit la taille du titre des fonctionnalités */
     margin-bottom: 25px !important;
   }
 }
@@ -516,28 +511,28 @@ form .btn:hover .btn-layer {
     display: grid !important;
   }
   #logo {
-    font-size: 60px !important;
+    font-size: 36px !important;
     margin: 15px !important;
     margin-bottom: 25px !important;
   }
   #animated-text {
-    font-size: 24px !important;
+    font-size: 21px !important;
   }
   #sub-text {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   .title-text .logo-details {
     margin-bottom: 18px !important;
   }
   .form-inner form .field input {
-    font-size: 19px !important;
+    font-size: 17px !important;
   }
   form .btn input[type="submit"] {
-    font-size: 22px !important;
+    font-size: 20px !important;
   }
   .form-inner form .pass-link a,
   .form-inner form .signup-link {
-    font-size: 16px !important;
+    font-size: 14px !important;
     text-decoration: none;
   }
   #features-title {
@@ -552,7 +547,7 @@ form .btn:hover .btn-layer {
     width: 100% !important;
   }
   .features ul li, li i {
-    font-size: 16px !important;
+    font-size: 14px !important;
   }
   li i {
     margin-right: 10px !important;
@@ -577,7 +572,7 @@ form .btn:hover .btn-layer {
     width: 95% !important;
   }
   #logo {
-    font-size: 60px !important;
+    font-size: 36px !important;
     margin: 10px !important;
     margin-bottom: 20px !important;
   }
@@ -588,7 +583,7 @@ form .btn:hover .btn-layer {
     font-size: 22px !important;
   }
   #sub-text {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
 
   .title-text .logo-details {
@@ -598,21 +593,21 @@ form .btn:hover .btn-layer {
     align-items: baseline;
   }
   .form-inner form .field input {
-    font-size: 17px !important;
+    font-size: 15px !important;
   }
   form .btn input[type="submit"] {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   .form-inner form .pass-link a,
   .form-inner form .signup-link {
-    font-size: 14px !important;
+    font-size: 11px !important;
     text-decoration: none;
   }
   .form-inner form .field input {
-    font-size: 17px !important;
+    font-size: 15px !important;
   }
   #features-title {
-    font-size: 24px !important;
+    font-size: 21px !important;
     margin-bottom: 25px !important;
   }
 }

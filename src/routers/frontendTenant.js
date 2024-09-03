@@ -3,9 +3,9 @@ const router = express.Router();
 
 /**
  * Renders the tenant sign-in and log-in page.
- * GET /tenant-sign-log
+ * GET /sign-log
  */
-router.get('/tenant-sign-log', (req, res) => {
+router.get('/sign-log', (req, res) => {
     res.render('tenant-sign-log', {
         nonce: res.locals.nonce // Passes nonce for CSP
     });
@@ -13,33 +13,33 @@ router.get('/tenant-sign-log', (req, res) => {
 
 /**
  * Renders a test page for tenants.
- * GET /tenant-test
+ * GET /test
  */
-router.get('/tenant-test', (req, res) => {
+router.get('/test', (req, res) => {
     res.render('tenant-some-view');
 });
 
 /**
  * Renders the tenant account activation page.
- * GET /tenant-activate
+ * GET /activate
  */
-router.get('/tenant-activate', (req, res) => {
+router.get('/activate', (req, res) => {
     res.render('tenant-activation');
 });
 
 /**
  * Renders the tenant password reset page.
- * GET /tenant-reset-pwd
+ * GET /reset-pwd
  */
-router.get('/tenant-reset-pwd', (req, res) => {
+router.get('/reset-pwd', (req, res) => {
     res.render('tenant-reset-pwd');
 });
 
 /**
  * Renders the error page for tenant requests.
- * GET /tenant-error
+ * GET /error
  */
-router.get('/tenant-error', (req, res) => {
+router.get('/error', (req, res) => {
     res.render('error-tenant-request');
 });
 
@@ -47,7 +47,7 @@ router.get('/tenant-error', (req, res) => {
  * Renders the main tenant page with sidebar, topbar, and various sections.
  * GET /tenant
  */
-router.get('/tenant', (req, res) => {
+router.get('/home', (req, res) => {
     res.render('tenant-index', {
         sidebar: 'tenant-sidebar',
         topbar: 'tenant-topbar',
@@ -60,9 +60,9 @@ router.get('/tenant', (req, res) => {
 
 /**
  * Renders the tenant dashboard page with sections for password setup, receipts, and receipt requests.
- * GET /tenant-dashboard
+ * GET /dashboard
  */
-router.get('/tenant-dashboard', (req, res) => {
+router.get('/dashboard', (req, res) => {
     res.render('_tenant-dashboard', {
         setPwd: 'tenant-set-pwd',
         myReceipts: 'tenant-my-receipts',
@@ -72,9 +72,9 @@ router.get('/tenant-dashboard', (req, res) => {
 
 /**
  * Renders the tenant discussion page with options to view messages and send a new message.
- * GET /tenant-discussion
+ * GET /discussion
  */
-router.get('/tenant-discussion', (req, res) => {
+router.get('/discussion', (req, res) => {
     res.render('_tenant-discussion', {
         myMessages: 'tenant-my-messages',
         messageForm: 'tenant-message-form'
@@ -83,9 +83,9 @@ router.get('/tenant-discussion', (req, res) => {
 
 /**
  * Renders the tenant profile page with account and house information.
- * GET /tenant-profile
+ * GET /profile
  */
-router.get('/tenant-profile', (req, res) => {
+router.get('/profile', (req, res) => {
     res.render('_tenant-profile', {
         accountInfo: 'tenant-account-info',
         houseInfo: 'tenant-house-info'
@@ -94,9 +94,9 @@ router.get('/tenant-profile', (req, res) => {
 
 /**
  * Renders the tenant receipt page.
- * GET /tenant-receipt
+ * GET /receipt
  */
-router.get('/tenant-receipt', (req, res) => {
+router.get('/receipt', (req, res) => {
     res.render('tenant-receipt');
 });
 

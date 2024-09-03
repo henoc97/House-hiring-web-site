@@ -91,7 +91,7 @@ menuLinks.forEach(link => {
 
     // Fetch and display content based on the clicked menu item
     if (this.id === 'dash-button') {
-      fetch(tenantURL + '/tenant-dashboard')
+      fetch(tenantURL + '/dashboard')
         .then(response => response.text())
         .then(data => {
           document.querySelector('.details').innerHTML = data;
@@ -109,7 +109,7 @@ menuLinks.forEach(link => {
     }
     
     if (this.id === 'discuss-button') {
-      fetch(tenantURL + '/tenant-discussion')
+      fetch(tenantURL + '/discussion')
         .then(response => response.text())
         .then(data => {
           document.querySelector('.details').innerHTML = data;
@@ -125,7 +125,7 @@ menuLinks.forEach(link => {
     }
 
     if (this.id === 'profile-button') {
-      fetch(tenantURL + '/tenant-profile')
+      fetch(tenantURL + '/profile')
         .then(response => response.text())
         .then(data => {
           document.querySelector('.details').innerHTML = data;

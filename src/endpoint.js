@@ -12,8 +12,8 @@ const SOCKET_URL = `wss://${IP}:${PORT}`;
 // Define specific paths
 const PATHS = {
   OWNER: 'owner',
-  RESET_PWD: 'owner-reset-pwd',
-  REDIRECT: 'owner-redirect'
+  RESET_PWD: 'reset-pwd',
+  REDIRECT: 'redirect'
 };
 
 // Construct specific URLs

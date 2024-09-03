@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Handle dashboard button click
           if (this.id === 'dash-button') {
-              fetch(ownerURL + '/owner-dashboard')
+              fetch(ownerURL + '/dashboard')
                   .then(response => response.text())
                   .then(data => {
                       document.querySelector('.details').innerHTML = data;
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Handle profile button click
           if (this.id === 'profile-button') {
-              fetch(ownerURL + '/owner-profile')
+              fetch(ownerURL + '/profile')
                   .then(response => response.text())
                   .then(data => {
                       document.querySelector('.details').innerHTML = data;
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Handle properties button click
           if (this.id === 'proprietes-button') {
-              fetch(ownerURL + '/owner-properties')
+              fetch(ownerURL + '/properties')
                   .then(response => response.text())
                   .then(data => {
                       document.querySelector('.details').innerHTML = data;
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Handle tenants button click
           if (this.id === 'tenant-button') {
-              fetch(ownerURL + '/owner-tenants')
+              fetch(ownerURL + '/tenants')
                   .then(response => response.text())
                   .then(data => {
                       document.querySelector('.details').innerHTML = data;
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Handle tenant home button click
           if (this.id === 'tenant-home-button') {
-              fetch(ownerURL + '/owner-tenant-home')
+              fetch(ownerURL + '/tenant-home')
                   .then(response => response.text())
                   .then(data => {
                       document.querySelector('.details').innerHTML = data;
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Handle my receipts button click
           if (this.id === 'myreceipt-button') {
-              fetch(ownerURL + '/owner-receipts')
+              fetch(ownerURL + '/receipts')
                   .then(response => response.text())
                   .then(data => {
                       document.querySelector('.details').innerHTML = data;
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Handle subscription button click
           if (this.id === 'subscription-button') {
-              fetch(ownerURL + '/owner-subscription')
+              fetch(ownerURL + '/subscription')
                   .then(response => response.text())
                   .then(data => {
                       document.querySelector('.details').innerHTML = data;
