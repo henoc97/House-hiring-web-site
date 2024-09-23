@@ -19,7 +19,31 @@
       <label for="receipt-sumpayed">Coût:</label>
       <input type="number" id="receipt-sumpayed" name="sumpayed" required>
     </div>
-    
+    <div class="form-group">
+      <label for="receipt-txn-id">Txn ID ou Réf:</label>
+      <input type="number" id="receipt-txn-id" name="txn-id" required>
+    </div>
+    <div class="form-group payment-method">
+      <label>Méthode de paiement :</label>
+      <div class="radio-container">
+        <input type="radio" id="flooz" name="payment-method" value="FLOOZ" required>
+        <label for="flooz" class="custom-radio">
+          <span class="radio-inner"></span>
+          <span class="radio-label">FLOOZ</span>
+        </label>
+      </div>
+      <div class="radio-container">
+        <input type="radio" id="tmoney" name="payment-method" value="TMoney" required>
+        <label for="tmoney" class="custom-radio">
+          <span class="radio-inner"></span>
+          <span class="radio-label">TMoney</span>
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="date-hour">Date et Heure:</label>
+      <input type="datetime-local" name="d-h" id="date-hour" >
+    </div>
     <button type="submit">Enregistrer</button>
   </form>
 </div>

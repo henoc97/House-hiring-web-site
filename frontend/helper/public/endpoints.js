@@ -8,7 +8,7 @@
  * IP address of the server.
  * @constant {string}
  */
-const ip = "localhost";
+const ip = "192.168.247.1" || "localhost";
 
 /**
  * Port number on which the server is running.

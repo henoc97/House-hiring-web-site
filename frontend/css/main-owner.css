@@ -295,7 +295,7 @@
   width: 100%;
   padding: 15px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  /* grid-template-columns: 2fr 1fr; */
   grid-gap: 20px;
   align-items: flex-start; /* Aligne les sections en haut */
 }
@@ -452,6 +452,29 @@
 }
 .bg-success{
   background: #198754;
+}
+
+/* Search bar */
+.search-bar {
+  height: 32px;
+  width: 500px;
+  display: flex;  /* Utilisez flex pour aligner les éléments */
+  align-items: center; /* Aligne verticalement les éléments */
+  border-radius: 15px;
+  border: 1px solid var(--gray);
+  padding: 0 10px; /* Ajoutez un peu de padding pour espacer les éléments */
+}
+
+.search-bar .bx.bx-search#search-icon {
+  font-size: 20px;
+  margin-right: 10px; /* Espacement à droite de l'icône */
+}
+
+.search-bar input[type="search"] {
+  border: none; /* Supprime la bordure de l'input */
+  outline: none; /* Supprime le contour de l'input lors de la sélection */
+  flex-grow: 1; /* Permet à l'input de prendre tout l'espace disponible */
+  font-size: 16px; /* Ajustez la taille de la police si nécessaire */
 }
 
 /* New Customers Section */
