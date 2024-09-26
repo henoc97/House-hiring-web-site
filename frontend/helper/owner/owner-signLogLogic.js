@@ -75,6 +75,7 @@ fetch(host + 'user-auth', {
   headers: {
     'Content-Type': 'application/json'
   },
+  credentials: 'include',
   body: JSON.stringify({ email: email, pwd: pwd })
 })
 .then(response => {

@@ -23,7 +23,6 @@ body {
   height: 80vh;
   margin-top: 25vh;
   margin-bottom: 25vh;
-  padding: 20px;
 }
 
 #receipt{
@@ -83,14 +82,11 @@ footer {
   margin-top: 10px;
 }
 
-.receipt-details {
-  margin-top: 15px;
-}
-.owner-details {
-  margin-top: 5px;
+.receipt-details, .payment-details, .owner-detailss {
+  margin-top: 10px;
 }
 
-.receipt-details p, .owner-details p {
+.receipt-details p, .payment-details p, .owner-details p {
   margin: 5px 0;
 }
 
@@ -145,8 +141,8 @@ button:hover {
       font-size: 30px;
   }
 
-  .receipt-details p, .owner-details p {
-      font-size: 12px;
+  .receipt-details p, .payment-details p, .owner-details p {
+    font-size: 12px;
   }
 
   button {

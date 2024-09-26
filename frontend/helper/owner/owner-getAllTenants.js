@@ -46,7 +46,7 @@ function getAllTenantsRequest() {
     return response.json();
   })
   .then(data => {
-
+    console.log(data);
     const allTenants = data;
     setNumberOfTenants(allTenants.length);
     showNumberOfTenants();

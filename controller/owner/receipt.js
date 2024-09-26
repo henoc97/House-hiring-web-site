@@ -7,16 +7,21 @@ const {logger} = require('../../src/logger/logRotation');
  * @param {Object} res - The response object.
  */
 module.exports.requireReceipt = async (req, res) => {
-    const { idTenantProperty, sumpayed, monthpayed } = req.body;
+    const { idTenantProperty, sumpayed, accessoryFees, ref, method, monthpayed, createDate } = req.body;
 
     // Validate input
-    if (idTenantProperty === undefined || sumpayed === undefined || monthpayed === undefined) {
+    if (idTenantProperty === undefined || 
+        sumpayed === undefined || 
+        accessoryFees === undefined || 
+        ref === undefined || 
+        method === undefined || 
+        createDate === undefined || 
+        monthpayed === undefined) {
         logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
         return res.status(400).json({ message: 'Missing parameters' });
     }
-
-    const query = "CALL insert_payment(?, ?, ?)";
-    const values = [idTenantProperty, sumpayed, monthpayed];
+    const query = "CALL insert_payment(?, ?, ?, ?, ?, ?, ?)";
+    const values = [idTenantProperty, sumpayed, accessoryFees, monthpayed, ref, method, createDate];
 
     try {
         const [rows] = await req.connection.query(query, values);

@@ -83,13 +83,21 @@ function getValidReceiptsRequest() {
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
 
+        // Format local date and set it into dateTimeInput
+        const now = new Date(validReceipt.create_time);
+        const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
+
+
         // Create a new table row
         const row = document.createElement('tr');
         row.dataset.id = validReceipt.id;
         row.innerHTML = `
+              <td>${formattedPaymentDateTime}</td>
+              <td>${validReceipt.ref}</td>
+              <td>${validReceipt.address}</td>
               <td>${validReceipt.lastname} ${validReceipt.firstname.split(' ')[0]}</td>
               <td>${formattedDate}</td>
-              <td>${validReceipt.address}</td>
+              <td>${validReceipt.method}</td>
               <td>${validReceipt.sumpayed}</td>
               <td>
                 <a href="#" class="go-validate-receipt" data-receipt='${JSON.stringify(validReceipt)}'>

@@ -23,7 +23,7 @@ function getUnvalidReceiptsRequest() {
         if ((response.status === 401 || response.status === 403)) {
         window.location.href = ownerLogSignURL;
       }
-      window.location.href = ownerError;
+      // window.location.href = ownerError;
     }
     // Parse the response JSON
     return response.json();
@@ -40,20 +40,27 @@ function getUnvalidReceiptsRequest() {
 
       // Iterate over the invalid receipts and create table rows
       unvalidReceipts.forEach((unvalidReceipt) => {
-        const formattedDate = new Date(unvalidReceipt.monthpayed).toLocaleString('fr-FR', {
+        const paidMonthsArray = unvalidReceipt.paid_months.split(', ');
+        const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
           month: 'long',
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
         
+        // Format local date and set it into dateTimeInput
+        const now = new Date(unvalidReceipt.last_create_time);
+        const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
 
         // Create a new table row
         const row = document.createElement('tr');
         row.dataset.id = unvalidReceipt.id;
         row.innerHTML = `
-              <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
-              <td>${formattedDate}</td>
+              <td>${formattedPaymentDateTime}</td>
+              <td>${unvalidReceipt.ref}</td>
               <td>${unvalidReceipt.address}</td>
-              <td>${unvalidReceipt.sumpayed}</td>
+              <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
+              <td>${formattedDate}${ paidMonthsArray.length > 1 ? `,...` : ``}</td>
+              <td>${unvalidReceipt.method}</td>
+              <td>${unvalidReceipt.total_sumpayed}</td>
               <td>
                 <a href="#" class="go-validate-receipt" data-receipt='${JSON.stringify(unvalidReceipt)}'>
                   <span class="badge bg-danger">Non Approuvé</span>
@@ -78,7 +85,8 @@ function getUnvalidReceiptsRequest() {
   })
   .catch((error) => {
     // Redirect and log error if fetching fails
-    window.location.href = ownerError;
+    console.log("Error: " + error);
+    // window.location.href = ownerError;
   });
 }
 

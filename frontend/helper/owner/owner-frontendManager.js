@@ -138,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
                       const tenantsTable = document.getElementById('all-tenants-table');
                       const editTenantForm = document.getElementById('edit-tenant-form');
                       const messageForm = document.getElementById('message-form');
-                      const recentMessages = document.getElementById('recent-messages-table');
                       if (tenantsTable) {
                           getAllTenantsRequest(); // Fetch all tenants
                       }
@@ -212,7 +211,13 @@ document.addEventListener('DOMContentLoaded', function() {
                       const requireRecieptForm = document.getElementById("receipt-form");
                       const tenantsPropertiesoption = document.getElementById("tenants-properties-option");
                       if (tenantsPropertiesoption && requireRecieptForm) {
-                          selectMonthsHelper(requireRecieptForm, tenantsPropertiesoption); // Help select months for receipts
+                            // Format local date and set it into dateTimeInput
+                            const dateTimeInput = document.getElementById('receipt-date-hour');
+                            const now = new Date();
+                            const formattedDateTime = now.toISOString().slice(0, 16);
+                            dateTimeInput.value = formattedDateTime;
+
+                            selectMonthsHelper(requireRecieptForm, tenantsPropertiesoption); // Help select months for receipts
                       }
                   });
           }
