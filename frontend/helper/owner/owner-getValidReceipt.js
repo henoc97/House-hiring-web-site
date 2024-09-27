@@ -65,10 +65,12 @@ function getValidReceiptsRequest() {
 
 
     // If the properties are wrapped in an object { myProperties }
-    const valiReceipts = data;
+    const validReceipts = data;
+    console.log("debug");
+    console.log(validReceipts);
 
     // Update the number of payments and display it
-    setNumberOfPayments(valiReceipts.length);
+    setNumberOfPayments(validReceipts.length);
     showNumberOfPayments();
 
     const tableBody = document.getElementById("valid-receipts-table");
@@ -76,17 +78,17 @@ function getValidReceiptsRequest() {
       tableBody.innerHTML = ''; // Clear existing rows
 
       // Iterate over the valid receipts and create table rows
-      valiReceipts.forEach((validReceipt) => {
-
-        const formattedDate = new Date(validReceipt.monthpayed).toLocaleString('fr-FR', {
+      // Iterate over the invalid receipts and create table rows
+      validReceipts.forEach((validReceipt) => {
+        const paidMonthsArray = validReceipt.paid_months.split(', ');
+        const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
           month: 'long',
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
-
+        
         // Format local date and set it into dateTimeInput
-        const now = new Date(validReceipt.create_time);
+        const now = new Date(validReceipt.last_create_time);
         const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
-
 
         // Create a new table row
         const row = document.createElement('tr');
@@ -96,9 +98,9 @@ function getValidReceiptsRequest() {
               <td>${validReceipt.ref}</td>
               <td>${validReceipt.address}</td>
               <td>${validReceipt.lastname} ${validReceipt.firstname.split(' ')[0]}</td>
-              <td>${formattedDate}</td>
+              <td>${formattedDate}${ paidMonthsArray.length > 1 ? `,...` : ``}</td>
               <td>${validReceipt.method}</td>
-              <td>${validReceipt.sumpayed}</td>
+              <td>${validReceipt.total_sumpayed}</td>
               <td>
                 <a href="#" class="go-validate-receipt" data-receipt='${JSON.stringify(validReceipt)}'>
                   <span class="badge bg-success">Approuvé</span>
@@ -115,7 +117,6 @@ function getValidReceiptsRequest() {
         `;
         tableBody.appendChild(row);
       });
-
       addDropdownsListenerReceiptTable("valid-receipts-table");
 
     } else {
@@ -123,5 +124,6 @@ function getValidReceiptsRequest() {
   })
   .catch((error) => {
     // Log error if fetching fails
+    console.log('error : ' + error);
   });
 }

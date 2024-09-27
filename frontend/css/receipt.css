@@ -54,6 +54,16 @@ body {
   margin-bottom: 20px;
 }
 
+.receipt-payement-details, #receipt-num-date {
+  justify-content: space-between;
+  display: flex;
+}
+
+#receipt-num-date {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 header, footer {
   background-color: var(--dark-blue);
   color: #fff;
@@ -94,6 +104,29 @@ footer {
   max-width: 200px;
   height: auto;
   margin-top: 10px;
+}
+
+.table-container {
+  margin-top: 20px;
+  width: 100%;
+  overflow-x: auto; /* Pour le défilement horizontal si nécessaire */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: var(--dark-blue);
+  color: white;
 }
 
 button {

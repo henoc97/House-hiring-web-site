@@ -23,7 +23,7 @@ function getUnvalidReceiptsRequest() {
         if ((response.status === 401 || response.status === 403)) {
         window.location.href = ownerLogSignURL;
       }
-      // window.location.href = ownerError;
+      window.location.href = ownerError;
     }
     // Parse the response JSON
     return response.json();
@@ -85,8 +85,7 @@ function getUnvalidReceiptsRequest() {
   })
   .catch((error) => {
     // Redirect and log error if fetching fails
-    console.log("Error: " + error);
-    // window.location.href = ownerError;
+    window.location.href = ownerError;
   });
 }
 

@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Retrieve the selected receipt data from localStorage
   const receiptData = JSON.parse(localStorage.getItem('selectedReceipt'));
 
+  console.log("object loaded");
+  console.log(receiptData);
+
   if (receiptData) {
       // Get the container for receipt buttons
       let receiptBtns = document.getElementById('receipt-btns');
@@ -29,9 +32,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
 
       // Format and display receipt details
+      const receiptNumDate = document.getElementById('receipt-num-date');
       const receiptDetails = document.getElementById('receipt-details-container');
       const ownerDetails = document.getElementById('owner-details-container');
       const paymentDetails = document.getElementById('payment-details-container');
+      const unpaidMonthsCount = document.getElementById('tr-unpaid-months-count');
+      const unpaidMonthsAmount = document.getElementById('unpaid-month-amount');
 
       // Format dates for display
       const formattedDate = new Date(receiptData.create_time).toLocaleString('fr-FR', {
@@ -49,26 +55,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
           year: 'numeric',
       }).replace(',', '').replace(/\//g, '-');
 
+      const unpaidMonths = receiptData.unpaid_months ?? ''
+      const formattedMonthUnpayed = unpaidMonths.split(', ').map((month, i) => (
+        new Date(month).toLocaleString('fr-FR', {
+            month: 'long',
+            year: 'numeric'
+        }).replace(',', '').replace(/\//g, '-')
+      )).join(', ');
+
       const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
           month: 'long',
           year: 'numeric'
       }).replace(',', '').replace(/\//g, '-');
 
+      receiptNumDate.innerHTML = `
+        <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber ?? ''}</p>
+        <p><strong>Date d'Émission :</strong> ${validationDate ?? ''}</p>
+      `
+
         // Update the receipt details container with the formatted data
         receiptDetails.innerHTML = `
-            <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber ?? ''}</p>
-            <p><strong>Date d'Émission :</strong> ${validationDate ?? ''}</p>
             <p><strong>Nom du Locataire :</strong> ${receiptData.lastname ?? ''} ${receiptData.firstname ?? ''}</p>
-            <p><strong>Adresse du Locataire :</strong> ${receiptData.address ?? ''}</p>
-            <p><strong>Montant du Loyer :</strong> ${receiptData.sumpayed ?? ''} FCFA</p>
-            <p><strong>Règlement du mois de :</strong> ${formattedMonthpayed ?? ''}</p>
+            <p><strong>Adresse :</strong> ${receiptData.address ?? ''}</p>
+            <p><strong>Montant${receiptData.month_rest_amount_due > 0 && '(incomplet)'} :</strong> ${receiptData.total_sumpayed ?? ''} FCFA</p>
+            <p><strong>Règlement du mois de :</strong> ${receiptData.paid_months ?? ''}</p>
             `;
           
         // Update the owner details container with the owner's information
         paymentDetails.innerHTML = `
-            <p><strong>Méthode de Paiement : </strong>${receiptData.method}</p>
+            <p><strong>Méthode : </strong>${receiptData.method}</p>
             <p><strong>Référence de Transaction : </strong>${receiptData.ref}</p>
-            <p id="payment-date"><strong>Date de Paiement : </strong> ${formattedDate ?? ''}</p>
+            <p id="payment-date"><strong>Date : </strong> ${formattedDate ?? ''}</p>
         `;
 
         // Update the payment details container with the payment's information
@@ -77,6 +94,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             <p><strong>Téléphone :</strong> ${receiptData.owner_contactmoov ?? ''} / ${receiptData.owner_contacttg ?? ''}</p>
             <p><strong>Email :</strong> ${receiptData.owner_email ?? ''}</p>
         `;
+
+        unpaidMonthsCount.innerHTML = `Mois impayés (${receiptData.unpaid_months_count})`
+        unpaidMonthsAmount.innerHTML = `
+            <td>${unpaidMonths === '' ? '--' : formattedMonthUnpayed}</td>
+            <td>${receiptData.rest_amount_due < 0 ? 0 : receiptData.rest_amount_due} fcf</td>
+        `
 
       // Set the source of the signature image
       document.getElementById('signature-image').src = receiptData.owner_img_url;
