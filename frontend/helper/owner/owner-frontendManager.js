@@ -3,10 +3,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Select the table elements
     const recentTenantsTable = document.getElementById('recent-tenants-table');
 
+    const searchInput = document.getElementById("search-input");
+
     // If the recent tenants table exists, perform initial requests
     if (recentTenantsTable) {
-        getUnvalidReceiptsRequest(); // Fetch unvalidated receipts
-        getRecentTenantsRequest(); // Fetch recent tenants
+        getUnvalidReceiptsRequest(false);
+        searchInput.addEventListener("input", function () {
+            this.value !== "" ? getUnvalidReceiptsRequest(true)
+                : getUnvalidReceiptsRequest(false)
+            // Tu peux ajouter ici une fonction à exécuter lors du changement de l'input.
+        });
+        getRecentTenantsRequest(); // Fetch recent tenants 
         updateSoldRequest(0); // Update sold items with a default value
     }
 
@@ -40,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.sidebar').classList.toggle('open'); // Toggle sidebar open state
     });
 
+
     // Select all menu links
     const menuLinks = document.querySelectorAll('.sidebar ul li a');
 
@@ -68,7 +76,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         const unValidReceiptsTable = document.getElementById('unvalid-receipts-table');
                         const recentTenantsTable = document.getElementById('recent-tenants-table');
                         if (recentTenantsTable && unValidReceiptsTable) {
-                            getUnvalidReceiptsRequest();
+                            getUnvalidReceiptsRequest(false);
+                            searchInput.addEventListener("input", function () {
+                                this.value !== "" ? getUnvalidReceiptsRequest(true)
+                                    : getUnvalidReceiptsRequest(false)
+                                // Tu peux ajouter ici une fonction à exécuter lors du changement de l'input.
+                            });
                             getRecentTenantsRequest();
                             unValidReceiptsTable.addEventListener('click', function (e) {
                                 accessReceipt(e); // Handle receipt access
@@ -124,7 +137,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                     createPropertyRequest();
                                 }
                             });
-                            getPropertiesRequest(1); // Fetch properties
+                            getPropertiesRequest(1, false); // Fetch properties
+                            searchInput.addEventListener("input", function () {
+                                this.value !== "" ? getPropertiesRequest(1, true) // Search tenants
+                                    : getPropertiesRequest(1, false) // Fetch all tenants
+                                // Tu peux ajouter ici une fonction à exécuter lors du changement de l'input.
+                            });
                         }
                     });
             }
@@ -138,16 +156,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         const tenantsTable = document.getElementById('all-tenants-table');
                         const editTenantForm = document.getElementById('edit-tenant-form');
                         const messageForm = document.getElementById('message-form');
-                        const searchInput = document.getElementById("search-input");
                         if (tenantsTable && searchInput) {
-
-                            console.log('object found');
                             getAllTenantsRequest(false) // Fetch all tenants
                             searchInput.addEventListener("input", function () {
-                                console.log("Le contenu a changé :", this.value);
                                 this.value !== "" ? getAllTenantsRequest(true) // Search tenants
                                     : getAllTenantsRequest(false) // Fetch all tenants
-                                // Tu peux ajouter ici une fonction à exécuter lors du changement de l'input.
                             });
                         }
                         if (editTenantForm) {
@@ -192,10 +205,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         const tenantproperty = document.getElementById("tenants-properties-table");
                         const tenantForm = document.getElementById("tenant-form");
                         if (tenantForm && tenantproperty) {
-                            getTenantsPropertiesRequest(1); // Fetch tenant properties
-
-                            getPropertiesRequest(2); // Fetch properties
-
+                            getTenantsPropertiesRequest(1, false); // Fetch tenant properties
+                            searchInput.addEventListener("input", function () {
+                                this.value !== "" ? getTenantsPropertiesRequest(1, true) // Search tenant properties
+                                    : getTenantsPropertiesRequest(1, false) // Fetch all tenant properties
+                            });
+                            getPropertiesRequest(2, false); // Fetch properties
                             tenantForm.addEventListener('submit', function (event) {
                                 event.preventDefault(); // Prevent page reload
                                 createTenantRequest(); // Create new tenant request
@@ -212,7 +227,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.querySelector('.details').innerHTML = data;
                         const validReceiptsTable = document.getElementById("valid-receipts-table");
                         if (validReceiptsTable) {
-                            getValidReceiptsRequest(); // Fetch valid receipts
+                            // Fetch valid receipts
+                            getValidReceiptsRequest(false);
+                            searchInput.addEventListener("input", function () {
+                                this.value !== "" ? getValidReceiptsRequest(true) 
+                                    : getValidReceiptsRequest(false) 
+                                // Tu peux ajouter ici une fonction à exécuter lors du changement de l'input.
+                            });
                         }
                         validReceiptsTable.addEventListener('click', function (e) {
                             accessReceipt(e); // Handle receipt access

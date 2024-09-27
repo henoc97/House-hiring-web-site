@@ -115,6 +115,54 @@ module.exports.receiptValid = async (req, res) => {
 };
 
 /**
+ * Retrieves valid receipts for the searched user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
+module.exports.searchReceiptValid = async (req, res) => {
+    const {lastname, firstname} = req.body;
+    const query = "CALL search_payment_valid(?, ?, ?)";
+    const values = [req.user.userId, lastname, firstname];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
+        res.status(200).json(rows[0]);
+    } catch (err) {
+        logger.error('Error executing query:', err);
+        res.status(500).json({ message: 'Server error' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};
+
+/**
+ * Retrieves unvalid receipts for the searched user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
+module.exports.searchReceiptunvalid = async (req, res) => {
+    const {lastname, firstname} = req.body;
+    const query = "CALL search_payment_notvalid(?, ?, ?)";
+    const values = [req.user.userId, lastname, firstname];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
+        res.status(200).json(rows[0]);
+    } catch (err) {
+        logger.error('Error executing query:', err);
+        res.status(500).json({ message: 'Server error' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};
+
+/**
  * Deletes a payment receipt.
  * @param {Object} req - The request object containing the receipt id.
  * @param {Object} res - The response object.

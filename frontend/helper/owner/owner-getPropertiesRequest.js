@@ -30,16 +30,21 @@ function showNumberOfProperties() {
 
 /**
  * Fetches properties based on the specified type and updates the UI.
+ * @param {boolean} isSearch - The type of properties to fetch.
  * @param {number} type - The type of properties to fetch.
  */
-function getPropertiesRequest(type) {
-  fetch(host + 'my-properties', {
+function getPropertiesRequest(type, isSearch) {
+
+  const searchInput = document.getElementById("search-input");
+  const route = isSearch ? 'search-properties' : 'my-properties';
+  const reqBody = JSON.stringify(isSearch ? { type: type, address: searchInput.value} : {type: type})
+  fetch(host + route, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     credentials: 'include',
-    body: JSON.stringify({ type: type })
+    body: reqBody
   })
   .then(response => {
     if (!response.ok) {
@@ -59,8 +64,8 @@ function getPropertiesRequest(type) {
     
     if (type == 1) {
       myPropertiesTableConstructor(properties);
-      setNumberOfProperties(properties.length);
-      showNumberOfProperties();
+      !isSearch && setNumberOfProperties(properties.length);
+      !isSearch && showNumberOfProperties();
     } else {
       propertyOptionConstructor(properties);
     }

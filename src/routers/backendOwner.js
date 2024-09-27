@@ -21,6 +21,7 @@ const {
 const {
     createProperties,
     myProperties,
+    searchProperties,
     myProperty,
     updateProperty,
     deleteProperty
@@ -28,6 +29,7 @@ const {
 const {
     createTenant,
     tenantsProperties,
+    searchTenantsProperties,
     recentTenants,
     allTenants,
     myTenant,
@@ -41,6 +43,8 @@ const {
     requireReceipt,
     receiptUnValid,
     receiptValid,
+    searchReceiptunvalid, 
+    searchReceiptValid,
     validateReceipt,
     deleteReceipt
 } = require('../../controller/owner/receipt');
@@ -138,6 +142,12 @@ router.post('/update-property', updateProperty);
 router.post('/my-property', myProperty);
 
 /**
+ * Get details of a specific property.
+ * POST /search-property
+ */
+router.post('/search-properties', searchProperties);
+
+/**
  * Delete a property.
  * POST /delete-property
  */
@@ -158,6 +168,12 @@ router.post('/create-tenant', createTenant);
  * POST /tenants-properties
  */
 router.post('/tenants-properties', tenantsProperties);
+
+/**
+ * Get properties of tenants.
+ * POST /search-tenants-properties
+ */
+router.post('/search-tenants-properties', searchTenantsProperties);
 
 /**
  * Get recent tenants.
@@ -234,6 +250,18 @@ router.post('/receipt-valid', receiptValid);
  * POST /validate-receipt
  */
 router.post('/validate-receipt', validateReceipt);
+
+/**
+ * Validate a receipt.
+ * POST /validate-receipt
+ */
+router.post('/search-valid-receipt', searchReceiptValid);
+
+/**
+ * Validate a receipt.
+ * POST /validate-receipt
+ */
+router.post('/search-unvalid-receipt', searchReceiptunvalid);
 
 /**
  * Delete a receipt.

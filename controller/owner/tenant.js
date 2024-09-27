@@ -52,6 +52,31 @@ module.exports.tenantsProperties = async (req, res) => {
 };
 
 /**
+ * Retrieves the properties of tenants for a specific owner and address.
+ * @param {Object} req - The request object containing the user ID and property address.
+ * @param {Object} res - The response object used to send the response.
+ * @returns {void}
+ */
+module.exports.searchTenantsProperties = async (req, res) => {
+    const {address} = req.body;
+    const query = "CALL search_by_address_tenant_properties_by_owner(?, ?)";
+    const values = [req.user.userId, address];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
+        res.status(200).json(rows[0]);
+    } catch (queryError) {
+        logger.error('Error executing query:', queryError);
+        res.status(500).json({ message: 'Server error' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};
+
+/**
  * Retrieves recent tenants for a specific owner.
  * @param {Object} req - The request object containing the user ID.
  * @param {Object} res - The response object used to send the response.

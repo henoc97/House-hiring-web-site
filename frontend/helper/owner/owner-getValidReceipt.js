@@ -32,18 +32,23 @@ function showNumberOfPayments() {
 
 /**
  * Fetches valid receipts from the server and updates the UI.
+ * @param {boolean} isSearch boolean indicating whether the search.
  * 
  * The function sends a POST request to fetch valid receipts, updates the number of payments,
  * and displays the receipts in a table. It also sets up event listeners for delete actions.
  */
-function getValidReceiptsRequest() {
-
+function getValidReceiptsRequest(isSearch) {
   // Send a POST request to fetch valid receipts
-  fetch(host + 'receipt-valid', {
+  const searchInput = document.getElementById("search-input");
+  const searchValues = searchInput.value.split(' ');
+  const route = !isSearch? 'receipt-valid' : 'search-valid-receipt';
+  const reqBody = JSON.stringify(isSearch ? {lastname: searchValues[0], firstname: searchValues[1]?? ""} : {});
+  fetch(host + route, {
     method: 'POST',
     headers: { 
           'Content-Type': 'application/json'
       },
+      body: reqBody,
       credentials: 'include',
   })
   .then(response => {
@@ -68,8 +73,8 @@ function getValidReceiptsRequest() {
     const validReceipts = data;
 
     // Update the number of payments and display it
-    setNumberOfPayments(validReceipts.length);
-    showNumberOfPayments();
+    !isSearch && setNumberOfPayments(validReceipts.length);
+    !isSearch && showNumberOfPayments();
 
     const tableBody = document.getElementById("valid-receipts-table");
     if (tableBody) {

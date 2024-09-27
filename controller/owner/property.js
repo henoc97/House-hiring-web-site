@@ -64,6 +64,33 @@ module.exports.myProperties = async (req, res) => {
     }
 };
 
+
+/**
+ * Retrieves properties for the current user based on address searched.
+ * @param {Object} req - The request object containing the property address.
+ * @param {Object} res - The response object.
+ */
+module.exports.searchProperties = async (req, res) => {
+    const { address } = req.body;
+
+    const query =  "CALL search_property_by_address(?, ?)";
+    const values = [req.user.userId, address];
+
+    try {
+        const [rows] = await req.connection.query(query, values);
+        const myProperties = rows[0].map(row => Property.jsonToNewProperty(row));
+        logger.info(`200 OK: ${req.method} ${req.url}`);
+        res.status(200).json(myProperties);
+    } catch (err) {
+        logger.error('Error executing query:', err);
+        res.status(500).json({ message: 'Server error' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};
+
 /**
  * Retrieves a property by its ID.
  * @param {Object} req - The request object containing the property ID.

@@ -3,18 +3,24 @@
 
 /**
  * Fetches invalid receipts from the server and updates the UI.
+ * @param {boolean} isSearch boolean indicating whether the search.
  * 
  * The function sends a POST request to fetch receipts that are not validated, then updates the table
  * with the received data. It also sets up event listeners for delete actions.
  */
-function getUnvalidReceiptsRequest() {
+function getUnvalidReceiptsRequest(isSearch) {
 
   // Send a POST request to fetch invalid receipts
-  fetch(host + 'receipt-unValid', {
+  const searchInput = document.getElementById("search-input");
+  const searchValues = searchInput.value.split(' ');
+  const route = !isSearch? 'receipt-unValid' : 'search-unvalid-receipt';
+  const reqBody = JSON.stringify(isSearch ? {lastname: searchValues[0], firstname: searchValues[1]?? ""} : {});
+  fetch(host + route, {
     method: 'POST',
     headers: { 
           'Content-Type': 'application/json'
       },
+      body: reqBody,
       credentials: 'include',
   })
   .then(response => {
