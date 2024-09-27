@@ -199,6 +199,7 @@
 .home-section .topbar .sold-wrapper {
   position: relative;
   align-self: end;
+  white-space: nowrap;
 }
 
 
@@ -456,12 +457,13 @@
 /* Search bar */
 .search-bar {
   height: 32px;
-  width: 500px;
-  display: flex;  /* Utilisez flex pour aligner les éléments */
-  align-items: center; /* Aligne verticalement les éléments */
+  width: calc(100vw / 3); /* Prend un tiers de la largeur de l'écran */
+  display: flex;  /* Utiliser flex pour aligner les éléments */
+  align-items: center; /* Aligner verticalement les éléments */
   border-radius: 15px;
   border: 1px solid var(--gray);
-  padding: 0 10px; /* Ajoutez un peu de padding pour espacer les éléments */
+  padding: 0 10px; /* Ajouter du padding pour espacer les éléments */
+  box-sizing: border-box; /* Assurez-vous que tout reste dans les limites */
 }
 
 .search-bar .bx.bx-search#search-icon {
@@ -470,11 +472,14 @@
 }
 
 .search-bar input[type="search"] {
-  border: none; /* Supprime la bordure de l'input */
-  outline: none; /* Supprime le contour de l'input lors de la sélection */
+  border: none; /* Supprimer la bordure de l'input */
+  outline: none; /* Supprimer le contour de l'input lors de la sélection */
   flex-grow: 1; /* Permet à l'input de prendre tout l'espace disponible */
-  font-size: 16px; /* Ajustez la taille de la police si nécessaire */
+  padding: 0; /* Supprimer tout padding par défaut */
+  min-width: 0; /* S'assurer que la largeur minimale ne cause pas de débordement */
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
 }
+
 
 /* New Customers Section */
 .card {
@@ -1020,7 +1025,15 @@ form button:hover {
     width: calc(100vw / 2);
   }
   
+  .search-bar {
+    width: calc(100vw / 3.5);
+  }
   
+  .search-bar input[type="search"] {
+    
+    width: calc(100vw / 4);
+  }
+
   /* je dois retravailler cette partie (soit je commente le display) */
   .home-section .topbar .sold-wrapper {
     font-size: 0.8rem;
