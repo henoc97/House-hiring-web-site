@@ -86,18 +86,21 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
 }
 
 footer {
   margin-top: 10px;
+  font-size: 15px;
 }
 
 .receipt-details, .payment-details, .owner-detailss {
   margin-top: 10px;
 }
 
-.receipt-details p, .payment-details p, .owner-details p {
-  margin: 5px 0;
+.receipt-details p, .payment-details p, .owner-details p, #receipt-num-date p {
+  margin: 3px 0;
+  font-size: 14px;
 }
 
 .signature img {
@@ -116,6 +119,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 5px;
+  font-size: 14px;
 }
 
 th, td {
@@ -154,7 +158,7 @@ button:hover {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 730px) {
   .receipt-container {
       width: 100%;
       padding: 10px;
@@ -162,12 +166,12 @@ button:hover {
 
   header {
       padding: 5px;
-      font-size: 14px;
+      font-size: 13px;
   }
 
   footer {
     padding: 3px;
-    font-size: 12px;
+    font-size: 11px;
 }
 
   i {
@@ -175,7 +179,7 @@ button:hover {
   }
 
   .receipt-details p, .payment-details p, .owner-details p {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   button {

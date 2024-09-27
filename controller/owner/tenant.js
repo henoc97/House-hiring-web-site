@@ -100,6 +100,30 @@ module.exports.allTenants = async (req, res) => {
 };
 
 /**
+ * Retrieves searched tenants for a specific owner.
+ * @param {Object} req - The request object containing the user ID.
+ * @param {Object} res - The response object used to send the response.
+ * @returns {void}
+ */
+module.exports.searchTenants = async (req, res) => {
+    const {lastname, firstname} = req.body;
+    const query = "CALL search_tenants(?, ?, ?)";
+    const values = [req.user.userId, lastname, firstname];
+    try {
+        const [rows] = await req.connection.query(query, values);
+        logger.info(`200 OK: ${req.method} ${req.url}`);
+        res.status(200).json(rows[0]);
+    } catch (queryError) {
+        logger.error('Error executing query:', queryError);
+        res.status(500).json({ message: 'Server error' });
+    } finally {
+        if (req.connection) {
+            req.connection.release();
+        }
+    }
+};
+
+/**
  * Retrieves a specific tenant by ID.
  * @param {Object} req - The request object containing the tenant ID.
  * @param {Object} res - The response object used to send the response.

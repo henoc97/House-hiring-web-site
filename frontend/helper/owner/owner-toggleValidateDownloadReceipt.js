@@ -56,17 +56,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }).replace(',', '').replace(/\//g, '-');
 
       const unpaidMonths = receiptData.unpaid_months ?? ''
-      const formattedMonthUnpayed = unpaidMonths.split(', ').map((month, i) => (
+      const formattedMonthUnpayeds = unpaidMonths.split(', ').map((month, i) => (
         new Date(month).toLocaleString('fr-FR', {
             month: 'long',
             year: 'numeric'
         }).replace(',', '').replace(/\//g, '-')
       )).join(', ');
 
-      const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
-          month: 'long',
-          year: 'numeric'
-      }).replace(',', '').replace(/\//g, '-');
+      const paidMonths = receiptData.paid_months ?? ''
+      const formattedMonthspayeds = paidMonths.split(', ').map((month, i) => (
+        new Date(month).toLocaleString('fr-FR', {
+            month: 'numeric',
+            year: 'numeric'
+        }).replace(',', '').replace(/\//g, '-')
+      )).join(', ');
 
       receiptNumDate.innerHTML = `
         <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber ?? ''}</p>
@@ -77,8 +80,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         receiptDetails.innerHTML = `
             <p><strong>Nom du Locataire :</strong> ${receiptData.lastname ?? ''} ${receiptData.firstname ?? ''}</p>
             <p><strong>Adresse :</strong> ${receiptData.address ?? ''}</p>
-            <p><strong>Montant${receiptData.month_rest_amount_due > 0 && '(incomplet)'} :</strong> ${receiptData.total_sumpayed ?? ''} FCFA</p>
-            <p><strong>Règlement du mois de :</strong> ${receiptData.paid_months ?? ''}</p>
+            <p><strong>Montant${receiptData.month_rest_amount_due > 0 ? '(incomplet)' : ''} :</strong> ${receiptData.total_sumpayed ?? ''} FCFA</p>
+            <p><strong>Frais supplémentaires :</strong> ${receiptData.total_accessory_fees ?? ''} FCFA</p>
+            <p><strong>Règlement du mois de :</strong> ${formattedMonthspayeds ?? ''}</p>
             `;
           
         // Update the owner details container with the owner's information
@@ -97,7 +101,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         unpaidMonthsCount.innerHTML = `Mois impayés (${receiptData.unpaid_months_count})`
         unpaidMonthsAmount.innerHTML = `
-            <td>${unpaidMonths === '' ? '--' : formattedMonthUnpayed}</td>
+            <td>${unpaidMonths === '' ? '--' : formattedMonthUnpayeds}</td>
             <td>${receiptData.rest_amount_due < 0 ? 0 : receiptData.rest_amount_due} fcf</td>
         `
 

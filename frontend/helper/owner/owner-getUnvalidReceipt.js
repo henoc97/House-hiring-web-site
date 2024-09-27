@@ -52,7 +52,7 @@ function getUnvalidReceiptsRequest() {
 
         // Create a new table row
         const row = document.createElement('tr');
-        row.dataset.id = unvalidReceipt.id;
+        row.dataset.payment_ids = unvalidReceipt.payment_ids;
         row.innerHTML = `
               <td>${formattedPaymentDateTime}</td>
               <td>${unvalidReceipt.ref}</td>
@@ -70,7 +70,7 @@ function getUnvalidReceiptsRequest() {
                 <div class="dropdown">
                     <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
                     <div class="dropdown-content">
-                        <i class='bx bx-trash delete-icon' data-id="${unvalidReceipt.id}"></i>
+                        <i class='bx bx-trash delete-icon' data-payment_ids="${unvalidReceipt.payment_ids}"></i>
                     </div>
                 </div>
               </td>
@@ -94,7 +94,7 @@ function getUnvalidReceiptsRequest() {
  * 
  * @param {number} receiptId - The ID of the receipt to delete.
  */
-function deleteReceipt(receiptId) {
+function deleteReceipt(receiptId, receiptIds) {
 
   // Send a POST request to delete the receipt
   fetch(host + "delete-receipt", {
@@ -120,7 +120,7 @@ function deleteReceipt(receiptId) {
   })
   .then(() => {
     // Remove the table row corresponding to the deleted receipt
-    const row = document.querySelector(`tr[data-id="${receiptId}"]`);
+    const row = document.querySelector(`tr[data-payment_ids="${receiptIds}"]`);
     if (row) {
         row.remove(); // Remove the row from the table
     }
@@ -148,8 +148,10 @@ function addDropdownsListenerReceiptTable(tableId) {
         event.stopPropagation();
       }
       if (target.classList.contains('delete-icon')) {
-        const receiptId = target.dataset.id;
-        deleteReceipt(receiptId);
+        const receiptIds = target.dataset.payment_ids;
+        receiptIds.split(', ').forEach((id) => (
+          deleteReceipt(id, receiptIds)
+        ));
       }
     });
 

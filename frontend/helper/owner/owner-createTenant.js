@@ -28,13 +28,16 @@ function addTenantToTable(tenant) {
     <td>${tenant.lastname} ${tenant.firstname}</td>
     <td>${tenant.contactmoov} / ${tenant.contacttg}</td>
     <td>
-      <span class="late-count">${late == '' ? 0 : late.split(",").length}</span>
-      ${formattedLateIsUndifined ? 
-        `<div class="late-months hidden">
-          ${formattedLate}
-        </div>` : ``
-      }
+    <span class="late-count">${late == '' ? 0 : late.split(",").length}</span>
+    ${formattedLateIsUndifined ? 
+      `<div class="late-months hidden">
+      <b>${formattedLate}</b>
+      </div>` : ``
+    }
     </td>
+    <td>${tenant.total_amount_due ?? ''}</td>
+    <td>${tenant.total_sumpayed ?? ''}</td>
+    <td>${tenant.rest_amount_due ?? ''}</td>
     <td>${formattedDate}</td>
     <td>
         <div class="dropdown">

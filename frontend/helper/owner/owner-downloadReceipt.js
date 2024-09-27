@@ -6,18 +6,23 @@ function downloadPDF() {
     const element = document.getElementById('receipt');
     const receiptData = JSON.parse(localStorage.getItem('selectedReceipt'));
 
+    
+
   if (receiptData) {
 
       // Formats the date of the paid month to use in the PDF file name
-      const formattedMonthpayed = new Date(receiptData.monthpayed).toLocaleString('fr-FR', {
-          month: 'long',   // Formats the month as a long text (e.g., "January")
-        year: 'numeric'  // Formats the year in four digits
-        }).replace(',', '').replace(/\//g, '-'); // Replaces commas and slashes with dashes for uniform formatting
+      const paidMonths = receiptData.paid_months ?? ''
+      const formattedMonthspayeds = paidMonths.split(', ').map((month, i) => (
+        new Date(month).toLocaleString('fr-FR', {
+            month: 'numeric',
+            year: 'numeric'
+        }).replace(',', '').replace(/\//g, '-')
+      )).join('.');
     
         // Defines options for the PDF conversion
         const options = {
             margin: [0.5, 0.5, 0.5, 0.5], // Sets the PDF margins (in inches)
-            filename: `receipt_${formattedMonthpayed}_${receiptData.lastname}.pdf`, // PDF file name including the formatted date
+            filename: `receipt_${formattedMonthspayeds}_${receiptData.lastname}.pdf`, // PDF file name including the formatted date
             image: { type: 'jpeg', quality: 1.0 }, // Specifies the format and quality of the image for rendering
             html2canvas: {
                 scale: 3, // Increases the scale to improve rendering resolution

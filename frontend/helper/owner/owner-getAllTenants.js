@@ -24,15 +24,23 @@ function showNumberOfTenants() {
 }
 
 /**
- * Fetches all tenants and updates the UI accordingly.
+ * @param isSearch boolean indicating whether the search.
+ * Fetches all, search tenants and updates the UI accordingly.
  */
-function getAllTenantsRequest() {
-
-  fetch(host + 'all-tenants', {
+function getAllTenantsRequest(isSearch) {
+  const searchInput = document.getElementById("search-input");
+  const searchValues = searchInput.value.split(' ');
+  console.log("isSearch: " + isSearch);
+  const route = !isSearch? 'all-tenants' : 'search-tenants';
+  console.log("route: " + route);
+  const reqBody = JSON.stringify(isSearch ? {lastname: searchValues[0], firstname: searchValues[1]?? ""} : {});
+  console.log("reqBody: " + reqBody);
+  fetch(host + route, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
+    body: reqBody,
     credentials: 'include',
   })
   .then(response => {
@@ -40,14 +48,14 @@ function getAllTenantsRequest() {
         if (response.status === 401 || response.status === 403) {
             window.location.href = ownerLogSignURL;
         }
-        window.location.href = ownerError;
+        // window.location.href = ownerError;
         throw new Error('HTTP error ' + response.status);
     }
     return response.json();
   })
   .then(data => {
-    console.log(data);
     const allTenants = data;
+    isSearch && console.log("allTenants : "); console.log(allTenants);
     setNumberOfTenants(allTenants.length);
     showNumberOfTenants();
     
@@ -153,7 +161,8 @@ function getAllTenantsRequest() {
     }
   })
   .catch((error) => {
-    window.location.href = ownerError;
+    console.log(error);
+    // window.location.href = ownerError;
   });
 }
 
@@ -196,7 +205,7 @@ function editTenant(tenantId) {
     resetKeyButton.dataset.editingId = tenantId;
   })
   .catch(error => {
-    window.location.href = ownerError;
+    // window.location.href = ownerError;
   });
 }
 
@@ -243,7 +252,7 @@ function updateTenant(editingId) {
     if (row) {
       row.children[0].textContent = `${data.lastname} ${data.firstname}`;
       row.children[1].textContent = `${data.contactmoov}/${data.contacttg}`;
-      row.children[3].textContent = formattedDate;
+      row.children[6].textContent = formattedDate;
     }
     resetForm();
   })

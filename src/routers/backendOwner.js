@@ -31,6 +31,7 @@ const {
     recentTenants,
     allTenants,
     myTenant,
+    searchTenants,
     updateTenant,
     updateTenantConnectKey,
     deleteTenant,
@@ -169,6 +170,12 @@ router.post('/recent-tenants', recentTenants);
  * POST /all-tenants
  */
 router.post('/all-tenants', allTenants);
+
+/**
+ * Get search tenants.
+ * POST /search-tenants
+ */
+router.post('/search-tenants', searchTenants);
 
 /**
  * Get details of a specific tenant.

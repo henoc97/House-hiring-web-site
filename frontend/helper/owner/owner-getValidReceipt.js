@@ -66,8 +66,6 @@ function getValidReceiptsRequest() {
 
     // If the properties are wrapped in an object { myProperties }
     const validReceipts = data;
-    console.log("debug");
-    console.log(validReceipts);
 
     // Update the number of payments and display it
     setNumberOfPayments(validReceipts.length);
@@ -92,7 +90,7 @@ function getValidReceiptsRequest() {
 
         // Create a new table row
         const row = document.createElement('tr');
-        row.dataset.id = validReceipt.id;
+        row.dataset.payment_ids = validReceipt.payment_ids;
         row.innerHTML = `
               <td>${formattedPaymentDateTime}</td>
               <td>${validReceipt.ref}</td>
@@ -110,7 +108,7 @@ function getValidReceiptsRequest() {
                 <div class="dropdown">
                     <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
                     <div class="dropdown-content">
-                        <i class='bx bx-trash delete-icon' data-id="${validReceipt.id}"></i>
+                        <i class='bx bx-trash delete-icon' data-payment_ids="${validReceipt.payment_ids}"></i>
                     </div>
                 </div>
               </td>
@@ -124,6 +122,5 @@ function getValidReceiptsRequest() {
   })
   .catch((error) => {
     // Log error if fetching fails
-    console.log('error : ' + error);
   });
 }
