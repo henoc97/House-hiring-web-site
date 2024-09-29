@@ -4,7 +4,7 @@
  * and sends a POST request to create receipts for each selected month.
  */
 function requireRecieptRequest() {
-     // Get the tenant property ID 
+    // Get the tenant property ID 
     let idTenantProperty = document.getElementById('tenants-properties-option').value;
     
     // Get the tenant property  amount
@@ -69,7 +69,13 @@ function requireRecieptRequest() {
             // Format local date and set it into dateTimeInput
             const dateTimeInput = document.getElementById('receipt-date-hour');
             const now = new Date();
-            const formattedDateTime = now.toISOString().slice(0, 16);
+            const formattedDateTime = now.toLocaleString('fr-FR', {
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              }).replace(',', '').replace(/\//g, '-');
             dateTimeInput.value = formattedDateTime;
         })
         .catch(error => {

@@ -9,16 +9,22 @@ const {logger} = require('../../src/logger/logRotation');
  * @returns {Promise<void>}
  */
 module.exports.requireReceipt = async (req, res) => {
-    const { sumpayed, monthpayed } = req.body;
+    const { sumpayed, accessoryFees, ref, method, monthpayed, createDate } = req.body;
 
     // Validate input
-    if (!sumpayed || !monthpayed) {
+    if (
+        sumpayed === undefined || 
+        accessoryFees === undefined || 
+        ref === undefined || 
+        method === undefined || 
+        createDate === undefined || 
+        monthpayed === undefined) {
         logger.warn(`400 Bad Request: ${req.method} ${req.url}`);
-        return res.status(400).json({ message: 'Invalid input data' });
+        return res.status(400).json({ message: 'Missing parameters' });
     }
 
-    const query = "CALL insert_payment(?, ?, ?)";
-    const values = [req.user.prTenId, sumpayed, monthpayed];
+    const query = "CALL insert_payment(?, ?, ?, ?, ?, ?, ?)";
+    const values = [req.user.prTenId, sumpayed, accessoryFees, monthpayed, ref, method, createDate];
 
     try {
         const [rows] = await req.connection.query(query, values);

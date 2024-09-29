@@ -7,28 +7,27 @@
  */
 function addUnvalidReceipt(unvalidReceipt) {
   const tableBody = document.getElementById("receipts-table");
-
-  const paidMonthsArray = unvalidReceipt.paid_months.split(', ');
+  const paidMonths = unvalidReceipt.paid_months ?? unvalidReceipt.monthpayed ?? '';
+  const paidMonthsArray = paidMonths.split(', ');
   const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
     month: 'long',
     year: 'numeric'
   }).replace(',', '').replace(/\//g, '-');
 
   // Format local date and set it into dateTimeInput
-  const now = new Date(unvalidReceipt.last_create_time);
+  const now = new Date(unvalidReceipt.last_create_time ?? unvalidReceipt.create_time);
   const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
 
   // Create a new row for the table
   const row = document.createElement('tr');
-  row.dataset.id = unvalidReceipt.id;
+  row.dataset.payment_ids = unvalidReceipt.payment_ids;
   row.innerHTML = `
         <td>${formattedPaymentDateTime}</td>
         <td>${unvalidReceipt.ref}</td>
-        <td>${unvalidReceipt.address}</td>
         <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
         <td>${formattedDate}${paidMonthsArray.length > 1 ? `,...` : ``}</td>
         <td>${unvalidReceipt.method}</td>
-        <td>${unvalidReceipt.total_sumpayed}</td>
+        <td>${unvalidReceipt.total_sumpayed ?? unvalidReceipt.sumpayed}</td>
         <td>
           <span class="badge bg-danger">Non Approuvé</span>
         </td>
@@ -107,8 +106,10 @@ function addDropdownsListener() {
       }
 
       if (target.classList.contains('delete-icon')) {
-        const receiptId = target.dataset.id;
-        deleteReceiptTenant(receiptId);
+        const receiptIds = target.dataset.payment_ids;
+        receiptIds.split(', ').forEach((id) => (
+          deleteReceiptTenant(id, receiptIds)
+        ));
       }
     });
 
@@ -129,7 +130,7 @@ function addDropdownsListener() {
  * Deletes a receipt from the server and removes it from the table.
  * @param {string} receiptId - The ID of the receipt to delete.
  */
-function deleteReceiptTenant(receiptId) {
+function deleteReceiptTenant(receiptId, receiptIds) {
   fetch(hostTenant + "delete-receipt", {
     method: 'POST',
     headers: {
@@ -152,12 +153,12 @@ function deleteReceiptTenant(receiptId) {
     })
     .then(() => {
       // Remove the row from the table
-      const row = document.querySelector(`tr[data-id="${receiptId}"]`);
+      const row = document.querySelector(`tr[data-payment_ids="${receiptIds}"]`);
       if (row) {
-        row.remove();
+        row.remove(); // Remove the row from the table
       }
     })
     .catch(error => {
-      window.location.href = tenantError;
+      // Ununderstood error.
     });
 }

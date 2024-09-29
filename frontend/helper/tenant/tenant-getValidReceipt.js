@@ -129,38 +129,9 @@ function showNextPaymentDate() {
 }
 
 /**
- * Gets an array of months between two dates, excluding the current month.
- * @param {Date} startDate - The start date.
- * @param {Date} endDate - The end date.
- * @returns {Array<Date>} - The array of months between the two dates.
- */
-function getMonthsBetween(startDate, endDate) {
-  const months = [];
-  const adjustedEndDate = new Date(endDate.getFullYear(), endDate.getMonth(), 1);
-  let current = new Date(startDate);
-  current.setDate(1);
-  while (current < adjustedEndDate) {
-    months.push(new Date(current));
-    current.setMonth(current.getMonth() + 1);
-  }
-  return months;
-}
-
-/**
- * Compares two dates to determine if they are in the same month and year.
- * @param {Date} date1 - The first date.
- * @param {Date} date2 - The second date.
- * @returns {boolean} - True if the dates are in the same month and year, otherwise false.
- */
-function compareMonths(date1, date2) {
-  return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth();
-}
-
-/**
  * Fetches valid receipts from the server and updates the UI accordingly.
  */
 function getValidReceiptsRequest() {
-  let createTime = new Date(localStorage.getItem('createTime'));
 
   fetch(hostTenant + 'receipt-valid', {
     method: 'POST',
@@ -183,9 +154,12 @@ function getValidReceiptsRequest() {
 
     const valiReceipts = data;
 
+
     setNumberOfPayments(valiReceipts.length);
     showNumberOfPayments();
 
+
+    let nextPaymentDate = new Date("1990-01-01");
     const tableBody = document.getElementById("receipts-table");
     if (tableBody) {
       valiReceipts.forEach((validReceipt) => {
@@ -194,17 +168,24 @@ function getValidReceiptsRequest() {
           month: 'long',
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
+        const formattedDate2 = new Date(paidMonthsArray[paidMonthsArray.length - 1])
+        
         
         // Format local date and set it into dateTimeInput
-        const now = new Date(validReceipt.last_create_time);
-        const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
+        const lastPaymentDate = new Date(validReceipt.last_create_time);
+        const formattedPaymentDateTime = lastPaymentDate.toLocaleString('fr-FR', {
+          day: 'numeric',
+          month: 'numeric',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).replace(',', '').replace(/\//g, '-');
 
         const row = document.createElement('tr');
-        row.dataset.id = validReceipt.id;
+        row.dataset.payment_ids = validReceipt.payment_ids;
         row.innerHTML = `
               <td>${formattedPaymentDateTime}</td>
               <td>${validReceipt.ref}</td>
-              <td>${validReceipt.address}</td>
               <td>${validReceipt.lastname} ${validReceipt.firstname.split(' ')[0]}</td>
               <td>${formattedDate}${ paidMonthsArray.length > 1 ? `,...` : ``}</td>
               <td>${validReceipt.method}</td>
@@ -224,53 +205,37 @@ function getValidReceiptsRequest() {
               </td>
         `;
         tableBody.appendChild(row);
+        // last month paid
+        if (formattedDate2 > nextPaymentDate) nextPaymentDate = formattedDate2;
       });
 
-      const currentDate = new Date();
-      const generatedMonths = getMonthsBetween(createTime, currentDate);
+      // Format local date and set it into dateTimeInput
+      const lastPaymentDate2 = new Date(valiReceipts[valiReceipts.length - 1].last_create_time);
+      const formattedlastPaymentDate2 = lastPaymentDate2.toLocaleString('fr-FR', {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+      }).replace(',', '').replace(/\//g, '-');
 
-      const unpaidMonths = generatedMonths.filter(generatedMonth => 
-        !valiReceipts.some(validReceipt => compareMonths(new Date(validReceipt.monthpayed), generatedMonth))
-      );
-
-      unpaidMonths.forEach(unpaidMonth => {
-      });
-      const tenantCreationDay = new Date(localStorage.getItem('createTime')).getDate();
-      let nextPaymentDate;
-      if (valiReceipts.length > 0) {
-        let _lastPayedMonth = new Date(valiReceipts[0].monthpayed ); 
-        let _lastPaymentDate = new Date(valiReceipts[0].create_time ); 
-        const lastPaymentDate =  _lastPaymentDate.toLocaleString('fr-FR', 
-          {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-        
-        setLastPaymentDate(lastPaymentDate);
-
-        if (unpaidMonths.length > 0) {
-          nextPaymentDate = unpaidMonths[unpaidMonths.length-1];
-          nextPaymentDate.setDate(tenantCreationDay); 
-          nextPaymentDate = nextPaymentDate.toLocaleString('fr-FR', 
-            {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-        } else {
-          nextPaymentDate = _lastPayedMonth;
-          nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
-          nextPaymentDate.setDate(tenantCreationDay); 
-          nextPaymentDate = nextPaymentDate.toLocaleString('fr-FR', 
-            {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-        }
-      } else {
-        nextPaymentDate = createTime;
-        nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
-        nextPaymentDate.setDate(tenantCreationDay); 
-        nextPaymentDate = nextPaymentDate.toLocaleString('fr-FR', 
-          {day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-');
-      }
-      setNextPaymentDate(nextPaymentDate);
-      showNextPaymentDate();
-      setUnpaidMonths(unpaidMonths);
-      setUnpaidMonthsCount(unpaidMonths.length);
-      // showUnpaidMonths();
-      showUnpaidMonthsCount();
+      setLastPaymentDate(formattedlastPaymentDate2);
       showLastPaymentDate();
+
+      const tenantCreationDay = new Date(localStorage.getItem('createTime')).getDate();
+      nextPaymentDate.setDate(tenantCreationDay);
+      // Ajust
+      nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
+      const formattedNextPaymentDate = nextPaymentDate
+        .toLocaleString('fr-FR', {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
+      }).replace(',', '').replace(/\//g, '-');
+
+      setUnpaidMonthsCount(valiReceipts[valiReceipts.length - 1].unpaid_months_count);
+      showUnpaidMonthsCount();
+      
+      setNextPaymentDate(formattedNextPaymentDate);
+      showNextPaymentDate();
     }
   })
   .catch(error => {

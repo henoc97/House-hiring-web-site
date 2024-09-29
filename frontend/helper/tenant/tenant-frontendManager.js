@@ -2,13 +2,20 @@
  * Initialize the receipts table and its event listener.
  */
 const receiptsTable = document.getElementById('receipts-table');
-if (receiptsTable) { 
+if (receiptsTable) {
+  // Format local date and set it into dateTimeInput
+  const dateTimeInput = document.getElementById('receipt-date-hour');
+  const now = new Date();
+  const formattedDateTime = now.toISOString().slice(0, 16);
+  dateTimeInput.value = formattedDateTime;
+
   // Calls function to get invalid receipts, which in turn calls getValidReceiptsRequest
-  getUnvalidReceiptsRequest(); 
+  getUnvalidReceiptsRequest();
 }
 
 // Add click event listener to the receipts table
-receiptsTable.addEventListener('click', function(e) {
+receiptsTable.addEventListener('click', function (e) {
+  e.preventDefault();
   accessReceipt(e);
 });
 
@@ -39,7 +46,7 @@ if (setPwd != 1 && modal && modalContent) {
   // Show the modal if password is not set
   modal.classList.remove('hidden');
   modal.classList.add('visible');
-  
+
   setTimeout(() => {
     modal.classList.add('show');
     modalContent.classList.add('show');
@@ -67,7 +74,7 @@ if (userName) userName.textContent = localStorage.getItem('userName');
 /**
  * Toggle sidebar visibility.
  */
-document.getElementById('btn').addEventListener('click', function() {
+document.getElementById('btn').addEventListener('click', function () {
   document.querySelector('.sidebar').classList.toggle('open');
 });
 
@@ -77,7 +84,7 @@ document.getElementById('btn').addEventListener('click', function() {
 const menuLinks = document.querySelectorAll('.sidebar ul li a');
 
 menuLinks.forEach(link => {
-  link.addEventListener('click', function(e) {
+  link.addEventListener('click', function (e) {
     e.preventDefault();
 
     // Remove active class from all menu links
@@ -95,25 +102,31 @@ menuLinks.forEach(link => {
         .then(response => response.text())
         .then(data => {
           document.querySelector('.details').innerHTML = data;
-          
+
           const receiptsTable = document.getElementById('receipts-table');
           const tenantPropertyOption = document.getElementById('receipt-tenant-property-option');
           selectMonthsHelper(tenantPropertyOption); // Helper for selecting receipt months
           if (receiptsTable) {
             getUnvalidReceiptsRequest(); // Calls function to get invalid receipts
-            receiptsTable.addEventListener('click', function(e) {
+            // Format local date and set it into dateTimeInput
+            const dateTimeInput = document.getElementById('receipt-date-hour');
+            const now = new Date();
+            const formattedDateTime = now.toISOString().slice(0, 16);
+            dateTimeInput.value = formattedDateTime;
+            receiptsTable.addEventListener('click', function (e) {
+              e.preventDefault();
               accessReceipt(e);
             });
           }
-       });
+        });
     }
-    
+
     if (this.id === 'discuss-button') {
       fetch(tenantURL + '/discussion')
         .then(response => response.text())
         .then(data => {
           document.querySelector('.details').innerHTML = data;
-          
+
           const messageForm = document.getElementById('message-form');
 
           if (messageForm) {
@@ -121,7 +134,7 @@ menuLinks.forEach(link => {
           }
           getMessagesRequest();
           deleteMessageLogic();
-      });
+        });
     }
 
     if (this.id === 'profile-button') {
@@ -138,7 +151,7 @@ menuLinks.forEach(link => {
               updateTenant();
             });
           }
-      });
+        });
     }
   });
 });

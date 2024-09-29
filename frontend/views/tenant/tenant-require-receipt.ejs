@@ -11,16 +11,43 @@
     <div class="form-group">
       <label for="receipt-months">Mois:</label>
       <select id="receipt-months" name="months" multiple="multiple" required>
-        
+
       </select>
     </div>
     <div class="form-group">
       <label for="receipt-sumpayed">Coût:</label>
       <input type="number" id="receipt-sumpayed" name="sumpayed" required>
     </div>
-    
+
+    <div class="form-group">
+      <label for="receipt-accessory_fees">frais supplémentaires:</label>
+      <input type="number" id="receipt-accessory_fees" name="accessory_fees" required>
+    </div>
+    <div class="form-group">
+      <label for="receipt-txn-id">Txn ID ou Réf:</label>
+      <input type="number" id="receipt-txn-id" name="txn-id" required>
+    </div>
+    <div class="form-group payment-method">
+      <label>Méthode de paiement :</label>
+      <div class="radio-container">
+        <input type="radio" id="receipt-flooz" name="receipt-payment-method" value="FLOOZ" required>
+        <label for="receipt-flooz" class="custom-radio">
+          <span class="radio-inner"></span>
+          <span class="radio-label">FLOOZ</span>
+        </label>
+      </div>
+      <div class="radio-container">
+        <input type="radio" id="receipt-tmoney" name="receipt-payment-method" value="TMoney" required>
+        <label for="receipt-tmoney" class="custom-radio">
+          <span class="radio-inner"></span>
+          <span class="radio-label">TMoney</span>
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="receipt-date-hour">Date et Heure:</label>
+      <input type="datetime-local" name="d-h" id="receipt-date-hour">
+    </div>
     <button type="submit">Enregistrer</button>
   </form>
 </div>
-  
-  

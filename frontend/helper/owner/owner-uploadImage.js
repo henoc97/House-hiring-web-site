@@ -18,7 +18,7 @@ function uploadedImageLogic(uploadForm) {
                     method: 'POST',
                     credentials: 'include',
                     body: formData, // Sends the FormData object as the request body
-                    include : true,
+                    credentials: 'include',
                 });
                 
                 // Checks if the response is not OK

@@ -91,8 +91,14 @@ function getValidReceiptsRequest(isSearch) {
         
         // Format local date and set it into dateTimeInput
         const now = new Date(validReceipt.last_create_time);
-        const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
-
+        const formattedPaymentDateTime = now.toLocaleString('fr-FR', {
+          day: 'numeric',
+          month: 'numeric',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).replace(',', '').replace(/\//g, '-');
+        
         // Create a new table row
         const row = document.createElement('tr');
         row.dataset.payment_ids = validReceipt.payment_ids;
@@ -127,5 +133,6 @@ function getValidReceiptsRequest(isSearch) {
   })
   .catch((error) => {
     // Log error if fetching fails
+    window.location.href = ownerError;
   });
 }

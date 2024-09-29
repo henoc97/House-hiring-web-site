@@ -739,6 +739,71 @@ form button {
   transition: background-color 0.3s ease;
 }
 
+
+input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Style pour les conteneurs des boutons radio */
+.radio-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Style pour les labels des boutons radio */
+.custom-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+}
+
+#action-indicator {
+  font-size: 18px;
+}
+
+/* Style pour le cercle des boutons radio */
+.radio-inner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--blue); /* Couleur du bord du bouton radio */
+  background-color: #fff; /* Couleur de fond du bouton radio */
+}
+
+/* Style pour le cercle intérieur lorsqu'il est sélectionné */
+input[type="radio"]:checked + .custom-radio .radio-inner {
+  background-color: var(--blue); /* Couleur de fond lorsque sélectionné */
+}
+
+/* Style pour le point central dans le cercle sélectionné */
+.radio-inner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff; /* Couleur du point central */
+}
+
+/* Style pour le label du bouton radio */
+.radio-label {
+  margin-left: 10px;
+}
+
 form button:hover {
   font-weight: bold;
   background: -webkit-linear-gradient(left, var(--blue), var(--white-blue), var(--gray));
