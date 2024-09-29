@@ -20,20 +20,55 @@
         <i class='bx bx-home-smile'></i>
         <h1>Reçu de Paiement de Loyer</h1>
       </header>
-      <div class="receipt-details" id="receipt-details-container">
-        <p><strong>Nom du Locataire :</strong></p>
-        <p><strong>Adresse du Locataire :</strong></p>
+      
+      <div id="receipt-num-date">
         <p><strong>Numéro de Reçu :</strong></p>
         <p><strong>Date d'Émission :</strong></p>
-        <p><strong>Montant du Loyer :</strong></p>
       </div>
-      <h3>Informations du Propriétaire</h3>
-      <div class="owner-details" id="owner-details-container">
-        <p><strong>Nom du Propriétaire :</strong></p>
-        <p><strong>Téléphone :</strong></p>
-        <p><strong>Email :</strong></p>
+
+      <div class="receipt-payement-details">
+        <div>
+          <div>
+            <h3>Informations du Locataire</h3>
+            <div class="receipt-details" id="receipt-details-container">
+              <p><strong>Nom :</strong></p>
+              <p><strong>Adresse :</strong></p>
+              <p><strong>Montant du payé :</strong></p>
+            </div>
+          </div>
+          <div>
+            <h3>Informations du Paiement</h3>
+            <div class="payment-details" id="payment-details-container">
+              <p><strong>Méthode de Paiement :</strong> Virement Bancaire </p>
+              <p><strong>Référence de Transaction :</strong> TX1234567890</p>
+              <p><strong>Date de Paiement :</strong> 01 Juin 2024</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Informations du Propriétaire</h3>
+          <div class="owner-details" id="owner-details-container">
+            <p><strong>Nom :</strong></p>
+            <p><strong>Téléphone :</strong></p>
+            <p><strong>Email :</strong></p>
+          </div>
+        </div>
       </div>
-      <p>Ce reçu confirme que le locataire susmentionné  a  effectué le paiement du loyer pour le mois indiqué ci - dessus. </p>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th id="tr-unpaid-months-count">Mois impayés(2)</th>
+              <th>reste du montant dû</th>
+            </tr>
+          </thead>
+          <tbody id="unpaid-month-amount">
+            <td>Février 2024, Mars 2024</td>
+            <td>300 €</td>
+          </tbody>
+        </table>
+      </div>
       <div class="signature">
         <h3>Signature</h3>
         <img id="signature-image" alt="la signature">

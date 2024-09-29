@@ -189,26 +189,37 @@ function getValidReceiptsRequest() {
     const tableBody = document.getElementById("receipts-table");
     if (tableBody) {
       valiReceipts.forEach((validReceipt) => {
-        const formattedDate = new Date(validReceipt.monthpayed).toLocaleString('fr-FR', {
+        const paidMonthsArray = validReceipt.paid_months.split(', ');
+        const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
           month: 'long',
           year: 'numeric'
         }).replace(',', '').replace(/\//g, '-');
+        
+        // Format local date and set it into dateTimeInput
+        const now = new Date(validReceipt.last_create_time);
+        const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
+
         const row = document.createElement('tr');
         row.dataset.id = validReceipt.id;
         row.innerHTML = `
-              <td>${formattedDate}</td>
-              <td>${validReceipt.sumpayed}</td>
+              <td>${formattedPaymentDateTime}</td>
+              <td>${validReceipt.ref}</td>
+              <td>${validReceipt.address}</td>
+              <td>${validReceipt.lastname} ${validReceipt.firstname.split(' ')[0]}</td>
+              <td>${formattedDate}${ paidMonthsArray.length > 1 ? `,...` : ``}</td>
+              <td>${validReceipt.method}</td>
+              <td>${validReceipt.total_sumpayed}</td>
               <td>
                 <a href="#" class="go-validate-receipt" data-receipt='${JSON.stringify(validReceipt)}'>
-                  <span class="badge bg-seccuss">Apprové</span>
+                  <span class="badge bg-success">Approuvé</span>
                 </a>
               </td>
               <td>
                 <div class="dropdown">
-                  <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
-                  <div class="dropdown-content">
-                    <i class='bx bx-trash delete-icon' data-id="${validReceipt.id}"></i>
-                  </div>
+                    <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
+                    <div class="dropdown-content">
+                        <i class='bx bx-trash delete-icon' data-payment_ids="${validReceipt.payment_ids}"></i>
+                    </div>
                 </div>
               </td>
         `;

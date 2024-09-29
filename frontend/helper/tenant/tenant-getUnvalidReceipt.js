@@ -8,28 +8,36 @@
 function addUnvalidReceipt(unvalidReceipt) {
   const tableBody = document.getElementById("receipts-table");
 
-  // Format the date for display
-  const formattedDate = new Date(unvalidReceipt.monthpayed).toLocaleString('fr-FR', {
+  const paidMonthsArray = unvalidReceipt.paid_months.split(', ');
+  const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
     month: 'long',
     year: 'numeric'
   }).replace(',', '').replace(/\//g, '-');
 
+  // Format local date and set it into dateTimeInput
+  const now = new Date(unvalidReceipt.last_create_time);
+  const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
 
   // Create a new row for the table
   const row = document.createElement('tr');
   row.dataset.id = unvalidReceipt.id;
   row.innerHTML = `
-        <td>${formattedDate}</td>
-        <td>${unvalidReceipt.sumpayed}</td>
+        <td>${formattedPaymentDateTime}</td>
+        <td>${unvalidReceipt.ref}</td>
+        <td>${unvalidReceipt.address}</td>
+        <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
+        <td>${formattedDate}${paidMonthsArray.length > 1 ? `,...` : ``}</td>
+        <td>${unvalidReceipt.method}</td>
+        <td>${unvalidReceipt.total_sumpayed}</td>
         <td>
-          <span class="badge bg-danger">Non approuvé</span>
+          <span class="badge bg-danger">Non Approuvé</span>
         </td>
         <td>
           <div class="dropdown">
-            <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
-            <div class="dropdown-content">
-              <i class='bx bx-trash delete-icon' data-id="${unvalidReceipt.id}"></i>
-            </div>
+              <i class='bx bx-dots-vertical-rounded toggle-dropdown'></i>
+              <div class="dropdown-content">
+                  <i class='bx bx-trash delete-icon' data-payment_ids="${unvalidReceipt.payment_ids}"></i>
+              </div>
           </div>
         </td>
   `;
@@ -42,13 +50,13 @@ function addUnvalidReceipt(unvalidReceipt) {
 function getUnvalidReceiptsRequest() {
   fetch(hostTenant + 'receipt-unValid', {
     method: 'POST',
-    headers: { 
-          'Content-Type': 'application/json'
-      },
-      credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
   })
-  .then(response => {
-    if (!response.ok) {
+    .then(response => {
+      if (!response.ok) {
         // Handle authentication/authorization errors
         if (response.status === 401 || response.status === 403) {
           window.location.href = tenantLogSignURL;
@@ -56,30 +64,30 @@ function getUnvalidReceiptsRequest() {
         // Redirect for other HTTP errors (e.g., 500)
         window.location.href = tenantError;
         throw new Error('HTTP error ' + response.status); // Throw error to trigger .catch
-    }
-    return response.json();
-  })
-  .then(data => {
-    if (!data) return; // Stop execution if data is undefined (e.g., redirection)
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (!data) return; // Stop execution if data is undefined (e.g., redirection)
 
 
-    const unvalidReceipts = data;
-    getValidReceiptsRequest();
-    const tableBody = document.getElementById("receipts-table");
-    if (tableBody) {
-      tableBody.innerHTML = ''; // Clear existing rows
+      const unvalidReceipts = data;
+      getValidReceiptsRequest();
+      const tableBody = document.getElementById("receipts-table");
+      if (tableBody) {
+        tableBody.innerHTML = ''; // Clear existing rows
 
-      unvalidReceipts.forEach((unvalidReceipt) => {
-        addUnvalidReceipt(unvalidReceipt);
-      });
-      
-      addDropdownsListener(); // Ensure the dropdowns are correctly initialized
-    } else {
-    }
-  })
-  .catch((error) => {
-    window.location.href = tenantError;
-  });
+        unvalidReceipts.forEach((unvalidReceipt) => {
+          addUnvalidReceipt(unvalidReceipt);
+        });
+
+        addDropdownsListener(); // Ensure the dropdowns are correctly initialized
+      } else {
+      }
+    })
+    .catch((error) => {
+      window.location.href = tenantError;
+    });
 }
 
 /**
@@ -89,7 +97,7 @@ function addDropdownsListener() {
   const tableBody = document.getElementById("receipts-table");
 
   if (tableBody) {
-    tableBody.addEventListener('click', function(event) {
+    tableBody.addEventListener('click', function (event) {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
@@ -105,7 +113,7 @@ function addDropdownsListener() {
     });
 
     // Close dropdowns when clicking outside
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
       if (!event.target.matches('.toggle-dropdown')) {
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
@@ -123,15 +131,15 @@ function addDropdownsListener() {
  */
 function deleteReceiptTenant(receiptId) {
   fetch(hostTenant + "delete-receipt", {
-      method: 'POST',
-      headers: { 
-          'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({ "id": receiptId })
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify({ "id": receiptId })
   })
-  .then(response => {
-    if (!response.ok) {
+    .then(response => {
+      if (!response.ok) {
         // Handle authentication/authorization errors
         if (response.status === 401 || response.status === 403) {
           window.location.href = tenantLogSignURL;
@@ -139,17 +147,17 @@ function deleteReceiptTenant(receiptId) {
         // Redirect for other HTTP errors (e.g., 500)
         window.location.href = tenantError;
         throw new Error('HTTP error ' + response.status); // Throw error to trigger .catch
-    }
-    return response.json();
-  })
-  .then(() => {
+      }
+      return response.json();
+    })
+    .then(() => {
       // Remove the row from the table
       const row = document.querySelector(`tr[data-id="${receiptId}"]`);
       if (row) {
-          row.remove();
+        row.remove();
       }
-  })
-  .catch(error => {
-    window.location.href = tenantError;
-  });
+    })
+    .catch(error => {
+      window.location.href = tenantError;
+    });
 }

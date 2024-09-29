@@ -106,11 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             });
                         }
                         if (uploadForm) {
-                            if ((getsold() - insertPic) > 0) {
-                                uploadedImageLogic(uploadForm); // Handle image upload
-                            } else {
-                                alert(`Insufficient balance. This operation costs ${insertPic} XOF`);
-                            }
+                            uploadedImageLogic(uploadForm); // Handle image upload
                         }
                     });
             }

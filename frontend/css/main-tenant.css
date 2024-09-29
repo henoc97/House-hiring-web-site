@@ -315,10 +315,18 @@
   width: 100%;
   padding: 15px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  /* grid-template-columns: 2fr 1fr; */
   grid-gap: 20px;
   align-items: flex-start; /* Aligne les sections en haut */
 }
+
+.details .messages-form {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+  align-items: flex-start; /* Aligne les sections en haut */}
 
 .details .table-card {
   position: relative;
@@ -476,7 +484,7 @@
 .bg-info{
   background: #0dcaf0;
 }
-.bg-seccuss{
+.bg-success{
   background: #198754;
 }
 

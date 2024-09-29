@@ -13,58 +13,58 @@ function getUnvalidReceiptsRequest(isSearch) {
   // Send a POST request to fetch invalid receipts
   const searchInput = document.getElementById("search-input");
   const searchValues = searchInput.value.split(' ');
-  const route = !isSearch? 'receipt-unValid' : 'search-unvalid-receipt';
-  const reqBody = JSON.stringify(isSearch ? {lastname: searchValues[0], firstname: searchValues[1]?? ""} : {});
+  const route = !isSearch ? 'receipt-unValid' : 'search-unvalid-receipt';
+  const reqBody = JSON.stringify(isSearch ? { lastname: searchValues[0], firstname: searchValues[1] ?? "" } : {});
   fetch(host + route, {
     method: 'POST',
-    headers: { 
-          'Content-Type': 'application/json'
-      },
-      body: reqBody,
-      credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: reqBody,
+    credentials: 'include',
   })
-  .then(response => {
-    // Check if the response status indicates unauthorized or forbidden access
-    if (!response.ok) {
+    .then(response => {
+      // Check if the response status indicates unauthorized or forbidden access
+      if (!response.ok) {
         if ((response.status === 401 || response.status === 403)) {
-        window.location.href = ownerLogSignURL;
+          window.location.href = ownerLogSignURL;
+        }
+        window.location.href = ownerError;
       }
-      window.location.href = ownerError;
-    }
-    // Parse the response JSON
-    return response.json();
-  })
-  .then(data => {
-    // Check if data is available; if not, exit the function
-    if (!data) return;
+      // Parse the response JSON
+      return response.json();
+    })
+    .then(data => {
+      // Check if data is available; if not, exit the function
+      if (!data) return;
 
 
-    const unvalidReceipts = data;
-    const tableBody = document.getElementById("unvalid-receipts-table");
-    if (tableBody) {
-      tableBody.innerHTML = ''; // Clear existing rows
+      const unvalidReceipts = data;
+      const tableBody = document.getElementById("unvalid-receipts-table");
+      if (tableBody) {
+        tableBody.innerHTML = ''; // Clear existing rows
 
-      // Iterate over the invalid receipts and create table rows
-      unvalidReceipts.forEach((unvalidReceipt) => {
-        const paidMonthsArray = unvalidReceipt.paid_months.split(', ');
-        const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
-          month: 'long',
-          year: 'numeric'
-        }).replace(',', '').replace(/\//g, '-');
-        
-        // Format local date and set it into dateTimeInput
-        const now = new Date(unvalidReceipt.last_create_time);
-        const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
+        // Iterate over the invalid receipts and create table rows
+        unvalidReceipts.forEach((unvalidReceipt) => {
+          const paidMonthsArray = unvalidReceipt.paid_months.split(', ');
+          const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
+            month: 'long',
+            year: 'numeric'
+          }).replace(',', '').replace(/\//g, '-');
 
-        // Create a new table row
-        const row = document.createElement('tr');
-        row.dataset.payment_ids = unvalidReceipt.payment_ids;
-        row.innerHTML = `
+          // Format local date and set it into dateTimeInput
+          const now = new Date(unvalidReceipt.last_create_time);
+          const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
+
+          // Create a new table row
+          const row = document.createElement('tr');
+          row.dataset.payment_ids = unvalidReceipt.payment_ids;
+          row.innerHTML = `
               <td>${formattedPaymentDateTime}</td>
               <td>${unvalidReceipt.ref}</td>
               <td>${unvalidReceipt.address}</td>
               <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
-              <td>${formattedDate}${ paidMonthsArray.length > 1 ? `,...` : ``}</td>
+              <td>${formattedDate}${paidMonthsArray.length > 1 ? `,...` : ``}</td>
               <td>${unvalidReceipt.method}</td>
               <td>${unvalidReceipt.total_sumpayed}</td>
               <td>
@@ -81,18 +81,18 @@ function getUnvalidReceiptsRequest(isSearch) {
                 </div>
               </td>
         `;
-        tableBody.appendChild(row);
-      });
+          tableBody.appendChild(row);
+        });
 
-      addDropdownsListenerReceiptTable("unvalid-receipts-table");
+        addDropdownsListenerReceiptTable("unvalid-receipts-table");
 
-    } else {
-    }
-  })
-  .catch((error) => {
-    // Redirect and log error if fetching fails
-    window.location.href = ownerError;
-  });
+      } else {
+      }
+    })
+    .catch((error) => {
+      // Redirect and log error if fetching fails
+      window.location.href = ownerError;
+    });
 }
 
 /**
@@ -104,37 +104,37 @@ function deleteReceipt(receiptId, receiptIds) {
 
   // Send a POST request to delete the receipt
   fetch(host + "delete-receipt", {
-      method: 'POST',
-      headers: { 
-          'Content-Type': 'application/json'
-      },
-      credentials: 'include',
-      body: JSON.stringify({ "id": receiptId })
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify({ "id": receiptId })
   })
-  .then(response => {
-    // Check if the response status indicates unauthorized or forbidden access
-    if (!response.ok) {
+    .then(response => {
+      // Check if the response status indicates unauthorized or forbidden access
+      if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
-            window.location.href = ownerLogSignURL;
+          window.location.href = ownerLogSignURL;
         }
         // Redirect in case of other HTTP errors (e.g., 500)
         window.location.href = ownerError;
         throw new Error('HTTP error ' + response.status); // Throw an error to trigger the .catch
-    }
-    // Parse the response JSON
-    return response.json();
-  })
-  .then(() => {
-    // Remove the table row corresponding to the deleted receipt
-    const row = document.querySelector(`tr[data-payment_ids="${receiptIds}"]`);
-    if (row) {
+      }
+      // Parse the response JSON
+      return response.json();
+    })
+    .then(() => {
+      // Remove the table row corresponding to the deleted receipt
+      const row = document.querySelector(`tr[data-payment_ids="${receiptIds}"]`);
+      if (row) {
         row.remove(); // Remove the row from the table
-    }
-  })
-  .catch(error => {
-    // Redirect and log error if deletion fails
-    window.location.href = ownerError;
-  });
+      }
+    })
+    .catch(error => {
+      // Redirect and log error if deletion fails
+      window.location.href = ownerError;
+    });
 }
 
 
@@ -145,7 +145,7 @@ function addDropdownsListenerReceiptTable(tableId) {
   const tableBody = document.getElementById(tableId);
 
   if (tableBody) {
-    tableBody.addEventListener('click', function(event) {
+    tableBody.addEventListener('click', function (event) {
       const target = event.target;
 
       if (target.classList.contains('toggle-dropdown')) {
@@ -162,7 +162,7 @@ function addDropdownsListenerReceiptTable(tableId) {
     });
 
     // Close dropdowns when clicking outside
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
       if (!event.target.matches('.toggle-dropdown')) {
         const dropdowns = document.querySelectorAll('.dropdown');
         dropdowns.forEach(dropdown => {
