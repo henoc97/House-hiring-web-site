@@ -24,7 +24,6 @@ function addUnvalidReceipt(unvalidReceipt) {
   row.innerHTML = `
         <td>${formattedPaymentDateTime}</td>
         <td>${unvalidReceipt.ref}</td>
-        <td>${unvalidReceipt.lastname} ${unvalidReceipt.firstname.split(' ')[0]}</td>
         <td>${formattedDate}${paidMonthsArray.length > 1 ? `,...` : ``}</td>
         <td>${unvalidReceipt.method}</td>
         <td>${unvalidReceipt.total_sumpayed ?? unvalidReceipt.sumpayed}</td>

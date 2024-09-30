@@ -186,7 +186,6 @@ function getValidReceiptsRequest() {
         row.innerHTML = `
               <td>${formattedPaymentDateTime}</td>
               <td>${validReceipt.ref}</td>
-              <td>${validReceipt.lastname} ${validReceipt.firstname.split(' ')[0]}</td>
               <td>${formattedDate}${ paidMonthsArray.length > 1 ? `,...` : ``}</td>
               <td>${validReceipt.method}</td>
               <td>${validReceipt.total_sumpayed}</td>
