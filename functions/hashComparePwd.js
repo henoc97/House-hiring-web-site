@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const {logger} = require('../src/logger/logRotation');
+const { logger } = require('../src/logger/logRotation');
 
 /**
  * Hashes a password using bcrypt.
@@ -9,15 +9,15 @@ const {logger} = require('../src/logger/logRotation');
  * @throws {Error} - Throws an error if hashing fails.
  */
 const hashPassword = async function (password) {
-    const saltRounds = 10;
+  const saltRounds = 10;
 
-    try {
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-        return hashedPassword;
-    } catch (error) {
-        logger.error('Error while hashing password:', error);
-        throw new Error('Error while hashing password.');
-    }
+  try {
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    return hashedPassword;
+  } catch (error) {
+    logger.error('Error while hashing password:', error);
+    throw new Error('Error while hashing password.');
+  }
 };
 
 /**
@@ -29,13 +29,13 @@ const hashPassword = async function (password) {
  * @throws {Error} - Throws an error if comparison fails.
  */
 async function comparePasswords(plainPassword, hashedPassword) {
-    try {
-        const result = await bcrypt.compare(plainPassword, hashedPassword);
-        return result;
-    } catch (error) {
-        logger.error('Error during password comparison:', error);
-        throw new Error('Error during password comparison.');
-    }
+  try {
+    const result = await bcrypt.compare(plainPassword, hashedPassword);
+    return result;
+  } catch (error) {
+    logger.error('Error during password comparison:', error);
+    throw new Error('Error during password comparison.');
+  }
 }
 
 module.exports = { hashPassword, comparePasswords };

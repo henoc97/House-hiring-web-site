@@ -6,9 +6,9 @@ const router = express.Router();
  * GET /sign-log
  */
 router.get('/sign-log', (req, res) => {
-    res.render('tenant-sign-log', {
-        nonce: res.locals.nonce // Passes nonce for CSP
-    });
+  res.render('tenant-sign-log', {
+    nonce: res.locals.nonce, // Passes nonce for CSP
+  });
 });
 
 /**
@@ -16,7 +16,7 @@ router.get('/sign-log', (req, res) => {
  * GET /test
  */
 router.get('/test', (req, res) => {
-    res.render('tenant-some-view');
+  res.render('tenant-some-view');
 });
 
 /**
@@ -24,7 +24,7 @@ router.get('/test', (req, res) => {
  * GET /activate
  */
 router.get('/activate', (req, res) => {
-    res.render('tenant-activation');
+  res.render('tenant-activation');
 });
 
 /**
@@ -32,7 +32,7 @@ router.get('/activate', (req, res) => {
  * GET /reset-pwd
  */
 router.get('/reset-pwd', (req, res) => {
-    res.render('tenant-reset-pwd');
+  res.render('tenant-reset-pwd');
 });
 
 /**
@@ -40,7 +40,7 @@ router.get('/reset-pwd', (req, res) => {
  * GET /error
  */
 router.get('/error', (req, res) => {
-    res.render('error-tenant-request');
+  res.render('error-tenant-request');
 });
 
 /**
@@ -48,14 +48,14 @@ router.get('/error', (req, res) => {
  * GET /tenant
  */
 router.get('/home', (req, res) => {
-    res.render('tenant-index', {
-        sidebar: 'tenant-sidebar',
-        topbar: 'tenant-topbar',
-        cardboxes: 'tenant-cardboxes',
-        setPwd: 'tenant-set-pwd',
-        myReceipts: 'tenant-my-receipts',
-        requireReceipt: 'tenant-require-receipt'
-    });
+  res.render('tenant-index', {
+    sidebar: 'tenant-sidebar',
+    topbar: 'tenant-topbar',
+    cardboxes: 'tenant-cardboxes',
+    setPwd: 'tenant-set-pwd',
+    myReceipts: 'tenant-my-receipts',
+    requireReceipt: 'tenant-require-receipt',
+  });
 });
 
 /**
@@ -63,11 +63,11 @@ router.get('/home', (req, res) => {
  * GET /dashboard
  */
 router.get('/dashboard', (req, res) => {
-    res.render('_tenant-dashboard', {
-        setPwd: 'tenant-set-pwd',
-        myReceipts: 'tenant-my-receipts',
-        requireReceipt: 'tenant-require-receipt'
-    });
+  res.render('_tenant-dashboard', {
+    setPwd: 'tenant-set-pwd',
+    myReceipts: 'tenant-my-receipts',
+    requireReceipt: 'tenant-require-receipt',
+  });
 });
 
 /**
@@ -75,10 +75,10 @@ router.get('/dashboard', (req, res) => {
  * GET /discussion
  */
 router.get('/discussion', (req, res) => {
-    res.render('_tenant-discussion', {
-        myMessages: 'tenant-my-messages',
-        messageForm: 'tenant-message-form'
-    });
+  res.render('_tenant-discussion', {
+    myMessages: 'tenant-my-messages',
+    messageForm: 'tenant-message-form',
+  });
 });
 
 /**
@@ -86,10 +86,10 @@ router.get('/discussion', (req, res) => {
  * GET /profile
  */
 router.get('/profile', (req, res) => {
-    res.render('_tenant-profile', {
-        accountInfo: 'tenant-account-info',
-        houseInfo: 'tenant-house-info'
-    });
+  res.render('_tenant-profile', {
+    accountInfo: 'tenant-account-info',
+    houseInfo: 'tenant-house-info',
+  });
 });
 
 /**
@@ -97,7 +97,7 @@ router.get('/profile', (req, res) => {
  * GET /receipt
  */
 router.get('/receipt', (req, res) => {
-    res.render('tenant-receipt');
+  res.render('tenant-receipt');
 });
 
 module.exports = router;

@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue dans votre application gestion de Logement et confort de Maison</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Bienvenue dans votre application gestion de Logement et confort de Maison
+    </title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -47,7 +49,9 @@
         font-weight: bold;
         margin: 20px 0;
         cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
       }
 
       .btn:hover {
@@ -80,17 +84,34 @@
   <body>
     <div class="container">
       <h1>Réinitialisation de votre mot de passe</h1>
-      <p>Vous avez demandé à réinitialiser votre mot de passe pour votre compte sur notre application de gestion de logement. Pour compléter ce processus, veuillez cliquer sur le lien ci-dessous :</p>
+      <p>
+        Vous avez demandé à réinitialiser votre mot de passe pour votre compte
+        sur notre application de gestion de logement. Pour compléter ce
+        processus, veuillez cliquer sur le lien ci-dessous :
+      </p>
       <div class="btn-container">
-        <a href="<%= root%>?email=<%= email %>&otp=<%= codeOTP %>" class="btn">Réinitialiser mon mot de passe</a>
+        <a href="<%= root%>?email=<%= email %>&otp=<%= codeOTP %>" class="btn"
+          >Réinitialiser mon mot de passe</a
+        >
       </div>
-      <p>Ce lien est valable pour une durée limitée. Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet e-mail ou contacter notre support immédiatement.</p>
-      <p>Pour toute question ou assistance, n'hésitez pas à nous contacter à l'adresse <a href="mailto:extasehome@gmail.com">extasehome@gmail.com</a>.</p>
+      <p>
+        Ce lien est valable pour une durée limitée. Si vous n'avez pas demandé
+        cette réinitialisation, veuillez ignorer cet e-mail ou contacter notre
+        support immédiatement.
+      </p>
+      <p>
+        Pour toute question ou assistance, n'hésitez pas à nous contacter à
+        l'adresse
+        <a href="mailto:extasehome@gmail.com">extasehome@gmail.com</a>.
+      </p>
       <p>Merci d'utiliser notre application de gestion de logement.</p>
     </div>
     <div class="footer">
       <p>&copy; 2024 Extase-Home. Tous droits réservés.</p>
-      <p><a href="#">Politique de confidentialité</a> | <a href="#">Nous contacter</a></p>
+      <p>
+        <a href="#">Politique de confidentialité</a> |
+        <a href="#">Nous contacter</a>
+      </p>
     </div>
   </body>
 </html>

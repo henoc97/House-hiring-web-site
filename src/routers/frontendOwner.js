@@ -7,9 +7,9 @@ require('dotenv').config();
  * GET /sign-log
  */
 router.get('/sign-log', (req, res) => {
-    res.render('owner-sign-log', {
-        nonce: res.locals.nonce // Passes nonce for CSP
-    });
+  res.render('owner-sign-log', {
+    nonce: res.locals.nonce, // Passes nonce for CSP
+  });
 });
 
 /**
@@ -17,7 +17,7 @@ router.get('/sign-log', (req, res) => {
  * GET /redirect
  */
 router.get('/redirect', (req, res) => {
-    res.render('owner-redirect');
+  res.render('owner-redirect');
 });
 
 /**
@@ -25,7 +25,7 @@ router.get('/redirect', (req, res) => {
  * GET /send-email
  */
 router.get('/send-email', (req, res) => {
-    res.render('owner-send-email-reset-pwd-otp');
+  res.render('owner-send-email-reset-pwd-otp');
 });
 
 /**
@@ -33,7 +33,7 @@ router.get('/send-email', (req, res) => {
  * GET /reset-pwd
  */
 router.get('/reset-pwd', (req, res) => {
-    res.render('owner-reset-pwd');
+  res.render('owner-reset-pwd');
 });
 
 /**
@@ -41,7 +41,7 @@ router.get('/reset-pwd', (req, res) => {
  * GET /error
  */
 router.get('/error', (req, res) => {
-    res.render('error-owner-request');
+  res.render('error-owner-request');
 });
 
 /**
@@ -49,14 +49,14 @@ router.get('/error', (req, res) => {
  * GET /owner
  */
 router.get('/home', (req, res) => {
-    res.render('owner-index', {
-        nonce: res.locals.nonce, // Passes nonce for CSP
-        sidebar: 'owner-sidebar',
-        topbar: 'owner-topbar',
-        cardboxes: 'owner-cardboxes',
-        recentPayments: 'owner-recent-payments',
-        recentTenants: 'owner-recent-tenants'
-    });
+  res.render('owner-index', {
+    nonce: res.locals.nonce, // Passes nonce for CSP
+    sidebar: 'owner-sidebar',
+    topbar: 'owner-topbar',
+    cardboxes: 'owner-cardboxes',
+    recentPayments: 'owner-recent-payments',
+    recentTenants: 'owner-recent-tenants',
+  });
 });
 
 /**
@@ -64,11 +64,11 @@ router.get('/home', (req, res) => {
  * GET /dashboard
  */
 router.get('/dashboard', (req, res) => {
-    res.render('_owner-dashboard', {
-        nonce: res.locals.nonce, // Passes nonce for CSP
-        recentPayments: 'owner-recent-payments',
-        recentTenants: 'owner-recent-tenants'
-    });
+  res.render('_owner-dashboard', {
+    nonce: res.locals.nonce, // Passes nonce for CSP
+    recentPayments: 'owner-recent-payments',
+    recentTenants: 'owner-recent-tenants',
+  });
 });
 
 /**
@@ -76,11 +76,11 @@ router.get('/dashboard', (req, res) => {
  * GET /profile
  */
 router.get('/profile', (req, res) => {
-    res.render('_owner-profile', {
-        accountInfo: 'owner-account-info',
-        uploadSignature: 'owner-upload-signature',
-        paymentModalities: 'owner-payment-modalities'
-    });
+  res.render('_owner-profile', {
+    accountInfo: 'owner-account-info',
+    uploadSignature: 'owner-upload-signature',
+    paymentModalities: 'owner-payment-modalities',
+  });
 });
 
 /**
@@ -88,10 +88,10 @@ router.get('/profile', (req, res) => {
  * GET /properties
  */
 router.get('/properties', (req, res) => {
-    res.render('_owner-properties', {
-        myProperties: 'owner-my-properties',
-        addPropertyForm: 'owner-add-property-form'
-    });
+  res.render('_owner-properties', {
+    myProperties: 'owner-my-properties',
+    addPropertyForm: 'owner-add-property-form',
+  });
 });
 
 /**
@@ -99,10 +99,10 @@ router.get('/properties', (req, res) => {
  * GET /tenant-home
  */
 router.get('/tenant-home', (req, res) => {
-    res.render('_owner-tenants-properties', {
-        tenantsProperties: 'owner-tenants-properties',
-        addTenantForm: 'owner-add-tenant-form'
-    });
+  res.render('_owner-tenants-properties', {
+    tenantsProperties: 'owner-tenants-properties',
+    addTenantForm: 'owner-add-tenant-form',
+  });
 });
 
 /**
@@ -110,12 +110,12 @@ router.get('/tenant-home', (req, res) => {
  * GET /tenants
  */
 router.get('/tenants', (req, res) => {
-    res.render('_owner-tenants', {
-        myTenants: 'owner-my-tenants',
-        editTenant: 'owner-edit-tenant',
-        discussion: 'owner-discussion',
-        tenantsMessages: 'owner-tenants-messages'
-    });
+  res.render('_owner-tenants', {
+    myTenants: 'owner-my-tenants',
+    editTenant: 'owner-edit-tenant',
+    discussion: 'owner-discussion',
+    tenantsMessages: 'owner-tenants-messages',
+  });
 });
 
 /**
@@ -123,10 +123,10 @@ router.get('/tenants', (req, res) => {
  * GET /receipts
  */
 router.get('/receipts', (req, res) => {
-    res.render('_owner-receipts', {
-        myReceipts: 'owner-my-receipts',
-        requireReceipt: 'owner-require-receipt'
-    });
+  res.render('_owner-receipts', {
+    myReceipts: 'owner-my-receipts',
+    requireReceipt: 'owner-require-receipt',
+  });
 });
 
 /**
@@ -134,10 +134,10 @@ router.get('/receipts', (req, res) => {
  * GET /subscription
  */
 router.get('/subscription', (req, res) => {
-    res.render('_owner-subscription', {
-        subscriptionForm: 'owner-subscription-form',
-        subscriptionInfo: 'owner-subscription-info'
-    });
+  res.render('_owner-subscription', {
+    subscriptionForm: 'owner-subscription-form',
+    subscriptionInfo: 'owner-subscription-info',
+  });
 });
 
 /**
@@ -145,7 +145,7 @@ router.get('/subscription', (req, res) => {
  * GET /receipt
  */
 router.get('/receipt', (req, res) => {
-    res.render('owner-receipt');
+  res.render('owner-receipt');
 });
 
 module.exports = router;

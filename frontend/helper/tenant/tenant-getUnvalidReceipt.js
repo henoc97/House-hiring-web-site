@@ -1,22 +1,28 @@
-
-
-
 /**
  * Adds an invalid receipt to the table.
  * @param {Object} unvalidReceipt - The receipt data to be added.
  */
 function addUnvalidReceipt(unvalidReceipt) {
-  const tableBody = document.getElementById("receipts-table");
-  const paidMonths = unvalidReceipt.paid_months ?? unvalidReceipt.monthpayed ?? '';
+  const tableBody = document.getElementById('receipts-table');
+  const paidMonths =
+    unvalidReceipt.paid_months ?? unvalidReceipt.monthpayed ?? '';
   const paidMonthsArray = paidMonths.split(', ');
-  const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
-    month: 'long',
-    year: 'numeric'
-  }).replace(',', '').replace(/\//g, '-');
+  const formattedDate = new Date(paidMonthsArray[0])
+    .toLocaleString('fr-FR', {
+      month: 'long',
+      year: 'numeric',
+    })
+    .replace(',', '')
+    .replace(/\//g, '-');
 
   // Format local date and set it into dateTimeInput
-  const now = new Date(unvalidReceipt.last_create_time ?? unvalidReceipt.create_time);
-  const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
+  const now = new Date(
+    unvalidReceipt.last_create_time ?? unvalidReceipt.create_time
+  );
+  const formattedPaymentDateTime = now
+    .toISOString()
+    .slice(0, 16)
+    .replace('T', ' ');
 
   // Create a new row for the table
   const row = document.createElement('tr');
@@ -49,11 +55,11 @@ function getUnvalidReceiptsRequest() {
   fetch(hostTenant + 'receipt-unValid', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         // Handle authentication/authorization errors
         if (response.status === 401 || response.status === 403) {
@@ -65,13 +71,12 @@ function getUnvalidReceiptsRequest() {
       }
       return response.json();
     })
-    .then(data => {
+    .then((data) => {
       if (!data) return; // Stop execution if data is undefined (e.g., redirection)
-
 
       const unvalidReceipts = data;
       getValidReceiptsRequest();
-      const tableBody = document.getElementById("receipts-table");
+      const tableBody = document.getElementById('receipts-table');
       if (tableBody) {
         tableBody.innerHTML = ''; // Clear existing rows
 
@@ -92,7 +97,7 @@ function getUnvalidReceiptsRequest() {
  * Adds event listeners to handle dropdowns and delete actions.
  */
 function addDropdownsListener() {
-  const tableBody = document.getElementById("receipts-table");
+  const tableBody = document.getElementById('receipts-table');
 
   if (tableBody) {
     tableBody.addEventListener('click', function (event) {
@@ -106,9 +111,9 @@ function addDropdownsListener() {
 
       if (target.classList.contains('delete-icon')) {
         const receiptIds = target.dataset.payment_ids;
-        receiptIds.split(', ').forEach((id) => (
-          deleteReceiptTenant(id, receiptIds)
-        ));
+        receiptIds
+          .split(', ')
+          .forEach((id) => deleteReceiptTenant(id, receiptIds));
       }
     });
 
@@ -116,7 +121,7 @@ function addDropdownsListener() {
     window.addEventListener('click', function (event) {
       if (!event.target.matches('.toggle-dropdown')) {
         const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
+        dropdowns.forEach((dropdown) => {
           dropdown.classList.remove('show');
         });
       }
@@ -130,15 +135,15 @@ function addDropdownsListener() {
  * @param {string} receiptId - The ID of the receipt to delete.
  */
 function deleteReceiptTenant(receiptId, receiptIds) {
-  fetch(hostTenant + "delete-receipt", {
+  fetch(hostTenant + 'delete-receipt', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ "id": receiptId })
+    body: JSON.stringify({ id: receiptId }),
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         // Handle authentication/authorization errors
         if (response.status === 401 || response.status === 403) {
@@ -152,12 +157,14 @@ function deleteReceiptTenant(receiptId, receiptIds) {
     })
     .then(() => {
       // Remove the row from the table
-      const row = document.querySelector(`tr[data-payment_ids="${receiptIds}"]`);
+      const row = document.querySelector(
+        `tr[data-payment_ids="${receiptIds}"]`
+      );
       if (row) {
         row.remove(); // Remove the row from the table
       }
     })
-    .catch(error => {
+    .catch((error) => {
       // Ununderstood error.
     });
 }

@@ -5,27 +5,39 @@
   <form id="subscription-form">
     <div class="form-group">
       <label for="subscription-email">Email :</label>
-      <input type="email" id="subscription-email" name="email" required>
+      <input type="email" id="subscription-email" name="email" required />
     </div>
     <div class="form-group">
       <label for="subscription-txn-id">Txn ID ou Réf:</label>
-      <input type="number" id="subscription-txn-id" name="txn-id" required>
+      <input type="number" id="subscription-txn-id" name="txn-id" required />
     </div>
     <div class="form-group">
       <label for="subscription-amount">Montant :</label>
-      <input type="number" id="subscription-amount" name="amount" required>
+      <input type="number" id="subscription-amount" name="amount" required />
     </div>
     <div class="form-group payment-method">
       <label>Méthode de paiement :</label>
       <div class="radio-container">
-        <input type="radio" id="flooze" name="payment-method" value="FLOOZ" required>
+        <input
+          type="radio"
+          id="flooze"
+          name="payment-method"
+          value="FLOOZ"
+          required
+        />
         <label for="flooze" class="custom-radio">
           <span class="radio-inner"></span>
           <span class="radio-label">FLOOZ</span>
         </label>
       </div>
       <div class="radio-container">
-        <input type="radio" id="tmoney" name="payment-method" value="TMoney" required>
+        <input
+          type="radio"
+          id="tmoney"
+          name="payment-method"
+          value="TMoney"
+          required
+        />
         <label for="tmoney" class="custom-radio">
           <span class="radio-inner"></span>
           <span class="radio-label">TMoney</span>

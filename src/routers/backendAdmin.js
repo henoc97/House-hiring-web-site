@@ -6,16 +6,14 @@ const dbMiddleware = require('../../middlewares/http/database');
 const authMiddleware = require('../../middlewares/http/auth')('admin');
 
 // Controllers
+const { userAuth } = require('../../controller/admin/user');
 const {
-    userAuth,
-} = require('../../controller/admin/user');
-const {
-    mySubscription,
-    updateOwnerSold,
-    subscriptions,
-    insertSubscription,
-    deleteSubscription,
-    isDeletedSubscription
+  mySubscription,
+  updateOwnerSold,
+  subscriptions,
+  insertSubscription,
+  deleteSubscription,
+  isDeletedSubscription,
 } = require('../../controller/admin/owner');
 
 /**
@@ -75,8 +73,8 @@ router.post('/delete-subscription', isDeletedSubscription);
  * This should be the last middleware added.
  */
 router.use((err, req, res, next) => {
-    logger.error('Server Error:', err.stack);
-    res.status(500).json({ message: 'An unexpected error occurred' });
+  logger.error('Server Error:', err.stack);
+  res.status(500).json({ message: 'An unexpected error occurred' });
 });
 
 module.exports = router;

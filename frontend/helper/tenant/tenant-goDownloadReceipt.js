@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       const downloadBtn = document.createElement('button');
       downloadBtn.id = 'download-pdf';
       downloadBtn.onclick = downloadPDF;
-      downloadBtn.innerHTML = "Télécharger en PDF";
+      downloadBtn.innerHTML = 'Télécharger en PDF';
       receiptBtns.appendChild(downloadBtn);
     }
 
@@ -29,41 +29,59 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const unpaidMonthsAmount = document.getElementById('unpaid-month-amount');
 
     // Format dates for display
-    const formattedDate = new Date(receiptData.last_create_time).toLocaleString('fr-FR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }).replace(',', '').replace(/\//g, '-');
-
-    const validationDate = new Date(receiptData.validation_date).toLocaleString('fr-FR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric',
-    }).replace(',', '').replace(/\//g, '-');
-
-    const unpaidMonths = receiptData.unpaid_months ?? ''
-    const formattedMonthUnpayeds = unpaidMonths.split(',').map((month, i) => (
-      new Date(month).toLocaleString('fr-FR', {
+    const formattedDate = new Date(receiptData.last_create_time)
+      .toLocaleString('fr-FR', {
+        day: '2-digit',
         month: 'long',
-        year: 'numeric'
-      }).replace(',', '').replace(/\//g, '-')
-    )).join(', ');
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      })
+      .replace(',', '')
+      .replace(/\//g, '-');
 
-    const paidMonths = receiptData.paid_months ?? ''
-    const formattedMonthspayeds = paidMonths.split(', ').map((month, i) => (
-      new Date(month).toLocaleString('fr-FR', {
-        month: 'numeric',
-        year: 'numeric'
-      }).replace(',', '').replace(/\//g, '-')
-    )).join(', ');
+    const validationDate = new Date(receiptData.validation_date)
+      .toLocaleString('fr-FR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric',
+      })
+      .replace(',', '')
+      .replace(/\//g, '-');
+
+    const unpaidMonths = receiptData.unpaid_months ?? '';
+    const formattedMonthUnpayeds = unpaidMonths
+      .split(',')
+      .map((month, i) =>
+        new Date(month)
+          .toLocaleString('fr-FR', {
+            month: 'long',
+            year: 'numeric',
+          })
+          .replace(',', '')
+          .replace(/\//g, '-')
+      )
+      .join(', ');
+
+    const paidMonths = receiptData.paid_months ?? '';
+    const formattedMonthspayeds = paidMonths
+      .split(', ')
+      .map((month, i) =>
+        new Date(month)
+          .toLocaleString('fr-FR', {
+            month: 'numeric',
+            year: 'numeric',
+          })
+          .replace(',', '')
+          .replace(/\//g, '-')
+      )
+      .join(', ');
 
     receiptNumDate.innerHTML = `
      <p><strong>Numéro de Reçu :</strong> ${receiptData.receiptNumber ?? ''}</p>
      <p><strong>Date d'Émission :</strong> ${validationDate ?? ''}</p>
-   `
+   `;
 
     // Update the receipt details container with the formatted data
     receiptDetails.innerHTML = `
@@ -88,15 +106,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
          <p><strong>Email :</strong> ${receiptData.owner_email ?? ''}</p>
      `;
 
-    unpaidMonthsCount.innerHTML = `Mois impayés (${receiptData.unpaid_months_count})`
+    unpaidMonthsCount.innerHTML = `Mois impayés (${receiptData.unpaid_months_count})`;
     unpaidMonthsAmount.innerHTML = `
          <td>${unpaidMonths === '' ? '--' : formattedMonthUnpayeds}</td>
          <td>${receiptData.rest_amount_due < 0 ? 0 : receiptData.rest_amount_due} fcf</td>
-     `
+     `;
 
     // Set the source of the signature image
     document.getElementById('signature-image').src = receiptData.owner_img_url;
   }
 });
-
-

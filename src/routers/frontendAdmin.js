@@ -7,9 +7,9 @@ require('dotenv').config();
  * GET /sign-log
  */
 router.get('/sign-log', (req, res) => {
-    res.render('admin-sign-log', {
-        nonce: res.locals.nonce // Passes nonce for CSP
-    });
+  res.render('admin-sign-log', {
+    nonce: res.locals.nonce, // Passes nonce for CSP
+  });
 });
 
 /**
@@ -17,7 +17,7 @@ router.get('/sign-log', (req, res) => {
  * GET /error
  */
 router.get('/error', (req, res) => {
-    res.render('error-admin-request');
+  res.render('error-admin-request');
 });
 
 /**
@@ -25,14 +25,14 @@ router.get('/error', (req, res) => {
  * GET /admin
  */
 router.get('/home', (req, res) => {
-    res.render('admin-index', {
-        nonce: res.locals.nonce, // Passes nonce for CSP
-        sidebar: 'admin-sidebar',
-        topbar: 'admin-topbar',
-        cardboxes: 'admin-cardboxes',
-        subscriptions: 'admin-subscriptions',
-        insertSubscription: 'admin-subscription-form'
-    });
+  res.render('admin-index', {
+    nonce: res.locals.nonce, // Passes nonce for CSP
+    sidebar: 'admin-sidebar',
+    topbar: 'admin-topbar',
+    cardboxes: 'admin-cardboxes',
+    subscriptions: 'admin-subscriptions',
+    insertSubscription: 'admin-subscription-form',
+  });
 });
 
 /**
@@ -40,11 +40,11 @@ router.get('/home', (req, res) => {
  * GET /dashboard
  */
 router.get('/dashboard', (req, res) => {
-    res.render('_admin-dashboard', {
-        nonce: res.locals.nonce, // Passes nonce for CSP
-        subscriptions: 'admin-subscriptions',
-        insertSubscription: 'admin-subscription-form'
-    });
+  res.render('_admin-dashboard', {
+    nonce: res.locals.nonce, // Passes nonce for CSP
+    subscriptions: 'admin-subscriptions',
+    insertSubscription: 'admin-subscription-form',
+  });
 });
 
 module.exports = router;

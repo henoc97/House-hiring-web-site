@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 :root {
-  --dark-blue: #11101D;
-  --white-blue: #1D1D31;
+  --dark-blue: #11101d;
+  --white-blue: #1d1d31;
   --white: #fff;
   --gray: #8390a2;
-  --purple: #8964f6; 
+  --purple: #8964f6;
   --purple2: #624bff;
-  --blue: #00A2E8;
+  --blue: #00a2e8;
   --green: #198754;
-  --orange: #FFAA00;
+  --orange: #ffaa00;
   --red: #ef2b3e;
 }
 
@@ -22,7 +22,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  scrollbar-width: thin;      /* Largeur de la scrollbar */ 
+  scrollbar-width: thin; /* Largeur de la scrollbar */
   scrollbar-color: #888 #f1f1f1; /* Couleur du thumb et de la piste */
 }
 
@@ -170,7 +170,7 @@
   min-height: 100vh;
   left: 250px;
   top: 0;
-  background: #E4E9E7;
+  background: #e4e9e7;
   transition: all 0.5s ease;
 }
 
@@ -196,10 +196,10 @@
   cursor: pointer;
 }
 
-
 /* End Top Bar */
 
-.profile-card-boxes, .card-boxes{
+.profile-card-boxes,
+.card-boxes {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -251,7 +251,8 @@
   transition: transform 0.3s;
 }
 
-.info-box:hover, .card-boxes .box:hover {
+.info-box:hover,
+.card-boxes .box:hover {
   transform: translateY(-5px);
 }
 
@@ -264,8 +265,8 @@
 }
 
 .profile-card-boxes .box .box-topic {
-  white-space: nowrap; 
-  overflow: hidden; 
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -316,7 +317,7 @@
 
 .details .table-card table tbody tr td {
   position: relative;
-  font-size: .92rem;
+  font-size: 0.92rem;
   font-weight: 500;
   line-height: 1.2;
   color: var(--dark-blue);
@@ -342,14 +343,14 @@
 .bg-worning {
   background: #ffc107;
 }
-.bg-danger{
+.bg-danger {
   cursor: pointer;
   background: #cd3545;
 }
-.bg-info{
+.bg-info {
   background: #0dcaf0;
 }
-.bg-success{
+.bg-success {
   background: #198754;
 }
 
@@ -409,7 +410,7 @@
   color: var(--white);
 }
 
-.card table thead tr{
+.card table thead tr {
   border-radius: 10px;
 }
 .card table thead th,
@@ -433,7 +434,7 @@
   display: none;
   position: absolute;
   background-color: white;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   padding: 5px;
   border-radius: 4px;
@@ -468,7 +469,6 @@
   display: block;
 }
 
-
 .table-card {
   position: relative; /* Assure que les éléments positionnés sont relatifs à ce conteneur */
 }
@@ -480,7 +480,6 @@
   width: 100%;
   margin: 0 auto;
 }
-
 
 #subscription-info::placeholder {
   text-align: center;
@@ -509,7 +508,7 @@
   color: #666;
 }
 
-input[type="radio"] {
+input[type='radio'] {
   opacity: 0;
   position: absolute;
 }
@@ -547,13 +546,13 @@ input[type="radio"] {
 }
 
 /* Style pour le cercle intérieur lorsqu'il est sélectionné */
-input[type="radio"]:checked + .custom-radio .radio-inner {
+input[type='radio']:checked + .custom-radio .radio-inner {
   background-color: var(--blue); /* Couleur de fond lorsque sélectionné */
 }
 
 /* Style pour le point central dans le cercle sélectionné */
 .radio-inner::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -604,7 +603,12 @@ form button {
 
 form button:hover {
   font-weight: bold;
-  background: -webkit-linear-gradient(left, var(--blue), var(--white-blue), var(--gray));
+  background: -webkit-linear-gradient(
+    left,
+    var(--blue),
+    var(--white-blue),
+    var(--gray)
+  );
 }
 .profile-card-boxes .box form input {
   width: calc(100vw / 3.5);
@@ -616,27 +620,27 @@ form button:hover {
   .sidebar li.login {
     left: -250px;
   }
-  
+
   .home-section {
     width: 100%;
     left: 0;
   }
-  
+
   .sidebar.open,
   .sidebar.open li.login {
     width: 250px;
     left: 0;
   }
-  
+
   .sidebar.open ~ .home-section {
     left: 250px;
   }
-  
+
   .sidebar.open .logo-name,
   .sidebar.open .links-name {
     opacity: 1;
   }
-  
+
   .card-boxes {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -653,7 +657,7 @@ form button:hover {
   .details {
     padding: 10px;
     grid-template-columns: repeat(1, 1fr);
-    }
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -665,7 +669,7 @@ form button:hover {
     padding: 10px;
     grid-template-columns: repeat(1, 1fr);
   }
-  
+
   .sidebar.open,
   .sidebar.open li.login {
     width: 100%;

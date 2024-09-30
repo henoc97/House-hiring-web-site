@@ -13,8 +13,8 @@ const closeModal = document.querySelector('.modal .close');
  * Opens the modal and populates it with tenant data when an edit icon is clicked.
  * Adds event listeners to each edit icon to show the modal.
  */
-document.querySelectorAll('.edit-icon').forEach(icon => {
-  icon.addEventListener('click', function() {    
+document.querySelectorAll('.edit-icon').forEach((icon) => {
+  icon.addEventListener('click', function () {
     // TODO: Populate the form with tenant data here (use tenantId)
     modal.style.display = 'block'; // Show the modal
     setTimeout(() => {
@@ -29,20 +29,20 @@ document.querySelectorAll('.edit-icon').forEach(icon => {
  * Removes the show class and hides the modal after the animation.
  */
 if (closeModal) {
-    closeModal.onclick = function() {
+  closeModal.onclick = function () {
     modal.classList.remove('show');
     modalContent.classList.remove('show');
     setTimeout(() => {
-        modal.style.display = 'none';
+      modal.style.display = 'none';
     }, 300); // Corresponds to the duration of the CSS animation
-    }
+  };
 }
 
 /**
  * Closes the modal when clicking anywhere outside of it.
  * Hides the modal after removing the show class and waiting for the animation to finish.
  */
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target === modal) {
     modal.classList.remove('show');
     modalContent.classList.remove('show');
@@ -50,4 +50,4 @@ window.onclick = function(event) {
       modal.style.display = 'none';
     }, 300); // Corresponds to the duration of the CSS animation
   }
-}
+};

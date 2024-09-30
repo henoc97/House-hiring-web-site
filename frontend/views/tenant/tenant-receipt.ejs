@@ -1,88 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <title>Extase-Home - Reçu de Paiement de Loyer</title>
-  <meta name="description" content="Extase-Home offre des solutions de gestion de logement alliant luxe et confort moderne. Découvrez nos services de gestion immobilière.">
-  <link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/icon/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="/receipt.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-<body>
-  <div class="center-container">
-    <div class="receipt-container" id="receipt">
-      <header>
-        <i class='bx bx-home-smile'></i>
-        <h1>Reçu de Paiement de Loyer</h1>
-      </header>
-      
-      <div id="receipt-num-date">
-        <p><strong>Numéro de Reçu :</strong></p>
-        <p><strong>Date d'Émission :</strong></p>
-      </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>Extase-Home - Reçu de Paiement de Loyer</title>
+    <meta
+      name="description"
+      content="Extase-Home offre des solutions de gestion de logement alliant luxe et confort moderne. Découvrez nos services de gestion immobilière."
+    />
+    <link rel="shortcut icon" href="/icon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/icon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/receipt.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <body>
+    <div class="center-container">
+      <div class="receipt-container" id="receipt">
+        <header>
+          <i class="bx bx-home-smile"></i>
+          <h1>Reçu de Paiement de Loyer</h1>
+        </header>
 
-      <div class="receipt-payement-details">
-        <div>
+        <div id="receipt-num-date">
+          <p><strong>Numéro de Reçu :</strong></p>
+          <p><strong>Date d'Émission :</strong></p>
+        </div>
+
+        <div class="receipt-payement-details">
           <div>
-            <h3>Informations du Locataire</h3>
-            <div class="receipt-details" id="receipt-details-container">
+            <div>
+              <h3>Informations du Locataire</h3>
+              <div class="receipt-details" id="receipt-details-container">
+                <p><strong>Nom :</strong></p>
+                <p><strong>Adresse :</strong></p>
+                <p><strong>Montant du payé :</strong></p>
+              </div>
+            </div>
+            <div>
+              <h3>Informations du Paiement</h3>
+              <div class="payment-details" id="payment-details-container">
+                <p><strong>Méthode de Paiement :</strong> Virement Bancaire</p>
+                <p><strong>Référence de Transaction :</strong> TX1234567890</p>
+                <p><strong>Date de Paiement :</strong> 01 Juin 2024</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3>Informations du Propriétaire</h3>
+            <div class="owner-details" id="owner-details-container">
               <p><strong>Nom :</strong></p>
-              <p><strong>Adresse :</strong></p>
-              <p><strong>Montant du payé :</strong></p>
-            </div>
-          </div>
-          <div>
-            <h3>Informations du Paiement</h3>
-            <div class="payment-details" id="payment-details-container">
-              <p><strong>Méthode de Paiement :</strong> Virement Bancaire </p>
-              <p><strong>Référence de Transaction :</strong> TX1234567890</p>
-              <p><strong>Date de Paiement :</strong> 01 Juin 2024</p>
+              <p><strong>Téléphone :</strong></p>
+              <p><strong>Email :</strong></p>
             </div>
           </div>
         </div>
-        <div>
-          <h3>Informations du Propriétaire</h3>
-          <div class="owner-details" id="owner-details-container">
-            <p><strong>Nom :</strong></p>
-            <p><strong>Téléphone :</strong></p>
-            <p><strong>Email :</strong></p>
-          </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th id="tr-unpaid-months-count">Mois impayés(2)</th>
+                <th>reste du montant dû</th>
+              </tr>
+            </thead>
+            <tbody id="unpaid-month-amount">
+              <td>Février 2024, Mars 2024</td>
+              <td>300 €</td>
+            </tbody>
+          </table>
         </div>
+        <div class="signature">
+          <h3>Signature</h3>
+          <img id="signature-image" alt="la signature" />
+        </div>
+        <footer>
+          <p>
+            Merci d'avoir payé à temps. Pour toute question, veuillez nous
+            contacter à l'adresse extasehome@gmail.com ou sur 97045559 /
+            90988966.
+          </p>
+          <p>&copy 2024 Extase-Home. Tous droits réservés.</p>
+        </footer>
       </div>
 
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th id="tr-unpaid-months-count">Mois impayés(2)</th>
-              <th>reste du montant dû</th>
-            </tr>
-          </thead>
-          <tbody id="unpaid-month-amount">
-            <td>Février 2024, Mars 2024</td>
-            <td>300 €</td>
-          </tbody>
-        </table>
-      </div>
-      <div class="signature">
-        <h3>Signature</h3>
-        <img id="signature-image" alt="la signature">
-      </div>
-      <footer>
-        <p>Merci d'avoir payé à temps. Pour toute question, veuillez nous contacter à l'adresse extasehome@gmail.com ou sur 97045559 / 90988966.</p>
-        <p>&copy 2024 Extase-Home. Tous droits réservés.</p>
-      </footer>
+      <div id="receipt-btns"><!-- Validate or download --></div>
     </div>
-    
-    <div id="receipt-btns"> <!-- Validate or download --> </div>
-  </div>
-  <script src="/public/endpoints.js"></script>
-  <script src="/tenant/tenant-goDownloadReceipt.js"></script>
-  <script src="/tenant/tenant-downloadReceipt.js"></script>
-</body>
+    <script src="/public/endpoints.js"></script>
+    <script src="/tenant/tenant-goDownloadReceipt.js"></script>
+    <script src="/tenant/tenant-downloadReceipt.js"></script>
+  </body>
 </html>

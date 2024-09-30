@@ -53,7 +53,7 @@ function getNumberOfPayments() {
  * @returns {Array} - The unpaid months, or an empty array if not found.
  */
 function getUnpaidMonths() {
-  const unpaidMonths = localStorage.getItem('unpaidMonths'); 
+  const unpaidMonths = localStorage.getItem('unpaidMonths');
   if (unpaidMonths === '') return [];
   return JSON.parse(unpaidMonths);
 }
@@ -132,61 +132,64 @@ function showNextPaymentDate() {
  * Fetches valid receipts from the server and updates the UI accordingly.
  */
 function getValidReceiptsRequest() {
-
   fetch(hostTenant + 'receipt-valid', {
     method: 'POST',
-    headers: { 
-          'Content-Type': 'application/json'
-      },
-      credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status === 401 || response.status === 403) {
-        window.location.href = tenantLogSignURL;
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          window.location.href = tenantLogSignURL;
+        }
+        window.location.href = tenantError;
+        throw new Error('HTTP error ' + response.status);
       }
-      window.location.href = tenantError;
-      throw new Error('HTTP error ' + response.status);
-    }
-    return response.json();
-  })
-  .then(data => {
+      return response.json();
+    })
+    .then((data) => {
+      const valiReceipts = data;
 
-    const valiReceipts = data;
+      setNumberOfPayments(valiReceipts.length);
+      showNumberOfPayments();
 
+      let nextPaymentDate = new Date('1990-01-01');
+      const tableBody = document.getElementById('receipts-table');
+      if (tableBody) {
+        valiReceipts.forEach((validReceipt) => {
+          const paidMonthsArray = validReceipt.paid_months.split(', ');
+          const formattedDate = new Date(paidMonthsArray[0])
+            .toLocaleString('fr-FR', {
+              month: 'long',
+              year: 'numeric',
+            })
+            .replace(',', '')
+            .replace(/\//g, '-');
+          const formattedDate2 = new Date(
+            paidMonthsArray[paidMonthsArray.length - 1]
+          );
 
-    setNumberOfPayments(valiReceipts.length);
-    showNumberOfPayments();
+          // Format local date and set it into dateTimeInput
+          const lastPaymentDate = new Date(validReceipt.last_create_time);
+          const formattedPaymentDateTime = lastPaymentDate
+            .toLocaleString('fr-FR', {
+              day: 'numeric',
+              month: 'numeric',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            })
+            .replace(',', '')
+            .replace(/\//g, '-');
 
-
-    let nextPaymentDate = new Date("1990-01-01");
-    const tableBody = document.getElementById("receipts-table");
-    if (tableBody) {
-      valiReceipts.forEach((validReceipt) => {
-        const paidMonthsArray = validReceipt.paid_months.split(', ');
-        const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
-          month: 'long',
-          year: 'numeric'
-        }).replace(',', '').replace(/\//g, '-');
-        const formattedDate2 = new Date(paidMonthsArray[paidMonthsArray.length - 1])
-        
-        
-        // Format local date and set it into dateTimeInput
-        const lastPaymentDate = new Date(validReceipt.last_create_time);
-        const formattedPaymentDateTime = lastPaymentDate.toLocaleString('fr-FR', {
-          day: 'numeric',
-          month: 'numeric',
-          year: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        }).replace(',', '').replace(/\//g, '-');
-
-        const row = document.createElement('tr');
-        row.dataset.payment_ids = validReceipt.payment_ids;
-        row.innerHTML = `
+          const row = document.createElement('tr');
+          row.dataset.payment_ids = validReceipt.payment_ids;
+          row.innerHTML = `
               <td>${formattedPaymentDateTime}</td>
               <td>${validReceipt.ref}</td>
-              <td>${formattedDate}${ paidMonthsArray.length > 1 ? `,...` : ``}</td>
+              <td>${formattedDate}${paidMonthsArray.length > 1 ? `,...` : ``}</td>
               <td>${validReceipt.method}</td>
               <td>${validReceipt.total_sumpayed}</td>
               <td>
@@ -203,41 +206,53 @@ function getValidReceiptsRequest() {
                 </div>
               </td>
         `;
-        tableBody.appendChild(row);
-        // last month paid
-        if (formattedDate2 > nextPaymentDate) nextPaymentDate = formattedDate2;
-      });
+          tableBody.appendChild(row);
+          // last month paid
+          if (formattedDate2 > nextPaymentDate)
+            nextPaymentDate = formattedDate2;
+        });
 
-      // Format local date and set it into dateTimeInput
-      const lastPaymentDate2 = new Date(valiReceipts[valiReceipts.length - 1].last_create_time);
-      const formattedlastPaymentDate2 = lastPaymentDate2.toLocaleString('fr-FR', {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric',
-      }).replace(',', '').replace(/\//g, '-');
+        // Format local date and set it into dateTimeInput
+        const lastPaymentDate2 = new Date(
+          valiReceipts[valiReceipts.length - 1].last_create_time
+        );
+        const formattedlastPaymentDate2 = lastPaymentDate2
+          .toLocaleString('fr-FR', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+          })
+          .replace(',', '')
+          .replace(/\//g, '-');
 
-      setLastPaymentDate(formattedlastPaymentDate2);
-      showLastPaymentDate();
+        setLastPaymentDate(formattedlastPaymentDate2);
+        showLastPaymentDate();
 
-      const tenantCreationDay = new Date(localStorage.getItem('createTime')).getDate();
-      nextPaymentDate.setDate(tenantCreationDay);
-      // Ajust
-      nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
-      const formattedNextPaymentDate = nextPaymentDate
-        .toLocaleString('fr-FR', {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric'
-      }).replace(',', '').replace(/\//g, '-');
+        const tenantCreationDay = new Date(
+          localStorage.getItem('createTime')
+        ).getDate();
+        nextPaymentDate.setDate(tenantCreationDay);
+        // Ajust
+        nextPaymentDate.setMonth(nextPaymentDate.getMonth() + 1);
+        const formattedNextPaymentDate = nextPaymentDate
+          .toLocaleString('fr-FR', {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric',
+          })
+          .replace(',', '')
+          .replace(/\//g, '-');
 
-      setUnpaidMonthsCount(valiReceipts[valiReceipts.length - 1].unpaid_months_count);
-      showUnpaidMonthsCount();
-      
-      setNextPaymentDate(formattedNextPaymentDate);
-      showNextPaymentDate();
-    }
-  })
-  .catch(error => {
-    window.location.href = tenantError;
-  });
+        setUnpaidMonthsCount(
+          valiReceipts[valiReceipts.length - 1].unpaid_months_count
+        );
+        showUnpaidMonthsCount();
+
+        setNextPaymentDate(formattedNextPaymentDate);
+        showNextPaymentDate();
+      }
+    })
+    .catch((error) => {
+      window.location.href = tenantError;
+    });
 }

@@ -22,8 +22,10 @@ receiptsTable.addEventListener('click', function (e) {
 /**
  * Initialize the receipt form and tenant property options.
  */
-const requireRecieptForm = document.getElementById("receipt-form");
-const tenantPropertyOption = document.getElementById("receipt-tenant-property-option");
+const requireRecieptForm = document.getElementById('receipt-form');
+const tenantPropertyOption = document.getElementById(
+  'receipt-tenant-property-option'
+);
 if (requireRecieptForm && tenantPropertyOption) {
   // Helper function to select months for receipts
   selectMonthsHelper(tenantPropertyOption);
@@ -83,12 +85,12 @@ document.getElementById('btn').addEventListener('click', function () {
  */
 const menuLinks = document.querySelectorAll('.sidebar ul li a');
 
-menuLinks.forEach(link => {
+menuLinks.forEach((link) => {
   link.addEventListener('click', function (e) {
     e.preventDefault();
 
     // Remove active class from all menu links
-    menuLinks.forEach(l => l.classList.remove('active'));
+    menuLinks.forEach((l) => l.classList.remove('active'));
 
     // Add active class to the clicked link
     this.classList.add('active');
@@ -99,12 +101,14 @@ menuLinks.forEach(link => {
     // Fetch and display content based on the clicked menu item
     if (this.id === 'dash-button') {
       fetch(tenantURL + '/dashboard')
-        .then(response => response.text())
-        .then(data => {
+        .then((response) => response.text())
+        .then((data) => {
           document.querySelector('.details').innerHTML = data;
 
           const receiptsTable = document.getElementById('receipts-table');
-          const tenantPropertyOption = document.getElementById('receipt-tenant-property-option');
+          const tenantPropertyOption = document.getElementById(
+            'receipt-tenant-property-option'
+          );
           selectMonthsHelper(tenantPropertyOption); // Helper for selecting receipt months
           if (receiptsTable) {
             getUnvalidReceiptsRequest(); // Calls function to get invalid receipts
@@ -123,8 +127,8 @@ menuLinks.forEach(link => {
 
     if (this.id === 'discuss-button') {
       fetch(tenantURL + '/discussion')
-        .then(response => response.text())
-        .then(data => {
+        .then((response) => response.text())
+        .then((data) => {
           document.querySelector('.details').innerHTML = data;
 
           const messageForm = document.getElementById('message-form');
@@ -139,8 +143,8 @@ menuLinks.forEach(link => {
 
     if (this.id === 'profile-button') {
       fetch(tenantURL + '/profile')
-        .then(response => response.text())
-        .then(data => {
+        .then((response) => response.text())
+        .then((data) => {
           document.querySelector('.details').innerHTML = data;
 
           const tenantForm = document.getElementById('tenant-form');

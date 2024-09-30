@@ -7,51 +7,51 @@ const authMiddleware = require('../../middlewares/http/auth')('owner');
 
 // Controllers
 const {
-    getOtp,
-    getResetPwdOtp,
-    createUserOwner,
-    userAuth,
-    updateSold,
-    updateOwner,
-    myOwner,
-    updatePwdOwner,
-    insertSubscription,
-    uploadImg
+  getOtp,
+  getResetPwdOtp,
+  createUserOwner,
+  userAuth,
+  updateSold,
+  updateOwner,
+  myOwner,
+  updatePwdOwner,
+  insertSubscription,
+  uploadImg,
 } = require('../../controller/owner/user');
 const {
-    createProperties,
-    myProperties,
-    searchProperties,
-    myProperty,
-    updateProperty,
-    deleteProperty
+  createProperties,
+  myProperties,
+  searchProperties,
+  myProperty,
+  updateProperty,
+  deleteProperty,
 } = require('../../controller/owner/property');
 const {
-    createTenant,
-    tenantsProperties,
-    searchTenantsProperties,
-    recentTenants,
-    allTenants,
-    myTenant,
-    searchTenants,
-    updateTenant,
-    updateTenantConnectKey,
-    deleteTenant,
-    deletePropertyTenant
+  createTenant,
+  tenantsProperties,
+  searchTenantsProperties,
+  recentTenants,
+  allTenants,
+  myTenant,
+  searchTenants,
+  updateTenant,
+  updateTenantConnectKey,
+  deleteTenant,
+  deletePropertyTenant,
 } = require('../../controller/owner/tenant');
 const {
-    requireReceipt,
-    receiptUnValid,
-    receiptValid,
-    searchReceiptunvalid, 
-    searchReceiptValid,
-    validateReceipt,
-    deleteReceipt
+  requireReceipt,
+  receiptUnValid,
+  receiptValid,
+  searchReceiptunvalid,
+  searchReceiptValid,
+  validateReceipt,
+  deleteReceipt,
 } = require('../../controller/owner/receipt');
 const {
-    myMessages,
-    recentMessages,
-    deleteMessage
+  myMessages,
+  recentMessages,
+  deleteMessage,
 } = require('../../controller/owner/support');
 const { upload } = require('../../functions/storepicture');
 
@@ -273,7 +273,6 @@ router.post('/delete-receipt', deleteReceipt);
  * Routes for message operations.
  */
 
-
 /**
  * Get messages of the authenticated owner.
  * POST /my-messages
@@ -296,7 +295,7 @@ router.post('/delete-message', deleteMessage);
  * Delete a message.
  * POST /insert-subscription
  */
-router.post("/insert-subscription", insertSubscription);
+router.post('/insert-subscription', insertSubscription);
 
 /**
  * Route to handle image uploads.

@@ -1,96 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienvenue dans votre application gestion de Logement et confort de Maison</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Bienvenue dans votre application gestion de Logement et confort de Maison
+    </title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
 
-    .container {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-    h1 {
-      color: #007bff;
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
+      h1 {
+        color: #007bff;
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
 
-    p {
-      color: #333333;
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
+      p {
+        color: #333333;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      color: #007bff;
-      text-decoration: none;
-      border-radius: 25px;
-      border: 2px solid #007bff;
-      text-align: center;
-      font-size: 16px;
-      font-weight: bold;
-      margin: 20px 0;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #007bff;
+        text-decoration: none;
+        border-radius: 25px;
+        border: 2px solid #007bff;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 20px 0;
+        cursor: pointer;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
 
-    .btn:hover {
-      background-color: #007bff;
-      color: #ffffff;
-    }
+      .btn:hover {
+        background-color: #007bff;
+        color: #ffffff;
+      }
 
-    .btn-container {
-      text-align: center;
-      margin-top: 20px;
-    }
+      .btn-container {
+        text-align: center;
+        margin-top: 20px;
+      }
 
-    .footer {
-      text-align: center;
-      color: #777;
-      font-size: 12px;
-      margin-top: 20px;
-    }
+      .footer {
+        text-align: center;
+        color: #777;
+        font-size: 12px;
+        margin-top: 20px;
+      }
 
-    .footer a {
-      color: #007bff;
-      text-decoration: none;
-    }
+      .footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
 
-    .footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Bienvenue dans votre application de gestion de logement</h1>
-    <p>Merci d'avoir choisi notre application pour faciliter la gestion de vos logements. Avec notre plateforme, vous pouvez suivre les paiements des locataires, gérer les détails de vos logements, analyser les performances financières, et bien plus encore.</p>
-    <p>Pour commencer, connectez-vous à votre compte et explorez les fonctionnalités disponibles :</p>
-    <div class="btn-container">
-      <a href="<%= root%>?email=<%= email %>&pwd=<%= pwd %>&otp=<%= codeOTP %>" class="btn">Accéder à mon compte</a>
+      .footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bienvenue dans votre application de gestion de logement</h1>
+      <p>
+        Merci d'avoir choisi notre application pour faciliter la gestion de vos
+        logements. Avec notre plateforme, vous pouvez suivre les paiements des
+        locataires, gérer les détails de vos logements, analyser les
+        performances financières, et bien plus encore.
+      </p>
+      <p>
+        Pour commencer, connectez-vous à votre compte et explorez les
+        fonctionnalités disponibles :
+      </p>
+      <div class="btn-container">
+        <a
+          href="<%= root%>?email=<%= email %>&pwd=<%= pwd %>&otp=<%= codeOTP %>"
+          class="btn"
+          >Accéder à mon compte</a
+        >
+      </div>
+      <p>
+        Si vous avez des questions ou avez besoin d'aide, n'hésitez pas à nous
+        contacter à l'adresse
+        <a href="mailto:extasehome@gmail.com">extasehome@gmail.com</a>.
+      </p>
+      <p>
+        Merci encore et bonne utilisation de votre application de gestion de
+        logement !
+      </p>
     </div>
-    <p>Si vous avez des questions ou avez besoin d'aide, n'hésitez pas à nous contacter à l'adresse <a href="mailto:extasehome@gmail.com">extasehome@gmail.com</a>.</p>
-    <p>Merci encore et bonne utilisation de votre application de gestion de logement !</p>
-  </div>
-  <div class="footer">
-    <p>&copy; 2024 Extase-Home. Tous droits réservés.</p>
-    <p><a href="#">Politique de confidentialité</a> | <a href="#">Nous contacter</a></p>
-  </div>
-</body>
+    <div class="footer">
+      <p>&copy; 2024 Extase-Home. Tous droits réservés.</p>
+      <p>
+        <a href="#">Politique de confidentialité</a> |
+        <a href="#">Nous contacter</a>
+      </p>
+    </div>
+  </body>
 </html>

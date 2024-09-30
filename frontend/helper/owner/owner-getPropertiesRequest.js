@@ -34,45 +34,45 @@ function showNumberOfProperties() {
  * @param {number} type - The type of properties to fetch.
  */
 function getPropertiesRequest(type, isSearch) {
-
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById('search-input');
   const route = isSearch ? 'search-properties' : 'my-properties';
-  const reqBody = JSON.stringify(isSearch ? { type: type, address: searchInput.value} : {type: type})
+  const reqBody = JSON.stringify(
+    isSearch ? { type: type, address: searchInput.value } : { type: type }
+  );
   fetch(host + route, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: reqBody
+    body: reqBody,
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status === 401 || response.status === 403) {
-        window.location.href = ownerLogSignURL;
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          window.location.href = ownerLogSignURL;
+        }
+        // Redirect on other HTTP errors (e.g., 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
       }
-      // Redirect on other HTTP errors (e.g., 500)
-      window.location.href = ownerError;
-      throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
-    }
-    return response.json();
-  })
-  .then(data => {
-    // If properties are wrapped in an object { myProperties }
-    const properties = data.myProperties || data;
+      return response.json();
+    })
+    .then((data) => {
+      // If properties are wrapped in an object { myProperties }
+      const properties = data.myProperties || data;
 
-    
-    if (type == 1) {
-      myPropertiesTableConstructor(properties);
-      !isSearch && setNumberOfProperties(properties.length);
-      !isSearch && showNumberOfProperties();
-    } else {
-      propertyOptionConstructor(properties);
-    }
-  })
-  .catch((error) => {
-    window.location.href = ownerError;
-  });
+      if (type == 1) {
+        myPropertiesTableConstructor(properties);
+        !isSearch && setNumberOfProperties(properties.length);
+        !isSearch && showNumberOfProperties();
+      } else {
+        propertyOptionConstructor(properties);
+      }
+    })
+    .catch((error) => {
+      window.location.href = ownerError;
+    });
 }
 
 /**
@@ -80,7 +80,7 @@ function getPropertiesRequest(type, isSearch) {
  * @param {Array} properties - The list of properties to display.
  */
 function propertyOptionConstructor(properties) {
-  const propertyOption = document.getElementById("property-option");
+  const propertyOption = document.getElementById('property-option');
   if (propertyOption) {
     propertyOption.innerHTML = ''; // Clear existing options
 
@@ -106,7 +106,7 @@ function propertyOptionConstructor(properties) {
  * @param {Array} properties - The list of properties to display.
  */
 function myPropertiesTableConstructor(properties) {
-  const tableBody = document.getElementById("my-properties-table");
+  const tableBody = document.getElementById('my-properties-table');
   if (tableBody) {
     tableBody.innerHTML = ''; // Clear existing rows
 
@@ -123,44 +123,46 @@ function myPropertiesTableConstructor(properties) {
  * @param {number} propertyId - The ID of the property to edit.
  */
 function editProperty(propertyId) {
-  fetch(host + "my-property", {  // Use the ID to get property details
+  fetch(host + 'my-property', {
+    // Use the ID to get property details
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ "id": propertyId })
+    body: JSON.stringify({ id: propertyId }),
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status === 401 || response.status === 403) {
-        window.location.href = ownerLogSignURL;
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          window.location.href = ownerLogSignURL;
+        }
+        // Redirect on other HTTP errors (e.g., 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
       }
-      // Redirect on other HTTP errors (e.g., 500)
+      return response.json();
+    })
+    .then((data) => {
+      // Populate the form with the current property details
+      document.getElementById('property-address').value = data.address;
+      document.getElementById('property-description').value = data.description;
+      document.getElementById('property-cost').value = data.price;
+
+      // Change button text to indicate edit mode
+      const submitButton = document.querySelector(
+        '#property-form button[type="submit"]'
+      );
+      const actionIndicator = document.querySelector('#action-indicator');
+      submitButton.textContent = 'Modifier';
+      actionIndicator.textContent = 'Modifier une propriété';
+
+      // Add a class or attribute to identify it as an edit operation
+      submitButton.dataset.editingId = propertyId;
+    })
+    .catch((error) => {
       window.location.href = ownerError;
-      throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
-    }
-    return response.json();
-  })
-  .then(data => {
-
-    // Populate the form with the current property details
-    document.getElementById('property-address').value = data.address;
-    document.getElementById('property-description').value = data.description;
-    document.getElementById('property-cost').value = data.price;
-
-    // Change button text to indicate edit mode
-    const submitButton = document.querySelector('#property-form button[type="submit"]');
-    const actionIndicator = document.querySelector('#action-indicator');
-    submitButton.textContent = 'Modifier';
-    actionIndicator.textContent = "Modifier une propriété";
-
-    // Add a class or attribute to identify it as an edit operation
-    submitButton.dataset.editingId = propertyId;
-  })
-  .catch(error => {
-    window.location.href = ownerError;
-  });
+    });
 }
 
 /**
@@ -170,10 +172,12 @@ function resetPropertyForm() {
   const form = document.getElementById('property-form');
   if (form) {
     form.reset();
-    const submitButton = document.querySelector('#property-form button[type="submit"]');
+    const submitButton = document.querySelector(
+      '#property-form button[type="submit"]'
+    );
     submitButton.textContent = 'Enregistrer';
     const actionIndicator = document.querySelector('#action-indicator');
-    actionIndicator.textContent = "Enregistrer une propriété";
+    actionIndicator.textContent = 'Enregistrer une propriété';
     delete submitButton.dataset.editingId;
   }
 }
@@ -187,40 +191,41 @@ function updateProperty(editingId) {
     id: editingId,
     address: document.getElementById('property-address').value,
     description: document.getElementById('property-description').value,
-    cost: document.getElementById('property-cost').value
+    cost: document.getElementById('property-cost').value,
   };
-  fetch(host + "update-property", {  // Use the ID to update property details
+  fetch(host + 'update-property', {
+    // Use the ID to update property details
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify(updatedData)
+    body: JSON.stringify(updatedData),
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status === 401 || response.status === 403) {
-        window.location.href = ownerLogSignURL;
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          window.location.href = ownerLogSignURL;
+        }
+        // Redirect on other HTTP errors (e.g., 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
       }
-      // Redirect on other HTTP errors (e.g., 500)
+      return response.json();
+    })
+    .then((data) => {
+      // Directly update the corresponding row
+      const row = document.querySelector(`tr[data-id="${editingId}"]`);
+      if (row) {
+        row.children[0].textContent = data.address;
+        row.children[1].textContent = data.description;
+        row.children[2].textContent = data.price;
+      }
+      resetPropertyForm();
+    })
+    .catch((error) => {
       window.location.href = ownerError;
-      throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Directly update the corresponding row
-    const row = document.querySelector(`tr[data-id="${editingId}"]`);
-    if (row) {
-      row.children[0].textContent = data.address;
-      row.children[1].textContent = data.description;
-      row.children[2].textContent = data.price;
-    }
-    resetPropertyForm();
-  })
-  .catch(error => {
-    window.location.href = ownerError;
-  });
+    });
 }
 
 /**
@@ -228,33 +233,34 @@ function updateProperty(editingId) {
  * @param {number} propertyId - The ID of the property to delete.
  */
 function deleteProperty(propertyId) {
-  fetch(host + "delete-property", {
+  fetch(host + 'delete-property', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ "id": propertyId })
+    body: JSON.stringify({ id: propertyId }),
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status === 401 || response.status === 403) {
-        window.location.href = ownerLogSignURL;
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          window.location.href = ownerLogSignURL;
+        }
+        // Redirect on other HTTP errors (e.g., 500)
+        window.location.href = ownerError;
+        throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
       }
-      // Redirect on other HTTP errors (e.g., 500)
+      return response.json();
+    })
+    .then(() => {
+      const row = document
+        .getElementById('my-properties-table')
+        .querySelector(`tr[data-id="${propertyId}"]`);
+      if (row) {
+        row.remove(); // Remove the row from the table
+      }
+    })
+    .catch((error) => {
       window.location.href = ownerError;
-      throw new Error('HTTP error ' + response.status); // Throw an error to trigger .catch
-    }
-    return response.json();
-  })
-  .then(() => {
-    const row = document.getElementById("my-properties-table")
-      .querySelector(`tr[data-id="${propertyId}"]`);
-    if (row) {
-      row.remove(); // Remove the row from the table
-    }
-  })
-  .catch(error => {
-    window.location.href = ownerError;
-  });
+    });
 }

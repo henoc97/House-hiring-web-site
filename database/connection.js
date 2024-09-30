@@ -17,8 +17,8 @@ const createPool = () => {
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     waitForConnections: true, // Wait for a connection to become available
-    connectionLimit: 35,      // Maximum number of connections to create
-    queueLimit: 0             // Number of connection requests that can be queued
+    connectionLimit: 35, // Maximum number of connections to create
+    queueLimit: 0, // Number of connection requests that can be queued
   });
 };
 

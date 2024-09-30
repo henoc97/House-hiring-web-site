@@ -14,45 +14,49 @@ function makeRequest() {
   fetch(hostTenant + 'auth-tenant-account', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ userName: userName, pwd: pwd })
+    body: JSON.stringify({ userName: userName, pwd: pwd }),
   })
-  .then(response => {
-    if (!response.ok) {
-      if (response.status === 401) {
-        alert('Accès interdit. Vérifiez vos informations de connexion.');
-      } else if (response.status === 404) {
-        messageDiv.textContent = "Mot de passe ou nom d'utilisateur incorrect.";
-        messageDiv.classList.add('red-message');
-        messageDiv.classList.remove('green-message');
-      } else {
-        alert('Le serveur est temporairement indisponible. Veuillez réessayer plus tard.');
+    .then((response) => {
+      if (!response.ok) {
+        if (response.status === 401) {
+          alert('Accès interdit. Vérifiez vos informations de connexion.');
+        } else if (response.status === 404) {
+          messageDiv.textContent =
+            "Mot de passe ou nom d'utilisateur incorrect.";
+          messageDiv.classList.add('red-message');
+          messageDiv.classList.remove('green-message');
+        } else {
+          alert(
+            'Le serveur est temporairement indisponible. Veuillez réessayer plus tard.'
+          );
+        }
+        throw new Error(`Network error: ${response.status}`);
       }
-      throw new Error(`Network error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Store tokens if authentication is successful
-    if (data.message == 'Request successful') {
-      window.location.href = tenantDashboardURL; 
-    } else {
-      alert('Erreur de login. Veuillez vérifier vos informations.');
-    }
-  })
-  .catch(error => {
-  });
+      return response.json();
+    })
+    .then((data) => {
+      // Store tokens if authentication is successful
+      if (data.message == 'Request successful') {
+        window.location.href = tenantDashboardURL;
+      } else {
+        alert('Erreur de login. Veuillez vérifier vos informations.');
+      }
+    })
+    .catch((error) => {});
 }
 
 // Event listener for form submission
-document.getElementById('login-form').addEventListener('submit', function(event) {
-  event.preventDefault(); 
-  makeRequest();
-});
+document
+  .getElementById('login-form')
+  .addEventListener('submit', function (event) {
+    event.preventDefault();
+    makeRequest();
+  });
 
 // Link to reset password
-const passLink = document.querySelector("form .pass-link a");
+const passLink = document.querySelector('form .pass-link a');
 passLink.onclick = () => {
   window.location.href = tenantResetPwdURL;
 };

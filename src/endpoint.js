@@ -13,7 +13,7 @@ const SOCKET_URL = `wss://${IP}:${PORT}`;
 const PATHS = {
   OWNER: 'owner',
   RESET_PWD: 'reset-pwd',
-  REDIRECT: 'redirect'
+  REDIRECT: 'redirect',
 };
 
 // Construct specific URLs
@@ -26,5 +26,5 @@ module.exports = {
   ROOT_URL,
   SOCKET_URL,
   ownerResetPwdURL,
-  ownerRedirectURL
+  ownerRedirectURL,
 };

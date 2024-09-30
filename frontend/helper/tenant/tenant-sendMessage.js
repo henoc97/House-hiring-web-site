@@ -6,37 +6,39 @@
  * @returns {void}
  */
 function sendMessageRequest() {
-    const ws = new WebSocket(hostSocket + `?userType=${encodeURIComponent('tenant')}`);
-    
-    ws.onopen = () => {
-    };
-    
-    ws.onmessage = event => {
-        let messageObject;
-        
-        try {
-            // Attempt to parse the received message as a JSON object
-            messageObject = JSON.parse(event.data);
-        } catch (err) {
-            window.location.href = tenantError;
-            return;
-        }
-        
-        // Extract and display the message if available
-        if (messageObject && messageObject.message) {
-            displayMessage(messageObject);
-        }
-    };
-    
-    document.getElementById('message-form')
-        .addEventListener('submit', function(event) {
-            let message = document.getElementById('tenant-message').value;
-            event.preventDefault(); // Prevent page reload
-            if (message.trim() !== '') {
-                ws.send(JSON.stringify({ message }));
-            }
-            document.getElementById('message-form').reset();
-        });
+  const ws = new WebSocket(
+    hostSocket + `?userType=${encodeURIComponent('tenant')}`
+  );
+
+  ws.onopen = () => {};
+
+  ws.onmessage = (event) => {
+    let messageObject;
+
+    try {
+      // Attempt to parse the received message as a JSON object
+      messageObject = JSON.parse(event.data);
+    } catch (err) {
+      window.location.href = tenantError;
+      return;
+    }
+
+    // Extract and display the message if available
+    if (messageObject && messageObject.message) {
+      displayMessage(messageObject);
+    }
+  };
+
+  document
+    .getElementById('message-form')
+    .addEventListener('submit', function (event) {
+      let message = document.getElementById('tenant-message').value;
+      event.preventDefault(); // Prevent page reload
+      if (message.trim() !== '') {
+        ws.send(JSON.stringify({ message }));
+      }
+      document.getElementById('message-form').reset();
+    });
 }
 
 /**
@@ -50,47 +52,46 @@ function sendMessageRequest() {
  * @returns {void}
  */
 function displayMessage(message) {
-    const chatContainer = document.getElementById('chat-container');
-    if (chatContainer) {
-        
-        // Check if the message already exists
-        if (document.querySelector(`.message[data-id='${message.id}']`)) {
-            return; // Message already displayed, do nothing
-        }
-        
-        // Create a new message div
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('message');
-        messageDiv.setAttribute('data-id', message.id); // Attach the message ID
+  const chatContainer = document.getElementById('chat-container');
+  if (chatContainer) {
+    // Check if the message already exists
+    if (document.querySelector(`.message[data-id='${message.id}']`)) {
+      return; // Message already displayed, do nothing
+    }
 
-        // Determine if the message is from the tenant or owner
-        const isTenantMessage = message.by_tenant === 1;
-        
-        // Add classes and styles based on the message sender
-        if (!isTenantMessage) {
-            messageDiv.classList.add('sender');
-        } else {
-            messageDiv.classList.add('receiver');
-        }
-        
-        // Format the message content and timestamp
-        const formattedDate = new Date(message.date_time).toLocaleString('fr-FR', {
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+    // Create a new message div
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    messageDiv.setAttribute('data-id', message.id); // Attach the message ID
 
-        messageDiv.innerHTML = `
+    // Determine if the message is from the tenant or owner
+    const isTenantMessage = message.by_tenant === 1;
+
+    // Add classes and styles based on the message sender
+    if (!isTenantMessage) {
+      messageDiv.classList.add('sender');
+    } else {
+      messageDiv.classList.add('receiver');
+    }
+
+    // Format the message content and timestamp
+    const formattedDate = new Date(message.date_time).toLocaleString('fr-FR', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    messageDiv.innerHTML = `
             <p>${message.message}</p>
             <span class="timestamp">${formattedDate}</span>
         `;
-        
-        // Append the message to the chat container
-        chatContainer.appendChild(messageDiv);
 
-        // Force the browser to render the new content
-        setTimeout(() => {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }, 0); // Adjust the delay if necessary
-    } else {
-    }
+    // Append the message to the chat container
+    chatContainer.appendChild(messageDiv);
+
+    // Force the browser to render the new content
+    setTimeout(() => {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }, 0); // Adjust the delay if necessary
+  } else {
+  }
 }

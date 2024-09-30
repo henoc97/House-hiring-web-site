@@ -7,26 +7,24 @@ const authMiddleware = require('../../middlewares/http/auth')('tenant');
 
 // Controllers
 const {
-    userAuth,
-    activateTenantAccount,
-    setPwd,
-    myTenant,
-    updateTenant,
-    updatePwdTenant
+  userAuth,
+  activateTenantAccount,
+  setPwd,
+  myTenant,
+  updateTenant,
+  updatePwdTenant,
 } = require('../../controller/tenant/user');
 const {
-    requireReceipt,
-    receiptUnvalid,
-    receiptValid,
-    deleteReceipt
+  requireReceipt,
+  receiptUnvalid,
+  receiptValid,
+  deleteReceipt,
 } = require('../../controller/tenant/receipt');
+const { tenantProperty } = require('../../controller/tenant/property');
 const {
-    tenantProperty,
-} = require('../../controller/tenant/property');
-const {
-    sendMessage,
-    myMessages,
-    deleteMessage
+  sendMessage,
+  myMessages,
+  deleteMessage,
 } = require('../../controller/tenant/support');
 
 // Apply database connection middleware to all routes.

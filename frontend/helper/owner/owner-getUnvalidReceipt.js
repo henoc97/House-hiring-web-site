@@ -1,32 +1,32 @@
-
-
-
 /**
  * Fetches invalid receipts from the server and updates the UI.
  * @param {boolean} isSearch boolean indicating whether the search.
- * 
+ *
  * The function sends a POST request to fetch receipts that are not validated, then updates the table
  * with the received data. It also sets up event listeners for delete actions.
  */
 function getUnvalidReceiptsRequest(isSearch) {
-
   // Send a POST request to fetch invalid receipts
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById('search-input');
   const searchValues = searchInput.value.split(' ');
   const route = !isSearch ? 'receipt-unValid' : 'search-unvalid-receipt';
-  const reqBody = JSON.stringify(isSearch ? { lastname: searchValues[0], firstname: searchValues[1] ?? "" } : {});
+  const reqBody = JSON.stringify(
+    isSearch
+      ? { lastname: searchValues[0], firstname: searchValues[1] ?? '' }
+      : {}
+  );
   fetch(host + route, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: reqBody,
     credentials: 'include',
   })
-    .then(response => {
+    .then((response) => {
       // Check if the response status indicates unauthorized or forbidden access
       if (!response.ok) {
-        if ((response.status === 401 || response.status === 403)) {
+        if (response.status === 401 || response.status === 403) {
           window.location.href = ownerLogSignURL;
         }
         window.location.href = ownerError;
@@ -34,27 +34,32 @@ function getUnvalidReceiptsRequest(isSearch) {
       // Parse the response JSON
       return response.json();
     })
-    .then(data => {
+    .then((data) => {
       // Check if data is available; if not, exit the function
       if (!data) return;
 
-
       const unvalidReceipts = data;
-      const tableBody = document.getElementById("unvalid-receipts-table");
+      const tableBody = document.getElementById('unvalid-receipts-table');
       if (tableBody) {
         tableBody.innerHTML = ''; // Clear existing rows
 
         // Iterate over the invalid receipts and create table rows
         unvalidReceipts.forEach((unvalidReceipt) => {
           const paidMonthsArray = unvalidReceipt.paid_months.split(', ');
-          const formattedDate = new Date(paidMonthsArray[0]).toLocaleString('fr-FR', {
-            month: 'long',
-            year: 'numeric'
-          }).replace(',', '').replace(/\//g, '-');
+          const formattedDate = new Date(paidMonthsArray[0])
+            .toLocaleString('fr-FR', {
+              month: 'long',
+              year: 'numeric',
+            })
+            .replace(',', '')
+            .replace(/\//g, '-');
 
           // Format local date and set it into dateTimeInput
           const now = new Date(unvalidReceipt.last_create_time);
-          const formattedPaymentDateTime = now.toISOString().slice(0, 16).replace('T', ' ');
+          const formattedPaymentDateTime = now
+            .toISOString()
+            .slice(0, 16)
+            .replace('T', ' ');
 
           // Create a new table row
           const row = document.createElement('tr');
@@ -84,8 +89,7 @@ function getUnvalidReceiptsRequest(isSearch) {
           tableBody.appendChild(row);
         });
 
-        addDropdownsListenerReceiptTable("unvalid-receipts-table");
-
+        addDropdownsListenerReceiptTable('unvalid-receipts-table');
       } else {
       }
     })
@@ -97,21 +101,20 @@ function getUnvalidReceiptsRequest(isSearch) {
 
 /**
  * Deletes a receipt from the server and updates the UI.
- * 
+ *
  * @param {number} receiptId - The ID of the receipt to delete.
  */
 function deleteReceipt(receiptId, receiptIds) {
-
   // Send a POST request to delete the receipt
-  fetch(host + "delete-receipt", {
+  fetch(host + 'delete-receipt', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ "id": receiptId })
+    body: JSON.stringify({ id: receiptId }),
   })
-    .then(response => {
+    .then((response) => {
       // Check if the response status indicates unauthorized or forbidden access
       if (!response.ok) {
         if (response.status === 401 || response.status === 403) {
@@ -126,17 +129,18 @@ function deleteReceipt(receiptId, receiptIds) {
     })
     .then(() => {
       // Remove the table row corresponding to the deleted receipt
-      const row = document.querySelector(`tr[data-payment_ids="${receiptIds}"]`);
+      const row = document.querySelector(
+        `tr[data-payment_ids="${receiptIds}"]`
+      );
       if (row) {
         row.remove(); // Remove the row from the table
       }
     })
-    .catch(error => {
+    .catch((error) => {
       // Redirect and log error if deletion fails
       window.location.href = ownerError;
     });
 }
-
 
 /**
  * Adds event listeners to handle dropdowns and delete actions.
@@ -155,9 +159,7 @@ function addDropdownsListenerReceiptTable(tableId) {
       }
       if (target.classList.contains('delete-icon')) {
         const receiptIds = target.dataset.payment_ids;
-        receiptIds.split(', ').forEach((id) => (
-          deleteReceipt(id, receiptIds)
-        ));
+        receiptIds.split(', ').forEach((id) => deleteReceipt(id, receiptIds));
       }
     });
 
@@ -165,7 +167,7 @@ function addDropdownsListenerReceiptTable(tableId) {
     window.addEventListener('click', function (event) {
       if (!event.target.matches('.toggle-dropdown')) {
         const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
+        dropdowns.forEach((dropdown) => {
           dropdown.classList.remove('show');
         });
       }

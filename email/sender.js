@@ -2,7 +2,7 @@ const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 const path = require('path');
-const {logger} = require('../src/logger/logRotation');
+const { logger } = require('../src/logger/logRotation');
 
 const { ownerRedirectURL, ownerResetPwdURL } = require('../src/endpoint');
 
@@ -11,8 +11,8 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.APP_EMAIL,
-    pass: process.env.EMAIL_PASS
-  }
+    pass: process.env.EMAIL_PASS,
+  },
 });
 
 /**
@@ -30,18 +30,18 @@ const sendOTPemail = async (email, pwd, codeOTP) => {
       root: ownerRedirectURL,
       email: email,
       pwd: pwd,
-      codeOTP: codeOTP
+      codeOTP: codeOTP,
     });
 
     const mailOptions = {
       from: process.env.APP_EMAIL,
       to: email,
       subject: 'Bienvenue chez Extase-Home',
-      html: htmlData
+      html: htmlData,
     };
 
     const info = await transporter.sendMail(mailOptions);
-     logger.info('Email sent: ' + info.response);
+    logger.info('Email sent: ' + info.response);
   } catch (error) {
     logger.error('Error occurred while sending OTP email:', error);
   }
@@ -60,18 +60,18 @@ const sendResetPwdOTPemail = async (email, codeOTP) => {
     const htmlData = await ejs.renderFile(filePath, {
       root: ownerResetPwdURL,
       email: email,
-      codeOTP: codeOTP
+      codeOTP: codeOTP,
     });
 
     const mailOptions = {
       from: process.env.APP_EMAIL,
       to: email,
       subject: 'Réinitialisation du mot de passe',
-      html: htmlData
+      html: htmlData,
     };
 
     const info = await transporter.sendMail(mailOptions);
-     logger.info('Email sent: ' + info.response);
+    logger.info('Email sent: ' + info.response);
   } catch (error) {
     logger.error('Error occurred while sending password reset email:', error);
   }

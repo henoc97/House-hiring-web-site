@@ -1,6 +1,6 @@
 /**
  * Stores the number of tenants properties in localStorage.
- * 
+ *
  * @param {number} numberOfTenantsProperties - The number of tenant properties to store.
  */
 function setNumberOfTenantsProperties(numberOfTenantsProperties) {
@@ -9,12 +9,13 @@ function setNumberOfTenantsProperties(numberOfTenantsProperties) {
 
 /**
  * Retrieves the number of tenants properties from localStorage.
- * 
+ *
  * @returns {number} The number of tenant properties. Returns 0 if the value is undefined.
  */
 function getNumberOfTenantsProperties() {
   // Check if the stored value is 'undefined' and return 0 if true
-  if (localStorage.getItem('numberOfTenantsProperties') === 'undefined') return 0;
+  if (localStorage.getItem('numberOfTenantsProperties') === 'undefined')
+    return 0;
   // Return the stored value as a string
   return localStorage.getItem('numberOfTenantsProperties');
 }
@@ -24,7 +25,9 @@ function getNumberOfTenantsProperties() {
  * Updates the text content of the element with ID 'total-tenants-properties'.
  */
 function showNumberOfTenantsProperties() {
-  const totalTenantsProperties = document.getElementById('total-tenants-properties');
+  const totalTenantsProperties = document.getElementById(
+    'total-tenants-properties'
+  );
   if (totalTenantsProperties) {
     totalTenantsProperties.textContent = getNumberOfTenantsProperties();
   } else {
@@ -33,7 +36,7 @@ function showNumberOfTenantsProperties() {
 
 /**
  * Fetches tenants properties from the server and updates the UI.
- * 
+ *
  * @param {number} type - The type of tenants properties to fetch and display.
  *                          1: Display as table
  *                          2: Display as options
@@ -42,19 +45,21 @@ function showNumberOfTenantsProperties() {
 function getTenantsPropertiesRequest(type, isSearch) {
   // Send a POST request to fetch tenants properties
 
-  const searchInput = document.getElementById("search-input");
+  const searchInput = document.getElementById('search-input');
   const route = isSearch ? 'search-tenants-properties' : 'tenants-properties';
-  const reqBody = JSON.stringify(isSearch ? { address: searchInput.value } : {})
+  const reqBody = JSON.stringify(
+    isSearch ? { address: searchInput.value } : {}
+  );
 
   fetch(host + route, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: reqBody,
     credentials: 'include',
   })
-    .then(response => {
+    .then((response) => {
       // Check if the response is not OK
       if (!response.ok) {
         // Handle unauthorized or forbidden errors
@@ -68,8 +73,7 @@ function getTenantsPropertiesRequest(type, isSearch) {
       // Parse the response JSON
       return response.json();
     })
-    .then(data => {
-
+    .then((data) => {
       // Store the number of tenant properties and update the display
       const tenantsproperties = data;
       !isSearch && setNumberOfTenantsProperties(tenantsproperties.length);
@@ -89,11 +93,11 @@ function getTenantsPropertiesRequest(type, isSearch) {
 
 /**
  * Constructs and populates the tenants properties table.
- * 
+ *
  * @param {Array} tenantsproperties - The array of tenant properties to display in the table.
  */
 function tenantsPropertiestableConstructor(tenantsproperties) {
-  const tableBody = document.getElementById("tenants-properties-table");
+  const tableBody = document.getElementById('tenants-properties-table');
   if (tableBody) {
     tableBody.innerHTML = ''; // Clear existing rows
 
@@ -103,17 +107,15 @@ function tenantsPropertiestableConstructor(tenantsproperties) {
     });
 
     addDropdownsListenerTenPrTable();
-
   } else {
   }
 }
-
 
 /**
  * Adds event listeners to handle dropdowns and delete actions.
  */
 function addDropdownsListenerTenPrTable() {
-  const tableBody = document.getElementById("tenants-properties-table");
+  const tableBody = document.getElementById('tenants-properties-table');
 
   if (tableBody) {
     tableBody.addEventListener('click', function (event) {
@@ -134,7 +136,7 @@ function addDropdownsListenerTenPrTable() {
     window.addEventListener('click', function (event) {
       if (!event.target.matches('.toggle-dropdown')) {
         const dropdowns = document.querySelectorAll('.dropdown');
-        dropdowns.forEach(dropdown => {
+        dropdowns.forEach((dropdown) => {
           dropdown.classList.remove('show');
         });
       }
@@ -145,11 +147,13 @@ function addDropdownsListenerTenPrTable() {
 
 /**
  * Constructs and populates the tenants properties options.
- * 
+ *
  * @param {Array} tenantsproperties - The array of tenant properties to display as options.
  */
 function tenantsPropertiesOptionConstructor(tenantsproperties) {
-  const tenantsPropertiesOption = document.getElementById("tenants-properties-option");
+  const tenantsPropertiesOption = document.getElementById(
+    'tenants-properties-option'
+  );
   if (tenantsPropertiesOption) {
     tenantsPropertiesOption.innerHTML = ''; // Clear existing options
 
@@ -159,7 +163,10 @@ function tenantsPropertiesOptionConstructor(tenantsproperties) {
       option.dataset.price = tenantproperty.price;
       option.textContent = `${tenantproperty.lastname} ${tenantproperty.firstname.split(' ')[0]} ${tenantproperty.address} ${tenantproperty.price}`;
 
-      tenantsPropertiesOption.insertBefore(option, tenantsPropertiesOption.firstChild);
+      tenantsPropertiesOption.insertBefore(
+        option,
+        tenantsPropertiesOption.firstChild
+      );
 
       // Select the first element, which is the most recently added
       if (tenantsPropertiesOption.firstChild) {
@@ -172,20 +179,20 @@ function tenantsPropertiesOptionConstructor(tenantsproperties) {
 
 /**
  * Deletes a tenant property from the server and updates the UI.
- * 
+ *
  * @param {number} tenantPropertyId - The ID of the tenant property to delete.
  */
 function deleteTenantProperty(tenantPropertyId) {
   // Send a POST request to delete the tenant property
-  fetch(host + "delete-tenant-property", {
+  fetch(host + 'delete-tenant-property', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify({ "id": tenantPropertyId })
+    body: JSON.stringify({ id: tenantPropertyId }),
   })
-    .then(response => {
+    .then((response) => {
       // Check if the response is not OK
       if (!response.ok) {
         // Handle unauthorized or forbidden errors
@@ -206,7 +213,7 @@ function deleteTenantProperty(tenantPropertyId) {
         row.remove(); // Remove the row from the table
       }
     })
-    .catch(error => {
+    .catch((error) => {
       // Handle any errors during the delete operation
       window.location.href = ownerError;
     });

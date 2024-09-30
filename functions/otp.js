@@ -7,10 +7,10 @@ const randomstring = require('randomstring');
  * @returns {string} - A numeric OTP code.
  */
 const generateOTPCode = (length = 6) => {
-    return randomstring.generate({
-        length: length,
-        charset: 'numeric'
-    });
+  return randomstring.generate({
+    length: length,
+    charset: 'numeric',
+  });
 };
 
 module.exports = { generateOTPCode };

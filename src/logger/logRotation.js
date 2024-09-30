@@ -18,9 +18,9 @@ if (!fs.existsSync(logDirectory)) {
 const transport = new DailyRotateFile({
   filename: path.join(logDirectory, 'application-%DATE%.log'),
   datePattern: 'YYYY-MM-DD', // Date pattern for the log files
-  zippedArchive: true,       // Compresses old log files to save space
-  maxSize: '20m',            // Maximum size of each log file before rotation (20 megabytes)
-  maxFiles: '14d',           // Number of days to keep log files before deletion (14 days)
+  zippedArchive: true, // Compresses old log files to save space
+  maxSize: '20m', // Maximum size of each log file before rotation (20 megabytes)
+  maxFiles: '14d', // Number of days to keep log files before deletion (14 days)
 });
 
 /**
@@ -37,7 +37,7 @@ const logger = winston.createLogger({
   ),
   transports: [
     transport, // Daily rotating log files transport
-    new winston.transports.Console() // Console transport for immediate logging output
+    new winston.transports.Console(), // Console transport for immediate logging output
   ],
 });
 
