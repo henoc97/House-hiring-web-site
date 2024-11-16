@@ -1,4 +1,6 @@
 // ecosystem.config.js
+require('dotenv').config();
+
 module.exports = {
   apps: [
     {
@@ -8,11 +10,11 @@ module.exports = {
       exec_mode: 'cluster', // Activer le mode de clustering
       env_production: {
         NODE_ENV: 'production',
-        PORT: '3000',
+        PORT: process.env.PORT || '3000',
       },
       env_development: {
         NODE_ENV: 'development',
-        PORT: '8443',
+        PORT: process.env.PORT || '8443',
       },
     },
     {
@@ -22,11 +24,11 @@ module.exports = {
       exec_mode: 'cluster', // Activer le mode de clustering
       env_production: {
         NODE_ENV: 'production',
-        PORT: '3000',
+        PORT: process.env.PORT || '3000',
       },
       env_development: {
         NODE_ENV: 'development',
-        PORT: '8443',
+        PORT: process.env.PORT || '8443',
       },
     },
   ],
