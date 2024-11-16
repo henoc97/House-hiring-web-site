@@ -112,7 +112,7 @@ app.use((req, res) => {
 });
 
 // Create the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const server = http.createServer(app); // Render fournit HTTPS
 
 // Import and configure WebSocket server

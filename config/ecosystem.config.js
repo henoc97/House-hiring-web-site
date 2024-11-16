@@ -10,11 +10,11 @@ module.exports = {
       exec_mode: 'cluster', // Activer le mode de clustering
       env_production: {
         NODE_ENV: 'production',
-        PORT: process.env.PORT || '3000',
+        PORT: process.env.PORT,
       },
       env_development: {
         NODE_ENV: 'development',
-        PORT: process.env.PORT || '8443',
+        PORT: process.env.PORT,
       },
     },
     {
@@ -24,11 +24,11 @@ module.exports = {
       exec_mode: 'cluster', // Activer le mode de clustering
       env_production: {
         NODE_ENV: 'production',
-        PORT: process.env.PORT || '3000',
+        PORT: process.env.PORT,
       },
       env_development: {
         NODE_ENV: 'development',
-        PORT: process.env.PORT || '8443',
+        PORT: process.env.PORT,
       },
     },
   ],
