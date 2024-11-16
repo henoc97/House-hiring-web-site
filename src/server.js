@@ -15,18 +15,8 @@ const { ROOT_URL } = require('./endpoint');
 const cspMiddleware = require('../middlewares/http/csp');
 const { logger } = require('./logger/logRotation');
 
-// Buid absolutes path
-const privateKeyPath = path.resolve(__dirname, '../ssl/server.key');
-const certificatePath = path.resolve(__dirname, '../ssl/server.crt');
-
-// Load les certificats
-const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
-const certificate = fs.readFileSync(certificatePath, 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-
 // Create Express application and HTTP server
 const app = express();
-const server = https.createServer(credentials, app);
 
 // Import and configure WebSocket server
 const configureWebSocket = require('./websocketServer');
@@ -131,8 +121,40 @@ app.use((req, res) => {
     .sendFile(path.join(__dirname, '../frontend/error/error-page404.html'));
 });
 
-// Start the server
-const port = process.env.PORT || 8443;
+// Créer le serveur en fonction de l'environnement
+let server;
+
+if (process.env.NODE_ENV === 'development') {
+  // Environnement de développement avec HTTPS auto-signé
+  const privateKeyPath = path.resolve(__dirname, '../ssl/server.key');
+  const certificatePath = path.resolve(__dirname, '../ssl/server.crt');
+
+  if (!fs.existsSync(privateKeyPath) || !fs.existsSync(certificatePath)) {
+    throw new Error(
+      'Certificats manquants pour HTTPS en développement. Veuillez les ajouter dans le dossier ssl.'
+    );
+  }
+
+  const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+  const certificate = fs.readFileSync(certificatePath, 'utf8');
+  const credentials = { key: privateKey, cert: certificate };
+
+  server = https.createServer(credentials, app);
+} else {
+  // Environnement de production (HTTP uniquement, Render fournit HTTPS)
+  server = http.createServer(app);
+}
+
+// Importer et configurer WebSocket
+const configureWebSocket = require('./websocketServer');
+configureWebSocket(server);
+
+// Démarrer le serveur
+const port = process.env.PORT || 3000;
 server.listen(port, () => {
-  console.log(`HTTPS Server is running on port ${port}`);
+  console.log(
+    `${
+      process.env.NODE_ENV === 'development' ? 'HTTPS' : 'HTTP'
+    } Server is running on port ${port}`
+  );
 });

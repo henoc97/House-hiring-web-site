@@ -1,0 +1,46 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master # Vous pouvez remplacer "master" par "main" si nécessaire.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape pour vérifier le code source
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Étape pour installer Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Étape pour installer les dépendances du projet
+      - name: Install dependencies
+        run: npm install
+
+      # Étape pour construire l'application (si applicable)
+      # - name: Build application
+      #   run: npm run build  # Si vous avez une étape de build, décommentez cette ligne.
+
+      # Étape pour préparer la clé SSH pour le déploiement sur Render
+      - name: Set up SSH key for Render
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.RENDER_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan render.com >> ~/.ssh/known_hosts
+
+      # Étape pour déployer sur Render
+      - name: Deploy to Render
+        run: git push render main # Assurez-vous que le remote Render est configuré avec `git remote add render <url>`
+
+
+      # Si vous souhaitez inclure des tests avant le déploiement, décommentez la ligne suivante
+      # - name: Run tests
+      #   run: npm test

@@ -1,5 +1,5 @@
 # Utiliser une image de base officielle Node.js
-FROM node:18
+FROM node:18-alpine
 
 # Créer un répertoire pour l'application
 WORKDIR /usr/src/app
@@ -18,3 +18,4 @@ EXPOSE 3000
 
 # Démarrer l'application
 CMD ["npm", "start"]
+
