@@ -1,6 +1,5 @@
-// server.js
-
 const express = require('express');
+const http = require('http'); // Corrigé pour la production sur Render
 const https = require('https');
 const path = require('path');
 const cors = require('cors');
@@ -15,12 +14,8 @@ const { ROOT_URL } = require('./endpoint');
 const cspMiddleware = require('../middlewares/http/csp');
 const { logger } = require('./logger/logRotation');
 
-// Create Express application and HTTP server
+// Create Express application
 const app = express();
-
-// Import and configure WebSocket server
-const configureWebSocket = require('./websocketServer');
-configureWebSocket(server);
 
 // Configure EJS template engine
 app.set('view engine', 'ejs');
@@ -32,7 +27,7 @@ const viewsPath = {
   admin: path.join(__dirname, '../frontend/views/admin'),
 };
 
-// use CSP middleware
+// Use CSP middleware
 app.use(cspMiddleware);
 
 // Configure middlewares
@@ -43,11 +38,11 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
-app.use(bodyParser.json()); // Parse JSON request bodies
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(helmet({ contentSecurityPolicy: false })); // Disable default CSP directives from Helmet
-app.use(compression()); // Compress HTTP responses
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(compression());
 
 // Create a write stream for logging
 app.use((req, res, next) => {
@@ -55,12 +50,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// Configure static file serving with caching
-// const staticOptions = { maxAge: '1d' }; // Cache static files for 1 day
-app.use(express.static(path.join(__dirname, '../frontend/css'))); // staticOptions
-app.use('/icon', express.static(path.join(__dirname, '../frontend/icon'))); // staticOptions
-app.use('/img', express.static(path.join(__dirname, '../frontend/img'))); // staticOptions
-app.use(express.static(path.join(__dirname, '../frontend/helper'))); // staticOptions
+// Configure static file serving
+app.use(express.static(path.join(__dirname, '../frontend/css')));
+app.use('/icon', express.static(path.join(__dirname, '../frontend/icon')));
+app.use('/img', express.static(path.join(__dirname, '../frontend/img')));
+app.use(express.static(path.join(__dirname, '../frontend/helper')));
 
 // Import routers
 const frontendAdmin = require('./routers/frontendAdmin');
@@ -80,7 +74,6 @@ app.use(
   },
   frontendAdmin
 );
-
 app.use(
   '/owner',
   (req, res, next) => {
@@ -89,7 +82,6 @@ app.use(
   },
   frontendOwner
 );
-
 app.use(
   '/tenant',
   (req, res, next) => {
@@ -98,8 +90,6 @@ app.use(
   },
   frontendTenant
 );
-
-// Configure backend routes
 app.use('/backend-csp-report', backendCspReport);
 app.use('/backend-admin', backendAdmin);
 app.use('/backend-owner', backendOwner);
@@ -121,40 +111,15 @@ app.use((req, res) => {
     .sendFile(path.join(__dirname, '../frontend/error/error-page404.html'));
 });
 
-// Créer le serveur en fonction de l'environnement
-let server;
+// Create the server
+const port = process.env.PORT || 3000;
+const server = http.createServer(app); // Render fournit HTTPS
 
-if (process.env.NODE_ENV === 'development') {
-  // Environnement de développement avec HTTPS auto-signé
-  const privateKeyPath = path.resolve(__dirname, '../ssl/server.key');
-  const certificatePath = path.resolve(__dirname, '../ssl/server.crt');
-
-  if (!fs.existsSync(privateKeyPath) || !fs.existsSync(certificatePath)) {
-    throw new Error(
-      'Certificats manquants pour HTTPS en développement. Veuillez les ajouter dans le dossier ssl.'
-    );
-  }
-
-  const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
-  const certificate = fs.readFileSync(certificatePath, 'utf8');
-  const credentials = { key: privateKey, cert: certificate };
-
-  server = https.createServer(credentials, app);
-} else {
-  // Environnement de production (HTTP uniquement, Render fournit HTTPS)
-  server = http.createServer(app);
-}
-
-// Importer et configurer WebSocket
+// Import and configure WebSocket server
 const configureWebSocket = require('./websocketServer');
 configureWebSocket(server);
 
-// Démarrer le serveur
-const port = process.env.PORT || 3000;
+// Start the server
 server.listen(port, () => {
-  console.log(
-    `${
-      process.env.NODE_ENV === 'development' ? 'HTTPS' : 'HTTP'
-    } Server is running on port ${port}`
-  );
+  console.log(`Server is running on port ${port}`);
 });
