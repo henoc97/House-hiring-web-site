@@ -4,8 +4,8 @@ module.exports = {
     {
       name: 'house-hiring-web-site-http-redirect',
       script: 'src/redirectServer.js', //'src/server.js',
-      // instances: 4, // 'max', // Utiliser le maximum d'instances pour le clustering
-      // exec_mode: 'cluster', // Activer le mode de clustering
+      instances: 2, // 'max', // Utiliser le maximum d'instances pour le clustering
+      exec_mode: 'cluster', // Activer le mode de clustering
       env_production: {
         NODE_ENV: 'production',
         PORT: '3000',
@@ -18,8 +18,8 @@ module.exports = {
     {
       name: 'house-hiring-web-site-https-server',
       script: 'src/server.js', //'src/server.js',
-      // instances: 4, // 'max', // Utiliser le maximum d'instances pour le clustering
-      // exec_mode: 'cluster', // Activer le mode de clustering
+      instances: 2, // 'max', // Utiliser le maximum d'instances pour le clustering
+      exec_mode: 'cluster', // Activer le mode de clustering
       env_production: {
         NODE_ENV: 'production',
         PORT: '3000',
