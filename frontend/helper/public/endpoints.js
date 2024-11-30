@@ -14,13 +14,13 @@ const ip = "localhost" || "localhost";
  * Port number on which the server is running.
  * @constant {string}
  */
-const port = "8443";
+const port = "3000";
 
 /**
  * Base URL for the application.
  * @constant {string}
  */
-const root = 'https://' + ip + ':' + port + '/';
+const root = 'http://' + ip + ':' + port + '/';
 
 /**
  * Base URL for the backend owner service.

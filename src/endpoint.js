@@ -3,7 +3,7 @@ require('dotenv').config();
 
 // Define configuration based on environment variables
 const IP = process.env.IP || 'localhost';
-const PORT = process.env.PORT || 8443;
+const PORT = process.env.PORT || 3000;
 
 // Construct the root URL
 const ROOT_URL = `https://${IP}:${PORT}`;

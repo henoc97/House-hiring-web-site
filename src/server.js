@@ -1,7 +1,7 @@
 // server.js
 
 const express = require('express');
-const https = require('https');
+const http = require('http');
 const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -15,18 +15,9 @@ const { ROOT_URL } = require('./endpoint');
 const cspMiddleware = require('../middlewares/http/csp');
 const { logger } = require('./logger/logRotation');
 
-// Buid absolutes path
-const privateKeyPath = path.resolve(__dirname, '../ssl/server.key');
-const certificatePath = path.resolve(__dirname, '../ssl/server.crt');
-
-// Load les certificats
-const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
-const certificate = fs.readFileSync(certificatePath, 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-
 // Create Express application and HTTP server
 const app = express();
-const server = https.createServer(credentials, app);
+const server = http.createServer(app);
 
 // Import and configure WebSocket server
 const configureWebSocket = require('./websocketServer');
@@ -132,7 +123,7 @@ app.use((req, res) => {
 });
 
 // Start the server
-const port = process.env.PORT || 8443;
+const port = process.env.PORT || 3000;
 server.listen(port, () => {
-  console.log(`HTTPS Server is running on port ${port}`);
+  console.log(`http Server is running on port ${port}`);
 });
