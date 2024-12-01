@@ -106,6 +106,13 @@ app.use('/backend-admin', backendAdmin);
 app.use('/backend-owner', backendOwner);
 app.use('/backend-tenant', backendTenant);
 
+app.use(
+  '/',
+  res
+    .status(500)
+    .sendFile(path.join(__dirname, '../frontend/error/error-page500.html'))
+);
+
 // Middleware to handle unhandled errors
 app.use((err, req, res, next) => {
   logger.error('Unhandled error:', err.stack);
