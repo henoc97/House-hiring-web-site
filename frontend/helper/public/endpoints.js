@@ -28,7 +28,7 @@ const port = env.PORT;
  * Base URL for the application.
  * @constant {string}
  */
-const root = 'http://' + ip + ':' + port + '/';
+const root = 'https://' + ip + ':' + port + '/';
 
 /**
  * Base URL for the backend owner service.
