@@ -3,20 +3,26 @@
  * It includes URLs and endpoints used throughout the application for various services
  * such as owner, tenant, and admin functionalities.
  */
-require('dotenv').config();
 
+/**
+ * Configuration of environment variables for the frontend
+ */
+const env = {
+  IP: window.location.hostname || 'localhost',
+  PORT: window.location.port || '3000'
+};
 
 /**
  * IP address of the server.
  * @constant {string}
  */
-const ip = process.env.IP || 'localhost';
+const ip = env.IP;
 
 /**
  * Port number on which the server is running.
  * @constant {string}
  */
-const port = process.env.PORT || 3000;
+const port = env.PORT;
 
 /**
  * Base URL for the application.
