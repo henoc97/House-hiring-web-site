@@ -106,12 +106,10 @@ app.use('/backend-admin', backendAdmin);
 app.use('/backend-owner', backendOwner);
 app.use('/backend-tenant', backendTenant);
 
-app.use(
-  '/',
-  res
-    .status(500)
-    .sendFile(path.join(__dirname, '../frontend/error/error-page500.html'))
-);
+// Route par défaut
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/views/index.html'));
+});
 
 // Middleware to handle unhandled errors
 app.use((err, req, res, next) => {
