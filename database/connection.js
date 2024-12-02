@@ -10,19 +10,33 @@ require('dotenv').config();
  *
  * @returns {mysql.Pool} - The MySQL connection pool.
  */
+
 const createPool = () => {
   return mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    waitForConnections: true, // Wait for a connection to become available
-    connectionLimit: 35, // Maximum number of connections to create
-    queueLimit: 0, // Number of connection requests that can be queued
+    port: process.env.DB_PORT || 3306, // Utilisez le port par défaut si non spécifié
+    waitForConnections: true,
+    connectionLimit: 10, // Limite réduite pour éviter les dépassements
+    queueLimit: 0,
+    connectTimeout: 10000, // Timeout après 10 secondes
   });
 };
 
-// Create and export the pool
 const pool = createPool();
+
+async function testConnection() {
+  try {
+    const connection = await pool.getConnection();
+    console.log('Database connected successfully!');
+    connection.release();
+  } catch (err) {
+    console.error('Database Connection Error:', err.message);
+  }
+}
+
+testConnection();
 
 module.exports = pool;
