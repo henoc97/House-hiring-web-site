@@ -37,10 +37,16 @@ body {
 
 /* Header et Navigation */
 header {
-  background-color: rgba(17, 16, 29, 0.2);
+  background-color: rgba(17, 16, 29, 0.95);
   padding: 1rem 0;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  header {
+    background-color: rgba(17, 16, 29, 0.6);
+  }
 }
 
 nav ul {
@@ -132,12 +138,18 @@ nav a:hover {
 footer {
   width: 100%;
   padding: 1rem 0;
-  background-color: rgba(17, 16, 29, 0.2);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  background-color: rgba(17, 16, 29, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--white);
   text-align: center;
   margin-top: auto;
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  footer {
+    background-color: rgba(17, 16, 29, 0.6);
+  }
 }
 
 /* Media Queries */
@@ -148,6 +160,10 @@ footer {
     gap: 1rem;
   }
 
+  nav a {
+    font-size: 0.9rem;
+  }
+
   .hero h1 {
     font-size: 2rem;
   }
@@ -155,5 +171,14 @@ footer {
   .features {
     grid-template-columns: 1fr;
     padding: 0 1rem;
+  }
+
+  footer p {
+    font-size: 0.85rem;
+    padding: 0 1rem;
+  }
+
+  #logo {
+    font-size: 32px;
   }
 }
