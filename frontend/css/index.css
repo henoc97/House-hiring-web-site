@@ -30,9 +30,17 @@ body {
 }
 
 .container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content */
+main {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 /* Header et Navigation */
@@ -95,11 +103,11 @@ nav a:hover {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
   padding: 2rem var(--spacing);
-  margin-bottom: var(--spacing);
 }
 
 .feature {
@@ -108,6 +116,7 @@ nav a:hover {
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 0 1 300px;
 }
 
 .feature h2 {
@@ -170,9 +179,14 @@ footer {
   }
 
   .features {
-    grid-template-columns: 1fr;
-    padding: 1.5rem 1rem;
+    flex-direction: column;
     gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .feature {
+    width: 100%;
+    max-width: 300px;
   }
 
   footer p {
