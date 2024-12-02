@@ -99,7 +99,8 @@ nav a:hover {
   justify-content: center;
   align-items: stretch;
   gap: 2rem;
-  padding: 2rem var(--spacing);
+  padding: 4rem var(--spacing);
+  margin-top: 2rem;
 }
 
 .feature {
@@ -176,8 +177,8 @@ footer a {
   .features {
     flex-direction: column;
     gap: 1.5rem;
-    padding: 1.5rem 1rem;
-    margin-top: 12px;
+    padding: 3rem 1rem;
+    margin-top: 1.5rem;
   }
 
   .feature {
