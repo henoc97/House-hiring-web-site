@@ -37,8 +37,10 @@ body {
 
 /* Header et Navigation */
 header {
-  background-color: var(--dark-blue);
+  background-color: rgba(17, 16, 29, 0.8);
   padding: 1rem 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 nav ul {
@@ -130,7 +132,9 @@ nav a:hover {
 footer {
   width: 100%;
   padding: 1rem 0;
-  background-color: var(--dark-blue);
+  background-color: rgba(17, 16, 29, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--white);
   text-align: center;
   margin-top: auto;
