@@ -80,9 +80,8 @@ nav a:hover {
 /* Section Hero */
 .hero {
   text-align: center;
-  padding: var(--spacing) 1rem;
-  background-color: var(--white);
-  margin-bottom: var(--spacing);
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
 }
 
 .hero h1 {
@@ -108,6 +107,7 @@ nav a:hover {
   align-items: center;
   gap: 2rem;
   padding: 2rem var(--spacing);
+  margin-bottom: var(--spacing);
 }
 
 .feature {
