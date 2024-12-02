@@ -1,4 +1,6 @@
 const mysql = require('mysql2/promise');
+const { logger } = require('../src/logger/logRotation');
+
 require('dotenv').config();
 
 /**
@@ -17,11 +19,11 @@ const createPool = () => {
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 3306, // Utilisez le port par défaut si non spécifié
+    port: process.env.DB_PORT || 3306, // Use default port if not specified
     waitForConnections: true,
-    connectionLimit: 10, // Limite réduite pour éviter les dépassements
+    connectionLimit: 10, // Reduced limit to avoid overflows
     queueLimit: 0,
-    connectTimeout: 10000, // Timeout après 10 secondes
+    connectTimeout: 10000, // Timeout after 10 seconds
   });
 };
 
@@ -30,10 +32,10 @@ const pool = createPool();
 async function testConnection() {
   try {
     const connection = await pool.getConnection();
-    console.log('Database connected successfully!');
+    logger.log('Database connected successfully!');
     connection.release();
   } catch (err) {
-    console.error('Database Connection Error:', err.message);
+    logger.error('Database Connection Error:', err.message);
   }
 }
 
