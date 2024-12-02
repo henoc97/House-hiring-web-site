@@ -18,8 +18,8 @@ const PATHS = {
 
 // Construct specific URLs
 const ownerRootURL = `${ROOT_URL}/${PATHS.OWNER}`;
-const ownerResetPwdURL = `${ownerRootURL}/${PATHS.RESET_PWD}`;
-const ownerRedirectURL = `${ownerRootURL}/${PATHS.REDIRECT}`;
+const ownerResetPwdURL = `https://house-hiring-web-site.onrender.com/${PATHS.RESET_PWD}`;
+const ownerRedirectURL = `https://house-hiring-web-site.onrender.com/${PATHS.REDIRECT}`;
 
 // Export URLs
 module.exports = {

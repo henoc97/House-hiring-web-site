@@ -4,7 +4,7 @@ require('dotenv').config();
 const path = require('path');
 const { logger } = require('../src/logger/logRotation');
 
-const { ownerRedirectURL } = require('../src/endpoint');
+const { ownerRedirectURL, ownerResetPwdURL } = require('../src/endpoint');
 
 // Configure Nodemailer transport
 const transporter = nodemailer.createTransport({
@@ -23,7 +23,6 @@ const transporter = nodemailer.createTransport({
  * @param {string} codeOTP - The OTP code to be included in the email.
  * @returns {Promise<void>} - A promise that resolves when the email is sent.
  */
-const ownerRedirectURL = 'https://house-hiring-web-site.onrender.com/';
 const sendOTPemail = async (email, pwd, codeOTP) => {
   try {
     const filePath = path.join(__dirname, 'activation', 'app-activation.ejs');
