@@ -929,4 +929,8 @@ form button:hover {
     display: flex;
     justify-content: flex-end;
   }
+
+  .details .messages-form {
+    grid-template-columns: 1fr; /* Change en une seule colonne */
+  }
 }

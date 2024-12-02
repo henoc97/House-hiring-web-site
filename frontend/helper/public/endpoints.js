@@ -41,7 +41,8 @@ const host = root + "backend-owner/";
  * WebSocket URL for real-time communication.
  * @constant {string}
  */
-const hostSocket = "wss://" + ip  + ":" + port + "/";
+// const hostSocket = "wss://" + ip  + ":" + port + "/";
+const hostSocket = "wss://" + ip  + "/"; // for render
 
 /**
  * Base URL for the backend tenant service.
