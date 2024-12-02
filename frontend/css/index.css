@@ -37,7 +37,7 @@ body {
 
 /* Header et Navigation */
 header {
-  background-color: rgba(17, 16, 29, 0.95);
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 1rem 0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -45,7 +45,7 @@ header {
 
 @supports (backdrop-filter: blur(12px)) {
   header {
-    background-color: rgba(17, 16, 29, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
   }
 }
 
@@ -96,17 +96,17 @@ nav a:hover {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing);
-  padding: 0 var(--spacing);
+  gap: 2rem;
+  padding: 2rem var(--spacing);
   margin-bottom: var(--spacing);
 }
 
 .feature {
   background-color: var(--white);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .feature h2 {
@@ -170,7 +170,8 @@ footer {
 
   .features {
     grid-template-columns: 1fr;
-    padding: 0 1rem;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
   }
 
   footer p {
