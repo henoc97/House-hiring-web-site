@@ -37,10 +37,10 @@ body {
 
 /* Header et Navigation */
 header {
-  background-color: rgba(17, 16, 29, 0.3);
+  background-color: rgba(17, 16, 29, 0.2);
   padding: 1rem 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
 }
 
 nav ul {
@@ -132,9 +132,9 @@ nav a:hover {
 footer {
   width: 100%;
   padding: 1rem 0;
-  background-color: rgba(17, 16, 29, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(17, 16, 29, 0.2);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   color: var(--white);
   text-align: center;
   margin-top: auto;
